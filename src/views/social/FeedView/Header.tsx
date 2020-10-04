@@ -16,7 +16,6 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <div></div>
     <div
       className={clsx(classes.root, className)}
       {...rest}

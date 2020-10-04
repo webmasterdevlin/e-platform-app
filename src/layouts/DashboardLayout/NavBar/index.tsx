@@ -202,25 +202,13 @@ const sections: Section[] = [
         title: 'Chat',
         href: '/app/chat',
         icon: MessageCircleIcon,
-        info: () => (
-          <Chip
-            color="secondary"
-            size="small"
-            label="Updated"
-          />
-        )
+        info: () => <Chip color="secondary" size="small" label="Updated" />
       },
       {
         title: 'Calendar',
         href: '/app/calendar',
         icon: CalendarIcon,
-        info: () => (
-          <Chip
-            color="secondary"
-            size="small"
-            label="Updated"
-          />
-        )
+        info: () => <Chip color="secondary" size="small" label="Updated" />
       }
     ]
   },
@@ -256,52 +244,6 @@ const sections: Section[] = [
         title: 'Pricing',
         href: '/pricing',
         icon: DollarSignIcon
-      }
-    ]
-  },
-  {
-    subheader: 'Extra',
-    items: [
-      {
-        title: 'Charts',
-        href: '/app/extra/charts',
-        icon: BarChartIcon,
-        items: [
-          {
-            title: 'Apex Charts',
-            href: '/app/extra/charts/apex'
-          }
-        ]
-      },
-      {
-        title: 'Forms',
-        href: '/app/extra/forms',
-        icon: EditIcon,
-        items: [
-          {
-            title: 'Formik',
-            href: '/app/extra/forms/formik'
-          },
-          {
-            title: 'Redux Forms',
-            href: '/app/extra/forms/redux'
-          },
-        ]
-      },
-      {
-        title: 'Editors',
-        href: '/app/extra/editors',
-        icon: LayoutIcon,
-        items: [
-          {
-            title: 'DraftJS Editor',
-            href: '/app/extra/editors/draft-js'
-          },
-          {
-            title: 'Quill Editor',
-            href: '/app/extra/editors/quill'
-          }
-        ]
       }
     ]
   }
@@ -406,40 +348,22 @@ const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
   }, [location.pathname]);
 
   const content = (
-    <Box
-      height="100%"
-      display="flex"
-      flexDirection="column"
-    >
+    <Box height="100%" display="flex" flexDirection="column">
       <PerfectScrollbar options={{ suppressScrollX: true }}>
         <Hidden lgUp>
-          <Box
-            p={2}
-            display="flex"
-            justifyContent="center"
-          >
+          <Box p={2} display="flex" justifyContent="center">
             <RouterLink to="/">
               <Logo />
             </RouterLink>
           </Box>
         </Hidden>
         <Box p={2}>
-          <Box
-            display="flex"
-            justifyContent="center"
-          >
+          <Box display="flex" justifyContent="center">
             <RouterLink to="/app/account">
-              <Avatar
-                alt="User"
-                className={classes.avatar}
-                src={user.avatar}
-              />
+              <Avatar alt="User" className={classes.avatar} src={user.avatar} />
             </RouterLink>
           </Box>
-          <Box
-            mt={2}
-            textAlign="center"
-          >
+          <Box mt={2} textAlign="center">
             <Link
               component={RouterLink}
               to="/app/account"
@@ -449,16 +373,9 @@ const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
             >
               {user.name}
             </Link>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-            >
-              Your tier:
-              {' '}
-              <Link
-                component={RouterLink}
-                to="/pricing"
-              >
+            <Typography variant="body2" color="textSecondary">
+              Your tier:{' '}
+              <Link component={RouterLink} to="/pricing">
                 {user.tier}
               </Link>
             </Typography>
@@ -469,14 +386,11 @@ const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
           {sections.map((section) => (
             <List
               key={section.subheader}
-              subheader={(
-                <ListSubheader
-                  disableGutters
-                  disableSticky
-                >
+              subheader={
+                <ListSubheader disableGutters disableSticky>
                   {section.subheader}
                 </ListSubheader>
-              )}
+              }
             >
               {renderNavItems({
                 items: section.items,
@@ -487,24 +401,18 @@ const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
         </Box>
         <Divider />
         <Box p={2}>
-          <Box
-            p={2}
-            borderRadius="borderRadius"
-            bgcolor="background.dark"
-          >
-            <Typography
-              variant="h6"
-              color="textPrimary"
-            >
+          <Box p={2} borderRadius="borderRadius" bgcolor="background.dark">
+            <Typography variant="h6" color="textPrimary">
               Need Help?
             </Typography>
             <Link
+              onClick={() => alert('Contacting Eplatform test')}
               variant="subtitle1"
               color="secondary"
               component={RouterLink}
-              to="/docs"
+              to="#"
             >
-              Check our docs
+              Contact Eplatform
             </Link>
           </Box>
         </Box>
