@@ -1,7 +1,4 @@
-import React, {
-  useEffect,
-  useRef
-} from 'react';
+import React, { useEffect, useRef } from 'react';
 import type { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
@@ -18,14 +15,14 @@ const useStyles = makeStyles(() => ({
     height: '100%',
     display: 'flex',
     overflow: 'hidden',
-    position: 'relative'
-  }
+    position: 'relative',
+  },
 }));
 
 const MailView: FC = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { mailId } = useParams();
+  const { mailId } = useParams<any>();
   const pageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -33,11 +30,7 @@ const MailView: FC = () => {
   }, [dispatch]);
 
   return (
-    <Page
-      className={classes.root}
-      title="Mail"
-      ref={pageRef}
-    >
+    <Page className={classes.root} title="Mail" ref={pageRef}>
       <Sidebar containerRef={pageRef} />
       {mailId ? <MailDetails /> : <MailList />}
       <Compose />

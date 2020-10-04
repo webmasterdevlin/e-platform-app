@@ -12,7 +12,7 @@ import {
   Tooltip,
   Typography,
   makeStyles,
-  Hidden
+  Hidden,
 } from '@material-ui/core';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ReplyIcon from '@material-ui/icons/ReplyOutlined';
@@ -32,29 +32,29 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     height: '100%',
     flexDirection: 'column',
-    overflowY: 'auto'
+    overflowY: 'auto',
   },
   avatar: {
     height: 56,
-    width: 56
+    width: 56,
   },
   date: {
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
   },
   message: {
     color: theme.palette.text.secondary,
     '& > p': {
       ...theme.typography.body1,
-      marginBottom: theme.spacing(2)
-    }
-  }
+      marginBottom: theme.spacing(2),
+    },
+  },
 }));
 
 const MailDetails: FC = () => {
   const classes = useStyles();
-  const { mailId } = useParams();
+  const { mailId } = useParams<any>();
   const dispatch = useDispatch();
-  const mail = useSelector((state) => state.mail.mails.byId[mailId]);
+  const mail = useSelector(state => state.mail.mails.byId[mailId]);
 
   useEffect(() => {
     dispatch(getMail(mailId));
@@ -68,49 +68,22 @@ const MailDetails: FC = () => {
     <div className={classes.root}>
       <Toolbar />
       <Divider />
-      <Box
-        p={3}
-        display="flex"
-        justifyContent="space-between"
-        flexShrink={0}
-      >
-        <Box
-          display="flex"
-          alignItems="center"
-        >
-          <Avatar
-            className={classes.avatar}
-            src={mail.from.avatar}
-          >
+      <Box p={3} display="flex" justifyContent="space-between" flexShrink={0}>
+        <Box display="flex" alignItems="center">
+          <Avatar className={classes.avatar} src={mail.from.avatar}>
             {getInitials(mail.from.name)}
           </Avatar>
           <Box ml={2}>
-            <Typography
-              display="inline"
-              variant="h5"
-              color="textPrimary"
-            >
+            <Typography display="inline" variant="h5" color="textPrimary">
               {mail.from.name}
-            </Typography>
-            {' '}
-            <Link
-              color="textSecondary"
-              display="inline"
-              variant="body2"
-            >
+            </Typography>{' '}
+            <Link color="textSecondary" display="inline" variant="body2">
               {mail.from.email}
             </Link>
-            <Typography
-              variant="subtitle2"
-              color="textSecondary"
-            >
-              To:
-              {' '}
-              {mail.to.map((person) => (
-                <Link
-                  color="inherit"
-                  key={person.email}
-                >
+            <Typography variant="subtitle2" color="textSecondary">
+              To:{' '}
+              {mail.to.map(person => (
+                <Link color="inherit" key={person.email}>
                   {person.email}
                 </Link>
               ))}
@@ -124,10 +97,7 @@ const MailDetails: FC = () => {
             </Typography>
           </Box>
         </Box>
-        <Box
-          display="flex"
-          alignItems="center"
-        >
+        <Box display="flex" alignItems="center">
           <Hidden smDown>
             <Tooltip title="Reply">
               <IconButton>
@@ -153,23 +123,12 @@ const MailDetails: FC = () => {
         </Box>
       </Box>
       <Divider />
-      <Box
-        flexGrow={1}
-        py={6}
-        px={3}
-        bgcolor="background.dark"
-      >
-        <Typography
-          variant="h1"
-          color="textPrimary"
-        >
+      <Box flexGrow={1} py={6} px={3} bgcolor="background.dark">
+        <Typography variant="h1" color="textPrimary">
           {mail.subject}
         </Typography>
         <Box mt={2}>
-          <Markdown
-            source={mail.message}
-            className={classes.message}
-          />
+          <Markdown source={mail.message} className={classes.message} />
         </Box>
       </Box>
       <Divider />

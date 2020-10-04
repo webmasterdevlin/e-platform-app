@@ -14,7 +14,7 @@ import {
   Tooltip,
   Typography,
   colors,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
@@ -56,8 +56,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     alignItems: 'center',
     '&:hover': {
-      backgroundColor: theme.palette.action.hover
-    }
+      backgroundColor: theme.palette.action.hover,
+    },
   },
   unread: {
     position: 'relative',
@@ -68,40 +68,40 @@ const useStyles = makeStyles((theme: Theme) => ({
       left: 0,
       top: 0,
       width: 4,
-      backgroundColor: theme.palette.error.main
+      backgroundColor: theme.palette.error.main,
     },
     '& $name, & $subject': {
-      fontWeight: theme.typography.fontWeightBold
-    }
+      fontWeight: theme.typography.fontWeightBold,
+    },
   },
   selected: {
-    backgroundColor: theme.palette.action.selected
+    backgroundColor: theme.palette.action.selected,
   },
   filterActive: {
-    color: colors.amber[400]
+    color: colors.amber[400],
   },
   content: {
     cursor: 'pointer',
-    textDecoration: 'none'
+    textDecoration: 'none',
   },
   details: {
     [theme.breakpoints.up('md')]: {
       display: 'flex',
       alignItems: 'center',
-      flexGrow: 1
-    }
+      flexGrow: 1,
+    },
   },
   name: {
     [theme.breakpoints.up('md')]: {
       minWidth: 180,
-      flexBasis: 180
-    }
+      flexBasis: 180,
+    },
   },
   subject: {
     maxWidth: 400,
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    textOverflow: 'ellipsis'
+    textOverflow: 'ellipsis',
   },
   message: {
     maxWidth: 800,
@@ -109,7 +109,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    marginRight: 'auto'
+    marginRight: 'auto',
   },
   label: {
     fontFamily: theme.typography.fontFamily,
@@ -121,12 +121,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: 2,
     borderRadius: 2,
     '& + &': {
-      marginLeft: theme.spacing(1)
-    }
+      marginLeft: theme.spacing(1),
+    },
   },
   date: {
-    whiteSpace: 'nowrap'
-  }
+    whiteSpace: 'nowrap',
+  },
 }));
 
 const MailItem: FC<MailItemProps> = ({
@@ -138,10 +138,11 @@ const MailItem: FC<MailItemProps> = ({
   ...rest
 }) => {
   const classes = useStyles();
-  const params = useParams();
-  const { labels } = useSelector((state) => state.mail);
+  const params = useParams<any>();
+  const { labels } = useSelector(state => state.mail);
 
-  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>): void => (event.target.checked ? onSelect() : onDeselect());
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>): void =>
+    event.target.checked ? onSelect() : onDeselect();
 
   const handleStarToggle = (): void => {
     // dispatch action
@@ -159,22 +160,15 @@ const MailItem: FC<MailItemProps> = ({
         classes.root,
         {
           [classes.unread]: !mail.isUnread,
-          [classes.selected]: selected
+          [classes.selected]: selected,
         },
-        className
+        className,
       )}
       {...rest}
     >
       <Hidden smDown>
-        <Box
-          mr={1}
-          display="flex"
-          alignItems="center"
-        >
-          <Checkbox
-            checked={selected}
-            onChange={handleCheckboxChange}
-          />
+        <Box mr={1} display="flex" alignItems="center">
+          <Checkbox checked={selected} onChange={handleCheckboxChange} />
           <Tooltip title="Starred">
             <IconButton onClick={handleStarToggle}>
               {mail.isStarred ? (
@@ -204,14 +198,8 @@ const MailItem: FC<MailItemProps> = ({
         to={to}
         className={classes.content}
       >
-        <Avatar src={mail.from.avatar}>
-          {getInitials(mail.from.name)}
-        </Avatar>
-        <Box
-          minWidth="1px"
-          ml={1}
-          className={classes.details}
-        >
+        <Avatar src={mail.from.avatar}>{getInitials(mail.from.name)}</Avatar>
+        <Box minWidth="1px" ml={1} className={classes.details}>
           <Typography
             variant="body2"
             color="textPrimary"
@@ -232,21 +220,15 @@ const MailItem: FC<MailItemProps> = ({
               color="textSecondary"
               className={classes.message}
             >
-              <Box
-                component="span"
-                ml={2}
-              >
+              <Box component="span" ml={2}>
                 -
               </Box>
               {mail.message}
             </Typography>
             {mail.labelIds.length > 0 && (
-              <Box
-                display="flex"
-                mx={2}
-              >
+              <Box display="flex" mx={2}>
                 {mail.labelIds.map((labelId: string) => {
-                  const label = labels.find((_label) => _label.id === labelId);
+                  const label = labels.find(_label => _label.id === labelId);
 
                   if (!label) return null;
 
@@ -282,12 +264,12 @@ MailItem.propTypes = {
   mail: PropTypes.object.isRequired,
   onDeselect: PropTypes.func,
   onSelect: PropTypes.func,
-  selected: PropTypes.bool.isRequired
+  selected: PropTypes.bool.isRequired,
 };
 
 MailItem.defaultProps = {
   onDeselect: () => {},
-  onSelect: () => {}
+  onSelect: () => {},
 };
 
 export default MailItem;

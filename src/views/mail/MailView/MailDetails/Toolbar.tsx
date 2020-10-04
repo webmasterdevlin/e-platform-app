@@ -10,7 +10,7 @@ import {
   Input,
   Paper,
   Tooltip,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexShrink: 0,
     height: 68,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
   searchContainer: {
     alignItems: 'center',
@@ -38,18 +38,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: theme.spacing(0.5),
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
-    paddingTop: theme.spacing(0.5)
+    paddingTop: theme.spacing(0.5),
   },
   searchInput: {
     flexGrow: 1,
-    marginLeft: theme.spacing(2)
-  }
+    marginLeft: theme.spacing(2),
+  },
 }));
 
 const Toolbar: FC<ToolbarProps> = ({ className, ...rest }) => {
   const classes = useStyles();
   const history = useHistory();
-  const { systemLabel, customLabel } = useParams();
+  const { systemLabel, customLabel } = useParams<any>();
 
   const handleBack = (): void => {
     if (systemLabel) {
@@ -64,10 +64,7 @@ const Toolbar: FC<ToolbarProps> = ({ className, ...rest }) => {
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <Tooltip title="Back">
         <IconButton onClick={handleBack}>
           <ArrowBackIcon fontSize="small" />
@@ -75,10 +72,7 @@ const Toolbar: FC<ToolbarProps> = ({ className, ...rest }) => {
       </Tooltip>
       <Box flexGrow={1} />
       <Hidden mdDown>
-        <Paper
-          className={classes.searchContainer}
-          variant="outlined"
-        >
+        <Paper className={classes.searchContainer} variant="outlined">
           <SearchIcon color="action" />
           <Input
             className={classes.searchInput}
@@ -99,10 +93,10 @@ const Toolbar: FC<ToolbarProps> = ({ className, ...rest }) => {
       </Tooltip>
     </div>
   );
-}
+};
 
 Toolbar.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Toolbar;

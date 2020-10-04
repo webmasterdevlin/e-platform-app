@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useEffect
-} from 'react';
+import React, { useState, useEffect } from 'react';
 import type { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { Divider, makeStyles } from '@material-ui/core';
@@ -15,19 +12,19 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.dark
-  }
+    backgroundColor: theme.palette.background.dark,
+  },
 }));
 
 const MailList: FC = () => {
   const classes = useStyles();
-  const params = useParams();
+  const params = useParams<any>();
   const dispatch = useDispatch();
-  const { mails } = useSelector((state) => state.mail);
+  const { mails } = useSelector(state => state.mail);
   const [selectedMails, setSelectedMails] = useState<string[]>([]);
 
   const handleSelectAllMails = (): void => {
-    setSelectedMails(mails.allIds.map((mailId => mailId)));
+    setSelectedMails(mails.allIds.map(mailId => mailId));
   };
 
   const handleDeselectAllMails = (): void => {
@@ -35,7 +32,7 @@ const MailList: FC = () => {
   };
 
   const handleSelectOneMail = (mailId: string): void => {
-    setSelectedMails((prevSelectedMails) => {
+    setSelectedMails(prevSelectedMails => {
       if (!prevSelectedMails.includes(mailId)) {
         return [...prevSelectedMails, mailId];
       }
@@ -45,7 +42,9 @@ const MailList: FC = () => {
   };
 
   const handleDeselectOneMail = (mailId: string): void => {
-    setSelectedMails((prevSelectedMails) => prevSelectedMails.filter((id) => id !== mailId));
+    setSelectedMails(prevSelectedMails =>
+      prevSelectedMails.filter(id => id !== mailId),
+    );
   };
 
   useEffect(() => {
@@ -72,6 +71,6 @@ const MailList: FC = () => {
       ))}
     </div>
   );
-}
+};
 
 export default MailList;
