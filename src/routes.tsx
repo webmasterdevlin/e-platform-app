@@ -8,6 +8,7 @@ import HomeViewV2 from 'src/views/home/HomeViewV2';
 import LoadingScreen from 'src/components/LoadingScreen';
 import AuthGuard from 'src/components/AuthGuard';
 import GuestGuard from 'src/components/GuestGuard';
+import ReduxDemoLayout from './layouts/ReduxDemoLayout';
 
 type Routes = {
   exact?: boolean;
@@ -76,6 +77,32 @@ const routes: Routes = [
     exact: true,
     path: '/register-unprotected',
     component: lazy(() => import('src/views/auth/RegisterView')),
+  },
+  {
+    path: '/redux-demo',
+    layout: ReduxDemoLayout,
+    routes: [
+      {
+        exact: true,
+        path: '/redux-demo/toolkit',
+        component: lazy(
+          () => import('src/features/anti-heroes/pages/AntiHeroes'),
+        ),
+      },
+      {
+        exact: true,
+        path: '/redux-demo/thunk',
+        component: lazy(() => import('src/features/villains/pages/Villains')),
+      },
+      {
+        exact: true,
+        path: '/redux-demo/saga',
+        component: lazy(() => import('src/features/heroes/pages/Heroes')),
+      },
+      {
+        component: () => <Redirect to="/404" />,
+      },
+    ],
   },
   {
     path: '/app',
