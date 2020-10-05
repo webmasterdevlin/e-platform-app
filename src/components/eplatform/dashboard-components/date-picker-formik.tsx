@@ -2,7 +2,7 @@ import React from 'react';
 
 import { DatePicker } from '@material-ui/pickers';
 import { FormikProps } from 'formik';
-import PlainErrorMessage from '../frontpage-components/plain-error-message';
+import PlainErrorMessage from '../page-components/plain-error-message';
 
 type Props = {
   id: string;

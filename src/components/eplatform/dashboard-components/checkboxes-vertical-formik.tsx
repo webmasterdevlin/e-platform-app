@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field } from 'formik';
-import PlainErrorMessage from '../frontpage-components/plain-error-message';
+import PlainErrorMessage from '../page-components/plain-error-message';
 
 type Props = {
   options: Array<any>;

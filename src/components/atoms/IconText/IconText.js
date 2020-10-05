@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Icon from '../Icon';
-import theme from '../../../themes/theme';
+import theme from '../../../themes/landing-pages-theme';
 
 const useStyles = makeStyles(() => ({
   root: {
     display: 'inline-flex',
     flexWrap: 'nowrap',
     alignItems: 'center',
-    width: '100%'
+    width: '100%',
   },
   title: {
-    marginLeft: theme.spacing(1)
-  }
+    marginLeft: theme.spacing(1),
+  },
 }));
 
 /**
@@ -60,7 +60,7 @@ const IconText = props => {
 
 IconText.defaultProps = {
   iconProps: {},
-  typographyProps: {}
+  typographyProps: {},
 };
 
 IconText.propTypes = {
@@ -87,7 +87,7 @@ IconText.propTypes = {
   /**
    * Additional properties to pass to the Typography component
    */
-  typographyProps: PropTypes.object
+  typographyProps: PropTypes.object,
 };
 
 export default IconText;
