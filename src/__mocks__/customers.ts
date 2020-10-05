@@ -272,7 +272,7 @@ mock.onGet('/api/customers/1/invoices').reply(() => {
       issueDate: moment()
         .toDate()
         .getTime(),
-      paymentMethod: 'Credit Card',
+      paymentMethod: 'Vipps',
       status: 'paid',
       value: 5.25
     },
@@ -283,7 +283,7 @@ mock.onGet('/api/customers/1/invoices').reply(() => {
       issueDate: moment()
         .toDate()
         .getTime(),
-      paymentMethod: 'Credit Card',
+      paymentMethod: 'Bankaksept',
       status: 'paid',
       value: 5.25
     }

@@ -16,7 +16,7 @@ mock.onGet('/api/orders').reply(() => {
         name: 'Cao Yu'
       },
       number: 'DEV-102',
-      paymentMethod: 'CreditCard',
+      paymentMethod: 'Vipps',
       status: 'pending',
       totalAmount: 500.00
     },
@@ -32,7 +32,7 @@ mock.onGet('/api/orders').reply(() => {
         name: 'Alex Richardson'
       },
       number: 'DEV-101',
-      paymentMethod: 'PayPal',
+      paymentMethod: 'Bankaksept',
       status: 'completed',
       totalAmount: 500.00
     },
@@ -48,7 +48,7 @@ mock.onGet('/api/orders').reply(() => {
         name: 'Anje Keizer'
       },
       number: 'DEV-100',
-      paymentMethod: 'CreditCard',
+      paymentMethod: 'Bankaksept',
       status: 'pending',
       totalAmount: 500.00
     },
@@ -64,7 +64,7 @@ mock.onGet('/api/orders').reply(() => {
         name: 'Clarke Gillebert'
       },
       number: 'DEV-99',
-      paymentMethod: 'PayPal',
+      paymentMethod: 'Klarna Checkout',
       status: 'completed',
       totalAmount: 500.00
     },
@@ -80,7 +80,7 @@ mock.onGet('/api/orders').reply(() => {
         name: 'Adam Denisov'
       },
       number: 'DEV-98',
-      paymentMethod: 'PayPal',
+      paymentMethod: 'Klarna Checkout',
       status: 'completed',
       totalAmount: 500.00
     },
@@ -97,7 +97,7 @@ mock.onGet('/api/orders').reply(() => {
       },
       status: 'pending',
       number: 'DEV-97',
-      paymentMethod: 'CreditCard',
+      paymentMethod: 'Vipps',
       totalAmount: 500.00
     },
     {
@@ -112,7 +112,7 @@ mock.onGet('/api/orders').reply(() => {
         name: 'Emilee Simchenko'
       },
       number: 'DEV-96',
-      paymentMethod: 'CreditCard',
+      paymentMethod: 'Bankaksept',
       status: 'completed',
       totalAmount: 500.00
     },
@@ -128,7 +128,7 @@ mock.onGet('/api/orders').reply(() => {
         name: 'Elliott Stone'
       },
       number: 'DEV-95',
-      paymentMethod: 'PayPal',
+      paymentMethod: 'Klarna Checkout',
       status: 'rejected',
       totalAmount: 500.00
     },
@@ -144,7 +144,7 @@ mock.onGet('/api/orders').reply(() => {
         name: 'Shen Zhi'
       },
       number: 'DEV-94',
-      paymentMethod: 'CreditCard',
+      paymentMethod: 'Vipps',
       status: 'canceled',
       totalAmount: 500.00
     },
@@ -161,7 +161,7 @@ mock.onGet('/api/orders').reply(() => {
         name: 'Merrile Burgett'
       },
       number: 'DEV-93',
-      paymentMethod: 'PayPal',
+      paymentMethod: 'Klarna Checkout',
       status: 'canceled',
       totalAmount: 500.00
     }
@@ -204,7 +204,7 @@ mock.onGet('/api/orders/1').reply(() => {
       }
     ],
     number: 'DEV-103',
-    paymentMethod: 'CreditCard',
+    paymentMethod: 'Vipps',
     status: 'pending',
     totalAmount: 500.00
   };

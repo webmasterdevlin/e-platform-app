@@ -5,13 +5,7 @@ import type { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {
-  Box,
-  Drawer,
-  Hidden,
-  List,
-  makeStyles
-} from '@material-ui/core';
+import { Box, Drawer, Hidden, List, makeStyles } from '@material-ui/core';
 import Logo from 'src/components/Logo';
 import NavItem from './NavItem';
 
@@ -29,65 +23,64 @@ interface Item {
 const items: Item[] = [
   {
     title: 'Welcome',
-    href: '/docs/welcome'
+    href: '/docs/welcome',
   },
   {
     title: 'Getting Started',
-    href: '/docs/getting-started'
+    href: '/docs/getting-started',
   },
   {
     title: 'Environment Variables',
-    href: '/docs/environment-variables'
+    href: '/docs/environment-variables',
   },
   {
     title: 'Deployment',
-    href: '/docs/deployment'
+    href: '/docs/deployment',
   },
   {
     title: 'Analytics',
-    href: '/docs/analytics'
+    href: '/docs/analytics',
   },
   {
     title: 'API Calls',
-    href: '/docs/api-calls'
+    href: '/docs/api-calls',
   },
   {
     title: 'Authentication',
-    href: '/docs/authentication'
+    href: '/docs/authentication',
   },
   {
     title: 'Routing',
-    href: '/docs/routing'
+    href: '/docs/routing',
   },
   {
     title: 'Settings',
-    href: '/docs/settings'
+    href: '/docs/settings',
   },
   {
     title: 'State Management',
-    href: '/docs/state-management'
+    href: '/docs/state-management',
   },
   {
     title: 'Theming',
-    href: '/docs/theming'
-  },
-  {
-    title: 'Support',
-    href: '/docs/support'
+    href: '/docs/theming',
   },
   {
     title: 'Changelog',
-    href: '/docs/changelog'
-  }
+    href: '/docs/changelog',
+  },
 ];
 
-function renderNavItems({ items, depth = 0 }: { items: Item[], depth?: number }) {
+function renderNavItems({
+  items,
+  depth = 0,
+}: {
+  items: Item[];
+  depth?: number;
+}) {
   return (
     <List disablePadding>
-      {items.reduce(
-        (acc, item) => reduceChildRoutes({ acc, item, depth }),
-        []
-      )}
+      {items.reduce((acc, item) => reduceChildRoutes({ acc, item, depth }), [])}
     </List>
   );
 }
@@ -95,7 +88,7 @@ function renderNavItems({ items, depth = 0 }: { items: Item[], depth?: number })
 function reduceChildRoutes({
   acc,
   item,
-  depth = 0
+  depth = 0,
 }: {
   acc: any[];
   item: Item;
@@ -103,16 +96,12 @@ function reduceChildRoutes({
 }) {
   if (item.items) {
     acc.push(
-      <NavItem
-        depth={depth}
-        key={item.href}
-        title={item.title}
-      >
+      <NavItem depth={depth} key={item.href} title={item.title}>
         {renderNavItems({
           items: item.items,
-          depth: depth + 1
+          depth: depth + 1,
         })}
-      </NavItem>
+      </NavItem>,
     );
   } else {
     acc.push(
@@ -121,7 +110,7 @@ function reduceChildRoutes({
         href={item.href}
         key={item.href}
         title={item.title}
-      />
+      />,
     );
   }
 
@@ -130,13 +119,13 @@ function reduceChildRoutes({
 
 const useStyles = makeStyles(() => ({
   mobileDrawer: {
-    width: 256
+    width: 256,
   },
   desktopDrawer: {
     width: 256,
     top: 64,
-    height: 'calc(100% - 64px)'
-  }
+    height: 'calc(100% - 64px)',
+  },
 }));
 
 const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
@@ -151,11 +140,7 @@ const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
   }, [location.pathname]);
 
   const content = (
-    <Box
-      height="100%"
-      display="flex"
-      flexDirection="column"
-    >
+    <Box height="100%" display="flex" flexDirection="column">
       <Hidden lgUp>
         <Box p={2}>
           <RouterLink to="/">
@@ -163,9 +148,7 @@ const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
           </RouterLink>
         </Box>
       </Hidden>
-      <Box p={2}>
-        {renderNavItems({ items })}
-      </Box>
+      <Box p={2}>{renderNavItems({ items })}</Box>
     </Box>
   );
 
@@ -198,7 +181,7 @@ const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
 
 NavBar.propTypes = {
   onMobileClose: PropTypes.func,
-  openMobile: PropTypes.bool
+  openMobile: PropTypes.bool,
 };
 
 export default NavBar;

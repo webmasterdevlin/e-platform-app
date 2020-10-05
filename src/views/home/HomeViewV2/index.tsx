@@ -7,7 +7,7 @@ import {
   FormControl,
   OutlinedInput,
   InputAdornment,
-  Button
+  Button,
 } from '@material-ui/core';
 import { Icon } from '../../../components/atoms';
 import { SectionHeader } from 'src/components/molecules';
@@ -21,16 +21,16 @@ const useStyles = makeStyles(theme => ({
     minHeight: 400,
     maxHeight: 600,
     background: `url(/images/photos/rental/hero-bg-image.jpg) no-repeat center ${colors.blueGrey[200]}`,
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
   },
   section: {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
   },
   textWhite: {
-    color: 'white'
+    color: 'white',
   },
   searchInputContainer: {
     background: 'white',
@@ -42,31 +42,31 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     '& .MuiOutlinedInput-notchedOutline': {
-      border: '0 !important'
+      border: '0 !important',
     },
     '& .MuiInputAdornment-positionStart': {
-      marginRight: theme.spacing(2)
+      marginRight: theme.spacing(2),
     },
     '& .MuiOutlinedInput-adornedStart': {
-      paddingLeft: 0
+      paddingLeft: 0,
     },
     '& .MuiOutlinedInput-input': {
-      padding: 0
+      padding: 0,
     },
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(1)
-    }
+      padding: theme.spacing(1),
+    },
   },
   input: {
-    background: 'white'
+    background: 'white',
   },
   searchButton: {
     maxHeight: 45,
     minWidth: 135,
     [theme.breakpoints.down('sm')]: {
-      minWidth: 'auto'
-    }
-  }
+      minWidth: 'auto',
+    },
+  },
 }));
 
 const Hero = props => {
@@ -102,7 +102,7 @@ const Hero = props => {
                   />
                 </InputAdornment>
               }
-              placeholder="Search for the place"
+              placeholder="Search for lessons"
             />
           </FormControl>
           <Button
@@ -123,7 +123,7 @@ Hero.propTypes = {
   /**
    * External classes
    */
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Hero;

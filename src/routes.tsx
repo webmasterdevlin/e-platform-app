@@ -53,29 +53,29 @@ const routes: Routes = [
   {
     exact: true,
     path: '/404',
-    component: lazy(() => import('src/views/errors/NotFoundView'))
+    component: lazy(() => import('src/views/errors/NotFoundView')),
   },
   {
     exact: true,
     guard: GuestGuard,
     path: '/login',
-    component: lazy(() => import('src/views/auth/LoginView'))
+    component: lazy(() => import('src/views/auth/LoginView')),
   },
   {
     exact: true,
     path: '/login-unprotected',
-    component: lazy(() => import('src/views/auth/LoginView'))
+    component: lazy(() => import('src/views/auth/LoginView')),
   },
   {
     exact: true,
     guard: GuestGuard,
     path: '/register',
-    component: lazy(() => import('src/views/auth/RegisterView'))
+    component: lazy(() => import('src/views/auth/RegisterView')),
   },
   {
     exact: true,
     path: '/register-unprotected',
-    component: lazy(() => import('src/views/auth/RegisterView'))
+    component: lazy(() => import('src/views/auth/RegisterView')),
   },
   {
     path: '/app',
@@ -85,182 +85,186 @@ const routes: Routes = [
       {
         exact: true,
         path: '/app/account',
-        component: lazy(() => import('src/views/account/AccountView'))
+        component: lazy(() => import('src/views/account/AccountView')),
       },
       {
         exact: true,
         path: '/app/calendar',
-        component: lazy(() => import('src/views/calendar/CalendarView'))
+        component: lazy(() => import('src/views/calendar/CalendarView')),
       },
       {
         exact: true,
         path: ['/app/chat/new', '/app/chat/:threadKey'],
-        component: lazy(() => import('src/views/chat/ChatView'))
+        component: lazy(() => import('src/views/chat/ChatView')),
       },
       {
         exact: true,
         path: '/app/chat',
-        component: () => <Redirect to="/app/chat/new" />
+        component: () => <Redirect to="/app/chat/new" />,
       },
       {
         exact: true,
         path: '/app/extra/charts/apex',
-        component: lazy(() => import('src/views/extra/charts/ApexChartsView'))
+        component: lazy(() => import('src/views/extra/charts/ApexChartsView')),
       },
       {
         exact: true,
         path: '/app/extra/forms/formik',
-        component: lazy(() => import('src/views/extra/forms/FormikView'))
+        component: lazy(() => import('src/views/extra/forms/FormikView')),
       },
       {
         exact: true,
         path: '/app/extra/forms/redux',
-        component: lazy(() => import('src/views/extra/forms/ReduxFormView'))
+        component: lazy(() => import('src/views/extra/forms/ReduxFormView')),
       },
       {
         exact: true,
         path: '/app/extra/editors/draft-js',
-        component: lazy(() => import('src/views/extra/editors/DraftEditorView'))
+        component: lazy(
+          () => import('src/views/extra/editors/DraftEditorView'),
+        ),
       },
       {
         exact: true,
         path: '/app/extra/editors/quill',
-        component: lazy(() => import('src/views/extra/editors/QuillEditorView'))
+        component: lazy(
+          () => import('src/views/extra/editors/QuillEditorView'),
+        ),
       },
       {
         exact: true,
         path: '/app/kanban',
-        component: lazy(() => import('src/views/kanban/KanbanView'))
+        component: lazy(() => import('src/views/kanban/KanbanView')),
       },
       {
         exact: true,
         path: [
           '/app/mail/label/:customLabel/:mailId?',
-          '/app/mail/:systemLabel/:mailId?'
+          '/app/mail/:systemLabel/:mailId?',
         ],
-        component: lazy(() => import('src/views/mail/MailView'))
+        component: lazy(() => import('src/views/mail/MailView')),
       },
       {
         exact: true,
         path: '/app/mail',
-        component: () => <Redirect to="/app/mail/all" />
+        component: () => <Redirect to="/app/mail/all" />,
       },
       {
         exact: true,
         path: '/app/management/customers',
-        component: lazy(() => import('src/views/customer/CustomerListView'))
+        component: lazy(() => import('src/views/customer/CustomerListView')),
       },
       {
         exact: true,
         path: '/app/management/customers/:customerId',
-        component: lazy(() => import('src/views/customer/CustomerDetailsView'))
+        component: lazy(() => import('src/views/customer/CustomerDetailsView')),
       },
       {
         exact: true,
         path: '/app/management/customers/:customerId/edit',
-        component: lazy(() => import('src/views/customer/CustomerEditView'))
+        component: lazy(() => import('src/views/customer/CustomerEditView')),
       },
       {
         exact: true,
         path: '/app/management/invoices',
-        component: lazy(() => import('src/views/invoice/InvoiceListView'))
+        component: lazy(() => import('src/views/invoice/InvoiceListView')),
       },
       {
         exact: true,
         path: '/app/management/invoices/:invoiceId',
-        component: lazy(() => import('src/views/invoice/InvoiceDetailsView'))
+        component: lazy(() => import('src/views/invoice/InvoiceDetailsView')),
       },
       {
         exact: true,
         path: '/app/management/orders',
-        component: lazy(() => import('src/views/order/OrderListView'))
+        component: lazy(() => import('src/views/order/OrderListView')),
       },
       {
         exact: true,
         path: '/app/management/orders/:orderId',
-        component: lazy(() => import('src/views/order/OrderDetailsView'))
+        component: lazy(() => import('src/views/order/OrderDetailsView')),
       },
       {
         exact: true,
         path: '/app/management/products',
-        component: lazy(() => import('src/views/product/ProductListView'))
+        component: lazy(() => import('src/views/product/ProductListView')),
       },
       {
         exact: true,
         path: '/app/management/products/create',
-        component: lazy(() => import('src/views/product/ProductCreateView'))
+        component: lazy(() => import('src/views/product/ProductCreateView')),
       },
       {
         exact: true,
         path: '/app/management',
-        component: () => <Redirect to="/app/management/customers" />
+        component: () => <Redirect to="/app/management/customers" />,
       },
       {
         exact: true,
         path: '/app/projects/overview',
-        component: lazy(() => import('src/views/project/OverviewView'))
+        component: lazy(() => import('src/views/project/OverviewView')),
       },
       {
         exact: true,
         path: '/app/projects/browse',
-        component: lazy(() => import('src/views/project/ProjectBrowseView'))
+        component: lazy(() => import('src/views/project/ProjectBrowseView')),
       },
       {
         exact: true,
         path: '/app/projects/create',
-        component: lazy(() => import('src/views/project/ProjectCreateView'))
+        component: lazy(() => import('src/views/project/ProjectCreateView')),
       },
       {
         exact: true,
         path: '/app/projects/:id',
-        component: lazy(() => import('src/views/project/ProjectDetailsView'))
+        component: lazy(() => import('src/views/project/ProjectDetailsView')),
       },
       {
         exact: true,
         path: '/app/projects',
-        component: () => <Redirect to="/app/projects/browse" />
+        component: () => <Redirect to="/app/projects/browse" />,
       },
       {
         exact: true,
         path: '/app/reports/dashboard',
-        component: lazy(() => import('src/views/reports/DashboardView'))
+        component: lazy(() => import('src/views/reports/DashboardView')),
       },
       {
         exact: true,
         path: '/app/reports/dashboard-alternative',
-        component: lazy(() =>
-          import('src/views/reports/DashboardAlternativeView')
-        )
+        component: lazy(
+          () => import('src/views/reports/DashboardAlternativeView'),
+        ),
       },
       {
         exact: true,
         path: '/app/reports',
-        component: () => <Redirect to="/app/reports/dashboard" />
+        component: () => <Redirect to="/app/reports/dashboard" />,
       },
       {
         exact: true,
         path: '/app/social/feed',
-        component: lazy(() => import('src/views/social/FeedView'))
+        component: lazy(() => import('src/views/social/FeedView')),
       },
       {
         exact: true,
         path: '/app/social/profile',
-        component: lazy(() => import('src/views/social/ProfileView'))
+        component: lazy(() => import('src/views/social/ProfileView')),
       },
       {
         exact: true,
         path: '/app/social',
-        component: () => <Redirect to="/app/social/profile" />
+        component: () => <Redirect to="/app/social/profile" />,
       },
       {
         exact: true,
         path: '/app',
-        component: () => <Redirect to="/app/reports/dashboard" />
+        component: () => <Redirect to="/app/reports/dashboard" />,
       },
       {
-        component: () => <Redirect to="/404" />
-      }
-    ]
+        component: () => <Redirect to="/404" />,
+      },
+    ],
   },
   {
     path: '/docs',
@@ -269,77 +273,74 @@ const routes: Routes = [
       {
         exact: true,
         path: '/docs',
-        component: () => <Redirect to="/docs/welcome" />
+        component: () => <Redirect to="/docs/welcome" />,
       },
       {
         exact: true,
         path: '/docs/welcome',
-        component: lazy(() => import('src/views/docs/WelcomeView'))
+        component: lazy(() => import('src/views/docs/WelcomeView')),
       },
       {
         exact: true,
         path: '/docs/getting-started',
-        component: lazy(() => import('src/views/docs/GettingStartedView'))
+        component: lazy(() => import('src/views/docs/GettingStartedView')),
       },
       {
         exact: true,
         path: '/docs/environment-variables',
-        component: lazy(() => import('src/views/docs/EnvironmentVariablesView'))
+        component: lazy(
+          () => import('src/views/docs/EnvironmentVariablesView'),
+        ),
       },
       {
         exact: true,
         path: '/docs/deployment',
-        component: lazy(() => import('src/views/docs/DeploymentView'))
+        component: lazy(() => import('src/views/docs/DeploymentView')),
       },
       {
         exact: true,
         path: '/docs/api-calls',
-        component: lazy(() => import('src/views/docs/APICallsView'))
+        component: lazy(() => import('src/views/docs/APICallsView')),
       },
       {
         exact: true,
         path: '/docs/analytics',
-        component: lazy(() => import('src/views/docs/AnalyticsView'))
+        component: lazy(() => import('src/views/docs/AnalyticsView')),
       },
       {
         exact: true,
         path: '/docs/authentication',
-        component: lazy(() => import('src/views/docs/AuthenticationView'))
+        component: lazy(() => import('src/views/docs/AuthenticationView')),
       },
       {
         exact: true,
         path: '/docs/routing',
-        component: lazy(() => import('src/views/docs/RoutingView'))
+        component: lazy(() => import('src/views/docs/RoutingView')),
       },
       {
         exact: true,
         path: '/docs/settings',
-        component: lazy(() => import('src/views/docs/SettingsView'))
+        component: lazy(() => import('src/views/docs/SettingsView')),
       },
       {
         exact: true,
         path: '/docs/state-management',
-        component: lazy(() => import('src/views/docs/StateManagementView'))
+        component: lazy(() => import('src/views/docs/StateManagementView')),
       },
       {
         exact: true,
         path: '/docs/theming',
-        component: lazy(() => import('src/views/docs/ThemingView'))
-      },
-      {
-        exact: true,
-        path: '/docs/support',
-        component: lazy(() => import('src/views/docs/SupportView'))
+        component: lazy(() => import('src/views/docs/ThemingView')),
       },
       {
         exact: true,
         path: '/docs/changelog',
-        component: lazy(() => import('src/views/docs/ChangelogView'))
+        component: lazy(() => import('src/views/docs/ChangelogView')),
       },
       {
-        component: () => <Redirect to="/404" />
-      }
-    ]
+        component: () => <Redirect to="/404" />,
+      },
+    ],
   },
   {
     path: '*',
@@ -348,18 +349,18 @@ const routes: Routes = [
       {
         exact: true,
         path: '/',
-        component: HomeViewV2
+        component: HomeViewV2,
       },
       {
         exact: true,
         path: '/pricing',
-        component: lazy(() => import('src/views/pricing/PricingView'))
+        component: lazy(() => import('src/views/pricing/PricingView')),
       },
       {
-        component: () => <Redirect to="/404" />
-      }
-    ]
-  }
+        component: () => <Redirect to="/404" />,
+      },
+    ],
+  },
 ];
 
 export default routes;

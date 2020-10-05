@@ -12,7 +12,7 @@ import {
   Hidden,
   Typography,
   Link,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import { APP_VERSION } from 'src/constants';
 import Logo from 'src/components/Logo';
@@ -21,28 +21,28 @@ interface TopBarProps {
   className?: string;
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.default,
   },
   toolbar: {
-    height: 64
+    height: 64,
   },
   logo: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   link: {
     fontWeight: theme.typography.fontWeightMedium,
     '& + &': {
-      marginLeft: theme.spacing(2)
-    }
+      marginLeft: theme.spacing(2),
+    },
   },
   divider: {
     width: 1,
     height: 32,
     marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2)
-  }
+    marginRight: theme.spacing(2),
+  },
 }));
 
 const TopBar: FC<TopBarProps> = ({ className, ...rest }) => {
@@ -74,21 +74,21 @@ const TopBar: FC<TopBarProps> = ({ className, ...rest }) => {
           className={classes.link}
           color="textSecondary"
           component={RouterLink}
-          to="/docs"
+          to="/pricing"
           underline="none"
           variant="body2"
         >
-          Documentation
+          Pricing
         </Link>
         <Divider className={classes.divider} />
         <Button
           color="secondary"
           component="a"
-          href=""
+          href="/app/projects/create"
           variant="contained"
           size="small"
         >
-          Create an offer
+          Create an offering
         </Button>
       </Toolbar>
     </AppBar>
@@ -96,7 +96,7 @@ const TopBar: FC<TopBarProps> = ({ className, ...rest }) => {
 };
 
 TopBar.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default TopBar;

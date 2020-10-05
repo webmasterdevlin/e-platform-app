@@ -7,7 +7,7 @@ import {
   Button,
   Container,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import type { Theme } from 'src/themes/dashboard-theme';
 
@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     backgroundColor: theme.palette.background.default,
     paddingTop: 128,
-    paddingBottom: 128
+    paddingBottom: 128,
   },
   browseButton: {
-    marginLeft: theme.spacing(2)
-  }
+    marginLeft: theme.spacing(2),
+  },
 }));
 
 const CTA: FC<CTAProps> = ({ className, ...rest }) => {
@@ -39,8 +39,13 @@ const CTA: FC<CTAProps> = ({ className, ...rest }) => {
           Download our app today.
         </Typography>
         <Box mt={6} display="flex" justifyContent="center" alignItems="center">
-          <Button color="secondary" component="a" href="/" variant="contained">
-            Create an offer
+          <Button
+            color="secondary"
+            component="a"
+            href="/app/projects/create"
+            variant="contained"
+          >
+            Create an offering
           </Button>
         </Box>
       </Container>
@@ -49,7 +54,7 @@ const CTA: FC<CTAProps> = ({ className, ...rest }) => {
 };
 
 CTA.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default CTA;

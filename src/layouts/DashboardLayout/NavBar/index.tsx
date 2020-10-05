@@ -17,12 +17,14 @@ import {
   List,
   ListSubheader,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import ReceiptIcon from '@material-ui/icons/ReceiptOutlined';
 import {
   Briefcase as BriefcaseIcon,
+  Monitor as MonitorIcon,
   Calendar as CalendarIcon,
+  Hexagon as HexagonIcon,
   ShoppingCart as ShoppingCartIcon,
   Folder as FolderIcon,
   BarChart as BarChartIcon,
@@ -38,7 +40,8 @@ import {
   MessageCircle as MessageCircleIcon,
   PieChart as PieChartIcon,
   Share2 as ShareIcon,
-  Users as UsersIcon
+  Users as UsersIcon,
+  BookOpen as BookOpenIcon,
 } from 'react-feather';
 import Logo from 'src/components/Logo';
 import useAuth from 'src/hooks/useAuth';
@@ -69,14 +72,20 @@ const sections: Section[] = [
       {
         title: 'Dashboard',
         icon: PieChartIcon,
-        href: '/app/reports/dashboard'
+        href: '/app/reports/dashboard-alternative',
       },
       {
-        title: 'Dashboard Alternative',
-        icon: BarChartIcon,
-        href: '/app/reports/dashboard-alternative'
-      }
-    ]
+        title: 'Mail',
+        href: '/app/mail',
+        icon: MailIcon,
+      },
+      {
+        title: 'Calendar',
+        href: '/app/calendar',
+        icon: CalendarIcon,
+        info: () => <Chip color="secondary" size="small" label="Updated" />,
+      },
+    ],
   },
   {
     subheader: 'Management',
@@ -88,32 +97,32 @@ const sections: Section[] = [
         items: [
           {
             title: 'List Customers',
-            href: '/app/management/customers'
+            href: '/app/management/customers',
           },
           {
             title: 'View Customer',
-            href: '/app/management/customers/1'
+            href: '/app/management/customers/1',
           },
           {
             title: 'Edit Customer',
-            href: '/app/management/customers/1/edit'
-          }
-        ]
+            href: '/app/management/customers/1/edit',
+          },
+        ],
       },
       {
         title: 'Products',
-        icon: ShoppingCartIcon,
+        icon: HexagonIcon,
         href: '/app/management/products',
         items: [
           {
             title: 'List Products',
-            href: '/app/management/products'
+            href: '/app/management/products',
           },
           {
             title: 'Create Product',
-            href: '/app/management/products/create'
-          }
-        ]
+            href: '/app/management/products/create',
+          },
+        ],
       },
       {
         title: 'Orders',
@@ -122,13 +131,13 @@ const sections: Section[] = [
         items: [
           {
             title: 'List Orders',
-            href: '/app/management/orders'
+            href: '/app/management/orders',
           },
           {
             title: 'View Order',
-            href: '/app/management/orders/1'
-          }
-        ]
+            href: '/app/management/orders/1',
+          },
+        ],
       },
       {
         title: 'Invoices',
@@ -137,41 +146,41 @@ const sections: Section[] = [
         items: [
           {
             title: 'List Invoices',
-            href: '/app/management/invoices'
+            href: '/app/management/invoices',
           },
           {
             title: 'View Invoice',
-            href: '/app/management/invoices/1'
-          }
-        ]
-      }
-    ]
+            href: '/app/management/invoices/1',
+          },
+        ],
+      },
+    ],
   },
   {
-    subheader: 'Applications',
+    subheader: 'Account',
     items: [
       {
         title: 'Projects Platform',
         href: '/app/projects',
-        icon: BriefcaseIcon,
+        icon: MonitorIcon,
         items: [
           {
             title: 'Overview',
-            href: '/app/projects/overview'
+            href: '/app/projects/overview',
           },
           {
             title: 'Browse Projects',
-            href: '/app/projects/browse'
+            href: '/app/projects/browse',
           },
           {
             title: 'Create Project',
-            href: '/app/projects/create'
+            href: '/app/projects/create',
           },
           {
             title: 'View Project',
-            href: '/app/projects/1'
-          }
-        ]
+            href: '/app/projects/1',
+          },
+        ],
       },
       {
         title: 'Social Platform',
@@ -180,52 +189,26 @@ const sections: Section[] = [
         items: [
           {
             title: 'Profile',
-            href: '/app/social/profile'
+            href: '/app/social/profile',
           },
           {
             title: 'Feed',
-            href: '/app/social/feed'
-          }
-        ]
+            href: '/app/social/feed',
+          },
+        ],
       },
       {
         title: 'Kanban',
         href: '/app/kanban',
-        icon: TrelloIcon
-      },
-      {
-        title: 'Mail',
-        href: '/app/mail',
-        icon: MailIcon
+        icon: TrelloIcon,
       },
       {
         title: 'Chat',
         href: '/app/chat',
         icon: MessageCircleIcon,
-        info: () => <Chip color="secondary" size="small" label="Updated" />
+        info: () => <Chip color="secondary" size="small" label="Updated" />,
       },
-      {
-        title: 'Calendar',
-        href: '/app/calendar',
-        icon: CalendarIcon,
-        info: () => <Chip color="secondary" size="small" label="Updated" />
-      }
-    ]
-  },
-  {
-    subheader: 'Auth',
-    items: [
-      {
-        title: 'Login',
-        href: '/login-unprotected',
-        icon: LockIcon
-      },
-      {
-        title: 'Register',
-        href: '/register-unprotected',
-        icon: UserPlusIcon
-      }
-    ]
+    ],
   },
   {
     subheader: 'Pages',
@@ -233,26 +216,21 @@ const sections: Section[] = [
       {
         title: 'Account',
         href: '/app/account',
-        icon: UserIcon
+        icon: UserIcon,
       },
       {
-        title: 'Error',
-        href: '/404',
-        icon: AlertCircleIcon
+        title: 'development docs',
+        href: '/docs',
+        icon: BookOpenIcon,
       },
-      {
-        title: 'Pricing',
-        href: '/pricing',
-        icon: DollarSignIcon
-      }
-    ]
-  }
+    ],
+  },
 ];
 
 function renderNavItems({
   items,
   pathname,
-  depth = 0
+  depth = 0,
 }: {
   items: Item[];
   pathname: string;
@@ -262,7 +240,7 @@ function renderNavItems({
     <List disablePadding>
       {items.reduce(
         (acc, item) => reduceChildRoutes({ acc, item, pathname, depth }),
-        []
+        [],
       )}
     </List>
   );
@@ -272,7 +250,7 @@ function reduceChildRoutes({
   acc,
   pathname,
   item,
-  depth
+  depth,
 }: {
   acc: any[];
   pathname: string;
@@ -284,7 +262,7 @@ function reduceChildRoutes({
   if (item.items) {
     const open = matchPath(pathname, {
       path: item.href,
-      exact: false
+      exact: false,
     });
 
     acc.push(
@@ -299,9 +277,9 @@ function reduceChildRoutes({
         {renderNavItems({
           depth: depth + 1,
           pathname,
-          items: item.items
+          items: item.items,
         })}
-      </NavItem>
+      </NavItem>,
     );
   } else {
     acc.push(
@@ -312,7 +290,7 @@ function reduceChildRoutes({
         info={item.info}
         key={key}
         title={item.title}
-      />
+      />,
     );
   }
 
@@ -321,18 +299,18 @@ function reduceChildRoutes({
 
 const useStyles = makeStyles(() => ({
   mobileDrawer: {
-    width: 256
+    width: 256,
   },
   desktopDrawer: {
     width: 256,
     top: 64,
-    height: 'calc(100% - 64px)'
+    height: 'calc(100% - 64px)',
   },
   avatar: {
     cursor: 'pointer',
     width: 64,
-    height: 64
-  }
+    height: 64,
+  },
 }));
 
 const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
@@ -383,7 +361,7 @@ const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
         </Box>
         <Divider />
         <Box p={2}>
-          {sections.map((section) => (
+          {sections.map(section => (
             <List
               key={section.subheader}
               subheader={
@@ -394,7 +372,7 @@ const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
             >
               {renderNavItems({
                 items: section.items,
-                pathname: location.pathname
+                pathname: location.pathname,
               })}
             </List>
           ))}
@@ -449,7 +427,7 @@ const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
 
 NavBar.propTypes = {
   onMobileClose: PropTypes.func,
-  openMobile: PropTypes.bool
+  openMobile: PropTypes.bool,
 };
 
 export default NavBar;

@@ -115,7 +115,7 @@ export default [
   { text: 'Kenya', value: 'KE' },
   { text: 'Kiribati', value: 'KI' },
   { text: "Korea, Democratic People'S Republic of", value: 'KP' },
-  { text: 'Korea, Republic of', value: 'KR' },
+  { text: 'Korea, Republic of', value: '$' },
   { text: 'Kuwait', value: 'KW' },
   { text: 'Kyrgyzstan', value: 'KG' },
   { text: "Lao People'S Democratic Republic", value: 'LA' },
