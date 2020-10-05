@@ -32,6 +32,7 @@ const enhancers = [
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: [...getDefaultMiddleware()],
   devTools: ENABLE_REDUX_DEV_TOOLS,
   enhancers,
 });
