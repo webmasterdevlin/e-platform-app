@@ -20,7 +20,7 @@ const reduxSagaMonitorOptions = {};
 const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
 const { run: runSaga } = sagaMiddleware;
 // Create the store with saga middleware
-const middlewares = [sagaMiddleware, thunk, logger];
+const middlewares = [sagaMiddleware, logger];
 
 const enhancers = [
   createInjectorsEnhancer({
@@ -46,7 +46,7 @@ const store = configureStore({
 // run Saga here
 runSaga(heroSaga);
 
-export type RootState = ReturnType<typeof store.getState>;
+/*export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
 
@@ -56,4 +56,4 @@ export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 
 export const useDispatch = () => useReduxDispatch<AppDispatch>();
 
-export default store;
+export default store;*/
