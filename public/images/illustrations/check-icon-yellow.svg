@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="37" height="37" viewBox="0 0 37 37">
+    <defs>
+        <rect id="prefix__a" width="35" height="35" x="0" y="0" rx="13.854"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+        <rect width="32.083" height="32.083" x="1.458" y="1.458" fill="#F9B800" stroke="#FFF" stroke-linejoin="square" stroke-width="2.917" rx="13.854"/>
+        <use stroke="#F9B800" stroke-width=".729" xlink:href="#prefix__a"/>
+        <g fill="#FFF" fill-rule="nonzero">
+            <path d="M15.766.24c-.313-.32-.82-.32-1.132 0L5.05 10.027 1.366 6.265c-.313-.319-.82-.319-1.132 0-.312.32-.312.837 0 1.156l4.25 4.34c.312.319.82.319 1.132 0l10.15-10.366c.312-.32.312-.837 0-1.156z" transform="translate(10 12)"/>
+        </g>
+    </g>
+</svg>

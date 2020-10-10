@@ -4,7 +4,7 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
-import { Icon } from '../../atoms';
+import { Icon } from './index';
 
 import theme from '../../../themes/dashboard-theme';
 
