@@ -21,8 +21,8 @@ import Auth0Login from './Auth0Login';
 import FirebaseAuthLogin from './FirebaseAuthLogin';
 import JWTLogin from './JWTLogin';
 import { OidcSecure as OdicSecure, OidcSecure } from '@axa-fr/react-oidc-redux';
-import configuration from '../../../auth/configuration';
-import CustomAuthenticatingComponent from '../../../auth/components/custom-authenticating-component';
+import configuration from '../../../../auth/configuration';
+import CustomAuthenticatingComponent from '../../../../auth/components/custom-authenticating-component';
 
 const methodIcons = {
   Auth0: '/static/images/auth0.svg',
