@@ -9,6 +9,10 @@ import LoadingScreen from 'src/components/LoadingScreen';
 import AuthGuard from 'src/components/AuthGuard';
 import GuestGuard from 'src/components/GuestGuard';
 import ReduxDemoLayout from './layouts/ReduxDemoLayout';
+import { OidcSecure as OdicSecure, oidcSecure } from '@axa-fr/react-oidc-redux';
+import ProtectedChild from './auth/components/protected-child';
+import OnRedirectCallback from './auth/components/on-redirect-callback';
+import OidcEplatformLogin from './auth/components/OidcEplatformLogin';
 
 type Routes = {
   exact?: boolean;
@@ -61,6 +65,18 @@ const routes: Routes = [
     guard: GuestGuard,
     path: '/login',
     component: lazy(() => import('src/views/auth/LoginView')),
+    // component: ProtectedChild,
+  },
+  {
+    exact: true,
+    path: '/api-login',
+    // component: OidcEplatformLogin,
+    component: lazy(() => import('src/auth/components/OidcEplatformLogin')),
+  },
+  {
+    exact: true,
+    path: '/authentication/callback',
+    component: OnRedirectCallback,
   },
   {
     exact: true,

@@ -1,4 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
+import { reducer as oidc } from '@axa-fr/react-oidc-redux';
 import { reducer as calendarReducer } from 'src/slices/calendar';
 import { reducer as chatReducer } from 'src/slices/chat';
 import { reducer as formReducer } from 'redux-form';
@@ -10,6 +11,7 @@ import { heroReducer } from '../features/heroes/hero-reducer';
 import { villainReducer } from '../features/villains/villain-reducer';
 
 const rootReducer = combineReducers({
+  oidc,
   calendar: calendarReducer,
   chat: chatReducer,
   form: formReducer,

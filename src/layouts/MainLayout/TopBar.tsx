@@ -64,7 +64,17 @@ const TopBar: FC<TopBarProps> = ({ className, ...rest }) => {
           className={classes.link}
           color="textSecondary"
           component={RouterLink}
-          to="/app"
+          to="/api-login"
+          underline="none"
+          variant="body2"
+        >
+          API Login
+        </Link>
+        <Link
+          className={classes.link}
+          color="textSecondary"
+          component={RouterLink}
+          to="/login"
           underline="none"
           variant="body2"
         >

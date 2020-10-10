@@ -19,16 +19,39 @@ import * as serviceWorker from 'src/serviceWorker';
 import store from 'src/store';
 import { SettingsProvider } from 'src/contexts/SettingsContext';
 import App from 'src/App';
+import configuration from './auth/configuration';
+import ComponentOverride from './auth/component-override';
+import { Oidc, InMemoryWebStorage } from '@axa-fr/react-oidc-redux';
 
 enableES5();
+const origin = document.location.origin;
+
+const isEnabled = configuration.isEnabled;
+if (configuration.configurations.length <= 0) {
+  throw new Error(`No configuration found`);
+}
+const authenticationConfig = origin
+  ? configuration.configurations.find(m => m.origin === origin)
+  : configuration.configurations[0];
+if (!authenticationConfig) {
+  throw new Error(`Configuration not found for origin ${origin}`);
+}
 
 ReactDOM.render(
   <Provider store={store}>
     <SettingsProvider>
-      <App />
+      <Oidc
+        store={store}
+        configuration={authenticationConfig.config}
+        isEnabled={isEnabled}
+        callbackComponentOverride={ComponentOverride}
+        UserStore={InMemoryWebStorage}
+      >
+        <App />
+      </Oidc>
     </SettingsProvider>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 serviceWorker.register();

@@ -11,7 +11,13 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: [...getDefaultMiddleware()],
+  middleware: [
+    ...getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST'],
+      },
+    }),
+  ],
   devTools: ENABLE_REDUX_DEV_TOOLS,
 });
 
