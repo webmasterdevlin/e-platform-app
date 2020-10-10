@@ -75,7 +75,10 @@ const LoginView: FC = () => {
   const { method } = useAuth() as any;
 
   return (
-    <>
+    <OdicSecure
+      isEnabled={configuration.isEnabled}
+      authenticating={CustomAuthenticatingComponent}
+    >
       <Page className={classes.root} title="Login">
         <div className={classes.banner}>
           <Container maxWidth="md">
@@ -165,7 +168,7 @@ const LoginView: FC = () => {
           </Card>
         </Container>
       </Page>
-    </>
+    </OdicSecure>
   );
 };
 

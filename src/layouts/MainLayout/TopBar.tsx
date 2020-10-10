@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import jwt_decode from 'jwt-decode';
 import {
   AppBar,
   Box,
@@ -16,6 +17,9 @@ import {
 } from '@material-ui/core';
 import { APP_VERSION } from 'src/constants';
 import Logo from 'src/components/Logo';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { AuthUser, ProfileModel } from '../../auth/auth.model';
 
 interface TopBarProps {
   className?: string;
@@ -47,6 +51,13 @@ const useStyles = makeStyles(theme => ({
 
 const TopBar: FC<TopBarProps> = ({ className, ...rest }) => {
   const classes = useStyles();
+  const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    const profile: ProfileModel = user?.profile;
+    setName(profile?.given_name);
+  });
 
   return (
     <AppBar className={clsx(classes.root, className)} color="default" {...rest}>
@@ -60,16 +71,9 @@ const TopBar: FC<TopBarProps> = ({ className, ...rest }) => {
           </Typography>
         </Hidden>
         <Box flexGrow={1} />
-        <Link
-          className={classes.link}
-          color="textSecondary"
-          component={RouterLink}
-          to="/api-login"
-          underline="none"
-          variant="body2"
-        >
-          API Login
-        </Link>
+        <Box className={classes.link} color="textSecondary">
+          {name && `Welcome back, ${name}!`}
+        </Box>
         <Link
           className={classes.link}
           color="textSecondary"

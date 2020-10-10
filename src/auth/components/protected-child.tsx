@@ -9,12 +9,13 @@ import { RootState } from '../../store';
 
 const ProtectedChild = ({ children }) => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
+
   return (
     <OdicSecure
       isEnabled={configuration.isEnabled}
       authenticating={CustomAuthenticatingComponent}
     >
-      <h2>Protected</h2>
+      <h2>Protected Component</h2>
     </OdicSecure>
   );
 };

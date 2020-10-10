@@ -6,9 +6,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { Redirect, useHistory } from 'react-router-dom';
 
-const OidcEplatformLogin = ({ children }) => {
+const LoginV2 = ({ children }) => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const history = useHistory();
+
+  if (isLoadingUser) {
+    return <h1>Loading user..</h1>;
+  }
 
   if (!user?.id_token) {
     return (
@@ -24,4 +28,4 @@ const OidcEplatformLogin = ({ children }) => {
   return <Redirect to={'/app'} />;
 };
 
-export default OidcEplatformLogin;
+export default LoginV2;

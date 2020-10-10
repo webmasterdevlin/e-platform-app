@@ -8,14 +8,10 @@ const OnRedirectCallback = appState => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
 
   if (user?.id_token) {
-    return <Redirect to={'/'} />;
+    return <Redirect to={'/app'} />;
+  } else {
+    return <p>callback url</p>;
   }
-
-  return (
-    <>
-      <button onClick={() => history.push('/')}>Home</button>
-    </>
-  );
 };
 
 export default OnRedirectCallback;
