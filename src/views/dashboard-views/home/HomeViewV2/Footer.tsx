@@ -14,6 +14,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import Image from '../../../../components/atoms/Image';
+import Box from '@material-ui/core/Box';
 
 const CustomRouterLink = forwardRef((props: any, ref: any) => (
   <div ref={ref} style={{ flexGrow: 1 }}>
@@ -131,14 +132,15 @@ const Footer = ({ className, ...rest }: FooterProps) => {
             <List disablePadding>
               <ListItem disableGutters className={classes.logoContainerItem}>
                 <div className={classes.logoContainer}>
-                  <a href="/" title="thefront">
-                    <Image
-                      className={classes.logoImage}
-                      src="/images/logos/logo-negative.svg"
-                      alt="thefront"
-                      lazy={false}
-                    />
-                  </a>
+                  <Box color={'#FFF'}>EPlatform</Box>
+                  {/*<a href="/" title="E-platform">*/}
+                  {/*<Image*/}
+                  {/*  className={classes.logoImage}*/}
+                  {/*  src="/images/logos/logo-negative.svg"*/}
+                  {/*  alt="thefront"*/}
+                  {/*  lazy={false}*/}
+                  {/*/>*/}
+                  {/*</a>*/}
                 </div>
               </ListItem>
               <ListItem disableGutters>

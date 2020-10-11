@@ -28,7 +28,7 @@ const Categories: React.FC<Props> = ({ className, data, ...rest }) => {
       <SectionHeader
         title={
           <>
-            Explore by category <br /> and find the best jobs{' '}
+            Explore by category <br /> and find the best lessons or classes{' '}
             {isMd ? null : <br />} for&nbsp;
             <TypedText
               component="span"

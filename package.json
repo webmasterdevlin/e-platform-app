@@ -141,6 +141,7 @@
     "swiper": "^5.4.5",
     "thefront-assets": "git+https://github.com/gevorgmakaryan/thefront-assets.git#1.0.7",
     "uuid": "^7.0.3",
+    "validate.js": "^0.13.1",
     "yup": "^0.29.3"
   },
   "devDependencies": {
