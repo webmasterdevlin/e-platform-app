@@ -1,32 +1,16 @@
 import React from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
-  root: {},
-  extraSmall: {
-    fontSize: 10
-  },
-  small: {
-    fontSize: 20
-  },
-  medium: {
-    fontSize: 30
-  },
-  large: {
-    fontSize: 40
-  }
-}));
+type Props = {
+  className?: string;
+  fontIconClass?: string;
+  size?: 'extraSmall' | 'small' | 'medium' | 'large';
+  fontIconColor?: string;
+};
 
-/**
- * Component to display the icon
- *
- * @param {Object} props
- */
-const Icon = props => {
+const Icon = (props: Props) => {
   const { fontIconClass, size, fontIconColor, className, ...rest } = props;
-
   const classes = useStyles();
 
   return (
@@ -36,7 +20,7 @@ const Icon = props => {
         classes.root,
         fontIconClass,
         classes[size],
-        className
+        className,
       )}
       style={{ color: fontIconColor }}
       {...rest}
@@ -44,27 +28,20 @@ const Icon = props => {
   );
 };
 
-Icon.defaultProps = {
-  size: 'small'
-};
-
-Icon.propTypes = {
-  /**
-   * External classes
-   */
-  className: PropTypes.string,
-  /**
-   * The classes of the font icon
-   */
-  fontIconClass: PropTypes.string.isRequired,
-  /**
-   * Source set for the responsive images
-   */
-  size: PropTypes.oneOf(['extraSmall', 'small', 'medium', 'large']),
-  /**
-   * Color of the icon
-   */
-  fontIconColor: PropTypes.string
-};
-
 export default Icon;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+  extraSmall: {
+    fontSize: 10,
+  },
+  small: {
+    fontSize: 20,
+  },
+  medium: {
+    fontSize: 30,
+  },
+  large: {
+    fontSize: 40,
+  },
+}));

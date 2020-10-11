@@ -3,7 +3,7 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>

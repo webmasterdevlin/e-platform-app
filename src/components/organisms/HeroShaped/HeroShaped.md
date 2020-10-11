@@ -3,10 +3,10 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import { Button } from '@material-ui/core';
-import { Image } from './index';
-import { SectionHeader } from '../../molecules';
+import { Image } from '../../atoms';
+import { SectionHeader } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <HeroShaped
@@ -20,7 +20,7 @@ import theme from '../../../themes/dashboard-theme';
           </Button>,
           <Button variant="outlined" color="primary">
             Browse
-          </Button>
+          </Button>,
         ]}
         align="left"
       />

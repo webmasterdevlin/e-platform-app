@@ -4,10 +4,10 @@
 import React from 'react';
 import { ThemeProvider, useTheme } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-import { SectionHeader } from 'components/molecules';
-import { Section } from 'components/organisms';
+import { SectionHeader } from '../../components/molecules';
+import { Section } from '../../components/organisms';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 <ThemeProvider theme={theme}>
   <HeroSimpleBackground backgroundImage="/images/shapes/banner-bg.svg">
     <Section narrow>
@@ -21,7 +21,7 @@ import theme from '../../../themes/dashboard-theme';
           </Button>,
           <Button color="primary" variant="outlined" size="large">
             See pricings
-          </Button>
+          </Button>,
         ]}
       />
     </Section>

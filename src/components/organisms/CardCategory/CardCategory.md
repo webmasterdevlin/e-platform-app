@@ -4,9 +4,9 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors, Grid } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <Grid container spacing={2}>
@@ -56,9 +56,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors, Grid } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <Grid container spacing={2}>
@@ -111,9 +111,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors, Grid } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <Grid container spacing={2}>
@@ -169,9 +169,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors, Grid } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <Grid container spacing={2}>

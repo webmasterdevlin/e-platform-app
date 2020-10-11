@@ -6,7 +6,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 const browserHistory = createBrowserHistory();
 

@@ -5,32 +5,32 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 
-import { SwiperImage } from '../../molecules';
+import { SwiperImage } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 const item = {
   images: [
     {
       src: '/images/photos/coworking/place3.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/coworking-main-hero.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/place1.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/place2.jpg',
-      alt: ''
-    }
+      alt: '',
+    },
   ],
   title: 'Tenoha Space',
   address: 'Via E. Gola 4, 20147 Milan, Italy',
-  price: '$980 / month'
+  price: '$980 / month',
 };
 
 <ThemeProvider theme={theme}>
@@ -47,7 +47,7 @@ const item = {
             zIndex: 9,
             background: 'white',
             padding: '4px 8px',
-            borderRadius: '8px'
+            borderRadius: '8px',
           }}
         >
           <Typography variant="body1" color="primary">
@@ -81,32 +81,32 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 
-import { SwiperImage } from '../../molecules';
+import { SwiperImage } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 const item = {
   images: [
     {
       src: '/images/photos/coworking/place3.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/coworking-main-hero.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/place1.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/place2.jpg',
-      alt: ''
-    }
+      alt: '',
+    },
   ],
   title: 'Tenoha Space',
   address: 'Via E. Gola 4, 20147 Milan, Italy',
-  price: '$980 / month'
+  price: '$980 / month',
 };
 
 <ThemeProvider theme={theme}>
@@ -124,7 +124,7 @@ const item = {
             zIndex: 9,
             background: 'white',
             padding: '4px 8px',
-            borderRadius: '8px'
+            borderRadius: '8px',
           }}
         >
           <Typography variant="body1" color="primary">
@@ -158,32 +158,32 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 
-import { SwiperImage } from '../../molecules';
+import { SwiperImage } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 const item = {
   images: [
     {
       src: '/images/photos/coworking/place3.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/coworking-main-hero.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/place1.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/place2.jpg',
-      alt: ''
-    }
+      alt: '',
+    },
   ],
   title: 'Tenoha Space',
   address: 'Via E. Gola 4, 20147 Milan, Italy',
-  price: '$980 / month'
+  price: '$980 / month',
 };
 
 <ThemeProvider theme={theme}>
@@ -202,7 +202,7 @@ const item = {
             zIndex: 9,
             background: 'white',
             padding: '4px 8px',
-            borderRadius: '8px'
+            borderRadius: '8px',
           }}
         >
           <Typography variant="body1" color="primary">
@@ -236,32 +236,32 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 
-import { SwiperImage } from '../../molecules';
+import { SwiperImage } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 const item = {
   images: [
     {
       src: '/images/photos/coworking/place3.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/coworking-main-hero.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/place1.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/place2.jpg',
-      alt: ''
-    }
+      alt: '',
+    },
   ],
   title: 'Tenoha Space',
   address: 'Via E. Gola 4, 20147 Milan, Italy',
-  price: '$980 / month'
+  price: '$980 / month',
 };
 
 <ThemeProvider theme={theme}>
@@ -280,7 +280,7 @@ const item = {
             zIndex: 9,
             background: 'white',
             padding: '4px 8px',
-            borderRadius: '8px'
+            borderRadius: '8px',
           }}
         >
           <Typography variant="body1" color="primary">
@@ -314,32 +314,32 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 
-import { SwiperImage } from '../../molecules';
+import { SwiperImage } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 const item = {
   images: [
     {
       src: '/images/photos/coworking/place3.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/coworking-main-hero.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/place1.jpg',
-      alt: ''
+      alt: '',
     },
     {
       src: '/images/photos/coworking/place2.jpg',
-      alt: ''
-    }
+      alt: '',
+    },
   ],
   title: 'Tenoha Space',
   address: 'Via E. Gola 4, 20147 Milan, Italy',
-  price: '$980 / month'
+  price: '$980 / month',
 };
 
 <ThemeProvider theme={theme}>
@@ -357,7 +357,7 @@ const item = {
             zIndex: 9,
             background: 'white',
             padding: '4px 8px',
-            borderRadius: '8px'
+            borderRadius: '8px',
           }}
         >
           <Typography variant="body1" color="primary">

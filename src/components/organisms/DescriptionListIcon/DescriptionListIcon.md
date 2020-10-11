@@ -4,9 +4,9 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
-import { Icon } from './index';
+import { Icon } from '../../atoms';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <DescriptionListIcon
@@ -29,9 +29,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <DescriptionListIcon
@@ -54,9 +54,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <DescriptionListIcon
@@ -80,9 +80,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <DescriptionListIcon

@@ -12,6 +12,7 @@ import ReduxDemoLayout from './layouts/ReduxDemoLayout';
 import { OidcSecure as OdicSecure, oidcSecure } from '@axa-fr/react-oidc-redux';
 import ProtectedChild from './auth/components/protected-child';
 import OnRedirectCallback from './auth/components/on-redirect-callback';
+import CareerListing from './views/landing-pages-views/CareerListing';
 
 type Routes = {
   exact?: boolean;
@@ -474,7 +475,8 @@ const routes: Routes = [
       {
         exact: true,
         path: '/',
-        component: HomeViewV2,
+        component: CareerListing,
+        // component: HomeViewV2,
       },
       {
         exact: true,

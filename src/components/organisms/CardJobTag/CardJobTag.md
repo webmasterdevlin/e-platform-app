@@ -1,143 +1,140 @@
 **Basic Example**
-
 ```jsx
-import React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { colors, Grid } from '@material-ui/core';
+import React from "react";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { colors, Grid } from "@material-ui/core";
 
-import theme from '../../../themes/dashboard-theme';
+import theme from "../../../theme";
 
 <ThemeProvider theme={theme}>
-  <Grid container spacing={2}>
-    <Grid item xs={4}>
-      <CardJobTag
-        jobTitle="Senior Developer"
-        badgeColor={colors.red[500]}
-        badgeTitle="tech"
-        jobLocation="Milan, Italy"
-        jobType="Full Time"
-        jobDate="2 days ago"
-        companyName="Slack"
-        companyLogo="/images/logos/slack.svg"
-      />
+    <Grid container spacing={2}>
+        <Grid item xs={4}>
+            <CardJobTag
+                jobTitle="Senior Developer"
+                badgeColor={colors.red[500]}
+                badgeTitle="tech"
+                jobLocation="Milan, Italy"
+                jobType="Full Time"
+                jobDate="2 days ago"
+                companyName="Slack"
+                companyLogo="/images/logos/slack.svg"
+            />
+        </Grid>
+        <Grid item xs={4}>
+            <CardJobTag
+                jobTitle="Web designer internship"
+                badgeColor={colors.blue[500]}
+                badgeTitle="web design"
+                jobLocation="Milan, Italy"
+                jobType="Full Time"
+                jobDate="2 days ago"
+                companyName="Slack"
+                companyLogo="/images/logos/slack.svg"
+            />
+        </Grid>
+        <Grid item xs={4}>
+            <CardJobTag
+                jobTitle="UI/UX Designer"
+                badgeColor={colors.green[500]}
+                badgeTitle="web design"
+                jobLocation="Milan, Italy"
+                jobType="Full Time"
+                jobDate="2 days ago"
+                companyName="Slack"
+                companyLogo="/images/logos/slack.svg"
+            />
+        </Grid>
     </Grid>
-    <Grid item xs={4}>
-      <CardJobTag
-        jobTitle="Web designer internship"
-        badgeColor={colors.blue[500]}
-        badgeTitle="web design"
-        jobLocation="Milan, Italy"
-        jobType="Full Time"
-        jobDate="2 days ago"
-        companyName="Slack"
-        companyLogo="/images/logos/slack.svg"
-      />
-    </Grid>
-    <Grid item xs={4}>
-      <CardJobTag
-        jobTitle="UI/UX Designer"
-        badgeColor={colors.green[500]}
-        badgeTitle="web design"
-        jobLocation="Milan, Italy"
-        jobType="Full Time"
-        jobDate="2 days ago"
-        companyName="Slack"
-        companyLogo="/images/logos/slack.svg"
-      />
-    </Grid>
-  </Grid>
-</ThemeProvider>;
+</ThemeProvider>
 ```
 
 **Outlined Effect**
-
 ```jsx
-import React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { colors, Grid } from '@material-ui/core';
+import React from "react";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { colors, Grid } from "@material-ui/core";
 
-import theme from '../../../themes/dashboard-theme';
+import theme from "../../../theme";
 
 <ThemeProvider theme={theme}>
-  <Grid container spacing={2}>
-    <Grid item xs={4}>
-      <CardJobTag
-        variant="outlined"
-        jobTitle="Senior Developer"
-        badgeColor={colors.red[500]}
-        badgeTitle="tech"
-        jobLocation="Milan, Italy"
-        jobType="Full Time"
-      />
+    <Grid container spacing={2}>
+        <Grid item xs={4}>
+            <CardJobTag
+                variant="outlined"
+                jobTitle="Senior Developer"
+                badgeColor={colors.red[500]}
+                badgeTitle="tech"
+                jobLocation="Milan, Italy"
+                jobType="Full Time"
+            />
+        </Grid>
+        <Grid item xs={4}>
+            <CardJobTag
+                variant="outlined"
+                jobTitle="Web designer internship"
+                badgeColor={colors.blue[500]}
+                badgeTitle="web design"
+                jobLocation="Milan, Italy"
+                jobType="Full Time"
+            />
+        </Grid>
+        <Grid item xs={4}>
+            <CardJobTag
+                variant="outlined"
+                jobTitle="UI/UX Designer"
+                badgeColor={colors.green[500]}
+                badgeTitle="web design"
+                jobLocation="Milan, Italy"
+                jobType="Full Time"
+            />
+        </Grid>
     </Grid>
-    <Grid item xs={4}>
-      <CardJobTag
-        variant="outlined"
-        jobTitle="Web designer internship"
-        badgeColor={colors.blue[500]}
-        badgeTitle="web design"
-        jobLocation="Milan, Italy"
-        jobType="Full Time"
-      />
-    </Grid>
-    <Grid item xs={4}>
-      <CardJobTag
-        variant="outlined"
-        jobTitle="UI/UX Designer"
-        badgeColor={colors.green[500]}
-        badgeTitle="web design"
-        jobLocation="Milan, Italy"
-        jobType="Full Time"
-      />
-    </Grid>
-  </Grid>
-</ThemeProvider>;
+</ThemeProvider>
 ```
 
 **Custom Shadow and LiftUp Effect**
-
 ```jsx
-import React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { colors, Grid } from '@material-ui/core';
+import React from "react";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { colors, Grid } from "@material-ui/core";
 
-import theme from '../../../themes/dashboard-theme';
+import theme from "../../../theme";
 
 <ThemeProvider theme={theme}>
-  <Grid container spacing={2}>
-    <Grid item xs={4}>
-      <CardJobTag
-        withShadow
-        liftUp
-        jobTitle="Senior Developer"
-        badgeColor={colors.red[500]}
-        badgeTitle="tech"
-        jobLocation="Milan, Italy"
-        jobType="Full Time"
-      />
+    <Grid container spacing={2}>
+        <Grid item xs={4}>
+            <CardJobTag
+                withShadow
+                liftUp
+                jobTitle="Senior Developer"
+                badgeColor={colors.red[500]}
+                badgeTitle="tech"
+                jobLocation="Milan, Italy"
+                jobType="Full Time"
+            />
+        </Grid>
+        <Grid item xs={4}>
+            <CardJobTag
+                withShadow
+                liftUp
+                jobTitle="Web designer internship"
+                badgeColor={colors.blue[500]}
+                badgeTitle="web design"
+                jobLocation="Milan, Italy"
+                jobType="Full Time"
+            />
+        </Grid>
+        <Grid item xs={4}>
+            <CardJobTag
+                withShadow
+                liftUp
+                jobTitle="UI/UX Designer"
+                badgeColor={colors.green[500]}
+                badgeTitle="web design"
+                jobLocation="Milan, Italy"
+                jobType="Full Time"
+            />
+        </Grid>
     </Grid>
-    <Grid item xs={4}>
-      <CardJobTag
-        withShadow
-        liftUp
-        jobTitle="Web designer internship"
-        badgeColor={colors.blue[500]}
-        badgeTitle="web design"
-        jobLocation="Milan, Italy"
-        jobType="Full Time"
-      />
-    </Grid>
-    <Grid item xs={4}>
-      <CardJobTag
-        withShadow
-        liftUp
-        jobTitle="UI/UX Designer"
-        badgeColor={colors.green[500]}
-        badgeTitle="web design"
-        jobLocation="Milan, Italy"
-        jobType="Full Time"
-      />
-    </Grid>
-  </Grid>
-</ThemeProvider>;
+</ThemeProvider>
 ```

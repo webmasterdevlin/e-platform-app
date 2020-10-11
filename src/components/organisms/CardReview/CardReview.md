@@ -4,9 +4,9 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <CardReview
@@ -22,7 +22,7 @@ import theme from '../../../themes/dashboard-theme';
     authorTitle="Growth Marketer, Crealytics"
     authorPhoto={{
       src: '/images/photos/people/veronica-adams.jpg',
-      srcSet: '/images/photos/people/veronica-adams@2x.jpg 2x'
+      srcSet: '/images/photos/people/veronica-adams@2x.jpg 2x',
     }}
   />
 </ThemeProvider>;
@@ -34,9 +34,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <CardReview
@@ -53,7 +53,7 @@ import theme from '../../../themes/dashboard-theme';
     authorTitle="Growth Marketer, Crealytics"
     authorPhoto={{
       src: '/images/photos/people/veronica-adams.jpg',
-      srcSet: '/images/photos/people/veronica-adams@2x.jpg 2x'
+      srcSet: '/images/photos/people/veronica-adams@2x.jpg 2x',
     }}
   />
 </ThemeProvider>;
@@ -65,9 +65,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <CardReview
@@ -85,7 +85,7 @@ import theme from '../../../themes/dashboard-theme';
     authorTitle="Growth Marketer, Crealytics"
     authorPhoto={{
       src: '/images/photos/people/veronica-adams.jpg',
-      srcSet: '/images/photos/people/veronica-adams@2x.jpg 2x'
+      srcSet: '/images/photos/people/veronica-adams@2x.jpg 2x',
     }}
   />
 </ThemeProvider>;
@@ -97,9 +97,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <CardReview
@@ -117,7 +117,7 @@ import theme from '../../../themes/dashboard-theme';
     authorTitle="Growth Marketer, Crealytics"
     authorPhoto={{
       src: '/images/photos/people/veronica-adams.jpg',
-      srcSet: '/images/photos/people/veronica-adams@2x.jpg 2x'
+      srcSet: '/images/photos/people/veronica-adams@2x.jpg 2x',
     }}
   />
 </ThemeProvider>;
@@ -129,9 +129,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
-import { IconAlternate } from '../../molecules';
+import { IconAlternate } from './index';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <CardReview
@@ -148,7 +148,7 @@ import theme from '../../../themes/dashboard-theme';
     authorTitle="Growth Marketer, Crealytics"
     authorPhoto={{
       src: '/images/photos/people/veronica-adams.jpg',
-      srcSet: '/images/photos/people/veronica-adams@2x.jpg 2x'
+      srcSet: '/images/photos/people/veronica-adams@2x.jpg 2x',
     }}
   />
 </ThemeProvider>;

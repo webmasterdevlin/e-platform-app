@@ -1,18 +1,17 @@
 import React from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import Icon from '../Icon';
+import { Icon } from '../../../components/atoms';
 import theme from '../../../themes/landing-pages-theme';
 
 type Props = {
-  className: string,
-  fontIconClass: string,
-  color: string,
-  title: string,
-  iconProps: any,
-  typographyProps: any,
+  className?: string;
+  fontIconClass?: string;
+  color?: string;
+  title?: string;
+  iconProps?: any;
+  typographyProps?: any;
 };
 
 const IconText = (props: Props) => {

@@ -4,9 +4,9 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors, Grid, Button, Typography } from '@material-ui/core';
-import { Icon } from 'components/atoms';
+import { Icon } from '../../components/atoms';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <Grid container spacing={2}>
@@ -33,7 +33,7 @@ import theme from '../../../themes/dashboard-theme';
           '100+ styled components',
           'Flexible, simple license',
           'Speedy build tooling',
-          '6 months free support included'
+          '6 months free support included',
         ]}
         featureCheckComponent={
           <Icon
@@ -72,7 +72,7 @@ import theme from '../../../themes/dashboard-theme';
           '100+ styled components',
           'Flexible, simple license',
           'Speedy build tooling',
-          '6 months free support included'
+          '6 months free support included',
         ]}
         featureCheckComponent={
           <Icon
@@ -111,7 +111,7 @@ import theme from '../../../themes/dashboard-theme';
           '100+ styled components',
           'Flexible, simple license',
           'Speedy build tooling',
-          '6 months free support included'
+          '6 months free support included',
         ]}
         featureCheckComponent={
           <Icon
@@ -137,9 +137,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors, Grid, Typography, Button } from '@material-ui/core';
-import { Icon } from 'components/atoms';
+import { Icon } from '../../components/atoms';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <Grid container spacing={2}>
@@ -167,7 +167,7 @@ import theme from '../../../themes/dashboard-theme';
           '100+ styled components',
           'Flexible, simple license',
           'Speedy build tooling',
-          '6 months free support included'
+          '6 months free support included',
         ]}
         featureCheckComponent={
           <Icon
@@ -207,7 +207,7 @@ import theme from '../../../themes/dashboard-theme';
           '100+ styled components',
           'Flexible, simple license',
           'Speedy build tooling',
-          '6 months free support included'
+          '6 months free support included',
         ]}
         featureCheckComponent={
           <Icon
@@ -247,7 +247,7 @@ import theme from '../../../themes/dashboard-theme';
           '100+ styled components',
           'Flexible, simple license',
           'Speedy build tooling',
-          '6 months free support included'
+          '6 months free support included',
         ]}
         featureCheckComponent={
           <Icon
@@ -273,9 +273,9 @@ import theme from '../../../themes/dashboard-theme';
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { colors, Grid, Typography, Button } from '@material-ui/core';
-import { Icon } from 'components/atoms';
+import { Icon } from '../../components/atoms';
 
-import theme from '../../../themes/dashboard-theme';
+import theme from '../../../theme';
 
 <ThemeProvider theme={theme}>
   <Grid container spacing={2}>
@@ -305,7 +305,7 @@ import theme from '../../../themes/dashboard-theme';
           '100+ styled components',
           'Flexible, simple license',
           'Speedy build tooling',
-          '6 months free support included'
+          '6 months free support included',
         ]}
         featureCheckComponent={
           <Icon
@@ -347,7 +347,7 @@ import theme from '../../../themes/dashboard-theme';
           '100+ styled components',
           'Flexible, simple license',
           'Speedy build tooling',
-          '6 months free support included'
+          '6 months free support included',
         ]}
         featureCheckComponent={
           <Icon
@@ -389,7 +389,7 @@ import theme from '../../../themes/dashboard-theme';
           '100+ styled components',
           'Flexible, simple license',
           'Speedy build tooling',
-          '6 months free support included'
+          '6 months free support included',
         ]}
         featureCheckComponent={
           <Icon
