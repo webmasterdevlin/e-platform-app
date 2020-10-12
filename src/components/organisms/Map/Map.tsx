@@ -31,7 +31,7 @@ const Map = (props: Props) => {
     <ReactMap
       zoom={zoom}
       center={center}
-      className={clsx('map', classes?.root, className)}
+      className={clsx('map', classes.root, className)}
       {...rest}
     >
       <TileLayer
@@ -45,7 +45,7 @@ const Map = (props: Props) => {
         pins.map((item, i) => (
           <Marker
             className="map__marker"
-            position={[item?.location?.y, item?.location?.x]}
+            position={[item.location.y, item.location.x]}
             key={i}
           />
         ))}

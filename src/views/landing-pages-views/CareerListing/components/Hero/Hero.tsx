@@ -90,8 +90,8 @@ const Hero: React.FC = () => {
             </CardBase>
           </Grid>
           <Grid item xs={12} className={classes.searchGridText}>
-            <Typography variant="subtitle1" color="textPrimary">
-              Please clearly mention our portal when applying to the jobs.
+            <Typography variant="h3" color="textPrimary">
+              Teach, earn, and learn.
             </Typography>
           </Grid>
         </Grid>

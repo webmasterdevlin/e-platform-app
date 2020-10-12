@@ -5,11 +5,11 @@ import { useMediaQuery, Grid, Typography } from '@material-ui/core';
 import Swiper from 'swiper';
 
 type Props = {
-  className: string;
-  items?: any[];
+  className?: string;
+  items?: any;
   numberProps?: any;
   labelProps?: any;
-  navigationButtonStyle: any;
+  navigationButtonStyle?: any;
 };
 
 const SwiperNumber = (props: Props) => {

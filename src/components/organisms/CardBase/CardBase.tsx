@@ -14,6 +14,7 @@ type Props = {
   className?: string;
   cardContentProps?: any;
   variant?: any;
+  style?: any;
 };
 
 const CardBase: React.FC<Props> = props => {

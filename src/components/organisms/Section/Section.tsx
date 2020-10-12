@@ -10,6 +10,7 @@ type Props = {
   fullWidth?: boolean;
   disablePadding?: boolean;
   alternate?: any;
+  id?: any;
 };
 
 const Section = (props: Props) => {

@@ -7,6 +7,7 @@ type Props = {
   className?: any;
   children?: React.ReactNode;
   backgroundImage?: string;
+  id?: any;
 };
 
 const Parallax = (props: Props) => {

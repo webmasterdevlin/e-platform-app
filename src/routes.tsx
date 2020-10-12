@@ -13,6 +13,8 @@ import { OidcSecure as OdicSecure, oidcSecure } from '@axa-fr/react-oidc-redux';
 import ProtectedChild from './auth/components/protected-child';
 import OnRedirectCallback from './auth/components/on-redirect-callback';
 import CareerListing from './views/landing-pages-views/CareerListing';
+import Ecommerce from './views/landing-pages-views/Ecommerce';
+import Elearning from './views/landing-pages-views/Elearning';
 
 type Routes = {
   exact?: boolean;
@@ -475,8 +477,7 @@ const routes: Routes = [
       {
         exact: true,
         path: '/',
-        component: CareerListing,
-        // component: HomeViewV2,
+        component: Elearning,
       },
       {
         exact: true,

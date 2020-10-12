@@ -10,16 +10,19 @@ type Props = {
   subtitle?: string;
   priceComponent?: any;
   featureCheckComponent?: any;
-  features?: [];
+  features?: any;
   cta?: any;
   disclaimer?: string;
   titleProps?: any;
   subtitleProps?: any;
   disclaimerProps?: any;
   featureTitleProps?: any;
+  variant?: any;
+  withShadow?: boolean;
+  liftUp?: any;
 };
 
-const CardPricingStandard: React.FC<any> = props => {
+const CardPricingStandard = (props: Props) => {
   const {
     title,
     subtitle,

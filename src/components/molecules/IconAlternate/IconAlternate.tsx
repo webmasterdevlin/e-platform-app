@@ -12,6 +12,7 @@ type IconAlternateProps = {
   color?: any;
   shape?: any;
   className?: string;
+  onClick?: any;
   rest?: React.ReactNode;
 };
 

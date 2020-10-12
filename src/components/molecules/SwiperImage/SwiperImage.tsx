@@ -7,7 +7,7 @@ import Swiper from 'swiper';
 import { Image } from '../../../components/atoms';
 
 type Props = {
-  className: string;
+  className?: string;
   imageClassName?: string;
   items?: any[];
   navigationButtonStyle?: string;

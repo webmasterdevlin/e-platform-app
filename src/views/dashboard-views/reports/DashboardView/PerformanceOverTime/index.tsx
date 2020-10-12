@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardContent,
   Divider,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import GenericMoreButton from 'src/components/GenericMoreButton';
 import Chart from './Chart';
@@ -21,20 +21,23 @@ interface PerformanceOverTimeProps {
 const useStyles = makeStyles(() => ({
   root: {},
   chart: {
-    height: '100%'
-  }
+    height: '100%',
+  },
 }));
 
-const PerformanceOverTime: FC<PerformanceOverTimeProps> = ({ className, ...rest }) => {
+const PerformanceOverTime: FC<PerformanceOverTimeProps> = ({
+  className,
+  ...rest
+}) => {
   const classes = useStyles();
   const performance = {
     thisWeek: {
       data: [],
-      labels: []
+      labels: [],
     },
     thisMonth: {
       data: [],
-      labels: []
+      labels: [],
     },
     thisYear: {
       data: [10, 5, 11, 20, 13, 28, 18, 4, 13, 12, 13, 5],
@@ -50,27 +53,18 @@ const PerformanceOverTime: FC<PerformanceOverTimeProps> = ({ className, ...rest 
         'Sep',
         'Oct',
         'Nov',
-        'Dec'
-      ]
-    }
+        'Dec',
+      ],
+    },
   };
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <CardHeader
-        action={<GenericMoreButton />}
-        title="Performance Over Time"
-      />
+    <Card className={clsx(classes.root, className)} {...rest}>
+      <CardHeader action={<GenericMoreButton />} title="Earnings Over Time" />
       <Divider />
       <CardContent>
         <PerfectScrollbar>
-          <Box
-            height={375}
-            minWidth={500}
-          >
+          <Box height={375} minWidth={500}>
             <Chart
               className={classes.chart}
               data={performance.thisYear.data}
@@ -84,7 +78,7 @@ const PerformanceOverTime: FC<PerformanceOverTimeProps> = ({ className, ...rest 
 };
 
 PerformanceOverTime.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default PerformanceOverTime;

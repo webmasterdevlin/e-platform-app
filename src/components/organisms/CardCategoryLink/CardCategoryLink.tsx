@@ -9,6 +9,8 @@ import { CardBase } from '../../../components/organisms';
 
 type Props = {
   className?: string;
+  variant?: any;
+  liftUp?: any;
   title: string;
   subtitle?: string;
   href: string;

@@ -24,6 +24,10 @@ type Props = {
   textProps?: any;
   listItemPrimaryTypographyProps?: any;
   listItemSecondaryTypographyProps?: any;
+  noBorder?: any;
+  noShadow?: any;
+  variant?: any;
+  noBg?: any;
 };
 
 const CardReview = (props: Props) => {

@@ -11,6 +11,7 @@ type Props = {
   color?: string;
   title?: string;
   iconProps?: any;
+  size?: any;
   typographyProps?: any;
 };
 

@@ -11,6 +11,7 @@ type Props = {
   lazy?: any;
   lazyProps?: any;
   className?: string;
+  width?: any;
   rest?: React.ReactNode;
 };
 

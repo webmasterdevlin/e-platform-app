@@ -37,6 +37,8 @@ type Props = {
   titleProps?: any;
   subtitleProps?: any;
   descriptionProps?: any;
+  variant?: any;
+  liftUp?: any;
 };
 
 const CardPromo = (props: Props) => {
