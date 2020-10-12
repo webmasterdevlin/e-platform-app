@@ -141,8 +141,8 @@ const PopularNews = props => {
   return (
     <div className={clsx(classes.root, className)} {...rest}>
       <SectionHeader
-        title="The most popular news"
-        subtitle="Keep track of what's happening with your data, change permissions, and run reports against your data anywhere in the world. Keep track of what's happening with your data, change permissions."
+        title="Get personal learning recommendations"
+        subtitle=""
         subtitleProps={{
           color: 'textPrimary',
         }}

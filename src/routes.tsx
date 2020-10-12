@@ -4,7 +4,7 @@ import DashboardLayout from 'src/layouts/DashboardLayout';
 import DocsLayout from 'src/layouts/DocsLayout';
 import MainLayout from 'src/layouts/MainLayout';
 import HomeView from 'src/views/dashboard-views/home/HomeView';
-import HomeViewV2 from 'src/views/dashboard-views/home/HomeViewV2';
+import HomeViewV2 from 'src/views/landing-pages-views/HomeViewV2';
 import LoadingScreen from 'src/components/LoadingScreen';
 import AuthGuard from 'src/components/AuthGuard';
 import GuestGuard from 'src/components/GuestGuard';
@@ -480,9 +480,14 @@ const routes: Routes = [
       },
       {
         exact: true,
-        path: '/pricing',
+        path: '/about',
+        component: lazy(() => import('src/views/landing-pages-views/About')),
+      },
+      {
+        exact: true,
+        path: '/contact',
         component: lazy(
-          () => import('src/views/dashboard-views/pricing/PricingView'),
+          () => import('src/views/landing-pages-views/ContactPageSidebarMap'),
         ),
       },
       {

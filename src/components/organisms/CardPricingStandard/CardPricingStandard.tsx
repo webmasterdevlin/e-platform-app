@@ -19,7 +19,7 @@ type Props = {
   featureTitleProps?: any;
 };
 
-const CardPricingStandard = (props: Props) => {
+const CardPricingStandard: React.FC<any> = props => {
   const {
     title,
     subtitle,

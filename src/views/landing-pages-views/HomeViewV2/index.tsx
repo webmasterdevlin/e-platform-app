@@ -9,11 +9,11 @@ import {
   InputAdornment,
   Button,
 } from '@material-ui/core';
-import { Icon } from '../../../../components/atoms';
-import { SectionHeader } from 'src/components/molecules/index';
-import { Section } from '../../../../components/organisms/index';
-import Footer from './Footer';
-import Page from '../../../../components/Page';
+import { Icon } from '../../../components/atoms';
+import { SectionHeader } from 'src/components/molecules';
+import { Section } from '../../../components/organisms';
+import Footer from '../../../layouts/MainLayout/Footer';
+import Page from '../../../components/Page';
 
 const useStyles = makeStyles(theme => ({
   root: {

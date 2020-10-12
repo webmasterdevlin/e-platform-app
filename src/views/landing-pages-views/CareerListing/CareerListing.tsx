@@ -1,6 +1,14 @@
 import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { colors, Divider } from '@material-ui/core';
+import Bounce from 'react-reveal/Bounce';
+import Fade from 'react-reveal/Fade';
+import Flip from 'react-reveal/Flip';
+import Rotate from 'react-reveal/Rotate';
+import Zoom from 'react-reveal/Zoom';
+import Slide from 'react-reveal/Slide';
+import Roll from 'react-reveal/Roll';
+import LightSpeed from 'react-reveal/LightSpeed';
 import {
   Hero,
   Promo,
@@ -24,7 +32,7 @@ import {
 } from './data';
 import { Section, SectionAlternate } from 'src/components/organisms';
 import Page from '../../../components/Page';
-import Footer from '../../dashboard-views/home/HomeViewV2/Footer';
+import Footer from '../../../layouts/MainLayout/Footer';
 import PopularNews from './components/PopularNews';
 
 const useStyles: any = makeStyles((theme: Theme) => ({
@@ -42,44 +50,47 @@ const CareerListing = () => {
   const classes = useStyles();
 
   return (
-    <div>
-      <Page className={classes.root} title="Home">
-        <div className={classes.root}>
-          <Hero />
-          {/*<SectionAlternate>*/}
-          {/*  <Promo data={partners} />*/}
-          {/*</SectionAlternate>*/}
-          {/*<Section>*/}
-          {/*  <Process />*/}
-          {/*</Section>*/}
-          <Divider />
-          <Section>
-            <Categories data={jobCategories} />
-          </Section>
-          <Section>
-            <PopularNews data={popularNews} />
-          </Section>
-          {/*<SectionAlternate>*/}
-          {/*  <Info />*/}
-          {/*</SectionAlternate>*/}
-          {/*<Section>*/}
-          {/*  <Jobs data={jobs} />*/}
-          {/*</Section>*/}
-          {/*<SectionAlternate>*/}
-          {/*  <Placements />*/}
-          {/*</SectionAlternate>*/}
-          {/*<Section>*/}
-          {/*  <Companies data={companies} />*/}
-          {/*</Section>*/}
-          {/*<SectionAlternate>*/}
-          {/*  <Application />*/}
-          {/*</SectionAlternate>*/}
-          <SectionAlternate innerNarrowed className={classes.sectionAlternate}>
-            <Faq data={faq} />
-          </SectionAlternate>
-        </div>
-      </Page>
-      <Footer />
+    <div className={classes.root}>
+      <Hero />
+      {/*<SectionAlternate>*/}
+      {/*  <Promo data={partners} />*/}
+      {/*</SectionAlternate>*/}
+      {/*<Section>*/}
+      {/*  <Process />*/}
+      {/*</Section>*/}
+      <Divider />
+      <Fade left>
+        <Section>
+          <Categories data={jobCategories} />
+        </Section>
+      </Fade>
+      <Bounce effect="fadeInUp">
+        <Section>
+          <PopularNews data={popularNews} />
+        </Section>
+      </Bounce>
+
+      {/*<SectionAlternate>*/}
+      {/*  <Info />*/}
+      {/*</SectionAlternate>*/}
+      {/*<Section>*/}
+      {/*  <Jobs data={jobs} />*/}
+      {/*</Section>*/}
+      {/*<SectionAlternate>*/}
+      {/*  <Placements />*/}
+      {/*</SectionAlternate>*/}
+      {/*<Section>*/}
+      {/*  <Companies data={companies} />*/}
+      {/*</Section>*/}
+      {/*<SectionAlternate>*/}
+      {/*  <Application />*/}
+      {/*</SectionAlternate>*/}
+
+      <Fade right>
+        <SectionAlternate innerNarrowed className={classes.sectionAlternate}>
+          <Faq data={faq} />
+        </SectionAlternate>
+      </Fade>
     </div>
   );
 };

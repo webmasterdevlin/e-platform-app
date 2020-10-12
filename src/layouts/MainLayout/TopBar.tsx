@@ -88,11 +88,21 @@ const TopBar: FC<TopBarProps> = ({ className, ...rest }) => {
           className={classes.link}
           color="textSecondary"
           component={RouterLink}
-          to="/pricing"
+          to="/about"
           underline="none"
           variant="body2"
         >
-          Pricing
+          About
+        </Link>
+        <Link
+          className={classes.link}
+          color="textSecondary"
+          component={RouterLink}
+          to="/contact"
+          underline="none"
+          variant="body2"
+        >
+          Contact
         </Link>
         <Divider className={classes.divider} />
         <Button

@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
               <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
                   <TextField
-                    label="Job title or keyword"
+                    label="Lesson or keyword"
                     variant="outlined"
                     className={classes.textField}
                     size={isMd ? 'medium' : 'small'}

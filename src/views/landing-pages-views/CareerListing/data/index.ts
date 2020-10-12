@@ -2,8 +2,8 @@ import { colors } from '@material-ui/core';
 export const popularNews = [
   {
     cover: {
-      src: '/images/photos/blog/cover1.jpg',
-      srcSet: '/images/photos/blog/cover1.jpg 2x',
+      src: '/images/photos/blog/cover4.jpg',
+      srcSet: '/images/photos/blog/cover4.jpg 2x',
     },
     title: 'Become an instructor',
     subtitle:
@@ -20,8 +20,8 @@ export const popularNews = [
   },
   {
     cover: {
-      src: '/images/photos/blog/cover2.jpg',
-      srcSet: '/images/photos/blog/cover2.jpg 2x',
+      src: '/images/photos/blog/cover1.jpg',
+      srcSet: '/images/photos/blog/cover1.jpg 2x',
     },
     title: 'Transform your life through education',
     subtitle:
