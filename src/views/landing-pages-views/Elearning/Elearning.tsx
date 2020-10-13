@@ -14,6 +14,7 @@ import Flip from 'react-reveal/Flip';
 import Fade from 'react-reveal/Fade';
 import Rotate from 'react-reveal/Rotate';
 import Zoom from 'react-reveal/Zoom';
+import Bounce from 'react-reveal/Bounce';
 import Slide from 'react-reveal/Slide';
 import Roll from 'react-reveal/Roll';
 import LightSpeed from 'react-reveal/LightSpeed';
@@ -31,14 +32,16 @@ const Elearning = () => {
 
   return (
     <div className={classes.root}>
-      <Hero />
-      <Divider />
-      <Flip left>
+      <Bounce bottom>
+        <Hero />
+        <Divider />
+      </Bounce>
+      <Flip bottom>
         <Section>
           <PromoNumbers data={promoNumbers} />
         </Section>
       </Flip>
-      <Fade right>
+      <Fade bottom>
         <SectionAlternate>
           <Categories data={courseCategories} />
           <Section>
@@ -47,16 +50,16 @@ const Elearning = () => {
           <Courses data={popularCourses} className={classes.coursesSection} />
         </SectionAlternate>
       </Fade>
-      <Zoom left>
+      <Zoom bottom>
         <Section className={classes.paddingBottom0}>
           <Reviews data={reviews} />
         </Section>
       </Zoom>
-      <Rotate top left>
+      <Slide bottom>
         <SectionAlternate innerNarrowed className={classes.sectionAlternate}>
           <Subscription />
         </SectionAlternate>
-      </Rotate>
+      </Slide>
     </div>
   );
 };

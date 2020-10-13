@@ -6,11 +6,7 @@ import { create } from 'jss';
 import rtl from 'jss-rtl';
 import MomentUtils from '@date-io/moment';
 import { SnackbarProvider } from 'notistack';
-import {
-  jssPreset,
-  StylesProvider,
-  ThemeProvider
-} from '@material-ui/core';
+import { jssPreset, StylesProvider, ThemeProvider } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import GlobalStyles from 'src/components/GlobalStyles';
 import ScrollReset from 'src/components/ScrollReset';
@@ -31,17 +27,14 @@ const App: FC = () => {
   const theme = createTheme({
     direction: settings.direction,
     responsiveFontSizes: settings.responsiveFontSizes,
-    theme: settings.theme
+    theme: settings.theme,
   });
 
   return (
     <ThemeProvider theme={theme}>
       <StylesProvider jss={jss}>
         <MuiPickersUtilsProvider utils={MomentUtils}>
-          <SnackbarProvider
-            dense
-            maxSnack={3}
-          >
+          <SnackbarProvider dense maxSnack={3}>
             <Router history={history}>
               <AuthProvider>
                 <GlobalStyles />
