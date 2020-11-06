@@ -11,8 +11,8 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import Page from 'src/components/Page';
+import type { Theme } from '../../../themes/dashboard-theme';
+import Page from '../../../components/Page';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

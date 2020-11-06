@@ -9,9 +9,9 @@ import {
   View,
   Text,
   Image,
-  StyleSheet
+  StyleSheet,
 } from '@react-pdf/renderer';
-import type { Invoice } from 'src/types/invoice';
+import type { Invoice } from '../../../../types/invoice';
 
 interface InvoicePDFProps {
   invoice: Invoice;
@@ -23,61 +23,61 @@ const COLN_WIDTH = (100 - COL1_WIDTH) / 2;
 const styles = StyleSheet.create({
   page: {
     backgroundColor: '#fff',
-    padding: 24
+    padding: 24,
   },
   h1: {
     fontSize: 24,
-    fontWeight: 500
+    fontWeight: 500,
   },
   h5: {
     fontSize: 12,
-    fontWeight: 500
+    fontWeight: 500,
   },
   h6: {
     fontSize: 10,
-    fontWeight: 500
+    fontWeight: 500,
   },
   body1: {
     fontSize: 9,
-    lineHeight: 1.5
+    lineHeight: 1.5,
   },
   body2: {
     fontSize: 8,
-    lineHeight: 1.5
+    lineHeight: 1.5,
   },
   mb1: {
-    marginBottom: 4
+    marginBottom: 4,
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   brand: {
     height: 24,
-    width: 24
+    width: 24,
   },
   company: {
     marginTop: 32,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   references: {
     marginTop: 32,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   billing: {
-    marginTop: 32
+    marginTop: 32,
   },
   items: {
-    marginTop: 32
+    marginTop: 32,
   },
   notes: {
-    marginTop: 32
+    marginTop: 32,
   },
   table: {
     display: 'flex',
-    width: 'auto'
+    width: 'auto',
   },
   tableHeader: {},
   tableBody: {},
@@ -85,19 +85,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderColor: '#eeeeee',
-    borderStyle: 'solid'
+    borderStyle: 'solid',
   },
   tableCell1: {
     padding: 6,
-    width: `${COL1_WIDTH}%`
+    width: `${COL1_WIDTH}%`,
   },
   tableCellN: {
     padding: 6,
-    width: `${COLN_WIDTH}%`
+    width: `${COLN_WIDTH}%`,
   },
   alignRight: {
-    textAlign: 'right'
-  }
+    textAlign: 'right',
+  },
 });
 
 const InvoicePDF: FC<InvoicePDFProps> = ({ invoice }) => {
@@ -170,7 +170,7 @@ const InvoicePDF: FC<InvoicePDFProps> = ({ invoice }) => {
               </View>
             </View>
             <View style={styles.tableBody}>
-              {invoice.items.map((item) => (
+              {invoice.items.map(item => (
                 <View style={styles.tableRow} key={item.id}>
                   <View style={styles.tableCell1}>
                     <Text style={styles.body2}>{item.description}</Text>
@@ -179,7 +179,7 @@ const InvoicePDF: FC<InvoicePDFProps> = ({ invoice }) => {
                   <View style={styles.tableCellN}>
                     <Text style={[styles.body2, styles.alignRight]}>
                       {numeral(item.unitAmount).format(
-                        `${item.currency}0,0.00`
+                        `${item.currency}0,0.00`,
                       )}
                     </Text>
                   </View>
@@ -193,7 +193,7 @@ const InvoicePDF: FC<InvoicePDFProps> = ({ invoice }) => {
                 <View style={styles.tableCellN}>
                   <Text style={[styles.body2, styles.alignRight]}>
                     {numeral(invoice.subtotalAmount).format(
-                      `${invoice.currency}0,0.00`
+                      `${invoice.currency}0,0.00`,
                     )}
                   </Text>
                 </View>
@@ -206,7 +206,7 @@ const InvoicePDF: FC<InvoicePDFProps> = ({ invoice }) => {
                 <View style={styles.tableCellN}>
                   <Text style={[styles.body2, styles.alignRight]}>
                     {numeral(invoice.taxAmount).format(
-                      `${invoice.currency}0,0.00`
+                      `${invoice.currency}0,0.00`,
                     )}
                   </Text>
                 </View>
@@ -219,7 +219,7 @@ const InvoicePDF: FC<InvoicePDFProps> = ({ invoice }) => {
                 <View style={styles.tableCellN}>
                   <Text style={[styles.body2, styles.alignRight]}>
                     {numeral(invoice.totalAmount).format(
-                      `${invoice.currency}0,0.00`
+                      `${invoice.currency}0,0.00`,
                     )}
                   </Text>
                 </View>
@@ -241,7 +241,7 @@ const InvoicePDF: FC<InvoicePDFProps> = ({ invoice }) => {
 
 InvoicePDF.propTypes = {
   // @ts-ignore
-  invoice: PropTypes.object.isRequired
+  invoice: PropTypes.object.isRequired,
 };
 
 export default InvoicePDF;

@@ -1,8 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-  useEffect
-} from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import type { FC } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -13,12 +9,12 @@ import {
   CardHeader,
   Divider,
   List,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import GenericMoreButton from 'src/components/GenericMoreButton';
-import type { Task } from 'src/types/reports';
+import axios from '../../../../../utils/axios';
+import useIsMountedRef from '../../../../../hooks/useIsMountedRef';
+import GenericMoreButton from '../../../../../components/GenericMoreButton';
+import type { Task } from '../../../../../types/reports';
 import TaskItem from './TaskItem';
 
 interface TeamTasksProps {
@@ -26,7 +22,7 @@ interface TeamTasksProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const TeamTasks: FC<TeamTasksProps> = ({ className, ...rest }) => {
@@ -36,8 +32,10 @@ const TeamTasks: FC<TeamTasksProps> = ({ className, ...rest }) => {
 
   const getTasks = useCallback(async () => {
     try {
-      const response = await axios.get<{ tasks: Task[]; }>('/api/reports/latest-tasks');
-  
+      const response = await axios.get<{ tasks: Task[] }>(
+        '/api/reports/latest-tasks',
+      );
+
       if (isMountedRef.current) {
         setTasks(response.data.tasks);
       }
@@ -51,14 +49,8 @@ const TeamTasks: FC<TeamTasksProps> = ({ className, ...rest }) => {
   }, [getTasks]);
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <CardHeader
-        action={<GenericMoreButton />}
-        title="Team Tasks"
-      />
+    <Card className={clsx(classes.root, className)} {...rest}>
+      <CardHeader action={<GenericMoreButton />} title="Team Tasks" />
       <Divider />
       <PerfectScrollbar>
         <Box minWidth={400}>
@@ -78,7 +70,7 @@ const TeamTasks: FC<TeamTasksProps> = ({ className, ...rest }) => {
 };
 
 TeamTasks.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default TeamTasks;

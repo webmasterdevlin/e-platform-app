@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useCallback,
-  useEffect
-} from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -19,13 +15,13 @@ import {
   TableCell,
   TableRow,
   TextField,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import MaiIcon from '@material-ui/icons/MailOutline';
-import axios from 'src/utils/axios';
-import type { Theme } from 'src/themes/dashboard-theme';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import type { CustomerEmail } from 'src/types/customer';
+import axios from '../../../../../utils/axios';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import useIsMountedRef from '../../../../../hooks/useIsMountedRef';
+import type { CustomerEmail } from '../../../../../types/customer';
 
 interface EmailsProps {
   className?: string;
@@ -34,14 +30,14 @@ interface EmailsProps {
 const emailOptions = [
   'Resend last invoice',
   'Send password reset',
-  'Send verification'
+  'Send verification',
 ];
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   cell: {
-    padding: theme.spacing(1)
-  }
+    padding: theme.spacing(1),
+  },
 }));
 
 const Emails: FC<EmailsProps> = ({ className, ...rest }) => {
@@ -52,7 +48,9 @@ const Emails: FC<EmailsProps> = ({ className, ...rest }) => {
 
   const getMails = useCallback(async () => {
     try {
-      const response = await axios.get<{ emails: CustomerEmail[]; }>('/api/customers/1/emails');
+      const response = await axios.get<{ emails: CustomerEmail[] }>(
+        '/api/customers/1/emails',
+      );
 
       if (isMountedRef.current) {
         setEmails(response.data.emails);
@@ -67,43 +65,34 @@ const Emails: FC<EmailsProps> = ({ className, ...rest }) => {
   }, [getMails]);
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <Card className={clsx(classes.root, className)} {...rest}>
       <CardHeader title="Send emails" />
       <Divider />
       <CardContent>
         <TextField
           fullWidth
           name="option"
-          onChange={(event) => setEmailOption(event.target.value)}
+          onChange={event => setEmailOption(event.target.value)}
           select
           SelectProps={{ native: true }}
           value={emailOption}
           variant="outlined"
         >
-          {emailOptions.map((option) => (
-            <option
-              key={option}
-              value={option}
-            >
+          {emailOptions.map(option => (
+            <option key={option} value={option}>
               {option}
             </option>
           ))}
         </TextField>
         <Box mt={2}>
-          <Button
-            variant="contained"
-            startIcon={<MaiIcon />}
-          >
+          <Button variant="contained" startIcon={<MaiIcon />}>
             Send email
           </Button>
         </Box>
         <Box mt={2}>
           <Table>
             <TableBody>
-              {emails.map((email) => (
+              {emails.map(email => (
                 <TableRow key={email.id}>
                   <TableCell className={classes.cell}>
                     {moment(email.createdAt).format('DD/MM/YYYY | HH:MM')}

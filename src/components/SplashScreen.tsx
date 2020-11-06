@@ -1,11 +1,7 @@
 import React from 'react';
 import type { FC } from 'react';
-import {
-  Box,
-  LinearProgress,
-  makeStyles
-} from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import { Box, LinearProgress, makeStyles } from '@material-ui/core';
+import type { Theme } from '../themes/dashboard-theme';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -20,8 +16,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: 'fixed',
     top: 0,
     width: '100%',
-    zIndex: 2000
-  }
+    zIndex: 2000,
+  },
 }));
 
 const SlashScreen: FC = () => {
@@ -34,6 +30,6 @@ const SlashScreen: FC = () => {
       </Box>
     </div>
   );
-}
+};
 
 export default SlashScreen;

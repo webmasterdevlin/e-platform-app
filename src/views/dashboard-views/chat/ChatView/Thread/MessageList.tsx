@@ -1,14 +1,11 @@
-import React, {
-  useEffect,
-  useRef
-} from 'react';
+import React, { useEffect, useRef } from 'react';
 import type { FC } from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { Thread } from 'src/types/chat';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Thread } from '../../../../../types/chat';
 import MessageItem from './MessageItem';
 
 interface MessageListProps {
@@ -18,22 +15,19 @@ interface MessageListProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }));
 
-const MessageList: FC<MessageListProps> = ({
-  className,
-  thread,
-  ...rest
-}) => {
+const MessageList: FC<MessageListProps> = ({ className, thread, ...rest }) => {
   const classes = useStyles();
   const scrollRef = useRef<any>(null);
 
   useEffect(() => {
     const scrollMessagesToBottom = () => {
       if (scrollRef.current) {
-        scrollRef.current._container.scrollTop = scrollRef.current._container.scrollHeight;
+        scrollRef.current._container.scrollTop =
+          scrollRef.current._container.scrollHeight;
       }
     };
 
@@ -48,12 +42,8 @@ const MessageList: FC<MessageListProps> = ({
       ref={scrollRef}
       {...rest}
     >
-      {thread.messages.map((message) => (
-        <MessageItem
-          key={message.id}
-          message={message}
-          thread={thread}
-        />
+      {thread.messages.map(message => (
+        <MessageItem key={message.id} message={message} thread={thread} />
       ))}
     </PerfectScrollbar>
   );
@@ -62,7 +52,7 @@ const MessageList: FC<MessageListProps> = ({
 MessageItem.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  thread: PropTypes.object.isRequired
+  thread: PropTypes.object.isRequired,
 };
 
 export default MessageList;

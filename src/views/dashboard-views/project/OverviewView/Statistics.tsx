@@ -1,23 +1,13 @@
-import React, {
-  useCallback,
-  useState,
-  useEffect
-} from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import numeral from 'numeral';
-import {
-  Box,
-  Card,
-  Grid,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import Label from 'src/components/Label';
+import { Box, Card, Grid, Typography, makeStyles } from '@material-ui/core';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import axios from '../../../../utils/axios';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import Label from '../../../../components/Label';
 
 interface StatisticsProps {
   className?: string;
@@ -37,21 +27,21 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     [theme.breakpoints.up('md')]: {
       '&:not(:last-of-type)': {
-        borderRight: `1px solid ${theme.palette.divider}`
-      }
+        borderRight: `1px solid ${theme.palette.divider}`,
+      },
     },
     [theme.breakpoints.down('sm')]: {
       '&:not(:last-of-type)': {
-        borderBottom: `1px solid ${theme.palette.divider}`
-      }
-    }
+        borderBottom: `1px solid ${theme.palette.divider}`,
+      },
+    },
   },
   label: {
-    marginLeft: theme.spacing(1)
+    marginLeft: theme.spacing(1),
   },
   overline: {
-    marginTop: theme.spacing(1)
-  }
+    marginTop: theme.spacing(1),
+  },
 }));
 
 const Statistics: FC<StatisticsProps> = ({ className, ...rest }) => {
@@ -61,7 +51,9 @@ const Statistics: FC<StatisticsProps> = ({ className, ...rest }) => {
 
   const getStatistics = useCallback(async () => {
     try {
-      const response = await axios.get<{ statistics: Statistics }>('/api/projects/overview/statistics');
+      const response = await axios.get<{ statistics: Statistics }>(
+        '/api/projects/overview/statistics',
+      );
 
       if (isMountedRef.current) {
         setStatistics(response.data.statistics);
@@ -80,26 +72,10 @@ const Statistics: FC<StatisticsProps> = ({ className, ...rest }) => {
   }
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Grid
-        alignItems="center"
-        container
-        justify="space-between"
-      >
-        <Grid
-          className={classes.item}
-          item
-          md={3}
-          sm={6}
-          xs={12}
-        >
-          <Typography
-            variant="h2"
-            color="textPrimary"
-          >
+    <Card className={clsx(classes.root, className)} {...rest}>
+      <Grid alignItems="center" container justify="space-between">
+        <Grid className={classes.item} item md={3} sm={6} xs={12}>
+          <Typography variant="h2" color="textPrimary">
             {numeral(statistics.nextPayout).format('$0,0.00')}
           </Typography>
           <Typography
@@ -110,17 +86,8 @@ const Statistics: FC<StatisticsProps> = ({ className, ...rest }) => {
             Next payout
           </Typography>
         </Grid>
-        <Grid
-          className={classes.item}
-          item
-          md={3}
-          sm={6}
-          xs={12}
-        >
-          <Typography
-            variant="h2"
-            color="textPrimary"
-          >
+        <Grid className={classes.item} item md={3} sm={6} xs={12}>
+          <Typography variant="h2" color="textPrimary">
             {numeral(statistics.totalIncome).format('$0,0.00')}
           </Typography>
           <Typography
@@ -131,17 +98,8 @@ const Statistics: FC<StatisticsProps> = ({ className, ...rest }) => {
             Total income
           </Typography>
         </Grid>
-        <Grid
-          className={classes.item}
-          item
-          md={3}
-          sm={6}
-          xs={12}
-        >
-          <Typography
-            variant="h2"
-            color="textPrimary"
-          >
+        <Grid className={classes.item} item md={3} sm={6} xs={12}>
+          <Typography variant="h2" color="textPrimary">
             {statistics.visitorsToday}
           </Typography>
           <Typography
@@ -152,29 +110,12 @@ const Statistics: FC<StatisticsProps> = ({ className, ...rest }) => {
             Today&apos;s Visitors
           </Typography>
         </Grid>
-        <Grid
-          className={classes.item}
-          item
-          md={3}
-          sm={6}
-          xs={12}
-        >
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Typography
-              component="span"
-              variant="h2"
-              color="textPrimary"
-            >
+        <Grid className={classes.item} item md={3} sm={6} xs={12}>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Typography component="span" variant="h2" color="textPrimary">
               {statistics.watchingNow}
             </Typography>
-            <Label
-              className={classes.label}
-              color="primary"
-            >
+            <Label className={classes.label} color="primary">
               Live
             </Label>
           </Box>
@@ -192,7 +133,7 @@ const Statistics: FC<StatisticsProps> = ({ className, ...rest }) => {
 };
 
 Statistics.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Statistics;

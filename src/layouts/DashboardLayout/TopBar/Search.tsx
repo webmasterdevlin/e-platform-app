@@ -15,13 +15,10 @@ import {
   TextField,
   Tooltip,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import {
-  Search as SearchIcon,
-  XCircle as XIcon
-} from 'react-feather';
-import axios from 'src/utils/axios';
+import { Search as SearchIcon, XCircle as XIcon } from 'react-feather';
+import axios from '../../../utils/axios';
 
 interface Result {
   description: string;
@@ -31,8 +28,8 @@ interface Result {
 const useStyles = makeStyles(() => ({
   drawer: {
     width: 500,
-    maxWidth: '100%'
-  }
+    maxWidth: '100%',
+  },
 }));
 
 const Search: FC = () => {
@@ -55,13 +52,13 @@ const Search: FC = () => {
     try {
       setLoading(true);
 
-      const response = await axios.get<{ results: Result[]; }>('/api/search');
+      const response = await axios.get<{ results: Result[] }>('/api/search');
 
       setResults(response.data.results);
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     } finally {
       setLoading(false);
@@ -71,10 +68,7 @@ const Search: FC = () => {
   return (
     <>
       <Tooltip title="Search">
-        <IconButton
-          color="inherit"
-          onClick={handleOpen}
-        >
+        <IconButton color="inherit" onClick={handleOpen}>
           <SvgIcon fontSize="small">
             <SearchIcon />
           </SvgIcon>
@@ -95,10 +89,7 @@ const Search: FC = () => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Typography
-                variant="h4"
-                color="textPrimary"
-              >
+              <Typography variant="h4" color="textPrimary">
                 Search
               </Typography>
               <IconButton onClick={handleClose}>
@@ -113,26 +104,19 @@ const Search: FC = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SvgIcon
-                        fontSize="small"
-                        color="action"
-                      >
+                      <SvgIcon fontSize="small" color="action">
                         <SearchIcon />
                       </SvgIcon>
                     </InputAdornment>
-                  )
+                  ),
                 }}
-                onChange={(event) => setValue(event.target.value)}
+                onChange={event => setValue(event.target.value)}
                 placeholder="Search people &amp; places"
                 value={value}
                 variant="outlined"
               />
             </Box>
-            <Box
-              mt={2}
-              display="flex"
-              justifyContent="flex-end"
-            >
+            <Box mt={2} display="flex" justifyContent="flex-end">
               <Button
                 color="secondary"
                 variant="contained"
@@ -143,19 +127,13 @@ const Search: FC = () => {
             </Box>
             <Box mt={4}>
               {isLoading ? (
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                >
+                <Box display="flex" justifyContent="center">
                   <CircularProgress />
                 </Box>
               ) : (
                 <>
                   {results.map((result, i) => (
-                    <Box
-                      key={i}
-                      mb={2}
-                    >
+                    <Box key={i} mb={2}>
                       <Link
                         variant="h4"
                         color="textPrimary"
@@ -164,10 +142,7 @@ const Search: FC = () => {
                       >
                         {result.title}
                       </Link>
-                      <Typography
-                        variant="body2"
-                        color="textPrimary"
-                      >
+                      <Typography variant="body2" color="textPrimary">
                         {result.description}
                       </Typography>
                     </Box>

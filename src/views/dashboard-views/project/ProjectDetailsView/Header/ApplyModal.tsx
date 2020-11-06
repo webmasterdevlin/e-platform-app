@@ -10,11 +10,11 @@ import {
   Dialog,
   TextField,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import getInitials from 'src/utils/getInitials';
-import type { ProjectAuthor } from 'src/types/project';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import getInitials from '../../../../../utils/getInitials';
+import type { ProjectAuthor } from '../../../../../types/project';
 
 interface ApplyModalProps {
   author: ProjectAuthor;
@@ -26,12 +26,12 @@ interface ApplyModalProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
   },
   helperText: {
     textAlign: 'right',
-    marginRight: 0
-  }
+    marginRight: 0,
+  },
 }));
 
 const ApplyModal: FC<ApplyModalProps> = ({
@@ -53,21 +53,14 @@ const ApplyModal: FC<ApplyModalProps> = ({
 
   const handleApply = (): void => {
     enqueueSnackbar('Request sent', {
-      variant: 'success'
+      variant: 'success',
     });
     onApply();
   };
 
   return (
-    <Dialog
-      maxWidth="lg"
-      onClose={onClose}
-      open={open}
-    >
-      <div
-        className={clsx(classes.root, className)}
-        {...rest}
-      >
+    <Dialog maxWidth="lg" onClose={onClose} open={open}>
+      <div className={clsx(classes.root, className)} {...rest}>
         <Typography
           align="center"
           gutterBottom
@@ -76,13 +69,9 @@ const ApplyModal: FC<ApplyModalProps> = ({
         >
           The project requires an introduction
         </Typography>
-        <Typography
-          align="center"
-          variant="subtitle2"
-          color="textSecondary"
-        >
-          Write down a short note with your application regarding why you
-          think you&apos;d be a good fit for this position.
+        <Typography align="center" variant="subtitle2" color="textSecondary">
+          Write down a short note with your application regarding why you think
+          you&apos;d be a good fit for this position.
         </Typography>
         <Box mt={3}>
           <TextField
@@ -98,37 +87,21 @@ const ApplyModal: FC<ApplyModalProps> = ({
             value={value}
             variant="outlined"
           />
-          <Box
-            mt={6}
-            display="flex"
-            alignItems="center"
-          >
-            <Avatar
-              alt="Author"
-              src={author.avatar}
-            >
+          <Box mt={6} display="flex" alignItems="center">
+            <Avatar alt="Author" src={author.avatar}>
               {getInitials(author.name)}
             </Avatar>
             <Box ml={2}>
-              <Typography
-                variant="h3"
-                color="textPrimary"
-              >
+              <Typography variant="h3" color="textPrimary">
                 {author.name}
               </Typography>
-              <Typography
-                variant="subtitle2"
-                color="textPrimary"
-              >
+              <Typography variant="subtitle2" color="textPrimary">
                 {/* {author.bio} */}
               </Typography>
             </Box>
           </Box>
         </Box>
-        <Box
-          mt={3}
-          p={3}
-        >
+        <Box mt={3} p={3}>
           <Button
             onClick={handleApply}
             variant="contained"
@@ -149,12 +122,12 @@ ApplyModal.propTypes = {
   className: PropTypes.string,
   onApply: PropTypes.func,
   onClose: PropTypes.func,
-  open: PropTypes.bool.isRequired
+  open: PropTypes.bool.isRequired,
 };
 
 ApplyModal.defaultProps = {
   onApply: () => {},
-  onClose: () => {}
+  onClose: () => {},
 };
 
 export default ApplyModal;

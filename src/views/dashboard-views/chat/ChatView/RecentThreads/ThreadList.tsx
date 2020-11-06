@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { List, makeStyles } from '@material-ui/core';
-import { useSelector } from 'src/store';
+import { useSelector } from '../../../../../store';
 import ThreadItem from './ThreadItem';
 
 interface ThreadListProps {
@@ -12,12 +12,12 @@ interface ThreadListProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const ThreadList: FC<ThreadListProps> = ({ className, ...rest }) => {
   const classes = useStyles();
-  const { threads, activeThreadId } = useSelector((state) => state.chat);
+  const { threads, activeThreadId } = useSelector(state => state.chat);
   const history = useHistory();
 
   const handleSelect = (threadId: string): void => {
@@ -29,7 +29,9 @@ const ThreadList: FC<ThreadListProps> = ({ className, ...rest }) => {
     } else {
       // We hardcode the current user ID because the mocked that is not in sync with the auth provider.
       // When implementing this app with a real database, replace this ID with the ID from Auth Context.
-      const otherParticipant = thread.participants.find((participant) => participant.id !== '5e86809283e28b96d2d38537');
+      const otherParticipant = thread.participants.find(
+        participant => participant.id !== '5e86809283e28b96d2d38537',
+      );
 
       threadKey = otherParticipant.username;
     }
@@ -38,11 +40,8 @@ const ThreadList: FC<ThreadListProps> = ({ className, ...rest }) => {
   };
 
   return (
-    <List
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      {threads.allIds.map((threadId) => (
+    <List className={clsx(classes.root, className)} {...rest}>
+      {threads.allIds.map(threadId => (
         <ThreadItem
           active={activeThreadId === threadId}
           key={threadId}
@@ -55,7 +54,7 @@ const ThreadList: FC<ThreadListProps> = ({ className, ...rest }) => {
 };
 
 ThreadList.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default ThreadList;

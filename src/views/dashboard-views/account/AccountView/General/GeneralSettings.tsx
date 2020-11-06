@@ -17,11 +17,11 @@ import {
   Switch,
   TextField,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import type { User } from 'src/types/user';
-import wait from 'src/utils/wait';
+import type { User } from '../../../../../types/user';
+import wait from '../../../../../utils/wait';
 import countries from './countries';
 
 interface GeneralSettingsProps {
@@ -30,10 +30,14 @@ interface GeneralSettingsProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
-const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest }) => {
+const GeneralSettings: FC<GeneralSettingsProps> = ({
+  className,
+  user,
+  ...rest
+}) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -49,24 +53,25 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
         name: user.name || '',
         phone: user.phone || '',
         state: user.state || '',
-        submit: null
+        submit: null,
       }}
       validationSchema={Yup.object().shape({
         canHire: Yup.bool(),
         city: Yup.string().max(255),
         country: Yup.string().max(255),
-        email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+        email: Yup.string()
+          .email('Must be a valid email')
+          .max(255)
+          .required('Email is required'),
         isPublic: Yup.bool(),
         name: Yup.string().max(255).required('Name is required'),
         phone: Yup.string(),
-        state: Yup.string()
+        state: Yup.string(),
       })}
-      onSubmit={async (values, {
-        resetForm,
-        setErrors,
-        setStatus,
-        setSubmitting
-      }) => {
+      onSubmit={async (
+        values,
+        { resetForm, setErrors, setStatus, setSubmitting },
+      ) => {
         try {
           // NOTE: Make API request
           await wait(200);
@@ -74,7 +79,7 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
           setStatus({ success: true });
           setSubmitting(false);
           enqueueSnackbar('Profile updated', {
-            variant: 'success'
+            variant: 'success',
           });
         } catch (err) {
           console.error(err);
@@ -91,25 +96,15 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
         handleSubmit,
         isSubmitting,
         touched,
-        values
+        values,
       }) => (
         <form onSubmit={handleSubmit}>
-          <Card
-            className={clsx(classes.root, className)}
-            {...rest}
-          >
+          <Card className={clsx(classes.root, className)} {...rest}>
             <CardHeader title="Profile" />
             <Divider />
             <CardContent>
-              <Grid
-                container
-                spacing={4}
-              >
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+              <Grid container spacing={4}>
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.name && errors.name)}
                     fullWidth
@@ -122,15 +117,15 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
                     variant="outlined"
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.email && errors.email)}
                     fullWidth
-                    helperText={touched.email && errors.email ? errors.email : 'We will use this email to contact you'}
+                    helperText={
+                      touched.email && errors.email
+                        ? errors.email
+                        : 'We will use this email to contact you'
+                    }
                     label="Email Address"
                     name="email"
                     onBlur={handleBlur}
@@ -141,11 +136,7 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
                     variant="outlined"
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.phone && errors.phone)}
                     fullWidth
@@ -158,15 +149,11 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
                     variant="outlined"
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+                <Grid item md={6} xs={12}>
                   <Autocomplete
-                    getOptionLabel={(option) => option.text}
+                    getOptionLabel={option => option.text}
                     options={countries}
-                    renderInput={(params) => (
+                    renderInput={params => (
                       <TextField
                         fullWidth
                         label="Country"
@@ -178,11 +165,7 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
                     )}
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.state && errors.state)}
                     fullWidth
@@ -195,11 +178,7 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
                     variant="outlined"
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.city && errors.city)}
                     fullWidth
@@ -212,23 +191,13 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
                     variant="outlined"
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
-                  <Typography
-                    variant="h6"
-                    color="textPrimary"
-                  >
+                <Grid item md={6} xs={12}>
+                  <Typography variant="h6" color="textPrimary">
                     Make Contact Info Public
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                  >
-                    Means that anyone viewing your profile will be able to see your
-                    contacts details
+                  <Typography variant="body2" color="textSecondary">
+                    Means that anyone viewing your profile will be able to see
+                    your contacts details
                   </Typography>
                   <Switch
                     checked={values.isPublic}
@@ -237,23 +206,13 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
-                  <Typography
-                    variant="h6"
-                    color="textPrimary"
-                  >
+                <Grid item md={6} xs={12}>
+                  <Typography variant="h6" color="textPrimary">
                     Available to hire
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                  >
-                    Toggling this will let your teammates know that you are available
-                    for acquiring new projects
+                  <Typography variant="body2" color="textSecondary">
+                    Toggling this will let your teammates know that you are
+                    available for acquiring new projects
                   </Typography>
                   <Switch
                     checked={values.canHire}
@@ -265,18 +224,12 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
               </Grid>
               {errors.submit && (
                 <Box mt={3}>
-                  <FormHelperText error>
-                    {errors.submit}
-                  </FormHelperText>
+                  <FormHelperText error>{errors.submit}</FormHelperText>
                 </Box>
               )}
             </CardContent>
             <Divider />
-            <Box
-              p={2}
-              display="flex"
-              justifyContent="flex-end"
-            >
+            <Box p={2} display="flex" justifyContent="flex-end">
               <Button
                 color="secondary"
                 disabled={isSubmitting}
@@ -296,7 +249,7 @@ const GeneralSettings: FC<GeneralSettingsProps> = ({ className, user, ...rest })
 GeneralSettings.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
 };
 
 export default GeneralSettings;

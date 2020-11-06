@@ -1,13 +1,9 @@
-import React, {
-  createContext,
-  useEffect,
-  useReducer
-} from 'react';
+import React, { createContext, useEffect, useReducer } from 'react';
 import type { FC, ReactNode } from 'react';
 import jwtDecode from 'jwt-decode';
-import type { User } from 'src/types/user';
-import SplashScreen from 'src/components/SplashScreen';
-import axios from 'src/utils/axios';
+import type { User } from '../../src/types/user';
+import SplashScreen from '../../src/components/SplashScreen';
+import axios from '../../src/utils/axios';
 
 interface AuthState {
   isInitialised: boolean;
@@ -16,7 +12,7 @@ interface AuthState {
 }
 
 interface AuthContextValue extends AuthState {
-  method: 'JWT',
+  method: 'JWT';
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   register: (email: string, name: string, password: string) => Promise<void>;
@@ -52,16 +48,12 @@ type RegisterAction = {
   };
 };
 
-type Action =
-  | InitialiseAction
-  | LoginAction
-  | LogoutAction
-  | RegisterAction;
+type Action = InitialiseAction | LoginAction | LogoutAction | RegisterAction;
 
 const initialAuthState: AuthState = {
   isAuthenticated: false,
   isInitialised: false,
-  user: null
+  user: null,
 };
 
 const isValidToken = (accessToken: string): boolean => {
@@ -94,7 +86,7 @@ const reducer = (state: AuthState, action: Action): AuthState => {
         ...state,
         isAuthenticated,
         isInitialised: true,
-        user
+        user,
       };
     }
     case 'LOGIN': {
@@ -103,14 +95,14 @@ const reducer = (state: AuthState, action: Action): AuthState => {
       return {
         ...state,
         isAuthenticated: true,
-        user
+        user,
       };
     }
     case 'LOGOUT': {
       return {
         ...state,
         isAuthenticated: false,
-        user: null
+        user: null,
       };
     }
     case 'REGISTER': {
@@ -119,7 +111,7 @@ const reducer = (state: AuthState, action: Action): AuthState => {
       return {
         ...state,
         isAuthenticated: true,
-        user
+        user,
       };
     }
     default: {
@@ -132,23 +124,26 @@ const AuthContext = createContext<AuthContextValue>({
   ...initialAuthState,
   method: 'JWT',
   login: () => Promise.resolve(),
-  logout: () => { },
-  register: () => Promise.resolve()
+  logout: () => {},
+  register: () => Promise.resolve(),
 });
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialAuthState);
 
   const login = async (email: string, password: string) => {
-    const response = await axios.post<{ accessToken: string; user: User }>('/api/account/login', { email, password });
+    const response = await axios.post<{ accessToken: string; user: User }>(
+      '/api/account/login',
+      { email, password },
+    );
     const { accessToken, user } = response.data;
 
     setSession(accessToken);
     dispatch({
       type: 'LOGIN',
       payload: {
-        user
-      }
+        user,
+      },
     });
   };
 
@@ -158,11 +153,14 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   };
 
   const register = async (email: string, name: string, password: string) => {
-    const response = await axios.post<{ accessToken: string; user: User }>('/api/account/register', {
-      email,
-      name,
-      password
-    });
+    const response = await axios.post<{ accessToken: string; user: User }>(
+      '/api/account/register',
+      {
+        email,
+        name,
+        password,
+      },
+    );
     const { accessToken, user } = response.data;
 
     window.localStorage.setItem('accessToken', accessToken);
@@ -170,8 +168,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     dispatch({
       type: 'REGISTER',
       payload: {
-        user
-      }
+        user,
+      },
     });
   };
 
@@ -183,23 +181,23 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         if (accessToken && isValidToken(accessToken)) {
           setSession(accessToken);
 
-          const response = await axios.get<{ user: User; }>('/api/account/me');
+          const response = await axios.get<{ user: User }>('/api/account/me');
           const { user } = response.data;
 
           dispatch({
             type: 'INITIALISE',
             payload: {
               isAuthenticated: true,
-              user
-            }
+              user,
+            },
           });
         } else {
           dispatch({
             type: 'INITIALISE',
             payload: {
               isAuthenticated: false,
-              user: null
-            }
+              user: null,
+            },
           });
         }
       } catch (err) {
@@ -208,8 +206,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
           type: 'INITIALISE',
           payload: {
             isAuthenticated: false,
-            user: null
-          }
+            user: null,
+          },
         });
       }
     };
@@ -228,7 +226,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         method: 'JWT',
         login,
         logout,
-        register
+        register,
       }}
     >
       {children}

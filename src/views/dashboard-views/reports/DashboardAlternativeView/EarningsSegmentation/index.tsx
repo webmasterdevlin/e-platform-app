@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback
-} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -12,12 +8,12 @@ import {
   CardHeader,
   Divider,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import GenericMoreButton from 'src/components/GenericMoreButton';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import GenericMoreButton from '../../../../../components/GenericMoreButton';
+import axios from '../../../../../utils/axios';
+import useIsMountedRef from '../../../../../hooks/useIsMountedRef';
 import Chart from './Chart';
 
 interface EarningsSegmentationProps {
@@ -34,18 +30,21 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center',
     padding: theme.spacing(3, 2),
     '&:not(:last-of-type)': {
-      borderRight: `1px solid ${theme.palette.divider}`
-    }
-  }
+      borderRight: `1px solid ${theme.palette.divider}`,
+    },
+  },
 }));
 
-const EarningsSegmentation: FC<EarningsSegmentationProps> = ({ className, ...rest }) => {
+const EarningsSegmentation: FC<EarningsSegmentationProps> = ({
+  className,
+  ...rest
+}) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [earnings, setEarnings] = useState<any>(null);
 
   const getEarnings = useCallback(async () => {
-    try  {
+    try {
       const response = await axios.get('/api/reports/earnings');
 
       if (isMountedRef.current) {
@@ -65,40 +64,23 @@ const EarningsSegmentation: FC<EarningsSegmentationProps> = ({ className, ...res
   }
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <Card className={clsx(classes.root, className)} {...rest}>
       <CardHeader
         action={<GenericMoreButton />}
         title="Earnings Segmentation"
       />
       <Divider />
-      <Box
-        p={3}
-        position="relative"
-        minHeight={320}
-      >
+      <Box p={3} position="relative" minHeight={320}>
         <Chart data={earnings} />
       </Box>
       <Divider />
       <Box display="flex">
         {earnings.labels.map((label: string, i: number) => (
-          <div
-            key={label}
-            className={classes.item}
-          >
-            <Typography
-              variant="h4"
-              color="textPrimary"
-            >
-              {earnings.datasets[0].data[i]}
-              %
+          <div key={label} className={classes.item}>
+            <Typography variant="h4" color="textPrimary">
+              {earnings.datasets[0].data[i]}%
             </Typography>
-            <Typography
-              variant="overline"
-              color="textSecondary"
-            >
+            <Typography variant="overline" color="textSecondary">
               {label}
             </Typography>
           </div>
@@ -109,7 +91,7 @@ const EarningsSegmentation: FC<EarningsSegmentationProps> = ({ className, ...res
 };
 
 EarningsSegmentation.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default EarningsSegmentation;

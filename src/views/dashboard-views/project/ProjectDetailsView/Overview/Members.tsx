@@ -14,10 +14,10 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import getInitials from 'src/utils/getInitials';
-import type { ProjectMember } from 'src/types/project';
+import getInitials from '../../../../../utils/getInitials';
+import type { ProjectMember } from '../../../../../types/project';
 
 interface MembersProps {
   className?: string;
@@ -27,40 +27,31 @@ interface MembersProps {
 const useStyles = makeStyles(() => ({
   root: {},
   header: {
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   content: {
-    paddingTop: 0
-  }
+    paddingTop: 0,
+  },
 }));
 
 const Members: FC<MembersProps> = ({ className, members, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <Card className={clsx(classes.root, className)} {...rest}>
       <CardHeader
         className={classes.header}
         title="Project members"
         titleTypographyProps={{
-          variant: 'overline'
+          variant: 'overline',
         }}
       />
       <CardContent className={classes.content}>
         <List>
-          {members.map((member) => (
-            <ListItem
-              disableGutters
-              key={member.id}
-            >
+          {members.map(member => (
+            <ListItem disableGutters key={member.id}>
               <ListItemAvatar>
-                <Avatar
-                  alt="Author"
-                  src={member.avatar}
-                >
+                <Avatar alt="Author" src={member.avatar}>
                   {getInitials(member.name)}
                 </Avatar>
               </ListItemAvatar>
@@ -75,9 +66,7 @@ const Members: FC<MembersProps> = ({ className, members, ...rest }) => {
       </CardContent>
       <Divider />
       <CardActions>
-        <Button fullWidth>
-          Manage members
-        </Button>
+        <Button fullWidth>Manage members</Button>
       </CardActions>
     </Card>
   );
@@ -85,7 +74,7 @@ const Members: FC<MembersProps> = ({ className, members, ...rest }) => {
 
 Members.propTypes = {
   className: PropTypes.string,
-  members: PropTypes.array.isRequired
+  members: PropTypes.array.isRequired,
 };
 
 export default Members;

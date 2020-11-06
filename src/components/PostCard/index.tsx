@@ -16,10 +16,10 @@ import {
   Divider,
   Link,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import type { Post } from 'src/types/social';
+import type { Post } from '../../types/social';
 import Reactions from './Reactions';
 import Comment from './Comment';
 import CommentAdd from './CommentAdd';
@@ -32,12 +32,12 @@ interface PostCardProps {
 const useStyles = makeStyles(() => ({
   root: {},
   date: {
-    marginLeft: 6
+    marginLeft: 6,
   },
   media: {
     height: 500,
-    backgroundPosition: 'top'
-  }
+    backgroundPosition: 'top',
+  },
 }));
 
 const PostCard: FC<PostCardProps> = ({ className, post, ...rest }) => {
@@ -46,25 +46,19 @@ const PostCard: FC<PostCardProps> = ({ className, post, ...rest }) => {
 
   return (
     <>
-      <Card
-        className={clsx(classes.root, className)}
-        {...rest}
-      >
+      <Card className={clsx(classes.root, className)} {...rest}>
         <CardHeader
-          avatar={(
+          avatar={
             <Avatar
               alt="Person"
               component={RouterLink}
               src={post.author.avatar}
               to="#"
             />
-          )}
+          }
           disableTypography
-          subheader={(
-            <Box
-              display="flex"
-              alignItems="center"
-            >
+          subheader={
+            <Box display="flex" alignItems="center">
               <AccessTimeIcon fontSize="small" />
               <Typography
                 variant="caption"
@@ -74,8 +68,8 @@ const PostCard: FC<PostCardProps> = ({ className, post, ...rest }) => {
                 {moment(post.createdAt).fromNow()}
               </Typography>
             </Box>
-          )}
-          title={(
+          }
+          title={
             <Link
               color="textPrimary"
               component={RouterLink}
@@ -84,38 +78,27 @@ const PostCard: FC<PostCardProps> = ({ className, post, ...rest }) => {
             >
               {post.author.name}
             </Link>
-          )}
+          }
         />
         <Box px={3} pb={2}>
-          <Typography
-            variant="body1"
-            color="textPrimary"
-          >
+          <Typography variant="body1" color="textPrimary">
             {post.message}
           </Typography>
           {post.media && (
-          <Box mt={2}>
-            <CardActionArea onClick={() => setSelectedImage(post.media)}>
-              <CardMedia
-                className={classes.media}
-                image={post.media}
-              />
-            </CardActionArea>
-          </Box>
+            <Box mt={2}>
+              <CardActionArea onClick={() => setSelectedImage(post.media)}>
+                <CardMedia className={classes.media} image={post.media} />
+              </CardActionArea>
+            </Box>
           )}
-          <Box
-            mt={2}
-          >
+          <Box mt={2}>
             <Reactions post={post} />
           </Box>
           <Box my={2}>
             <Divider />
           </Box>
-          {post.comments.map((comment) => (
-            <Comment
-              comment={comment}
-              key={comment.id}
-            />
+          {post.comments.map(comment => (
+            <Comment comment={comment} key={comment.id} />
           ))}
           <Box my={2}>
             <Divider />
@@ -136,7 +119,7 @@ const PostCard: FC<PostCardProps> = ({ className, post, ...rest }) => {
 PostCard.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 };
 
 export default PostCard;

@@ -20,10 +20,10 @@ import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import LabelImportantOutlinedIcon from '@material-ui/icons/LabelImportantOutlined';
-import type { Theme } from 'src/themes/dashboard-theme';
-import getInitials from 'src/utils/getInitials';
-import { useSelector } from 'src/store';
-import type { Mail } from 'src/types/mail';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import getInitials from '../../../../../utils/getInitials';
+import { useSelector } from '../../../../../store';
+import type { Mail } from '../../../../../types/mail';
 
 interface MailItemProps {
   className?: string;

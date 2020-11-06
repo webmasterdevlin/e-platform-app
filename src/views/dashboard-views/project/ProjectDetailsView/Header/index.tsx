@@ -9,17 +9,17 @@ import {
   Grid,
   SvgIcon,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import {
   Share2 as ShareIcon,
   Check as CheckIcon,
   Calendar as CalendarIcon,
   AlertTriangle as AlertIcon,
-  Send as SendIcon
+  Send as SendIcon,
 } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { Project } from 'src/types/project';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Project } from '../../../../../types/project';
 import ApplyModal from './ApplyModal';
 
 interface HeaderProps {
@@ -32,17 +32,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   badge: {
     display: 'flex',
     alignItems: 'center',
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
   badgeIcon: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   action: {
     marginBottom: theme.spacing(1),
     '& + &': {
-      marginLeft: theme.spacing(1)
-    }
-  }
+      marginLeft: theme.spacing(1),
+    },
+  },
 }));
 
 const Header: FC<HeaderProps> = ({ className, project, ...rest }) => {
@@ -66,10 +66,7 @@ const Header: FC<HeaderProps> = ({ className, project, ...rest }) => {
       {...rest}
     >
       <Grid item>
-        <Typography
-          variant="h3"
-          color="textPrimary"
-        >
+        <Typography variant="h3" color="textPrimary">
           {project.title}
         </Typography>
         <Box
@@ -80,32 +77,18 @@ const Header: FC<HeaderProps> = ({ className, project, ...rest }) => {
           flexWrap="wrap"
         >
           <div className={classes.badge}>
-            <SvgIcon
-              fontSize="small"
-              className={classes.badgeIcon}
-            >
-              {project.isActive ? <CheckIcon /> : <AlertIcon /> }
+            <SvgIcon fontSize="small" className={classes.badgeIcon}>
+              {project.isActive ? <CheckIcon /> : <AlertIcon />}
             </SvgIcon>
-            <Typography
-              variant="body2"
-              color="inherit"
-              component="span"
-            >
+            <Typography variant="body2" color="inherit" component="span">
               {project.isActive ? 'Active' : 'Inactive'}
             </Typography>
           </div>
           <div className={classes.badge}>
-            <SvgIcon
-              fontSize="small"
-              className={classes.badgeIcon}
-            >
+            <SvgIcon fontSize="small" className={classes.badgeIcon}>
               <CalendarIcon />
             </SvgIcon>
-            <Typography
-              variant="body2"
-              color="inherit"
-              component="span"
-            >
+            <Typography variant="body2" color="inherit" component="span">
               {`Deadline ${moment(project.endDate).fromNow()}`}
             </Typography>
           </div>
@@ -149,7 +132,7 @@ const Header: FC<HeaderProps> = ({ className, project, ...rest }) => {
 Header.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  project: PropTypes.object.isRequired
+  project: PropTypes.object.isRequired,
 };
 
 export default Header;

@@ -15,9 +15,9 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { OrderItem } from 'src/types/order';
+import type { OrderItem } from '../../../../types/order';
 
 interface OrderItemsProps {
   className?: string;
@@ -25,17 +25,18 @@ interface OrderItemsProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
-const OrderItems: FC<OrderItemsProps> = ({ className, orderItems, ...rest }) => {
+const OrderItems: FC<OrderItemsProps> = ({
+  className,
+  orderItems,
+  ...rest
+}) => {
   const classes = useStyles();
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <Card className={clsx(classes.root, className)} {...rest}>
       <CardHeader title="Order items" />
       <Divider />
       <PerfectScrollbar>
@@ -43,30 +44,18 @@ const OrderItems: FC<OrderItemsProps> = ({ className, orderItems, ...rest }) => 
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>
-                  Description
-                </TableCell>
-                <TableCell>
-                  Billing Cycle
-                </TableCell>
-                <TableCell>
-                  Amount
-                </TableCell>
+                <TableCell>Description</TableCell>
+                <TableCell>Billing Cycle</TableCell>
+                <TableCell>Amount</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {orderItems.map((item) => (
+              {orderItems.map(item => (
                 <TableRow key={item.id}>
                   <TableCell>
-                    {item.name}
-                    {' '}
-                    x
-                    {' '}
-                    {item.quantity}
+                    {item.name} x {item.quantity}
                   </TableCell>
-                  <TableCell>
-                    {item.billingCycle}
-                  </TableCell>
+                  <TableCell>{item.billingCycle}</TableCell>
                   <TableCell>
                     {numeral(item.unitAmount).format(`${item.currency}0,0.00`)}
                   </TableCell>
@@ -91,11 +80,11 @@ const OrderItems: FC<OrderItemsProps> = ({ className, orderItems, ...rest }) => 
 
 OrderItems.propTypes = {
   className: PropTypes.string,
-  orderItems: PropTypes.array.isRequired
+  orderItems: PropTypes.array.isRequired,
 };
 
 OrderItems.defaultProps = {
-  orderItems: []
+  orderItems: [],
 };
 
 export default OrderItems;

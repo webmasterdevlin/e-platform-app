@@ -14,11 +14,11 @@ import {
   List,
   ListItem,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import getInitials from 'src/utils/getInitials';
-import type { Project } from 'src/types/project';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import getInitials from '../../../../../utils/getInitials';
+import type { Project } from '../../../../../types/project';
 
 interface MetadataProps {
   className?: string;
@@ -28,27 +28,24 @@ interface MetadataProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   header: {
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   content: {
-    paddingTop: 0
+    paddingTop: 0,
   },
   listItem: {
     padding: theme.spacing(2, 0),
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+  },
 }));
 
 const Metadata: FC<MetadataProps> = ({ className, project, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <Card className={clsx(classes.root, className)} {...rest}>
       <CardHeader
-        avatar={(
+        avatar={
           <Avatar
             alt="Author"
             component={RouterLink}
@@ -57,10 +54,10 @@ const Metadata: FC<MetadataProps> = ({ className, project, ...rest }) => {
           >
             {getInitials(project.author.name)}
           </Avatar>
-        )}
+        }
         className={classes.header}
         disableTypography
-        subheader={(
+        subheader={
           <Link
             color="textPrimary"
             component={RouterLink}
@@ -70,70 +67,36 @@ const Metadata: FC<MetadataProps> = ({ className, project, ...rest }) => {
           >
             {project.author.name}
           </Link>
-        )}
-        title={(
-          <Typography
-            display="block"
-            variant="overline"
-            color="textSecondary"
-          >
+        }
+        title={
+          <Typography display="block" variant="overline" color="textSecondary">
             Contest holder
           </Typography>
-        )}
+        }
       />
       <CardContent className={classes.content}>
         <List>
-          <ListItem
-            className={classes.listItem}
-            disableGutters
-            divider
-          >
-            <Typography
-              variant="subtitle2"
-              color="textPrimary"
-            >
+          <ListItem className={classes.listItem} disableGutters divider>
+            <Typography variant="subtitle2" color="textPrimary">
               Deadline
             </Typography>
-            <Typography
-              variant="h6"
-              color="textSecondary"
-            >
+            <Typography variant="h6" color="textSecondary">
               {moment(project.endDate).format('DD MMM YYYY')}
             </Typography>
           </ListItem>
-          <ListItem
-            className={classes.listItem}
-            disableGutters
-            divider
-          >
-            <Typography
-              variant="subtitle2"
-              color="textPrimary"
-            >
+          <ListItem className={classes.listItem} disableGutters divider>
+            <Typography variant="subtitle2" color="textPrimary">
               Budget
             </Typography>
-            <Typography
-              variant="h6"
-              color="textSecondary"
-            >
+            <Typography variant="h6" color="textSecondary">
               {numeral(project.budget).format(`${project.currency}0,0.00`)}
             </Typography>
           </ListItem>
-          <ListItem
-            className={classes.listItem}
-            disableGutters
-            divider
-          >
-            <Typography
-              variant="subtitle2"
-              color="textPrimary"
-            >
+          <ListItem className={classes.listItem} disableGutters divider>
+            <Typography variant="subtitle2" color="textPrimary">
               Last Update
             </Typography>
-            <Typography
-              variant="h6"
-              color="textSecondary"
-            >
+            <Typography variant="h6" color="textSecondary">
               {moment(project.updatedAt).format('DD MMM YYYY')}
             </Typography>
           </ListItem>
@@ -146,7 +109,7 @@ const Metadata: FC<MetadataProps> = ({ className, project, ...rest }) => {
 Metadata.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  project: PropTypes.object.isRequired
+  project: PropTypes.object.isRequired,
 };
 
 export default Metadata;

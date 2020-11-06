@@ -1,8 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-  useEffect
-} from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import type { FC, ChangeEvent } from 'react';
 import {
   Box,
@@ -10,13 +6,13 @@ import {
   Divider,
   Tabs,
   Tab,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import Page from 'src/components/Page';
-import type { Project } from 'src/types/project';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import axios from '../../../../utils/axios';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import Page from '../../../../components/Page';
+import type { Project } from '../../../../types/project';
 import Activities from './Activities';
 import Applicants from './Applicants';
 import Header from './Header';
@@ -28,8 +24,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-  }
+    paddingBottom: theme.spacing(3),
+  },
 }));
 
 const ProjectDetailsView: FC = () => {
@@ -42,7 +38,7 @@ const ProjectDetailsView: FC = () => {
     { value: 'overview', label: 'Overview' },
     { value: 'reviews', label: 'Reviews' },
     { value: 'activity', label: 'Activity' },
-    { value: 'applicants', label: 'Applicants' }
+    { value: 'applicants', label: 'Applicants' },
   ];
 
   const handleTabsChange = (event: ChangeEvent<{}>, value: string): void => {
@@ -51,7 +47,9 @@ const ProjectDetailsView: FC = () => {
 
   const getProject = useCallback(async () => {
     try {
-      const response = await axios.get<{ project: Project; }>('/api/projects/projects/1');
+      const response = await axios.get<{ project: Project }>(
+        '/api/projects/projects/1',
+      );
 
       if (isMountedRef.current) {
         setProject(response.data.project);
@@ -70,10 +68,7 @@ const ProjectDetailsView: FC = () => {
   }
 
   return (
-    <Page
-      className={classes.root}
-      title="Project Details"
-    >
+    <Page className={classes.root} title="Project Details">
       <Container maxWidth="lg">
         <Header project={project} />
         <Box mt={3}>
@@ -84,12 +79,8 @@ const ProjectDetailsView: FC = () => {
             value={currentTab}
             variant="scrollable"
           >
-            {tabs.map((tab) => (
-              <Tab
-                key={tab.value}
-                label={tab.label}
-                value={tab.value}
-              />
+            {tabs.map(tab => (
+              <Tab key={tab.value} label={tab.label} value={tab.value} />
             ))}
           </Tabs>
         </Box>
@@ -97,12 +88,16 @@ const ProjectDetailsView: FC = () => {
         <Box mt={3}>
           {currentTab === 'overview' && <Overview project={project} />}
           {currentTab === 'reviews' && <Reviews reviews={project.reviews} />}
-          {currentTab === 'activity' && <Activities activities={project.activities} />}
-          {currentTab === 'applicants' && <Applicants applicants={project.applicants} />}
+          {currentTab === 'activity' && (
+            <Activities activities={project.activities} />
+          )}
+          {currentTab === 'applicants' && (
+            <Applicants applicants={project.applicants} />
+          )}
         </Box>
       </Container>
     </Page>
   );
-}
+};
 
 export default ProjectDetailsView;

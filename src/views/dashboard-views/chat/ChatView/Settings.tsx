@@ -8,13 +8,10 @@ import {
   IconButton,
   SvgIcon,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import {
-  Settings as SettingsIcon,
-  Edit as EditIcon
-} from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
+import { Settings as SettingsIcon, Edit as EditIcon } from 'react-feather';
+import type { Theme } from '../../../../themes/dashboard-theme';
 
 interface SettingsProps {
   className?: string;
@@ -26,22 +23,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     height: 64,
     paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2)
-  }
+    paddingRight: theme.spacing(2),
+  },
 }));
 
 const Settings: FC<SettingsProps> = ({ className, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Typography
-        variant="h3"
-        color="textPrimary"
-      >
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Typography variant="h3" color="textPrimary">
         Chats
       </Typography>
       <Box flexGrow={1} />
@@ -50,10 +41,7 @@ const Settings: FC<SettingsProps> = ({ className, ...rest }) => {
           <SettingsIcon />
         </SvgIcon>
       </IconButton>
-      <IconButton
-        component={RouterLink}
-        to="/app/chat/new"
-      >
+      <IconButton component={RouterLink} to="/app/chat/new">
         <SvgIcon fontSize="small">
           <EditIcon />
         </SvgIcon>
@@ -63,7 +51,7 @@ const Settings: FC<SettingsProps> = ({ className, ...rest }) => {
 };
 
 Settings.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Settings;

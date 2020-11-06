@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback
-} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
@@ -16,11 +12,11 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from 'src/themes/dashboard-theme';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import useIsMountedRef from '../../../../../hooks/useIsMountedRef';
 import Chart from './Chart';
 
 interface RealTimeProps {
@@ -31,8 +27,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   current: {
     marginTop: theme.spacing(0.5),
-    marginRight: theme.spacing(0.5)
-  }
+    marginRight: theme.spacing(0.5),
+  },
 }));
 
 const getRandomInt = (min: number, max: number): number => {
@@ -59,12 +55,12 @@ const RealTime: FC<RealTimeProps> = ({ className, ...rest }) => {
     167,
     183,
     176,
-    172
+    172,
   ]);
 
   const getData = useCallback(() => {
     if (isMountedRef.current) {
-      setData((prevData) => {
+      setData(prevData => {
         const newData = [...prevData];
 
         newData.shift();
@@ -76,7 +72,7 @@ const RealTime: FC<RealTimeProps> = ({ className, ...rest }) => {
 
     setTimeout(() => {
       if (isMountedRef.current) {
-        setData((prevData) => {
+        setData(prevData => {
           const newData = [...prevData];
           const random = getRandomInt(100, 200);
 
@@ -98,71 +94,54 @@ const RealTime: FC<RealTimeProps> = ({ className, ...rest }) => {
   const pages = [
     {
       pathname: '/app/projects',
-      views: '24'
+      views: '24',
     },
     {
       pathname: '/app/chat',
-      views: '21'
+      views: '21',
     },
     {
       pathname: '/cart',
-      views: '15'
+      views: '15',
     },
     {
       pathname: '/cart/checkout',
-      views: '8'
-    }
+      views: '8',
+    },
   ];
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <Card className={clsx(classes.root, className)} {...rest}>
       <CardHeader
-        action={(
-          <Typography
-            color="inherit"
-            variant="h3"
-          >
-            {
-              data[data.length - 1] === 0
-                ? data[data.length - 2]
-                : data[data.length - 1]
-            }
+        action={
+          <Typography color="inherit" variant="h3">
+            {data[data.length - 1] === 0
+              ? data[data.length - 2]
+              : data[data.length - 1]}
           </Typography>
-        )}
+        }
         classes={{ action: classes.current }}
         subheader="Page views per second"
         subheaderTypographyProps={{ color: 'textSecondary', variant: 'body2' }}
         title="Active users"
         titleTypographyProps={{ color: 'textPrimary' }}
       />
-      <Chart
-        data={data}
-        labels={labels}
-      />
+      <Chart data={data} labels={labels} />
       <List>
-        {pages.map((page) => (
-          <ListItem
-            divider
-            key={page.pathname}
-          >
+        {pages.map(page => (
+          <ListItem divider key={page.pathname}>
             <ListItemText
               primary={page.pathname}
-              primaryTypographyProps={{ color: 'textSecondary', variant: 'body2' }}
+              primaryTypographyProps={{
+                color: 'textSecondary',
+                variant: 'body2',
+              }}
             />
-            <Typography color="inherit">
-              {page.views}
-            </Typography>
+            <Typography color="inherit">{page.views}</Typography>
           </ListItem>
         ))}
       </List>
-      <Box
-        p={2}
-        display="flex"
-        justifyContent="flex-end"
-      >
+      <Box p={2} display="flex" justifyContent="flex-end">
         <Button
           component={RouterLink}
           size="small"
@@ -177,7 +156,7 @@ const RealTime: FC<RealTimeProps> = ({ className, ...rest }) => {
 };
 
 RealTime.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default RealTime;

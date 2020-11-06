@@ -14,10 +14,10 @@ import {
   Switch,
   TextField,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import wait from 'src/utils/wait';
-import type { Customer } from 'src/types/customer';
+import wait from '../../../../utils/wait';
+import type { Customer } from '../../../../types/customer';
 
 interface CustomerEditFormProps {
   className?: string;
@@ -25,7 +25,7 @@ interface CustomerEditFormProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const CustomerEditForm: FC<CustomerEditFormProps> = ({
@@ -48,25 +48,26 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
         name: customer.name || '',
         phone: customer.phone || '',
         state: customer.state || '',
-        submit: null
+        submit: null,
       }}
       validationSchema={Yup.object().shape({
         address1: Yup.string().max(255),
         address2: Yup.string().max(255),
         country: Yup.string().max(255),
-        email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+        email: Yup.string()
+          .email('Must be a valid email')
+          .max(255)
+          .required('Email is required'),
         hasDiscountedPrices: Yup.bool(),
         isVerified: Yup.bool(),
         name: Yup.string().max(255).required('Name is required'),
         phone: Yup.string().max(15),
-        state: Yup.string().max(255)
+        state: Yup.string().max(255),
       })}
-      onSubmit={async (values, {
-        resetForm,
-        setErrors,
-        setStatus,
-        setSubmitting
-      }) => {
+      onSubmit={async (
+        values,
+        { resetForm, setErrors, setStatus, setSubmitting },
+      ) => {
         try {
           // NOTE: Make API request
           await wait(500);
@@ -75,7 +76,7 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
           setSubmitting(false);
           enqueueSnackbar('Customer updated', {
             variant: 'success',
-            action: <Button>See all</Button>
+            action: <Button>See all</Button>,
           });
         } catch (err) {
           console.error(err);
@@ -92,7 +93,7 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
         handleSubmit,
         isSubmitting,
         touched,
-        values
+        values,
       }) => (
         <form
           className={clsx(classes.root, className)}
@@ -101,15 +102,8 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
         >
           <Card>
             <CardContent>
-              <Grid
-                container
-                spacing={3}
-              >
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+              <Grid container spacing={3}>
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.name && errors.name)}
                     fullWidth
@@ -123,11 +117,7 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
                     variant="outlined"
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.email && errors.email)}
                     fullWidth
@@ -141,11 +131,7 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
                     variant="outlined"
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.country && errors.country)}
                     fullWidth
@@ -158,11 +144,7 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
                     variant="outlined"
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.state && errors.state)}
                     fullWidth
@@ -175,11 +157,7 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
                     variant="outlined"
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.address1 && errors.address1)}
                     fullWidth
@@ -192,11 +170,7 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
                     variant="outlined"
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.address2 && errors.address2)}
                     fullWidth
@@ -209,11 +183,7 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
                     variant="outlined"
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
+                <Grid item md={6} xs={12}>
                   <TextField
                     error={Boolean(touched.phone && errors.phone)}
                     fullWidth
@@ -227,23 +197,13 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
                   />
                 </Grid>
                 <Grid item />
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
-                  <Typography
-                    variant="h5"
-                    color="textPrimary"
-                  >
+                <Grid item md={6} xs={12}>
+                  <Typography variant="h5" color="textPrimary">
                     Email Verified
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                  >
-                    Disabling this will automatically send the user a verification
-                    email
+                  <Typography variant="body2" color="textSecondary">
+                    Disabling this will automatically send the user a
+                    verification email
                   </Typography>
                   <Switch
                     checked={values.isVerified}
@@ -254,21 +214,11 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
                     value={values.isVerified}
                   />
                 </Grid>
-                <Grid
-                  item
-                  md={6}
-                  xs={12}
-                >
-                  <Typography
-                    variant="h5"
-                    color="textPrimary"
-                  >
+                <Grid item md={6} xs={12}>
+                  <Typography variant="h5" color="textPrimary">
                     Discounted Prices
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                  >
+                  <Typography variant="body2" color="textSecondary">
                     This will give the user discounted prices for all products
                   </Typography>
                   <Switch
@@ -302,7 +252,7 @@ const CustomerEditForm: FC<CustomerEditFormProps> = ({
 CustomerEditForm.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  customer: PropTypes.object.isRequired
+  customer: PropTypes.object.isRequired,
 };
 
 export default CustomerEditForm;

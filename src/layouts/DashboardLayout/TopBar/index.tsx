@@ -10,12 +10,12 @@ import {
   IconButton,
   Toolbar,
   makeStyles,
-  SvgIcon
+  SvgIcon,
 } from '@material-ui/core';
 import { Menu as MenuIcon } from 'react-feather';
-import Logo from 'src/components/Logo';
-import { THEMES } from 'src/constants';
-import type { Theme } from 'src/themes/dashboard-theme';
+import Logo from '../../../components/Logo';
+import { THEMES } from '../../../constants';
+import type { Theme } from '../../../themes/dashboard-theme';
 import Account from './Account';
 import Contacts from './Contacts';
 import Notifications from './Notifications';
@@ -30,37 +30,31 @@ interface TopBarProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     zIndex: theme.zIndex.drawer + 100,
-    ...theme.name === THEMES.LIGHT ? {
-      boxShadow: 'none',
-      backgroundColor: theme.palette.primary.main
-    } : {},
-    ...theme.name === THEMES.ONE_DARK ? {
-      backgroundColor: theme.palette.background.default
-    } : {}
+    ...(theme.name === THEMES.LIGHT
+      ? {
+          boxShadow: 'none',
+          backgroundColor: theme.palette.primary.main,
+        }
+      : {}),
+    ...(theme.name === THEMES.ONE_DARK
+      ? {
+          backgroundColor: theme.palette.background.default,
+        }
+      : {}),
   },
   toolbar: {
-    minHeight: 64
-  }
+    minHeight: 64,
+  },
 }));
 
-const TopBar: FC<TopBarProps> = ({
-  className,
-  onMobileNavOpen,
-  ...rest
-}) => {
+const TopBar: FC<TopBarProps> = ({ className, onMobileNavOpen, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <AppBar
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <AppBar className={clsx(classes.root, className)} {...rest}>
       <Toolbar className={classes.toolbar}>
         <Hidden lgUp>
-          <IconButton
-            color="inherit"
-            onClick={onMobileNavOpen}
-          >
+          <IconButton color="inherit" onClick={onMobileNavOpen}>
             <SvgIcon fontSize="small">
               <MenuIcon />
             </SvgIcon>
@@ -71,10 +65,7 @@ const TopBar: FC<TopBarProps> = ({
             <Logo />
           </RouterLink>
         </Hidden>
-        <Box
-          ml={2}
-          flexGrow={1}
-        />
+        <Box ml={2} flexGrow={1} />
         <Search />
         <Contacts />
         <Notifications />
@@ -89,11 +80,11 @@ const TopBar: FC<TopBarProps> = ({
 
 TopBar.propTypes = {
   className: PropTypes.string,
-  onMobileNavOpen: PropTypes.func
+  onMobileNavOpen: PropTypes.func,
 };
 
 TopBar.defaultProps = {
-  onMobileNavOpen: () => {}
+  onMobileNavOpen: () => {},
 };
 
 export default TopBar;

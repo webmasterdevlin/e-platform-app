@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
-import mock from 'src/utils/mock';
-import wait from 'src/utils/wait';
+import mock from '../../src/utils/mock';
+import wait from '../../src/utils/wait';
 
 const JWT_SECRET = 'devlin-top-secret-key';
 const JWT_EXPIRES_IN = '2 days';
@@ -19,8 +19,8 @@ const users = [
     phone: '+40 777666555',
     role: 'admin',
     state: 'New York',
-    tier: 'Premium'
-  }
+    tier: 'Premium',
+  },
 ];
 
 mock.onPost('/api/account/login').reply(async config => {
@@ -39,7 +39,7 @@ mock.onPost('/api/account/login').reply(async config => {
     }
 
     const accessToken = jwt.sign({ userId: user.id }, JWT_SECRET, {
-      expiresIn: JWT_EXPIRES_IN
+      expiresIn: JWT_EXPIRES_IN,
     });
 
     return [
@@ -51,9 +51,9 @@ mock.onPost('/api/account/login').reply(async config => {
           avatar: user.avatar,
           email: user.email,
           name: user.name,
-          tier: user.tier
-        }
-      }
+          tier: user.tier,
+        },
+      },
     ];
   } catch (err) {
     console.error(err);
@@ -84,11 +84,11 @@ mock.onPost('/api/account/register').reply(async config => {
       phone: null,
       role: 'admin',
       state: null,
-      tier: 'Standard'
+      tier: 'Standard',
     };
 
     const accessToken = jwt.sign({ userId: user.id }, JWT_SECRET, {
-      expiresIn: JWT_EXPIRES_IN
+      expiresIn: JWT_EXPIRES_IN,
     });
 
     return [
@@ -100,9 +100,9 @@ mock.onPost('/api/account/register').reply(async config => {
           avatar: user.avatar,
           email: user.email,
           name: user.name,
-          tier: user.tier
-        }
-      }
+          tier: user.tier,
+        },
+      },
     ];
   } catch (err) {
     console.error(err);
@@ -134,9 +134,9 @@ mock.onGet('/api/account/me').reply(config => {
           avatar: user.avatar,
           email: user.email,
           name: user.name,
-          tier: user.tier
-        }
-      }
+          tier: user.tier,
+        },
+      },
     ];
   } catch (err) {
     console.error(err);
@@ -145,7 +145,7 @@ mock.onGet('/api/account/me').reply(config => {
 });
 
 mock.onGet('/api/account/settings').reply(200, {
-  settings: {}
+  settings: {},
 });
 
 mock.onGet('/api/account/subscription').reply(200, {
@@ -158,6 +158,6 @@ mock.onGet('/api/account/subscription').reply(200, {
     invitesLeft: 24,
     adsLeft: 10,
     hasAnalytics: true,
-    hasEmailAlerts: true
-  }
+    hasEmailAlerts: true,
+  },
 });

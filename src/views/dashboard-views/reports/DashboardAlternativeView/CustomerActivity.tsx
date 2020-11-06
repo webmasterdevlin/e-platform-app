@@ -1,8 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState
-} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
@@ -20,14 +16,14 @@ import {
   ListItemAvatar,
   ListItemText,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import axios from 'src/utils/axios';
-import getInitials from 'src/utils/getInitials';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import GenericMoreButton from 'src/components/GenericMoreButton';
-import type { CustomerActivity as CustomerActivityType } from 'src/types/reports';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import axios from '../../../../utils/axios';
+import getInitials from '../../../../utils/getInitials';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import GenericMoreButton from '../../../../components/GenericMoreButton';
+import type { CustomerActivity as CustomerActivityType } from '../../../../types/reports';
 
 interface CustomerActivityProps {
   className?: string;
@@ -39,19 +35,24 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(3),
     flexGrow: 1,
     '&:first-of-type': {
-      borderRight: `1px solid ${theme.palette.divider}`
-    }
-  }
+      borderRight: `1px solid ${theme.palette.divider}`,
+    },
+  },
 }));
 
-const CustomerActivity: FC<CustomerActivityProps> = ({ className, ...rest }) => {
+const CustomerActivity: FC<CustomerActivityProps> = ({
+  className,
+  ...rest
+}) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [activities, setActivities] = useState<CustomerActivityType[]>([]);
 
   const getActivities = useCallback(async () => {
     try {
-      const response = await axios.get<{ activities: CustomerActivityType[]; }>('/api/reports/customer-activity');
+      const response = await axios.get<{ activities: CustomerActivityType[] }>(
+        '/api/reports/customer-activity',
+      );
 
       if (isMountedRef.current) {
         setActivities(response.data.activities);
@@ -66,22 +67,12 @@ const CustomerActivity: FC<CustomerActivityProps> = ({ className, ...rest }) => 
   }, [getActivities]);
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <CardHeader
-        title="Customer Activity"
-        action={<GenericMoreButton />}
-      />
+    <Card className={clsx(classes.root, className)} {...rest}>
+      <CardHeader title="Customer Activity" action={<GenericMoreButton />} />
       <Divider />
       <Box display="flex">
         <div className={classes.item}>
-          <Typography
-            align="center"
-            variant="h3"
-            color="textPrimary"
-          >
+          <Typography align="center" variant="h3" color="textPrimary">
             15,245
           </Typography>
           <Typography
@@ -96,11 +87,7 @@ const CustomerActivity: FC<CustomerActivityProps> = ({ className, ...rest }) => 
         </div>
         <Divider />
         <div className={classes.item}>
-          <Typography
-            align="center"
-            variant="h3"
-            color="textPrimary"
-          >
+          <Typography align="center" variant="h3" color="textPrimary">
             357
           </Typography>
           <Typography
@@ -117,10 +104,7 @@ const CustomerActivity: FC<CustomerActivityProps> = ({ className, ...rest }) => 
       <Divider />
       <List disablePadding>
         {activities.map((activity, i) => (
-          <ListItem
-            divider={i < activities.length - 1}
-            key={activity.id}
-          >
+          <ListItem divider={i < activities.length - 1} key={activity.id}>
             <ListItemAvatar>
               <Avatar
                 alt="Customer"
@@ -133,7 +117,7 @@ const CustomerActivity: FC<CustomerActivityProps> = ({ className, ...rest }) => 
             </ListItemAvatar>
             <ListItemText
               disableTypography
-              primary={(
+              primary={
                 <Link
                   color="textPrimary"
                   component={RouterLink}
@@ -143,21 +127,14 @@ const CustomerActivity: FC<CustomerActivityProps> = ({ className, ...rest }) => 
                 >
                   {activity.customer.name}
                 </Link>
-              )}
-              secondary={(
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                >
+              }
+              secondary={
+                <Typography variant="body2" color="textSecondary">
                   {activity.description}
                 </Typography>
-              )}
+              }
             />
-            <Typography
-              color="textSecondary"
-              noWrap
-              variant="caption"
-            >
+            <Typography color="textSecondary" noWrap variant="caption">
               {moment(activity.createdAt).fromNow()}
             </Typography>
           </ListItem>
@@ -165,10 +142,10 @@ const CustomerActivity: FC<CustomerActivityProps> = ({ className, ...rest }) => 
       </List>
     </Card>
   );
-}
+};
 
 CustomerActivity.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default CustomerActivity;

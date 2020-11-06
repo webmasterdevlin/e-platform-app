@@ -1,13 +1,8 @@
 import React from 'react';
 import type { FC } from 'react';
 import Chart from 'react-apexcharts';
-import {
-  Card,
-  CardContent,
-  Typography,
-  useTheme
-} from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import { Card, CardContent, Typography, useTheme } from '@material-ui/core';
+import type { Theme } from '../../../../../themes/dashboard-theme';
 
 const RadialChart: FC = () => {
   const theme = useTheme<Theme>();
@@ -18,9 +13,9 @@ const RadialChart: FC = () => {
         background: theme.palette.background.paper,
         stacked: false,
         toolbar: {
-          show: false
+          show: false,
         },
-        zoom: false
+        zoom: false,
       },
       colors: ['#27c6db'],
       labels: ['System Health'],
@@ -32,22 +27,22 @@ const RadialChart: FC = () => {
           dataLabels: {
             name: {
               fontFamily: theme.typography.fontFamily,
-              color: theme.palette.text.primary
+              color: theme.palette.text.primary,
             },
             value: {
-              color: theme.palette.text.secondary
-            }
+              color: theme.palette.text.secondary,
+            },
           },
           track: {
-            background: theme.palette.background.dark
-          }
-        }
+            background: theme.palette.background.dark,
+          },
+        },
       },
       theme: {
-        mode: theme.palette.type
-      }
+        mode: theme.palette.type,
+      },
     },
-    series: [83]
+    series: [83],
   };
 
   return (

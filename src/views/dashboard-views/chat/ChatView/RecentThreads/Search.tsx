@@ -1,9 +1,5 @@
 import React, { forwardRef } from 'react';
-import type {
-  ChangeEvent,
-  FC,
-  FocusEvent
-} from 'react';
+import type { ChangeEvent, FC, FocusEvent } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -17,10 +13,10 @@ import {
   ListItemText,
   ListItemAvatar,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import { Search as SearchIcon } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../../themes/dashboard-theme';
 
 interface SearchProps {
   className?: string;
@@ -36,7 +32,7 @@ interface SearchProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1)
+    paddingRight: theme.spacing(1),
   },
   search: {
     display: 'flex',
@@ -45,103 +41,102 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: 22,
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    backgroundColor: theme.palette.background.dark
+    backgroundColor: theme.palette.background.dark,
   },
   searchInput: {
     flexGrow: 1,
-    marginLeft: theme.spacing(1)
+    marginLeft: theme.spacing(1),
   },
   avatar: {
     height: 32,
-    width: 32
-  }
+    width: 32,
+  },
 }));
 
-const Search: FC<SearchProps> = forwardRef(({
-  className,
-  isFocused,
-  onChange,
-  onClickAway,
-  onFocus,
-  onSelect,
-  query,
-  results,
-  ...rest
-}, ref) => {
-  const classes = useStyles();
+const Search: FC<SearchProps> = forwardRef(
+  (
+    {
+      className,
+      isFocused,
+      onChange,
+      onClickAway,
+      onFocus,
+      onSelect,
+      query,
+      results,
+      ...rest
+    },
+    ref,
+  ) => {
+    const classes = useStyles();
 
-  const displayResults = query && isFocused;
+    const displayResults = query && isFocused;
 
-  const handleSelect = (result: any): void => {
-    if (onSelect) {
-      onSelect(result);
-    }
-  };
+    const handleSelect = (result: any): void => {
+      if (onSelect) {
+        onSelect(result);
+      }
+    };
 
-  return (
-    <ClickAwayListener onClickAway={onClickAway}>
-      <div
-        className={clsx(classes.root, className)}
-        // @ts-ignore
-        ref={ref}
-        {...rest}
-      >
-        <div className={classes.search}>
-          <SvgIcon
-            fontSize="small"
-            color="action"
-          >
-            <SearchIcon />
-          </SvgIcon>
-          <Input
-            className={classes.searchInput}
-            disableUnderline
-            onChange={onChange}
-            onFocus={onFocus}
-            placeholder="Search contacts"
-            value={query}
-          />
-        </div>
-        {displayResults && (
-          <Box mt={2}>
-            <Typography
-              variant="h6"
-              color="textSecondary"
-            >
-              Contacts
-            </Typography>
-            <List>
-              {results.map((result) => {
-                return (
-                  <ListItem
-                    button
-                    key={result.id}
-                    onClick={() => handleSelect(result)}
-                  >
-                    <ListItemAvatar>
-                      <Avatar
-                        src={result.avatar}
-                        className={classes.avatar}
+    return (
+      <ClickAwayListener onClickAway={onClickAway}>
+        <div
+          className={clsx(classes.root, className)}
+          // @ts-ignore
+          ref={ref}
+          {...rest}
+        >
+          <div className={classes.search}>
+            <SvgIcon fontSize="small" color="action">
+              <SearchIcon />
+            </SvgIcon>
+            <Input
+              className={classes.searchInput}
+              disableUnderline
+              onChange={onChange}
+              onFocus={onFocus}
+              placeholder="Search contacts"
+              value={query}
+            />
+          </div>
+          {displayResults && (
+            <Box mt={2}>
+              <Typography variant="h6" color="textSecondary">
+                Contacts
+              </Typography>
+              <List>
+                {results.map(result => {
+                  return (
+                    <ListItem
+                      button
+                      key={result.id}
+                      onClick={() => handleSelect(result)}
+                    >
+                      <ListItemAvatar>
+                        <Avatar
+                          src={result.avatar}
+                          className={classes.avatar}
+                        />
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={result.name}
+                        primaryTypographyProps={{
+                          noWrap: true,
+                          variant: 'h6',
+                          color: 'textPrimary',
+                        }}
                       />
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={result.name}
-                      primaryTypographyProps={{
-                        noWrap: true,
-                        variant: 'h6',
-                        color: 'textPrimary'
-                      }}
-                    />
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Box>
-        )}
-      </div>
-    </ClickAwayListener>
-  );
-});
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </Box>
+          )}
+        </div>
+      </ClickAwayListener>
+    );
+  },
+);
 
 Search.propTypes = {
   className: PropTypes.string,
@@ -150,13 +145,13 @@ Search.propTypes = {
   onFocus: PropTypes.func,
   onSelect: PropTypes.func,
   query: PropTypes.string,
-  results: PropTypes.array
+  results: PropTypes.array,
 };
 
 Search.defaultProps = {
   isFocused: false,
   query: '',
-  results: []
+  results: [],
 };
 
 export default Search;

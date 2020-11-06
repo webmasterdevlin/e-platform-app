@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import type { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { Divider, makeStyles } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import { useDispatch, useSelector } from 'src/store';
-import { getMails } from 'src/slices/mail';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import { useDispatch, useSelector } from '../../../../../store';
+import { getMails } from '../../../../../slices/mail';
 import Toolbar from './Toolbar';
 import MailItem from './MailItem';
 

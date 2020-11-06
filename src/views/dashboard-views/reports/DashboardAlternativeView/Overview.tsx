@@ -2,14 +2,9 @@ import React from 'react';
 import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  Card,
-  Grid,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import Label from 'src/components/Label';
+import { Card, Grid, Typography, makeStyles } from '@material-ui/core';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import Label from '../../../../components/Label';
 
 interface OverviewProps {
   className?: string;
@@ -22,23 +17,23 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     [theme.breakpoints.up('md')]: {
       '&:not(:last-of-type)': {
-        borderRight: `1px solid ${theme.palette.divider}`
-      }
+        borderRight: `1px solid ${theme.palette.divider}`,
+      },
     },
     [theme.breakpoints.down('sm')]: {
       '&:not(:last-of-type)': {
-        borderBottom: `1px solid ${theme.palette.divider}`
-      }
-    }
+        borderBottom: `1px solid ${theme.palette.divider}`,
+      },
+    },
   },
   valueContainer: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   label: {
-    marginLeft: theme.spacing(1)
-  }
+    marginLeft: theme.spacing(1),
+  },
 }));
 
 const Overview: FC<OverviewProps> = ({ className, ...rest }) => {
@@ -47,26 +42,13 @@ const Overview: FC<OverviewProps> = ({ className, ...rest }) => {
     income: '854,355.00',
     expanses: '373,250.50',
     profit: '123,532.00',
-    subscriptions: '26,000'
+    subscriptions: '26,000',
   };
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Grid
-        alignItems="center"
-        container
-        justify="space-between"
-      >
-        <Grid
-          className={classes.item}
-          item
-          md={3}
-          sm={6}
-          xs={12}
-        >
+    <Card className={clsx(classes.root, className)} {...rest}>
+      <Grid alignItems="center" container justify="space-between">
+        <Grid className={classes.item} item md={3} sm={6} xs={12}>
           <Typography
             component="h2"
             gutterBottom
@@ -76,28 +58,15 @@ const Overview: FC<OverviewProps> = ({ className, ...rest }) => {
             Total Income
           </Typography>
           <div className={classes.valueContainer}>
-            <Typography
-              variant="h3"
-              color="textPrimary"
-            >
-              $
-              {overview.income}
+            <Typography variant="h3" color="textPrimary">
+              ${overview.income}
             </Typography>
-            <Label
-              className={classes.label}
-              color="success"
-            >
+            <Label className={classes.label} color="success">
               +25%
             </Label>
           </div>
         </Grid>
-        <Grid
-          className={classes.item}
-          item
-          md={3}
-          sm={6}
-          xs={12}
-        >
+        <Grid className={classes.item} item md={3} sm={6} xs={12}>
           <Typography
             component="h2"
             gutterBottom
@@ -107,28 +76,15 @@ const Overview: FC<OverviewProps> = ({ className, ...rest }) => {
             Total Expanses
           </Typography>
           <div className={classes.valueContainer}>
-            <Typography
-              variant="h3"
-              color="textPrimary"
-            >
-              $
-              {overview.expanses}
+            <Typography variant="h3" color="textPrimary">
+              ${overview.expanses}
             </Typography>
-            <Label
-              className={classes.label}
-              color="success"
-            >
+            <Label className={classes.label} color="success">
               +12%
             </Label>
           </div>
         </Grid>
-        <Grid
-          className={classes.item}
-          item
-          md={3}
-          sm={6}
-          xs={12}
-        >
+        <Grid className={classes.item} item md={3} sm={6} xs={12}>
           <Typography
             component="h2"
             gutterBottom
@@ -138,27 +94,15 @@ const Overview: FC<OverviewProps> = ({ className, ...rest }) => {
             Net Profit
           </Typography>
           <div className={classes.valueContainer}>
-            <Typography
-              variant="h3"
-              color="textPrimary"
-            >
+            <Typography variant="h3" color="textPrimary">
               {overview.profit}
             </Typography>
-            <Label
-              className={classes.label}
-              color="error"
-            >
+            <Label className={classes.label} color="error">
               -20%
             </Label>
           </div>
         </Grid>
-        <Grid
-          className={classes.item}
-          item
-          md={3}
-          sm={6}
-          xs={12}
-        >
+        <Grid className={classes.item} item md={3} sm={6} xs={12}>
           <Typography
             component="h2"
             gutterBottom
@@ -168,10 +112,7 @@ const Overview: FC<OverviewProps> = ({ className, ...rest }) => {
             Active Subscriptions
           </Typography>
           <div className={classes.valueContainer}>
-            <Typography
-              variant="h3"
-              color="textPrimary"
-            >
+            <Typography variant="h3" color="textPrimary">
               {overview.subscriptions}
             </Typography>
           </div>
@@ -182,7 +123,7 @@ const Overview: FC<OverviewProps> = ({ className, ...rest }) => {
 };
 
 Overview.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Overview;

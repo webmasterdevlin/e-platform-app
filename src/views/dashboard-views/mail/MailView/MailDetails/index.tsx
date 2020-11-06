@@ -18,10 +18,10 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import ReplyIcon from '@material-ui/icons/ReplyOutlined';
 import ReplyAllIcon from '@material-ui/icons/ReplyAllOutlined';
 import DeleteIcon from '@material-ui/icons/DeleteOutlined';
-import type { Theme } from 'src/themes/dashboard-theme';
-import getInitials from 'src/utils/getInitials';
-import { useDispatch, useSelector } from 'src/store';
-import { getMail } from 'src/slices/mail';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import getInitials from '../../../../../utils/getInitials';
+import { useDispatch, useSelector } from '../../../../../store';
+import { getMail } from '../../../../../slices/mail';
 import Toolbar from './Toolbar';
 import MailReply from './MailReply';
 

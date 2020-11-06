@@ -21,17 +21,17 @@ import {
   Typography,
   colors,
   makeStyles,
-  withStyles
+  withStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import {
   User as UserIcon,
   Star as StarIcon,
   Briefcase as BriefcaseIcon,
-  File as FileIcon
+  File as FileIcon,
 } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
-import Page from 'src/components/Page';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import Page from '../../../../components/Page';
 import UserDetails from './UserDetails';
 import ProjectDetails from './ProjectDetails';
 import ProjectDescription from './ProjectDescription';
@@ -45,16 +45,16 @@ interface CustomStepIconProps {
 const steps = [
   {
     label: 'User Details',
-    icon: UserIcon
+    icon: UserIcon,
   },
   {
     label: 'Project Details',
-    icon: BriefcaseIcon
+    icon: BriefcaseIcon,
   },
   {
     label: 'Project Description',
-    icon: FileIcon
-  }
+    icon: FileIcon,
+  },
 ];
 
 const CustomStepConnector = withStyles((theme: Theme) => ({
@@ -63,8 +63,8 @@ const CustomStepConnector = withStyles((theme: Theme) => ({
     padding: 0,
   },
   line: {
-    borderColor: theme.palette.divider
-  }
+    borderColor: theme.palette.divider,
+  },
 }))(StepConnector);
 
 const useCustomStepIconStyles = makeStyles((theme: Theme) => ({
@@ -72,15 +72,19 @@ const useCustomStepIconStyles = makeStyles((theme: Theme) => ({
   active: {
     backgroundColor: theme.palette.secondary.main,
     boxShadow: theme.shadows[10],
-    color: theme.palette.secondary.contrastText
+    color: theme.palette.secondary.contrastText,
   },
   completed: {
     backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.secondary.contrastText
-  }
+    color: theme.palette.secondary.contrastText,
+  },
 }));
 
-const CustomStepIcon: FC<CustomStepIconProps> = ({ active, completed, icon }) => {
+const CustomStepIcon: FC<CustomStepIconProps> = ({
+  active,
+  completed,
+  icon,
+}) => {
   const classes = useCustomStepIconStyles();
 
   const Icon = steps[icon - 1].icon;
@@ -89,7 +93,7 @@ const CustomStepIcon: FC<CustomStepIconProps> = ({ active, completed, icon }) =>
     <Avatar
       className={clsx(classes.root, {
         [classes.active]: active,
-        [classes.completed]: completed
+        [classes.completed]: completed,
       })}
     >
       <Icon size="20" />
@@ -100,7 +104,7 @@ const CustomStepIcon: FC<CustomStepIconProps> = ({ active, completed, icon }) =>
 CustomStepIcon.propTypes = {
   active: PropTypes.bool,
   completed: PropTypes.bool,
-  icon: PropTypes.number.isRequired
+  icon: PropTypes.number.isRequired,
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -108,27 +112,27 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
+    paddingBottom: theme.spacing(3),
   },
   avatar: {
-    backgroundColor: colors.red[600]
+    backgroundColor: colors.red[600],
   },
   stepper: {
-    backgroundColor: 'transparent'
-  }
+    backgroundColor: 'transparent',
+  },
 }));
 
-const ProjectCreateView : FC = () => {
+const ProjectCreateView: FC = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState<number>(0);
   const [completed, setCompleted] = useState<boolean>(false);
 
   const handleNext = (): void => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
 
   const handleBack = (): void => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
   const handleComplete = (): void => {
@@ -136,10 +140,7 @@ const ProjectCreateView : FC = () => {
   };
 
   return (
-    <Page
-      className={classes.root}
-      title="Project Create"
-    >
+    <Page className={classes.root} title="Project Create">
       <Container maxWidth="lg">
         <Box mb={3}>
           <Breadcrumbs
@@ -154,35 +155,25 @@ const ProjectCreateView : FC = () => {
             >
               Dashboard
             </Link>
-            <Typography
-              variant="body1"
-              color="textPrimary"
-            >
+            <Typography variant="body1" color="textPrimary">
               Projects
             </Typography>
           </Breadcrumbs>
-          <Typography
-            variant="h3"
-            color="textPrimary"
-          >
+          <Typography variant="h3" color="textPrimary">
             Create Wizard &amp; Process
           </Typography>
         </Box>
         {!completed ? (
           <Paper>
             <Grid container>
-              <Grid
-                item
-                xs={12}
-                md={3}
-              >
+              <Grid item xs={12} md={3}>
                 <Stepper
                   activeStep={activeStep}
                   className={classes.stepper}
                   connector={<CustomStepConnector />}
                   orientation="vertical"
                 >
-                  {steps.map((step) => (
+                  {steps.map(step => (
                     <Step key={step.label}>
                       <StepLabel StepIconComponent={CustomStepIcon}>
                         {step.label}
@@ -191,20 +182,11 @@ const ProjectCreateView : FC = () => {
                   ))}
                 </Stepper>
               </Grid>
-              <Grid
-                item
-                xs={12}
-                md={9}
-              >
+              <Grid item xs={12} md={9}>
                 <Box p={3}>
-                  {activeStep === 0 && (
-                    <UserDetails onNext={handleNext} />
-                  )}
+                  {activeStep === 0 && <UserDetails onNext={handleNext} />}
                   {activeStep === 1 && (
-                    <ProjectDetails
-                      onBack={handleBack}
-                      onNext={handleNext}
-                    />
+                    <ProjectDetails onBack={handleBack} onNext={handleNext} />
                   )}
                   {activeStep === 2 && (
                     <ProjectDescription
@@ -219,24 +201,14 @@ const ProjectCreateView : FC = () => {
         ) : (
           <Card>
             <CardContent>
-              <Box
-                maxWidth={450}
-                mx="auto"
-              >
-                <Box
-                  display="flex"
-                  justifyContent="center"
-                >
+              <Box maxWidth={450} mx="auto">
+                <Box display="flex" justifyContent="center">
                   <Avatar className={classes.avatar}>
                     <StarIcon />
                   </Avatar>
                 </Box>
                 <Box mt={2}>
-                  <Typography
-                    variant="h3"
-                    color="textPrimary"
-                    align="center"
-                  >
+                  <Typography variant="h3" color="textPrimary" align="center">
                     You are all done!
                   </Typography>
                 </Box>
@@ -246,15 +218,11 @@ const ProjectCreateView : FC = () => {
                     color="textSecondary"
                     align="center"
                   >
-                    Donec ut augue sed nisi ullamcorper posuere sit amet eu mauris.
-                    Ut eget mauris scelerisque.
+                    Donec ut augue sed nisi ullamcorper posuere sit amet eu
+                    mauris. Ut eget mauris scelerisque.
                   </Typography>
                 </Box>
-                <Box
-                  mt={2}
-                  display="flex"
-                  justifyContent="center"
-                >
+                <Box mt={2} display="flex" justifyContent="center">
                   <Button
                     variant="contained"
                     color="secondary"

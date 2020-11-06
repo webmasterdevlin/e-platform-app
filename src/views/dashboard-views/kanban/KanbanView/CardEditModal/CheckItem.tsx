@@ -11,20 +11,17 @@ import {
   SvgIcon,
   TextField,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import { Trash as TrashIcon } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
-import { useDispatch } from 'src/store';
-import {
-  updateCheckItem,
-  deleteCheckItem
-} from 'src/slices/kanban';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import { useDispatch } from '../../../../../store';
+import { updateCheckItem, deleteCheckItem } from '../../../../../slices/kanban';
 import type {
   Card,
   Checklist,
-  CheckItem as CheckItemType
-} from 'src/types/kanban';
+  CheckItem as CheckItemType,
+} from '../../../../../types/kanban';
 
 interface CheckItemProps {
   className?: string;
@@ -46,22 +43,22 @@ const useStyles = makeStyles((theme: Theme) => ({
     '&:hover': {
       backgroundColor: theme.palette.background.dark,
       '& $deleteButton': {
-        visibility: 'visible'
-      }
-    }
+        visibility: 'visible',
+      },
+    },
   },
   checkbox: {
     marginLeft: theme.spacing(-1),
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   name: {
     flexGrow: 1,
     cursor: 'pointer',
-    minHeight: 32
+    minHeight: 32,
   },
   deleteButton: {
-    visibility: 'hidden'
-  }
+    visibility: 'hidden',
+  },
 }));
 
 const CheckItem: FC<CheckItemProps> = ({
@@ -80,25 +77,24 @@ const CheckItem: FC<CheckItemProps> = ({
   const { enqueueSnackbar } = useSnackbar();
   const [name, setName] = useState<string>(checkItem.name);
 
-  const handleStateChange = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
+  const handleStateChange = async (
+    event: ChangeEvent<HTMLInputElement>,
+  ): Promise<void> => {
     try {
       event.persist();
 
       const state = event.target.checked ? 'complete' : 'incomplete';
 
-      await dispatch(updateCheckItem(
-        card.id,
-        checklist.id,
-        checkItem.id,
-        { state }
-      ));
+      await dispatch(
+        updateCheckItem(card.id, checklist.id, checkItem.id, { state }),
+      );
       enqueueSnackbar('Check item updated', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
@@ -110,20 +106,17 @@ const CheckItem: FC<CheckItemProps> = ({
 
   const handleSave = async (): Promise<void> => {
     try {
-      await dispatch(updateCheckItem(
-        card.id,
-        checklist.id,
-        checkItem.id,
-        { name }
-      ));
+      await dispatch(
+        updateCheckItem(card.id, checklist.id, checkItem.id, { name }),
+      );
       onEditComplete();
       enqueueSnackbar('Check item updated', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
@@ -135,27 +128,20 @@ const CheckItem: FC<CheckItemProps> = ({
 
   const handleDelete = async (): Promise<void> => {
     try {
-      await dispatch(deleteCheckItem(
-        card.id,
-        checklist.id,
-        checkItem.id
-      ));
+      await dispatch(deleteCheckItem(card.id, checklist.id, checkItem.id));
       enqueueSnackbar('Check item deleted', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <Checkbox
         checked={checkItem.state === 'complete'}
         onChange={handleStateChange}
@@ -178,20 +164,13 @@ const CheckItem: FC<CheckItemProps> = ({
             >
               Save
             </Button>
-            <Button
-              size="small"
-              onClick={handleCancel}
-            >
+            <Button size="small" onClick={handleCancel}>
               Cancel
             </Button>
           </Box>
         </Box>
       ) : (
-        <Box
-          display="flex"
-          alignItems="center"
-          flexGrow={1}
-        >
+        <Box display="flex" alignItems="center" flexGrow={1}>
           <Typography
             onClick={onEditInit}
             color="textPrimary"
@@ -200,10 +179,7 @@ const CheckItem: FC<CheckItemProps> = ({
           >
             {checkItem.name}
           </Typography>
-          <IconButton
-            onClick={handleDelete}
-            className={classes.deleteButton}
-          >
+          <IconButton onClick={handleDelete} className={classes.deleteButton}>
             <SvgIcon fontSize="small">
               <TrashIcon />
             </SvgIcon>
@@ -225,14 +201,14 @@ CheckItem.propTypes = {
   editing: PropTypes.bool,
   onEditCancel: PropTypes.func,
   onEditComplete: PropTypes.func,
-  onEditInit: PropTypes.func
+  onEditInit: PropTypes.func,
 };
 
 CheckItem.defaultProps = {
   editing: false,
   onEditCancel: () => {},
   onEditComplete: () => {},
-  onEditInit: () => {}
+  onEditInit: () => {},
 };
 
 export default CheckItem;

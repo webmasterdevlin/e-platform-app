@@ -3,15 +3,10 @@ import type { FC, ReactNode } from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  Collapse,
-  ListItem,
-  makeStyles
-} from '@material-ui/core';
+import { Button, Collapse, ListItem, makeStyles } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../themes/dashboard-theme';
 
 interface NavItemProps {
   children?: ReactNode;
@@ -28,12 +23,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   item: {
     display: 'block',
     paddingTop: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   itemLeaf: {
     display: 'flex',
     paddingTop: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   button: {
     color: theme.palette.text.secondary,
@@ -41,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'flex-start',
     textTransform: 'none',
     letterSpacing: 0,
-    width: '100%'
+    width: '100%',
   },
   buttonLeaf: {
     color: theme.palette.text.secondary,
@@ -53,27 +48,27 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: theme.typography.fontWeightRegular,
     '&.depth-0': {
       '& $title': {
-        fontWeight: theme.typography.fontWeightMedium
-      }
-    }
+        fontWeight: theme.typography.fontWeightMedium,
+      },
+    },
   },
   icon: {
     display: 'flex',
     alignItems: 'center',
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   title: {
-    marginRight: 'auto'
+    marginRight: 'auto',
   },
   active: {
     color: theme.palette.secondary.main,
     '& $title': {
-      fontWeight: theme.typography.fontWeightMedium
+      fontWeight: theme.typography.fontWeightMedium,
     },
     '& $icon': {
-      color: theme.palette.secondary.main
-    }
-  }
+      color: theme.palette.secondary.main,
+    },
+  },
 }));
 
 const NavItem: FC<NavItemProps> = ({
@@ -91,7 +86,7 @@ const NavItem: FC<NavItemProps> = ({
   const [open, setOpen] = useState<boolean>(openProp);
 
   const handleToggle = (): void => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
   let paddingLeft = 8;
@@ -110,25 +105,12 @@ const NavItem: FC<NavItemProps> = ({
         key={title}
         {...rest}
       >
-        <Button
-          className={classes.button}
-          onClick={handleToggle}
-          style={style}
-        >
-          {Icon && (
-            <Icon
-              className={classes.icon}
-              size="20"
-            />
-          )}
-          <span className={classes.title}>
-            {title}
-          </span>
+        <Button className={classes.button} onClick={handleToggle} style={style}>
+          {Icon && <Icon className={classes.icon} size="20" />}
+          <span className={classes.title}>{title}</span>
           {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </Button>
-        <Collapse in={open}>
-          {children}
-        </Collapse>
+        <Collapse in={open}>{children}</Collapse>
       </ListItem>
     );
   }
@@ -148,15 +130,8 @@ const NavItem: FC<NavItemProps> = ({
         style={style}
         to={href}
       >
-        {Icon && (
-          <Icon
-            className={classes.icon}
-            size="20"
-          />
-        )}
-        <span className={classes.title}>
-          {title}
-        </span>
+        {Icon && <Icon className={classes.icon} size="20" />}
+        <span className={classes.title}>{title}</span>
         {Info && <Info />}
       </Button>
     </ListItem>
@@ -171,11 +146,11 @@ NavItem.propTypes = {
   icon: PropTypes.elementType,
   info: PropTypes.elementType,
   open: PropTypes.bool,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 NavItem.defaultProps = {
-  open: false
+  open: false,
 };
 
 export default NavItem;

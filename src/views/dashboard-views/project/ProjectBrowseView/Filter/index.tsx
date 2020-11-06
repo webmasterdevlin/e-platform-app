@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import type {
-  FC,
-  ChangeEvent,
-  KeyboardEvent
-} from 'react';
+import type { FC, ChangeEvent, KeyboardEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -14,10 +10,10 @@ import {
   Divider,
   FormControlLabel,
   Input,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../../themes/dashboard-theme';
 import MultiSelect from './MultiSelect';
 
 interface FilterProps {
@@ -27,15 +23,11 @@ interface FilterProps {
 const selectOptions = [
   {
     label: 'Type',
-    options: [
-      'Freelance',
-      'Full Time',
-      'Part Time',
-      'Internship']
+    options: ['Freelance', 'Full Time', 'Part Time', 'Internship'],
   },
   {
     label: 'Level',
-    options: ['Novice', 'Expert']
+    options: ['Novice', 'Expert'],
   },
   {
     label: 'Location',
@@ -45,23 +37,23 @@ const selectOptions = [
       'Australia',
       'Europe',
       'North America',
-      'South America'
-    ]
+      'South America',
+    ],
   },
   {
     label: 'Roles',
-    options: ['Android', 'Web Developer', 'iOS']
-  }
+    options: ['Android', 'Web Developer', 'iOS'],
+  },
 ];
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   searchInput: {
-    marginLeft: theme.spacing(2)
+    marginLeft: theme.spacing(2),
   },
   chip: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 const Filter: FC<FilterProps> = ({ className, ...rest }) => {
@@ -73,7 +65,7 @@ const Filter: FC<FilterProps> = ({ className, ...rest }) => {
     'Novice',
     'Europe',
     'Android',
-    'Web Developer'
+    'Web Developer',
   ]);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -86,14 +78,14 @@ const Filter: FC<FilterProps> = ({ className, ...rest }) => {
 
     if (event.keyCode === 13 && inputValue) {
       if (!chips.includes(inputValue)) {
-        setChips((prevChips) => [...prevChips, inputValue]);
+        setChips(prevChips => [...prevChips, inputValue]);
         setInputValue('');
       }
     }
   };
 
   const handleChipDelete = (chip: string): void => {
-    setChips((prevChips) => prevChips.filter((prevChip) => chip !== prevChip));
+    setChips(prevChips => prevChips.filter(prevChip => chip !== prevChip));
   };
 
   const handleMultiSelectChange = (value: string[]): void => {
@@ -101,15 +93,8 @@ const Filter: FC<FilterProps> = ({ className, ...rest }) => {
   };
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Box
-        p={2}
-        display="flex"
-        alignItems="center"
-      >
+    <Card className={clsx(classes.root, className)} {...rest}>
+      <Box p={2} display="flex" alignItems="center">
         <SearchIcon />
         <Input
           disableUnderline
@@ -122,13 +107,8 @@ const Filter: FC<FilterProps> = ({ className, ...rest }) => {
         />
       </Box>
       <Divider />
-      <Box
-        p={2}
-        display="flex"
-        alignItems="center"
-        flexWrap="wrap"
-      >
-        {chips.map((chip) => (
+      <Box p={2} display="flex" alignItems="center" flexWrap="wrap">
+        {chips.map(chip => (
           <Chip
             className={classes.chip}
             key={chip}
@@ -138,13 +118,8 @@ const Filter: FC<FilterProps> = ({ className, ...rest }) => {
         ))}
       </Box>
       <Divider />
-      <Box
-        display="flex"
-        alignItems="center"
-        flexWrap="wrap"
-        p={1}
-      >
-        {selectOptions.map((option) => (
+      <Box display="flex" alignItems="center" flexWrap="wrap" p={1}>
+        {selectOptions.map(option => (
           <MultiSelect
             key={option.label}
             label={option.label}
@@ -155,9 +130,7 @@ const Filter: FC<FilterProps> = ({ className, ...rest }) => {
         ))}
         <Box flexGrow={1} />
         <FormControlLabel
-          control={(
-            <Checkbox defaultChecked />
-          )}
+          control={<Checkbox defaultChecked />}
           label="In network"
         />
       </Box>
@@ -166,7 +139,7 @@ const Filter: FC<FilterProps> = ({ className, ...rest }) => {
 };
 
 Filter.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Filter;

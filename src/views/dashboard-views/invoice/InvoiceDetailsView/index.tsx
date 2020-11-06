@@ -1,20 +1,11 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback
-} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import type { FC } from 'react';
-import {
-  Box,
-  Container,
-  Divider,
-  makeStyles
-} from '@material-ui/core';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import Page from 'src/components/Page';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { Invoice } from 'src/types/invoice';
+import { Box, Container, Divider, makeStyles } from '@material-ui/core';
+import axios from '../../../../utils/axios';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import Page from '../../../../components/Page';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Invoice } from '../../../../types/invoice';
 import Header from './Header';
 import InvoicePreview from './InvoicePreview';
 
@@ -23,8 +14,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-  }
+    paddingBottom: theme.spacing(3),
+  },
 }));
 
 const InvoiceDetailsView: FC = () => {
@@ -34,7 +25,7 @@ const InvoiceDetailsView: FC = () => {
 
   const getInvoice = useCallback(async () => {
     try {
-      const response = await axios.get<{ invoice: Invoice; }>('/api/invoices/1');
+      const response = await axios.get<{ invoice: Invoice }>('/api/invoices/1');
 
       if (isMountedRef.current) {
         setInvoice(response.data.invoice);
@@ -53,10 +44,7 @@ const InvoiceDetailsView: FC = () => {
   }
 
   return (
-    <Page
-      className={classes.root}
-      title="Invoice Details"
-    >
+    <Page className={classes.root} title="Invoice Details">
       <Container maxWidth="lg">
         <Header invoice={invoice} />
         <Box my={2}>

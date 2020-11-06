@@ -9,14 +9,14 @@ import {
   Hidden,
   SvgIcon,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import {
   Check as CheckIcon,
   X as XIcon,
-  Trash as TrashIcon
+  Trash as TrashIcon,
 } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../themes/dashboard-theme';
 
 interface BulkOperationsProps {
   className?: string;
@@ -29,16 +29,16 @@ interface BulkOperationsProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
   actions: {
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
     '& > * + *': {
-      marginLeft: theme.spacing(2)
-    }
-  }
+      marginLeft: theme.spacing(2),
+    },
+  },
 }));
 
 const BulkOperations: FC<BulkOperationsProps> = ({
@@ -59,40 +59,21 @@ const BulkOperations: FC<BulkOperationsProps> = ({
       PaperProps={{ elevation: 1 }}
       variant="persistent"
     >
-      <div
-        className={clsx(classes.root, className)}
-        {...rest}
-      >
-        <Grid
-          alignItems="center"
-          container
-          spacing={2}
-        >
+      <div className={clsx(classes.root, className)} {...rest}>
+        <Grid alignItems="center" container spacing={2}>
           <Hidden smDown>
-            <Grid
-              item
-              md={3}
-            >
-              <Typography
-                color="textSecondary"
-                variant="subtitle1"
-              >
-                {selected.length}
-                {' '}
-                selected
+            <Grid item md={3}>
+              <Typography color="textSecondary" variant="subtitle1">
+                {selected.length} selected
               </Typography>
             </Grid>
           </Hidden>
-          <Grid
-            item
-            md={6}
-            xs={12}
-          >
+          <Grid item md={6} xs={12}>
             <div className={classes.actions}>
               <Button
                 onClick={onMarkPaid}
                 startIcon={
-                  <SvgIcon fontSize="small" >
+                  <SvgIcon fontSize="small">
                     <CheckIcon />
                   </SvgIcon>
                 }
@@ -102,7 +83,7 @@ const BulkOperations: FC<BulkOperationsProps> = ({
               <Button
                 onClick={onMarkUnpaid}
                 startIcon={
-                  <SvgIcon fontSize="small" >
+                  <SvgIcon fontSize="small">
                     <XIcon />
                   </SvgIcon>
                 }
@@ -112,7 +93,7 @@ const BulkOperations: FC<BulkOperationsProps> = ({
               <Button
                 onClick={onDelete}
                 startIcon={
-                  <SvgIcon fontSize="small" >
+                  <SvgIcon fontSize="small">
                     <TrashIcon />
                   </SvgIcon>
                 }
@@ -125,7 +106,7 @@ const BulkOperations: FC<BulkOperationsProps> = ({
       </div>
     </Drawer>
   );
-}
+};
 
 BulkOperations.propTypes = {
   className: PropTypes.string,
@@ -133,14 +114,14 @@ BulkOperations.propTypes = {
   onMarkPaid: PropTypes.func,
   onMarkUnpaid: PropTypes.func,
   open: PropTypes.bool,
-  selected: PropTypes.array.isRequired
+  selected: PropTypes.array.isRequired,
 };
 
 BulkOperations.defaultProps = {
   onDelete: () => {},
   onMarkPaid: () => {},
   onMarkUnpaid: () => {},
-  open: false
+  open: false,
 };
 
 export default BulkOperations;

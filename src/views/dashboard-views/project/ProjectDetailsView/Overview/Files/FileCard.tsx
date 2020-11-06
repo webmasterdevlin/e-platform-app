@@ -1,7 +1,4 @@
-import React, {
-  useRef,
-  useState
-} from 'react';
+import React, { useRef, useState } from 'react';
 import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -20,7 +17,7 @@ import {
   Tooltip,
   Typography,
   colors,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFileOutlined';
 import GetAppIcon from '@material-ui/icons/GetApp';
@@ -28,9 +25,9 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import DeleteIcon from '@material-ui/icons/DeleteOutlined';
 import ArchiveIcon from '@material-ui/icons/ArchiveOutlined';
 import EditIcon from '@material-ui/icons/Edit';
-import type { Theme } from 'src/themes/dashboard-theme';
-import bytesToSize from 'src/utils/bytesToSize';
-import type { ProjectFile } from 'src/types/project';
+import type { Theme } from '../../../../../../themes/dashboard-theme';
+import bytesToSize from '../../../../../../utils/bytesToSize';
+import type { ProjectFile } from '../../../../../../types/project';
 
 interface FileCardProps {
   className?: string;
@@ -40,31 +37,31 @@ interface FileCardProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   media: {
-    height: 140
+    height: 140,
   },
   placeholder: {
     height: 140,
     backgroundColor: colors.blueGrey[50],
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   insertDriveFileIcon: {
     height: theme.spacing(6),
     width: theme.spacing(6),
-    fontSize: theme.spacing(6)
+    fontSize: theme.spacing(6),
   },
   content: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   getAppIcon: {
-    marignRight: theme.spacing(1)
+    marignRight: theme.spacing(1),
   },
   menu: {
     width: 250,
-    maxWidth: '100%'
-  }
+    maxWidth: '100%',
+  },
 }));
 
 const FileCard: FC<FileCardProps> = ({ className, file, ...rest }) => {
@@ -81,15 +78,9 @@ const FileCard: FC<FileCardProps> = ({ className, file, ...rest }) => {
   };
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <Card className={clsx(classes.root, className)} {...rest}>
       {file.mimeType.includes('image/') ? (
-        <CardMedia
-          className={classes.media}
-          image={file.url}
-        />
+        <CardMedia className={classes.media} image={file.url} />
       ) : (
         <div className={classes.placeholder}>
           <InsertDriveFileIcon className={classes.insertDriveFileIcon} />
@@ -97,16 +88,10 @@ const FileCard: FC<FileCardProps> = ({ className, file, ...rest }) => {
       )}
       <CardContent className={classes.content}>
         <div>
-          <Typography
-            variant="h5"
-            color="textPrimary"
-          >
+          <Typography variant="h5" color="textPrimary">
             {file.name}
           </Typography>
-          <Typography
-            variant="subtitle2"
-            color="textPrimary"
-          >
+          <Typography variant="subtitle2" color="textPrimary">
             {bytesToSize(file.size)}
           </Typography>
         </div>
@@ -134,7 +119,7 @@ const FileCard: FC<FileCardProps> = ({ className, file, ...rest }) => {
         anchorEl={moreRef.current}
         anchorOrigin={{
           vertical: 'top',
-          horizontal: 'left'
+          horizontal: 'left',
         }}
         classes={{ paper: classes.menu }}
         onClose={handleMenuClose}
@@ -142,7 +127,7 @@ const FileCard: FC<FileCardProps> = ({ className, file, ...rest }) => {
         open={openMenu}
         transformOrigin={{
           vertical: 'top',
-          horizontal: 'left'
+          horizontal: 'left',
         }}
       >
         <MenuItem divider>
@@ -166,12 +151,12 @@ const FileCard: FC<FileCardProps> = ({ className, file, ...rest }) => {
       </Menu>
     </Card>
   );
-}
+};
 
 FileCard.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  file: PropTypes.object.isRequired
+  file: PropTypes.object.isRequired,
 };
 
 export default FileCard;

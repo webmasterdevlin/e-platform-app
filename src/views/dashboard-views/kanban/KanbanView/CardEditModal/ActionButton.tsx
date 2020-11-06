@@ -1,17 +1,9 @@
 import React from 'react';
-import type {
-  FC,
-  ReactElement,
-  ReactNode
-} from 'react';
+import type { FC, ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  SvgIcon,
-  makeStyles
-} from '@material-ui/core';
+import { Button, SvgIcon, makeStyles } from '@material-ui/core';
 import type { ButtonProps } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../../themes/dashboard-theme';
 
 interface ActionButtonProps extends ButtonProps {
   icon?: ReactElement;
@@ -22,8 +14,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     justifyContent: 'flex-start',
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
-  }
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 const ActionButton: FC<ActionButtonProps> = ({
@@ -33,11 +25,7 @@ const ActionButton: FC<ActionButtonProps> = ({
 }) => {
   const classes = useStyles();
 
-  const Icon = iconProp ? (
-    <SvgIcon fontSize="small">
-      {iconProp}
-    </SvgIcon>
-  ) : null;
+  const Icon = iconProp ? <SvgIcon fontSize="small">{iconProp}</SvgIcon> : null;
 
   return (
     <Button
@@ -55,7 +43,7 @@ const ActionButton: FC<ActionButtonProps> = ({
 
 ActionButton.propTypes = {
   icon: PropTypes.element,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default ActionButton;

@@ -7,9 +7,9 @@ import {
   Box,
   Container,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../themes/dashboard-theme';
 
 interface TestimonialsProps {
   className?: string;
@@ -19,21 +19,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
     paddingTop: 128,
-    paddingBottom: 128
+    paddingBottom: 128,
   },
   title: {
-    fontWeight: theme.typography.fontWeightRegular
-  }
+    fontWeight: theme.typography.fontWeightRegular,
+  },
 }));
 
 const Testimonials: FC<TestimonialsProps> = ({ className, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <Container maxWidth="md">
         <Typography
           variant="h2"
@@ -45,18 +42,10 @@ const Testimonials: FC<TestimonialsProps> = ({ className, ...rest }) => {
           <br />
           They will save you time.&quot;
         </Typography>
-        <Box
-          mt={6}
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Box mt={6} display="flex" justifyContent="center" alignItems="center">
           <Avatar src="/static/home/olivier.png" />
           <Box ml={2}>
-            <Typography
-              variant="body1"
-              color="textPrimary"
-            >
+            <Typography variant="body1" color="textPrimary">
               Olivier Tassinari
               <Typography
                 color="textSecondary"
@@ -74,7 +63,7 @@ const Testimonials: FC<TestimonialsProps> = ({ className, ...rest }) => {
 };
 
 Testimonials.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Testimonials;

@@ -9,11 +9,11 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import { AvatarGroup } from '@material-ui/lab';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { Thread } from 'src/types/chat';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Thread } from '../../../../../types/chat';
 
 interface ThreadItemProps {
   active?: boolean;
@@ -23,43 +23,48 @@ interface ThreadItemProps {
 }
 
 const getDetails = (thread, currentUserId: string) => {
-  const otherParticipants = thread.participants.filter((participant) => participant.id !== currentUserId);
-  const displayNames = otherParticipants.reduce((names, participant) => [...names, participant.name], []).join(', ');
-  let displayText = ''
+  const otherParticipants = thread.participants.filter(
+    participant => participant.id !== currentUserId,
+  );
+  const displayNames = otherParticipants
+    .reduce((names, participant) => [...names, participant.name], [])
+    .join(', ');
+  let displayText = '';
   const lastMessage = thread.messages[thread.messages.length - 1];
 
   if (lastMessage) {
     const sender = lastMessage.senderId === currentUserId ? 'Me: ' : '';
-    const message = lastMessage.contentType === 'image' ? 'Sent a photo' : lastMessage.body;
+    const message =
+      lastMessage.contentType === 'image' ? 'Sent a photo' : lastMessage.body;
 
-    displayText = `${sender}${message}`
+    displayText = `${sender}${message}`;
   }
 
   return {
     otherParticipants,
     displayNames,
-    displayText
+    displayText,
   };
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
   active: {
     backgroundColor: theme.palette.action.selected,
-    boxShadow: `inset 4px 0px 0px ${theme.palette.secondary.main}`
+    boxShadow: `inset 4px 0px 0px ${theme.palette.secondary.main}`,
   },
   smallAvatar: {
     height: 30,
     width: 30,
     '&:first-child': {
-      marginTop: 10
-    }
+      marginTop: 10,
+    },
   },
   unreadIndicator: {
     height: 18,
     marginTop: 2,
     minWidth: 18,
-    padding: 2
-  }
+    padding: 2,
+  },
 }));
 
 const ThreadItem: FC<ThreadItemProps> = ({
@@ -78,19 +83,19 @@ const ThreadItem: FC<ThreadItemProps> = ({
   return (
     <ListItem
       button
-      className={clsx(
-        { [classes.active]: active },
-        className
-      )}
+      className={clsx({ [classes.active]: active }, className)}
       onClick={onSelect}
       {...rest}
     >
       <ListItemAvatar>
         <AvatarGroup
-          classes={{ avatar: details.otherParticipants.length > 1 ? classes.smallAvatar : null }}
+          classes={{
+            avatar:
+              details.otherParticipants.length > 1 ? classes.smallAvatar : null,
+          }}
           max={2}
         >
-          {details.otherParticipants.map((participant) => (
+          {details.otherParticipants.map(participant => (
             <Avatar
               alt="Person"
               key={participant.id}
@@ -104,21 +109,16 @@ const ThreadItem: FC<ThreadItemProps> = ({
         primaryTypographyProps={{
           noWrap: true,
           variant: 'h6',
-          color: 'textPrimary'
+          color: 'textPrimary',
         }}
         secondary={details.displayText}
         secondaryTypographyProps={{
           noWrap: true,
           variant: 'body2',
-          color: 'textSecondary'
+          color: 'textSecondary',
         }}
       />
-      <Box
-        ml={2}
-        display="flex"
-        flexDirection="column"
-        alignItems="flex-end"
-      >
+      <Box ml={2} display="flex" flexDirection="column" alignItems="flex-end">
         {thread.unreadCount > 0 && (
           <Chip
             className={classes.unreadIndicator}
@@ -137,12 +137,12 @@ ThreadItem.propTypes = {
   className: PropTypes.string,
   onSelect: PropTypes.func,
   // @ts-ignore
-  thread: PropTypes.object.isRequired
+  thread: PropTypes.object.isRequired,
 };
 
 ThreadItem.defaultProps = {
   active: false,
-  onSelect: () => { }
+  onSelect: () => {},
 };
 
 export default ThreadItem;

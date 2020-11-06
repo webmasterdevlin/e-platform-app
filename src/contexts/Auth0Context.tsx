@@ -1,13 +1,9 @@
-import React, {
-  createContext,
-  useEffect,
-  useReducer
-} from 'react';
+import React, { createContext, useEffect, useReducer } from 'react';
 import type { FC, ReactNode } from 'react';
 import { Auth0Client } from '@auth0/auth0-spa-js';
-import type { User } from 'src/types/user';
-import SplashScreen from 'src/components/SplashScreen';
-import { auth0Config } from 'src/config';
+import type { User } from '../../src/types/user';
+import SplashScreen from '../../src/components/SplashScreen';
+import { auth0Config } from '../../src/config';
 
 let auth0Client: Auth0Client | null = null;
 
@@ -18,7 +14,7 @@ interface AuthState {
 }
 
 export interface AuthContextValue extends AuthState {
-  method: 'Auth0',
+  method: 'Auth0';
   loginWithPopup: (options?: any) => Promise<void>;
   logout: () => void;
 }
@@ -50,16 +46,12 @@ type RegisterAction = {
   type: 'REGISTER';
 };
 
-type Action =
-  | InitialiseAction
-  | LoginAction
-  | LogoutAction
-  | RegisterAction;
+type Action = InitialiseAction | LoginAction | LogoutAction | RegisterAction;
 
 const initialAuthState: AuthState = {
   isAuthenticated: false,
   isInitialised: false,
-  user: null
+  user: null,
 };
 
 const reducer = (state: AuthState, action: Action): AuthState => {
@@ -71,7 +63,7 @@ const reducer = (state: AuthState, action: Action): AuthState => {
         ...state,
         isAuthenticated,
         isInitialised: true,
-        user
+        user,
       };
     }
     case 'LOGIN': {
@@ -80,14 +72,14 @@ const reducer = (state: AuthState, action: Action): AuthState => {
       return {
         ...state,
         isAuthenticated: true,
-        user
+        user,
       };
     }
     case 'LOGOUT': {
       return {
         ...state,
         isAuthenticated: false,
-        user: null
+        user: null,
       };
     }
     default: {
@@ -100,13 +92,13 @@ const AuthContext = createContext<AuthContextValue>({
   ...initialAuthState,
   method: 'Auth0',
   loginWithPopup: () => Promise.resolve(),
-  logout: () => { }
+  logout: () => {},
 });
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialAuthState);
 
-  const loginWithPopup = async (options) => {
+  const loginWithPopup = async options => {
     await auth0Client.loginWithPopup(options);
 
     const isAuthenticated = await auth0Client.isAuthenticated();
@@ -125,9 +117,9 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
             avatar: user.picture,
             email: user.email,
             name: user.name,
-            tier: 'Premium'
-          }
-        }
+            tier: 'Premium',
+          },
+        },
       });
     }
   };
@@ -136,7 +128,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     auth0Client.logout();
 
     dispatch({
-      type: 'LOGOUT'
+      type: 'LOGOUT',
     });
   };
 
@@ -145,7 +137,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       try {
         auth0Client = new Auth0Client({
           redirect_uri: window.location.origin,
-          ...auth0Config
+          ...auth0Config,
         });
 
         await auth0Client.checkSession();
@@ -167,17 +159,17 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
                 avatar: user.picture,
                 email: user.email,
                 name: user.name,
-                tier: 'Premium'
-              }
-            }
+                tier: 'Premium',
+              },
+            },
           });
         } else {
           dispatch({
             type: 'INITIALISE',
             payload: {
               isAuthenticated,
-              user: null
-            }
+              user: null,
+            },
           });
         }
       } catch (err) {
@@ -186,8 +178,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
           type: 'INITIALISE',
           payload: {
             isAuthenticated: false,
-            user: null
-          }
+            user: null,
+          },
         });
       }
     };
@@ -205,7 +197,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         ...state,
         method: 'Auth0',
         loginWithPopup,
-        logout
+        logout,
       }}
     >
       {children}

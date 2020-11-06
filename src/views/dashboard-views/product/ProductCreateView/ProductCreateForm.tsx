@@ -20,10 +20,10 @@ import {
   Paper,
   TextField,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import QuillEditor from 'src/components/QuillEditor';
-import FilesDropzone from 'src/components/FilesDropzone';
+import QuillEditor from '../../../../components/QuillEditor';
+import FilesDropzone from '../../../../components/FilesDropzone';
 
 interface ProductCreateFormProps {
   className?: string;
@@ -32,28 +32,31 @@ interface ProductCreateFormProps {
 const categories = [
   {
     id: 'shirts',
-    name: 'Shirts'
+    name: 'Shirts',
   },
   {
     id: 'phones',
-    name: 'Phones'
+    name: 'Phones',
   },
   {
     id: 'cars',
-    name: 'Cars'
-  }
+    name: 'Cars',
+  },
 ];
 
 const useStyles = makeStyles(() => ({
   root: {},
   editor: {
     '& .ql-editor': {
-      height: 400
-    }
-  }
+      height: 400,
+    },
+  },
 }));
 
-const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) => {
+const ProductCreateForm: FC<ProductCreateFormProps> = ({
+  className,
+  ...rest
+}) => {
   const classes = useStyles();
   const history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
@@ -71,7 +74,7 @@ const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) =
         productCode: '',
         productSku: '',
         salePrice: '',
-        submit: null
+        submit: null,
       }}
       validationSchema={Yup.object().shape({
         category: Yup.string().max(255),
@@ -83,19 +86,15 @@ const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) =
         price: Yup.number().min(0).required(),
         productCode: Yup.string().max(255),
         productSku: Yup.string().max(255),
-        salePrice: Yup.number().min(0)
+        salePrice: Yup.number().min(0),
       })}
-      onSubmit={async (values, {
-        setErrors,
-        setStatus,
-        setSubmitting
-      }) => {
+      onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
         try {
           // NOTE: Make API request
           setStatus({ success: true });
           setSubmitting(false);
           enqueueSnackbar('Product Created', {
-            variant: 'success'
+            variant: 'success',
           });
           history.push('/app/products');
         } catch (err) {
@@ -114,22 +113,15 @@ const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) =
         isSubmitting,
         setFieldValue,
         touched,
-        values
+        values,
       }) => (
         <form
           onSubmit={handleSubmit}
           className={clsx(classes.root, className)}
           {...rest}
         >
-          <Grid
-            container
-            spacing={3}
-          >
-            <Grid
-              item
-              xs={12}
-              lg={8}
-            >
+          <Grid container spacing={3}>
+            <Grid item xs={12} lg={8}>
               <Card>
                 <CardContent>
                   <TextField
@@ -143,14 +135,8 @@ const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) =
                     value={values.name}
                     variant="outlined"
                   />
-                  <Box
-                    mt={3}
-                    mb={1}
-                  >
-                    <Typography
-                      variant="subtitle2"
-                      color="textSecondary"
-                    >
+                  <Box mt={3} mb={1}>
+                    <Typography variant="subtitle2" color="textSecondary">
                       Description
                     </Typography>
                   </Box>
@@ -158,10 +144,12 @@ const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) =
                     <QuillEditor
                       className={classes.editor}
                       value={values.description}
-                      onChange={(value: string) => setFieldValue('description', value)}
+                      onChange={(value: string) =>
+                        setFieldValue('description', value)
+                      }
                     />
                   </Paper>
-                  {(touched.description && errors.description) && (
+                  {touched.description && errors.description && (
                     <Box mt={2}>
                       <FormHelperText error>
                         {errors.description}
@@ -184,17 +172,16 @@ const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) =
                   <CardHeader title="Prices" />
                   <Divider />
                   <CardContent>
-                    <Grid
-                      container
-                      spacing={3}
-                    >
+                    <Grid container spacing={3}>
                       <Grid item xs={12} md={6}>
                         <TextField
                           error={Boolean(touched.price && errors.price)}
                           fullWidth
-                          helperText={touched.price && errors.price
-                            ? errors.price
-                            : 'If you have a sale price this will be shown as old price'}
+                          helperText={
+                            touched.price && errors.price
+                              ? errors.price
+                              : 'If you have a sale price this will be shown as old price'
+                          }
                           label="Price"
                           name="price"
                           type="number"
@@ -221,27 +208,27 @@ const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) =
                     </Grid>
                     <Box mt={2}>
                       <FormControlLabel
-                        control={(
+                        control={
                           <Checkbox
                             checked={values.isTaxable}
                             onChange={handleChange}
                             value={values.isTaxable}
                             name="isTaxable"
                           />
-                        )}
+                        }
                         label="Product is taxable"
                       />
                     </Box>
                     <Box mt={2}>
                       <FormControlLabel
-                        control={(
+                        control={
                           <Checkbox
                             checked={values.includesTaxes}
                             onChange={handleChange}
                             value={values.includesTaxes}
                             name="includesTaxes"
                           />
-                        )}
+                        }
                         label="Price includes taxes"
                       />
                     </Box>
@@ -249,11 +236,7 @@ const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) =
                 </Card>
               </Box>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              lg={4}
-            >
+            <Grid item xs={12} lg={4}>
               <Card>
                 <CardHeader title="Organize" />
                 <Divider />
@@ -268,11 +251,8 @@ const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) =
                     value={values.category}
                     variant="outlined"
                   >
-                    {categories.map((category) => (
-                      <option
-                        key={category.id}
-                        value={category.id}
-                      >
+                    {categories.map(category => (
+                      <option key={category.id} value={category.id}>
                         {category.name}
                       </option>
                     ))}
@@ -309,9 +289,7 @@ const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) =
           </Grid>
           {errors.submit && (
             <Box mt={3}>
-              <FormHelperText error>
-                {errors.submit}
-              </FormHelperText>
+              <FormHelperText error>{errors.submit}</FormHelperText>
             </Box>
           )}
           <Box mt={2}>
@@ -331,7 +309,7 @@ const ProductCreateForm: FC<ProductCreateFormProps> = ({ className, ...rest }) =
 };
 
 ProductCreateForm.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default ProductCreateForm;

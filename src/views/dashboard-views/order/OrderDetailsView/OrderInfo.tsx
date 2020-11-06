@@ -17,10 +17,10 @@ import {
   TableCell,
   TableRow,
   TextField,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import ReceiptIcon from '@material-ui/icons/ReceiptOutlined';
-import type { Order } from 'src/types/order';
+import type { Order } from '../../../../types/order';
 
 interface OrderInfoProps {
   className?: string;
@@ -30,7 +30,7 @@ interface OrderInfoProps {
 const statusOptions = ['Canceled', 'Completed', 'Rejected'];
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const OrderInfo: FC<OrderInfoProps> = ({ className, order, ...rest }) => {
@@ -43,23 +43,15 @@ const OrderInfo: FC<OrderInfoProps> = ({ className, order, ...rest }) => {
   };
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <Card className={clsx(classes.root, className)} {...rest}>
       <CardHeader title="Order info" />
       <Divider />
       <Table>
         <TableBody>
           <TableRow>
+            <TableCell>Customer</TableCell>
             <TableCell>
-              Customer
-            </TableCell>
-            <TableCell>
-              <Link
-                component={RouterLink}
-                to="/app/management/customers/1"
-              >
+              <Link component={RouterLink} to="/app/management/customers/1">
                 {order.customer.name}
               </Link>
               <div>{order.customer.address1}</div>
@@ -68,50 +60,31 @@ const OrderInfo: FC<OrderInfoProps> = ({ className, order, ...rest }) => {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>
-              ID
-            </TableCell>
-            <TableCell>
-              #
-              {order.id}
-            </TableCell>
+            <TableCell>ID</TableCell>
+            <TableCell>#{order.id}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>
-              Number
-            </TableCell>
-            <TableCell>
-              {order.number}
-            </TableCell>
+            <TableCell>Number</TableCell>
+            <TableCell>{order.number}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>
-              Date
-            </TableCell>
+            <TableCell>Date</TableCell>
             <TableCell>
               {moment(order.createdAt).format('DD/MM/YYYY HH:MM')}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>
-              Promotion Code
-            </TableCell>
-            <TableCell>
-              {order.coupon ? order.coupon : 'N/A'}
-            </TableCell>
+            <TableCell>Promotion Code</TableCell>
+            <TableCell>{order.coupon ? order.coupon : 'N/A'}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>
-              Total Amount
-            </TableCell>
+            <TableCell>Total Amount</TableCell>
             <TableCell>
               {numeral(order.totalAmount).format(`${order.currency}0,0.00`)}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>
-              Status
-            </TableCell>
+            <TableCell>Status</TableCell>
             <TableCell>
               <TextField
                 fullWidth
@@ -122,11 +95,8 @@ const OrderInfo: FC<OrderInfoProps> = ({ className, order, ...rest }) => {
                 value={status}
                 variant="outlined"
               >
-                {statusOptions.map((option) => (
-                  <option
-                    key={option}
-                    value={option}
-                  >
+                {statusOptions.map(option => (
+                  <option key={option} value={option}>
                     {option}
                   </option>
                 ))}
@@ -136,9 +106,7 @@ const OrderInfo: FC<OrderInfoProps> = ({ className, order, ...rest }) => {
         </TableBody>
       </Table>
       <CardActions>
-        <Button startIcon={<ReceiptIcon />}>
-          Resend invoice
-        </Button>
+        <Button startIcon={<ReceiptIcon />}>Resend invoice</Button>
       </CardActions>
     </Card>
   );
@@ -147,7 +115,7 @@ const OrderInfo: FC<OrderInfoProps> = ({ className, order, ...rest }) => {
 OrderInfo.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  order: PropTypes.object.isRequired
+  order: PropTypes.object.isRequired,
 };
 
 export default OrderInfo;

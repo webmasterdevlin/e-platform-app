@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import clsx from 'clsx';
 import { Typography, makeStyles } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { ProjectActivity } from 'src/types/project';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { ProjectActivity } from '../../../../../types/project';
 import Activity from './Activity';
 
 interface ActivitiesProps {
@@ -16,12 +16,12 @@ interface ActivitiesProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   title: {
-    marginBottom: theme.spacing(3)
+    marginBottom: theme.spacing(3),
   },
   group: {
     '& + &': {
-      marginTop: theme.spacing(4)
-    }
+      marginTop: theme.spacing(4),
+    },
   },
   activity: {
     position: 'relative',
@@ -34,13 +34,17 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: 1,
         top: -20,
         left: 20,
-        backgroundColor: theme.palette.divider
-      }
-    }
-  }
+        backgroundColor: theme.palette.divider,
+      },
+    },
+  },
 }));
 
-const Activities: FC<ActivitiesProps> = ({ activities, className, ...rest }) => {
+const Activities: FC<ActivitiesProps> = ({
+  activities,
+  className,
+  ...rest
+}) => {
   const classes = useStyles();
   const todayItems = [];
   const lastWeekItems = [];
@@ -55,19 +59,12 @@ const Activities: FC<ActivitiesProps> = ({ activities, className, ...rest }) => 
   }
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Typography
-        className={classes.title}
-        variant="h3"
-        color="textPrimary"
-      >
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Typography className={classes.title} variant="h3" color="textPrimary">
         Today
       </Typography>
       <div className={classes.group}>
-        {todayItems.map((activity) => (
+        {todayItems.map(activity => (
           <Activity
             activity={activity}
             className={classes.activity}
@@ -76,14 +73,10 @@ const Activities: FC<ActivitiesProps> = ({ activities, className, ...rest }) => 
         ))}
       </div>
       <div className={classes.group}>
-        <Typography
-          className={classes.title}
-          variant="h3"
-          color="textPrimary"
-        >
+        <Typography className={classes.title} variant="h3" color="textPrimary">
           Last week
         </Typography>
-        {lastWeekItems.map((activity) => (
+        {lastWeekItems.map(activity => (
           <Activity
             activity={activity}
             className={classes.activity}
@@ -97,7 +90,7 @@ const Activities: FC<ActivitiesProps> = ({ activities, className, ...rest }) => 
 
 Activities.propTypes = {
   activities: PropTypes.array.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Activities;

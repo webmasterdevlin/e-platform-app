@@ -3,36 +3,10 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { colors, Divider } from '@material-ui/core';
 import Bounce from 'react-reveal/Bounce';
 import Fade from 'react-reveal/Fade';
-import Flip from 'react-reveal/Flip';
-import Rotate from 'react-reveal/Rotate';
-import Zoom from 'react-reveal/Zoom';
-import Slide from 'react-reveal/Slide';
-import Roll from 'react-reveal/Roll';
-import LightSpeed from 'react-reveal/LightSpeed';
-import {
-  Hero,
-  Promo,
-  Process,
-  Categories,
-  Info,
-  Jobs,
-  Placements,
-  Companies,
-  Application,
-  Faq,
-} from './components';
+import { Hero, Categories, Faq } from './components';
 
-import {
-  partners,
-  jobCategories,
-  jobs,
-  companies,
-  faq,
-  popularNews,
-} from './data';
-import { Section, SectionAlternate } from 'src/components/organisms';
-import Page from '../../../components/Page';
-import Footer from '../../../layouts/MainLayout/Footer';
+import { jobCategories, faq, popularNews } from './data';
+import { Section, SectionAlternate } from '../../../components/organisms';
 import PopularNews from './components/PopularNews';
 
 const useStyles: any = makeStyles((theme: Theme) => ({

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Editor, EditorProps } from 'react-draft-wysiwyg';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../themes/dashboard-theme';
 
 interface DraftEditorProps extends EditorProps {
   className?: string;
@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: 6,
       '&:hover': {
         boxShadow: 'none',
-        backgroundColor: theme.palette.action.hover
-      }
+        backgroundColor: theme.palette.action.hover,
+      },
     },
     '& .rdw-option-active': {
       boxShadow: 'none',
-      backgroundColor: theme.palette.action.selected
+      backgroundColor: theme.palette.action.selected,
     },
     '& .rdw-dropdown-wrapper': {
       boxShadow: 'none',
@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& .rdw-dropdown-optionwrapper': {
       overflowY: 'auto',
       boxShadow: theme.shadows[10],
-      padding: theme.spacing(1)
-    }
+      padding: theme.spacing(1),
+    },
   },
   toolbar: {
     marginBottom: 0,
@@ -43,12 +43,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderTop: 'none',
     borderRight: 'none',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    background: 'transparent'
+    background: 'transparent',
   },
   editor: {
     padding: theme.spacing(2),
-    color: theme.palette.text.primary
-  }
+    color: theme.palette.text.primary,
+  },
 }));
 
 const DraftEditor: FC<DraftEditorProps> = ({ className, ...rest }) => {
@@ -65,7 +65,7 @@ const DraftEditor: FC<DraftEditorProps> = ({ className, ...rest }) => {
 };
 
 DraftEditor.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default DraftEditor;

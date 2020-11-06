@@ -8,11 +8,11 @@ import {
   Grid,
   Hidden,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import BarChartIcon from '@material-ui/icons/BarChart';
-import type { Theme } from 'src/themes/dashboard-theme';
-import useAuth from 'src/hooks/useAuth';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import useAuth from '../../../../hooks/useAuth';
 
 interface HeaderProps {
   className?: string;
@@ -21,12 +21,12 @@ interface HeaderProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   action: {
-    backgroundColor: theme.palette.common.white
+    backgroundColor: theme.palette.common.white,
   },
   image: {
     width: '100%',
-    maxHeight: 400
-  }
+    maxHeight: 400,
+  },
 }));
 
 const Header: FC<HeaderProps> = ({ className, ...rest }) => {
@@ -34,39 +34,16 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
   const { user } = useAuth();
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Grid
-        alignItems="center"
-        container
-        justify="space-between"
-        spacing={3}
-      >
-        <Grid
-          item
-          md={6}
-          xs={12}
-        >
-          <Typography
-            variant="overline"
-            color="textSecondary"
-          >
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Grid alignItems="center" container justify="space-between" spacing={3}>
+        <Grid item md={6} xs={12}>
+          <Typography variant="overline" color="textSecondary">
             Overview
           </Typography>
-          <Typography
-            variant="h3"
-            color="textPrimary"
-          >
-            Good Morning,
-            {' '}
-            {user.name}
+          <Typography variant="h3" color="textPrimary">
+            Good Morning, {user.name}
           </Typography>
-          <Typography
-            variant="subtitle1"
-            color="textPrimary"
-          >
+          <Typography variant="subtitle1" color="textPrimary">
             Here’s what’s happening with your projects today
           </Typography>
           <Box mt={2}>
@@ -80,10 +57,7 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
           </Box>
         </Grid>
         <Hidden smDown>
-          <Grid
-            item
-            md={6}
-          >
+          <Grid item md={6}>
             <img
               alt="Cover"
               className={classes.image}
@@ -97,7 +71,7 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
 };
 
 Header.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Header;

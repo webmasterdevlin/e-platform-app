@@ -1,7 +1,4 @@
-import React, {
-  useRef,
-  useState
-} from 'react';
+import React, { useRef, useState } from 'react';
 import type { FC, ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -13,12 +10,12 @@ import {
   Paper,
   TextareaAutosize,
   Tooltip,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import AddPhotoIcon from '@material-ui/icons/AddPhotoAlternate';
-import type { Theme } from 'src/themes/dashboard-theme';
-import useAuth from 'src/hooks/useAuth';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import useAuth from '../../../../../hooks/useAuth';
 
 interface MailReplyProps {
   className?: string;
@@ -27,14 +24,14 @@ interface MailReplyProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     padding: theme.spacing(3),
-    display: 'flex'
+    display: 'flex',
   },
   avatar: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   textareaContainer: {
     flexGrow: 1,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
   textarea: {
     ...theme.typography.body1,
@@ -43,14 +40,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     border: 'none',
     outline: 'none',
     resize: 'none',
-    width: '100%'
+    width: '100%',
   },
   action: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   fileInput: {
-    display: 'none'
-  }
+    display: 'none',
+  },
 }));
 
 const MailReply: FC<MailReplyProps> = ({ className, ...rest }) => {
@@ -69,19 +66,9 @@ const MailReply: FC<MailReplyProps> = ({ className, ...rest }) => {
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Avatar
-        alt="Person"
-        className={classes.avatar}
-        src={user.avatar}
-      />
-      <Paper
-        className={classes.textareaContainer}
-        variant="outlined"
-      >
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Avatar alt="Person" className={classes.avatar} src={user.avatar} />
+      <Paper className={classes.textareaContainer} variant="outlined">
         <TextareaAutosize
           className={classes.textarea}
           onChange={handleChange}
@@ -89,11 +76,7 @@ const MailReply: FC<MailReplyProps> = ({ className, ...rest }) => {
           rows={3}
           value={value}
         />
-        <Box
-          display="flex"
-          alignItems="center"
-          mt={2}
-        >
+        <Box display="flex" alignItems="center" mt={2}>
           <Button
             color="secondary"
             variant="contained"
@@ -121,17 +104,13 @@ const MailReply: FC<MailReplyProps> = ({ className, ...rest }) => {
           </Tooltip>
         </Box>
       </Paper>
-      <input
-        className={classes.fileInput}
-        ref={fileInputRef}
-        type="file"
-      />
+      <input className={classes.fileInput} ref={fileInputRef} type="file" />
     </div>
   );
-}
+};
 
 MailReply.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default MailReply;

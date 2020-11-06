@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useRef
-} from 'react';
+import React, { useState, useRef } from 'react';
 import type { FC, ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -10,10 +7,10 @@ import {
   FormControlLabel,
   Menu,
   MenuItem,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../../themes/dashboard-theme';
 
 interface MultiSelectProps {
   label: string;
@@ -25,20 +22,20 @@ interface MultiSelectProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   menuItem: {
-    padding: 0
+    padding: 0,
   },
   formControlLabel: {
     padding: theme.spacing(0.5, 2),
     width: '100%',
-    margin: 0
-  }
+    margin: 0,
+  },
 }));
 
 const MultiSelect: FC<MultiSelectProps> = ({
   label,
   options,
   value,
-  onChange
+  onChange,
 }) => {
   const classes = useStyles();
   const anchorRef = useRef<any>(null);
@@ -58,7 +55,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
     if (event.target.checked) {
       newValue.push(event.target.value);
     } else {
-      newValue = newValue.filter((item) => item !== event.target.value);
+      newValue = newValue.filter(item => item !== event.target.value);
     }
 
     if (onChange) {
@@ -68,10 +65,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
 
   return (
     <>
-      <Button
-        onClick={handleMenuOpen}
-        ref={anchorRef}
-      >
+      <Button onClick={handleMenuOpen} ref={anchorRef}>
         {label}
         <ArrowDropDownIcon />
       </Button>
@@ -82,20 +76,17 @@ const MultiSelect: FC<MultiSelectProps> = ({
         open={openMenu}
         PaperProps={{ style: { width: 250 } }}
       >
-        {options.map((option) => (
-          <MenuItem
-            className={classes.menuItem}
-            key={option}
-          >
+        {options.map(option => (
+          <MenuItem className={classes.menuItem} key={option}>
             <FormControlLabel
               className={classes.formControlLabel}
-              control={(
+              control={
                 <Checkbox
                   checked={value.indexOf(option) > -1}
                   onChange={handleOptionToggle}
                   value={option}
                 />
-              )}
+              }
               label={option}
             />
           </MenuItem>
@@ -109,7 +100,7 @@ MultiSelect.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   options: PropTypes.array.isRequired,
-  value: PropTypes.array.isRequired
+  value: PropTypes.array.isRequired,
 };
 
 export default MultiSelect;

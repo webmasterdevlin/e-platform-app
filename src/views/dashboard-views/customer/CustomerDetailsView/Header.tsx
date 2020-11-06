@@ -10,11 +10,11 @@ import {
   Link,
   SvgIcon,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { Edit as EditIcon } from 'react-feather';
-import type { Customer } from 'src/types/customer';
+import type { Customer } from '../../../../types/customer';
 
 interface HeaderProps {
   className?: string;
@@ -22,7 +22,7 @@ interface HeaderProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const Header: FC<HeaderProps> = ({ className, customer, ...rest }) => {
@@ -57,17 +57,11 @@ const Header: FC<HeaderProps> = ({ className, customer, ...rest }) => {
           >
             Management
           </Link>
-          <Typography
-            variant="body1"
-            color="textPrimary"
-          >
+          <Typography variant="body1" color="textPrimary">
             Customers
           </Typography>
         </Breadcrumbs>
-        <Typography
-          variant="h3"
-          color="textPrimary"
-        >
+        <Typography variant="h3" color="textPrimary">
           {customer.name}
         </Typography>
       </Grid>
@@ -93,7 +87,7 @@ const Header: FC<HeaderProps> = ({ className, customer, ...rest }) => {
 Header.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  customer: PropTypes.object.isRequired
+  customer: PropTypes.object.isRequired,
 };
 
 export default Header;

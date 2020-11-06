@@ -13,11 +13,11 @@ import {
   Link,
   TextField,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import useAuth from 'src/hooks/useAuth';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import useAuth from '../../../../hooks/useAuth';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
 
 interface FirebaseAuthRegisterProps {
   className?: string;
@@ -26,20 +26,23 @@ interface FirebaseAuthRegisterProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   googleButton: {
-    backgroundColor: theme.palette.common.white
+    backgroundColor: theme.palette.common.white,
   },
   providerIcon: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   divider: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   dividerText: {
-    margin: theme.spacing(2)
-  }
+    margin: theme.spacing(2),
+  },
 }));
 
-const FirebaseAuthRegister: FC<FirebaseAuthRegisterProps> = ({ className, ...rest }) => {
+const FirebaseAuthRegister: FC<FirebaseAuthRegisterProps> = ({
+  className,
+  ...rest
+}) => {
   const classes = useStyles();
   const { createUserWithEmailAndPassword, signInWithGoogle } = useAuth() as any;
   const isMountedRef = useIsMountedRef();
@@ -47,7 +50,7 @@ const FirebaseAuthRegister: FC<FirebaseAuthRegisterProps> = ({ className, ...res
   const handleGoogleClick = async () => {
     try {
       await signInWithGoogle();
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   };
@@ -68,15 +71,8 @@ const FirebaseAuthRegister: FC<FirebaseAuthRegisterProps> = ({ className, ...res
         />
         Register with Google
       </Button>
-      <Box
-        alignItems="center"
-        display="flex"
-        mt={2}
-      >
-        <Divider
-          className={classes.divider}
-          orientation="horizontal"
-        />
+      <Box alignItems="center" display="flex" mt={2}>
+        <Divider className={classes.divider} orientation="horizontal" />
         <Typography
           color="textSecondary"
           variant="body1"
@@ -84,28 +80,27 @@ const FirebaseAuthRegister: FC<FirebaseAuthRegisterProps> = ({ className, ...res
         >
           OR
         </Typography>
-        <Divider
-          className={classes.divider}
-          orientation="horizontal"
-        />
+        <Divider className={classes.divider} orientation="horizontal" />
       </Box>
       <Formik
         initialValues={{
           email: '',
           password: '',
           policy: true,
-          submit: null
+          submit: null,
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string().min(7).max(255).required('Password is required'),
-          policy: Yup.boolean().oneOf([true], 'This field must be checked')
+          email: Yup.string()
+            .email('Must be a valid email')
+            .max(255)
+            .required('Email is required'),
+          password: Yup.string()
+            .min(7)
+            .max(255)
+            .required('Password is required'),
+          policy: Yup.boolean().oneOf([true], 'This field must be checked'),
         })}
-        onSubmit={async (values, {
-          setErrors,
-          setStatus,
-          setSubmitting
-        }) => {
+        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
             await createUserWithEmailAndPassword(values.email, values.password);
 
@@ -130,7 +125,7 @@ const FirebaseAuthRegister: FC<FirebaseAuthRegisterProps> = ({ className, ...res
           handleSubmit,
           isSubmitting,
           touched,
-          values
+          values,
         }) => (
           <form
             noValidate
@@ -164,42 +159,25 @@ const FirebaseAuthRegister: FC<FirebaseAuthRegisterProps> = ({ className, ...res
               value={values.password}
               variant="outlined"
             />
-            <Box
-              alignItems="center"
-              display="flex"
-              mt={2}
-              ml={-1}
-            >
+            <Box alignItems="center" display="flex" mt={2} ml={-1}>
               <Checkbox
                 checked={values.policy}
                 name="policy"
                 onChange={handleChange}
               />
-              <Typography
-                variant="body2"
-                color="textSecondary"
-              >
-                I have read the
-                {' '}
-                <Link
-                  component="a"
-                  href="#"
-                  color="secondary"
-                >
+              <Typography variant="body2" color="textSecondary">
+                I have read the{' '}
+                <Link component="a" href="#" color="secondary">
                   Terms and Conditions
                 </Link>
               </Typography>
             </Box>
             {Boolean(touched.policy && errors.policy) && (
-              <FormHelperText error>
-                {errors.policy}
-              </FormHelperText>
+              <FormHelperText error>{errors.policy}</FormHelperText>
             )}
             {errors.submit && (
               <Box mt={3}>
-                <FormHelperText error>
-                  {errors.submit}
-                </FormHelperText>
+                <FormHelperText error>{errors.submit}</FormHelperText>
               </Box>
             )}
             <Box mt={2}>
@@ -222,7 +200,7 @@ const FirebaseAuthRegister: FC<FirebaseAuthRegisterProps> = ({ className, ...res
 };
 
 FirebaseAuthRegister.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default FirebaseAuthRegister;

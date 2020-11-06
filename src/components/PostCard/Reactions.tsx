@@ -8,12 +8,12 @@ import {
   Tooltip,
   Typography,
   colors,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShareIcon from '@material-ui/icons/Share';
-import type { Post } from 'src/types/social';
+import type { Post } from '../../types/social';
 
 interface ReactionsProps {
   className?: string;
@@ -23,11 +23,11 @@ interface ReactionsProps {
 const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   likedButton: {
-    color: colors.red[600]
-  }
+    color: colors.red[600],
+  },
 }));
 
 const Reactions: FC<ReactionsProps> = ({ className, post, ...rest }) => {
@@ -37,25 +37,19 @@ const Reactions: FC<ReactionsProps> = ({ className, post, ...rest }) => {
 
   const handleLike = (): void => {
     setLiked(true);
-    setLikes((prevLikes) => prevLikes + 1);
+    setLikes(prevLikes => prevLikes + 1);
   };
 
   const handleUnlike = (): void => {
     setLiked(false);
-    setLikes((prevLikes) => prevLikes - 1);
+    setLikes(prevLikes => prevLikes - 1);
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       {isLiked ? (
         <Tooltip title="Unlike">
-          <IconButton
-            className={classes.likedButton}
-            onClick={handleUnlike}
-          >
+          <IconButton className={classes.likedButton} onClick={handleUnlike}>
             <FavoriteIcon fontSize="small" />
           </IconButton>
         </Tooltip>
@@ -66,10 +60,7 @@ const Reactions: FC<ReactionsProps> = ({ className, post, ...rest }) => {
           </IconButton>
         </Tooltip>
       )}
-      <Typography
-        color="textSecondary"
-        variant="h6"
-      >
+      <Typography color="textSecondary" variant="h6">
         {likes}
       </Typography>
       <Box flexGrow={1} />
@@ -83,7 +74,7 @@ const Reactions: FC<ReactionsProps> = ({ className, post, ...rest }) => {
 Reactions.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 };
 
 export default Reactions;

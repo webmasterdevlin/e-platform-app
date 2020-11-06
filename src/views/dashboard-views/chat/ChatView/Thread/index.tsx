@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import type { FC } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Divider, makeStyles } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import { useDispatch, useSelector } from 'src/store';
-import type { RootState } from 'src/store';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import { useDispatch, useSelector } from '../../../../../store';
+import type { RootState } from '../../../../../store';
 import {
   getThread,
   markThreadAsSeen,
@@ -12,7 +12,7 @@ import {
   getParticipants,
   addRecipient,
   removeRecipient,
-} from 'src/slices/chat';
+} from '../../../../../slices/chat';
 import ComposeHeader from './ComposeHeader';
 import DetailHeader from './DetailHeader';
 import MessageList from './MessageList';

@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import type { FC, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../themes/dashboard-theme';
 import NavBar from './NavBar';
 import TopBar from './TopBar';
 
 interface DashboardLayoutProps {
-  children?: ReactNode
+  children?: ReactNode;
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     height: '100%',
     overflow: 'hidden',
-    width: '100%'
+    width: '100%',
   },
   wrapper: {
     display: 'flex',
@@ -24,19 +24,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: 'hidden',
     paddingTop: 64,
     [theme.breakpoints.up('lg')]: {
-      paddingLeft: 256
-    }
+      paddingLeft: 256,
+    },
   },
   contentContainer: {
     display: 'flex',
     flex: '1 1 auto',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   content: {
     flex: '1 1 auto',
     height: '100%',
-    overflow: 'auto'
-  }
+    overflow: 'auto',
+  },
 }));
 
 const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
@@ -52,9 +52,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
       />
       <div className={classes.wrapper}>
         <div className={classes.contentContainer}>
-          <div className={classes.content}>
-            {children}
-          </div>
+          <div className={classes.content}>{children}</div>
         </div>
       </div>
     </div>
@@ -62,7 +60,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
 };
 
 DashboardLayout.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default DashboardLayout;

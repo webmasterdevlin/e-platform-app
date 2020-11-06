@@ -4,10 +4,10 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import type { DropResult } from 'react-beautiful-dnd';
 import { useSnackbar } from 'notistack';
 import { Box, makeStyles } from '@material-ui/core';
-import Page from 'src/components/Page';
-import type { Theme } from 'src/themes/dashboard-theme';
-import { useDispatch, useSelector } from 'src/store';
-import { getBoard, moveCard } from 'src/slices/kanban';
+import Page from '../../../../components/Page';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import { useDispatch, useSelector } from '../../../../store';
+import { getBoard, moveCard } from '../../../../slices/kanban';
 import Header from './Header';
 import List from './List';
 import ListAdd from './ListAdd';
@@ -18,31 +18,35 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '100%',
     display: 'flex',
     overflow: 'hidden',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   content: {
     flexGrow: 1,
     flexShrink: 1,
     display: 'flex',
     overflowY: 'hidden',
-    overflowX: 'auto'
+    overflowX: 'auto',
   },
   inner: {
     display: 'flex',
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3),
     paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1)
-  }
+    paddingRight: theme.spacing(1),
+  },
 }));
 
 const KanbanView: FC = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { lists } = useSelector((state) => state.kanban);
+  const { lists } = useSelector(state => state.kanban);
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleDragEnd = async ({ source, destination, draggableId }: DropResult): Promise<void> => {
+  const handleDragEnd = async ({
+    source,
+    destination,
+    draggableId,
+  }: DropResult): Promise<void> => {
     try {
       // Dropped outside the list
       if (!destination) {
@@ -51,27 +55,29 @@ const KanbanView: FC = () => {
 
       // Card has not been moved
       if (
-        source.droppableId === destination.droppableId
-        && source.index === destination.index
+        source.droppableId === destination.droppableId &&
+        source.index === destination.index
       ) {
         return;
       }
 
       if (source.droppableId === destination.droppableId) {
-      // Moved to the same list on diferent position
+        // Moved to the same list on diferent position
         await dispatch(moveCard(draggableId, destination.index));
       } else {
-      // Moved to another list
-        await dispatch(moveCard(draggableId, destination.index, destination.droppableId));
+        // Moved to another list
+        await dispatch(
+          moveCard(draggableId, destination.index, destination.droppableId),
+        );
       }
 
       enqueueSnackbar('Card moved', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
@@ -81,10 +87,7 @@ const KanbanView: FC = () => {
   }, [dispatch]);
 
   return (
-    <Page
-      className={classes.root}
-      title="Kanban Board"
-    >
+    <Page className={classes.root} title="Kanban Board">
       <Box p={3}>
         <Header />
       </Box>
@@ -92,10 +95,7 @@ const KanbanView: FC = () => {
         <div className={classes.content}>
           <div className={classes.inner}>
             {lists.allIds.map((listId: string) => (
-              <List
-                key={listId}
-                listId={listId}
-              />
+              <List key={listId} listId={listId} />
             ))}
             <ListAdd />
           </div>

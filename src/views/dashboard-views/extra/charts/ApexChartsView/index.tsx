@@ -8,11 +8,11 @@ import {
   Grid,
   Link,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from 'src/themes/dashboard-theme';
-import Page from 'src/components/Page';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import Page from '../../../../../components/Page';
 import AreaChart from './AreaChart';
 import LineChart from './LineChart';
 import RadialChart from './RadialChart';
@@ -22,18 +22,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-  }
+    paddingBottom: theme.spacing(3),
+  },
 }));
 
 const ApexChartsView: FC = () => {
   const classes = useStyles();
 
   return (
-    <Page
-      className={classes.root}
-      title="ApexCharts"
-    >
+    <Page className={classes.root} title="ApexCharts">
       <Container maxWidth="lg">
         <Breadcrumbs
           separator={<NavigateNextIcon fontSize="small" />}
@@ -55,42 +52,22 @@ const ApexChartsView: FC = () => {
           >
             Extra
           </Link>
-          <Typography
-            variant="body1"
-            color="textPrimary"
-          >
+          <Typography variant="body1" color="textPrimary">
             Charts
           </Typography>
         </Breadcrumbs>
-        <Typography
-          variant="h3"
-          color="textPrimary"
-        >
+        <Typography variant="h3" color="textPrimary">
           ApexCharts
         </Typography>
         <Box mt={3}>
-          <Grid
-            container
-            spacing={3}
-          >
-            <Grid
-              item
-              xs={12}
-            >
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
               <LineChart />
             </Grid>
-            <Grid
-              item
-              xs={12}
-              md={8}
-            >
+            <Grid item xs={12} md={8}>
               <AreaChart />
             </Grid>
-            <Grid
-              item
-              xs={12}
-              md={4}
-            >
+            <Grid item xs={12} md={4}>
               <RadialChart />
             </Grid>
           </Grid>

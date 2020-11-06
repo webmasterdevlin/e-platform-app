@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Bar } from 'react-chartjs-2';
 import { makeStyles, useTheme } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../../themes/dashboard-theme';
 
 interface ChartProps {
   className?: string;
@@ -14,8 +14,8 @@ interface ChartProps {
 
 const useStyles = makeStyles(() => ({
   root: {
-    position: 'relative'
-  }
+    position: 'relative',
+  },
 }));
 
 const Chart: FC<ChartProps> = ({
@@ -35,10 +35,10 @@ const Chart: FC<ChartProps> = ({
         barThickness: 12,
         maxBarThickness: 10,
         barPercentage: 0.9,
-        categoryPercentage: 1
-      }
+        categoryPercentage: 1,
+      },
     ],
-    labels
+    labels,
   };
 
   const options = {
@@ -47,10 +47,10 @@ const Chart: FC<ChartProps> = ({
     animation: false,
     cornerRadius: 20,
     legend: {
-      display: false
+      display: false,
     },
     layout: {
-      padding: 0
+      padding: 0,
     },
     scales: {
       xAxes: [
@@ -58,26 +58,26 @@ const Chart: FC<ChartProps> = ({
           stacked: false,
           gridLines: {
             display: false,
-            drawBorder: false
+            drawBorder: false,
           },
           ticks: {
-            display: false
-          }
-        }
+            display: false,
+          },
+        },
       ],
       yAxes: [
         {
           stacked: true,
           gridLines: {
             display: false,
-            drawBorder: false
+            drawBorder: false,
           },
           ticks: {
             beginAtZero: true,
-            display: false
-          }
-        }
-      ]
+            display: false,
+          },
+        },
+      ],
     },
     tooltips: {
       enabled: true,
@@ -95,24 +95,18 @@ const Chart: FC<ChartProps> = ({
       callbacks: {
         legend: () => {},
         title: () => {},
-        label: (tooltipItem) => {
+        label: tooltipItem => {
           const label = `Views: ${tooltipItem.yLabel}`;
 
           return label;
-        }
-      }
-    }
+        },
+      },
+    },
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Bar
-        data={data}
-        options={options}
-      />
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Bar data={data} options={options} />
     </div>
   );
 };
@@ -120,7 +114,7 @@ const Chart: FC<ChartProps> = ({
 Chart.propTypes = {
   className: PropTypes.string,
   data: PropTypes.array.isRequired,
-  labels: PropTypes.array.isRequired
+  labels: PropTypes.array.isRequired,
 };
 
 export default Chart;

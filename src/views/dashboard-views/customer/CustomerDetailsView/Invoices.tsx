@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback
-} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
@@ -22,21 +18,21 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import { ArrowRight as ArrowRightIcon } from 'react-feather';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import Label from 'src/components/Label';
-import GenericMoreButton from 'src/components/GenericMoreButton';
-import type { Invoice } from 'src/types/customer';
+import axios from '../../../../utils/axios';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import Label from '../../../../components/Label';
+import GenericMoreButton from '../../../../components/GenericMoreButton';
+import type { Invoice } from '../../../../types/customer';
 
 interface InvoicesProps {
   className?: string;
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const Invoices: FC<InvoicesProps> = ({ className, ...rest }) => {
@@ -46,7 +42,9 @@ const Invoices: FC<InvoicesProps> = ({ className, ...rest }) => {
 
   const getInvoices = useCallback(async () => {
     try {
-      const response = await axios.get<{ invoices: Invoice[]; }>('/api/customers/1/invoices');
+      const response = await axios.get<{ invoices: Invoice[] }>(
+        '/api/customers/1/invoices',
+      );
 
       if (isMountedRef.current) {
         setInvoices(response.data.invoices);
@@ -61,14 +59,8 @@ const Invoices: FC<InvoicesProps> = ({ className, ...rest }) => {
   }, [getInvoices]);
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <CardHeader
-        action={<GenericMoreButton />}
-        title="Customer invoices"
-      />
+    <Card className={clsx(classes.root, className)} {...rest}>
+      <CardHeader action={<GenericMoreButton />} title="Customer invoices" />
       <Divider />
       <PerfectScrollbar>
         <Box minWidth={1150}>
@@ -85,30 +77,21 @@ const Invoices: FC<InvoicesProps> = ({ className, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {invoices.map((invoice) => (
+              {invoices.map(invoice => (
                 <TableRow key={invoice.id}>
-                  <TableCell>
-                    #
-                    {invoice.id}
-                  </TableCell>
+                  <TableCell>#{invoice.id}</TableCell>
                   <TableCell>
                     {moment(invoice.issueDate).format('DD/MM/YYYY | HH:MM')}
                   </TableCell>
-                  <TableCell>
-                    {invoice.description}
-                  </TableCell>
-                  <TableCell>
-                    {invoice.paymentMethod}
-                    </TableCell>
+                  <TableCell>{invoice.description}</TableCell>
+                  <TableCell>{invoice.paymentMethod}</TableCell>
                   <TableCell>
                     {invoice.currency}
                     {invoice.value}
                   </TableCell>
                   <TableCell>
                     {/* <Label color={statusColors[invoice.status]} > */}
-                    <Label color="primary">
-                      {invoice.status}
-                    </Label>
+                    <Label color="primary">{invoice.status}</Label>
                   </TableCell>
                   <TableCell align="right">
                     <IconButton
@@ -140,7 +123,7 @@ const Invoices: FC<InvoicesProps> = ({ className, ...rest }) => {
 };
 
 Invoices.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Invoices;

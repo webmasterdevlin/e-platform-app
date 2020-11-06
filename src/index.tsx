@@ -8,20 +8,22 @@ import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-jsx';
 import 'nprogress/nprogress.css';
-import 'src/__mocks__';
-import 'src/assets/css/prism.css';
-import 'src/mixins/chartjs';
+import '../src/__mocks__';
+import '../src/assets/css/prism.css';
+import '../src/mixins/chartjs';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Oidc, InMemoryWebStorage } from '@axa-fr/react-oidc-redux';
 import { Provider } from 'react-redux';
 import { enableES5 } from 'immer';
-import * as serviceWorker from 'src/serviceWorker';
-import store from 'src/store';
-import { SettingsProvider } from 'src/contexts/SettingsContext';
-import App from 'src/App';
+
+import * as serviceWorker from '../src/serviceWorker';
+import reportWebVitals from './reportWebVitals';
+import store from '../src/store';
+import { SettingsProvider } from './contexts/SettingsContext';
+import App from './App';
 import configuration from './auth/configuration';
 import ComponentOverride from './auth/component-override';
-import { Oidc, InMemoryWebStorage } from '@axa-fr/react-oidc-redux';
 
 enableES5();
 const origin = document.location.origin;
@@ -54,4 +56,5 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
-serviceWorker.register();
+// serviceWorker.register();
+reportWebVitals();

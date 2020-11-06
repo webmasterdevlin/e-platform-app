@@ -13,12 +13,12 @@ import {
   Tooltip,
   Typography,
   colors,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import AddPhotoIcon from '@material-ui/icons/AddPhotoAlternate';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { Profile } from 'src/types/social';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Profile } from '../../../../types/social';
 
 interface HeaderProps {
   className?: string;
@@ -40,13 +40,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       left: 0,
       height: '100%',
       width: '100%',
-      backgroundImage: 'linear-gradient(-180deg, rgba(0,0,0,0.00) 58%, rgba(0,0,0,0.32) 100%)'
+      backgroundImage:
+        'linear-gradient(-180deg, rgba(0,0,0,0.00) 58%, rgba(0,0,0,0.32) 100%)',
     },
     '&:hover': {
       '& $changeButton': {
-        visibility: 'visible'
-      }
-    }
+        visibility: 'visible',
+      },
+    },
   },
   changeButton: {
     visibility: 'hidden',
@@ -57,11 +58,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.common.white,
     [theme.breakpoints.down('md')]: {
       top: theme.spacing(3),
-      bottom: 'auto'
+      bottom: 'auto',
     },
     '&:hover': {
-      backgroundColor: colors.blueGrey[900]
-    }
+      backgroundColor: colors.blueGrey[900],
+    },
   },
   avatar: {
     border: `2px solid ${theme.palette.common.white}`,
@@ -69,26 +70,27 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 120,
     top: -60,
     left: theme.spacing(3),
-    position: 'absolute'
+    position: 'absolute',
   },
   action: {
-    marginLeft: theme.spacing(1)
-  }
+    marginLeft: theme.spacing(1),
+  },
 }));
 
 const Header: FC<HeaderProps> = ({ className, profile, ...rest }) => {
   const classes = useStyles();
-  const [connectedStatus, setConnectedStatus] = useState<string>(profile.connectedStatus);
+  const [connectedStatus, setConnectedStatus] = useState<string>(
+    profile.connectedStatus,
+  );
 
   const handleConnectToggle = (): void => {
-    setConnectedStatus((prevConnectedStatus) => (prevConnectedStatus === 'not_connected' ? 'pending' : 'not_connected'));
+    setConnectedStatus(prevConnectedStatus =>
+      prevConnectedStatus === 'not_connected' ? 'pending' : 'not_connected',
+    );
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <div
         className={classes.cover}
         style={{ backgroundImage: `url(${profile.cover})` }}
@@ -102,28 +104,17 @@ const Header: FC<HeaderProps> = ({ className, profile, ...rest }) => {
         </Button>
       </div>
       <Container maxWidth="lg">
-        <Box
-          position="relative"
-          mt={1}
-          display="flex"
-          alignItems="center"
-        >
+        <Box position="relative" mt={1} display="flex" alignItems="center">
           <Avatar
             alt="Person"
             className={classes.avatar}
             src={profile.avatar}
           />
           <Box marginLeft="160px">
-            <Typography
-              variant="overline"
-              color="textSecondary"
-            >
+            <Typography variant="overline" color="textSecondary">
               {profile.bio}
             </Typography>
-            <Typography
-              variant="h4"
-              color="textPrimary"
-            >
+            <Typography variant="h4" color="textPrimary">
               {profile.name}
             </Typography>
           </Box>
@@ -174,7 +165,7 @@ const Header: FC<HeaderProps> = ({ className, profile, ...rest }) => {
 Header.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
 export default Header;

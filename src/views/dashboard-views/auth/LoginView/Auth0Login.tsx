@@ -2,21 +2,16 @@ import React, { useState } from 'react';
 import type { FC } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import {
-  Box,
-  Button,
-  FormHelperText,
-  makeStyles
-} from '@material-ui/core';
-import useAuth from 'src/hooks/useAuth';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import { Box, Button, FormHelperText, makeStyles } from '@material-ui/core';
+import useAuth from '../../../../hooks/useAuth';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
 
 interface Auth0LoginProps {
   className?: string;
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const Auth0Login: FC<Auth0LoginProps> = ({ className, ...rest }) => {
@@ -37,26 +32,14 @@ const Auth0Login: FC<Auth0LoginProps> = ({ className, ...rest }) => {
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       {error && (
         <Box my={3}>
-          <FormHelperText error>
-            {error}
-          </FormHelperText>
+          <FormHelperText error>{error}</FormHelperText>
         </Box>
       )}
-      <Box
-        display="flex"
-        justifyContent="center"
-      >
-        <Button
-          onClick={handleLogin}
-          variant="contained"
-          color="secondary"
-        >
+      <Box display="flex" justifyContent="center">
+        <Button onClick={handleLogin} variant="contained" color="secondary">
           Log in with Auth0
         </Button>
       </Box>
@@ -65,7 +48,7 @@ const Auth0Login: FC<Auth0LoginProps> = ({ className, ...rest }) => {
 };
 
 Auth0Login.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Auth0Login;

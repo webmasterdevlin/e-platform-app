@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../../themes/dashboard-theme';
 
 interface CircularProgressProps {
   className?: string;
@@ -13,34 +13,36 @@ interface CircularProgressProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: 56,
-    height: 56
+    height: 56,
   },
   circle1: {
-    stroke: theme.palette.type === 'dark' ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.05)',
+    stroke:
+      theme.palette.type === 'dark' ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.05)',
     fill: 'none',
-    strokeWidth: 4
+    strokeWidth: 4,
   },
   circle2: {
     stroke: theme.palette.secondary.main,
     fill: 'none',
     strokeWidth: 4,
-    animation: '$progress 1s ease-out forwards'
+    animation: '$progress 1s ease-out forwards',
   },
   '@keyframes progress': {
     '0%': {
-      strokeDasharray: '0 100'
-    }
-  }
+      strokeDasharray: '0 100',
+    },
+  },
 }));
 
-const CircularProgress: FC<CircularProgressProps> = ({ className, value, ...rest }) => {
+const CircularProgress: FC<CircularProgressProps> = ({
+  className,
+  value,
+  ...rest
+}) => {
   const classes = useStyles();
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <svg viewBox="0 0 36 36">
         <path
           className={classes.circle1}
@@ -59,7 +61,7 @@ const CircularProgress: FC<CircularProgressProps> = ({ className, value, ...rest
 
 CircularProgress.propTypes = {
   className: PropTypes.string,
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
 };
 
 export default CircularProgress;

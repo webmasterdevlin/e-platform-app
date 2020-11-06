@@ -7,9 +7,9 @@ import {
   Container,
   Grid,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../themes/dashboard-theme';
 
 interface HeroProps {
   className?: string;
@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: 200,
     [theme.breakpoints.down('md')]: {
       paddingTop: 60,
-      paddingBottom: 60
-    }
+      paddingBottom: 60,
+    },
   },
   technologyIcon: {
     height: 40,
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   image: {
     perspectiveOrigin: 'left center',
@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme: Theme) => ({
       height: 'auto',
       transform: 'rotateY(-35deg) rotateX(15deg)',
       backfaceVisibility: 'hidden',
-      boxShadow: theme.shadows[16]
-    }
+      boxShadow: theme.shadows[16],
+    },
   },
   shape: {
     position: 'absolute',
@@ -47,9 +47,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     left: 0,
     '& > img': {
       maxWidth: '90%',
-      height: 'auto'
-    }
-  }
+      height: 'auto',
+    },
+  },
 }));
 
 const Hero: FC<HeroProps> = ({ className, ...rest }) => {
@@ -139,7 +139,7 @@ const Hero: FC<HeroProps> = ({ className, ...rest }) => {
 };
 
 Hero.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Hero;

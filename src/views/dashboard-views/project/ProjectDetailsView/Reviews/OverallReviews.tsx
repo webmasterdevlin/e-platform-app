@@ -8,10 +8,10 @@ import {
   CardContent,
   Grid,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../../themes/dashboard-theme';
 
 interface OverallReviewsProps {
   className?: string;
@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   rating: {
     marginLeft: theme.spacing(2),
-    fontWeight: theme.typography.fontWeightBold
-  }
+    fontWeight: theme.typography.fontWeightBold,
+  },
 }));
 
 const OverallReviews: FC<OverallReviewsProps> = ({
@@ -36,29 +36,16 @@ const OverallReviews: FC<OverallReviewsProps> = ({
   const classes = useStyles();
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <Card className={clsx(classes.root, className)} {...rest}>
       <CardContent>
-        <Grid
-          alignItems="center"
-          container
-          spacing={3}
-        >
+        <Grid alignItems="center" container spacing={3}>
           <Grid item>
-            <Typography
-              variant="h5"
-              color="textPrimary"
-            >
+            <Typography variant="h5" color="textPrimary">
               Overall Reviews
             </Typography>
           </Grid>
           <Grid item>
-            <Box
-              display="flex"
-              alignItems="center"
-            >
+            <Box display="flex" alignItems="center">
               <Rating value={rating} />
               <Typography
                 className={classes.rating}
@@ -70,13 +57,8 @@ const OverallReviews: FC<OverallReviewsProps> = ({
             </Box>
           </Grid>
           <Grid item>
-            <Typography
-              color="textSecondary"
-              variant="body2"
-            >
-              {reviewsCount}
-              {' '}
-              reviews in total
+            <Typography color="textSecondary" variant="body2">
+              {reviewsCount} reviews in total
             </Typography>
           </Grid>
         </Grid>
@@ -88,7 +70,7 @@ const OverallReviews: FC<OverallReviewsProps> = ({
 OverallReviews.propTypes = {
   className: PropTypes.string,
   rating: PropTypes.number.isRequired,
-  reviewsCount: PropTypes.number.isRequired
+  reviewsCount: PropTypes.number.isRequired,
 };
 
 export default OverallReviews;

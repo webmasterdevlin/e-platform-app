@@ -15,10 +15,10 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import Logo from 'src/components/Logo';
-import type { Invoice } from 'src/types/invoice';
+import Logo from '../../../../components/Logo';
+import type { Invoice } from '../../../../types/invoice';
 
 interface InvoicePreviewProps {
   className?: string;
@@ -26,7 +26,7 @@ interface InvoicePreviewProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const InvoicePreview: FC<InvoicePreviewProps> = ({
@@ -127,13 +127,13 @@ const InvoicePreview: FC<InvoicePreviewProps> = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {invoice.items.map((items) => (
+              {invoice.items.map(items => (
                 <TableRow key={items.id}>
                   <TableCell>{items.description}</TableCell>
                   <TableCell />
                   <TableCell align="right">
                     {numeral(items.unitAmount).format(
-                      `${items.currency}0,0.00`
+                      `${items.currency}0,0.00`,
                     )}
                   </TableCell>
                 </TableRow>
@@ -143,7 +143,7 @@ const InvoicePreview: FC<InvoicePreviewProps> = ({
                 <TableCell>Subtotal</TableCell>
                 <TableCell align="right">
                   {numeral(invoice.subtotalAmount).format(
-                    `${invoice.currency}0,0.00`
+                    `${invoice.currency}0,0.00`,
                   )}
                 </TableCell>
               </TableRow>
@@ -152,7 +152,7 @@ const InvoicePreview: FC<InvoicePreviewProps> = ({
                 <TableCell>Taxes</TableCell>
                 <TableCell align="right">
                   {numeral(invoice.taxAmount).format(
-                    `${invoice.currency}0,0.00`
+                    `${invoice.currency}0,0.00`,
                   )}
                 </TableCell>
               </TableRow>
@@ -161,7 +161,7 @@ const InvoicePreview: FC<InvoicePreviewProps> = ({
                 <TableCell>Total</TableCell>
                 <TableCell align="right">
                   {numeral(invoice.totalAmount).format(
-                    `${invoice.currency}0,0.00`
+                    `${invoice.currency}0,0.00`,
                   )}
                 </TableCell>
               </TableRow>
@@ -185,7 +185,7 @@ const InvoicePreview: FC<InvoicePreviewProps> = ({
 InvoicePreview.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  invoice: PropTypes.object.isRequired
+  invoice: PropTypes.object.isRequired,
 };
 
 export default InvoicePreview;

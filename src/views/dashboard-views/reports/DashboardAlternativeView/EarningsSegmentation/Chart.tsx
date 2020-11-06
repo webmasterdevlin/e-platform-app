@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
 import { useTheme } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../../themes/dashboard-theme';
 
 interface ChartProps {
   className?: string;
@@ -14,13 +14,13 @@ const Chart: FC<ChartProps> = ({ data: dataProp, ...rest }) => {
   const theme: Theme = useTheme();
 
   const data = {
-    datasets: dataProp.datasets.map(((dataset) => ({
+    datasets: dataProp.datasets.map(dataset => ({
       ...dataset,
       borderWidth: 8,
       borderColor: theme.palette.background.default,
-      hoverBorderColor: theme.palette.background.default
-    }))),
-    labels: dataProp.labels
+      hoverBorderColor: theme.palette.background.default,
+    })),
+    labels: dataProp.labels,
   };
 
   const options = {
@@ -29,10 +29,10 @@ const Chart: FC<ChartProps> = ({ data: dataProp, ...rest }) => {
     animation: false,
     cutoutPercentage: 80,
     legend: {
-      display: false
+      display: false,
     },
     layout: {
-      padding: 0
+      padding: 0,
     },
     tooltips: {
       enabled: true,
@@ -53,23 +53,17 @@ const Chart: FC<ChartProps> = ({ data: dataProp, ...rest }) => {
           const value = _data.datasets[0].data[tooltipItem.index];
 
           return `${label}: ${value}%`;
-        }
-      }
-    }
+        },
+      },
+    },
   };
 
-  return (
-    <Doughnut
-      data={data}
-      options={options}
-      {...rest}
-    />
-  );
+  return <Doughnut data={data} options={options} {...rest} />;
 };
 
 Chart.propTypes = {
   className: PropTypes.string,
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
 };
 
 export default Chart;

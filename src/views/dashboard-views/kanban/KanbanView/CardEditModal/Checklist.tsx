@@ -10,19 +10,16 @@ import {
   Typography,
   TextField,
   SvgIcon,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import { List as ListIcon } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
-import { useDispatch } from 'src/store';
-import {
-  updateChecklist,
-  deleteChecklist
-} from 'src/slices/kanban';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import { useDispatch } from '../../../../../store';
+import { updateChecklist, deleteChecklist } from '../../../../../slices/kanban';
 import type {
   Card,
-  Checklist as ChecklistType
-} from 'src/types/kanban';
+  Checklist as ChecklistType,
+} from '../../../../../types/kanban';
 import CheckItem from './CheckItem';
 import CheckItemAdd from './CheckItemAdd';
 
@@ -35,8 +32,8 @@ interface ChecklistProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   listIcon: {
-    marginRight: theme.spacing(3)
-  }
+    marginRight: theme.spacing(3),
+  },
 }));
 
 const Checklist: FC<ChecklistProps> = ({
@@ -72,12 +69,12 @@ const Checklist: FC<ChecklistProps> = ({
       setEditingName(false);
       await dispatch(updateChecklist(card.id, checklist.id, { name }));
       enqueueSnackbar('Checklist updated', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
@@ -91,12 +88,12 @@ const Checklist: FC<ChecklistProps> = ({
     try {
       await dispatch(deleteChecklist(card.id, checklist.id));
       enqueueSnackbar('Checklist deleted', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
@@ -114,24 +111,16 @@ const Checklist: FC<ChecklistProps> = ({
   };
 
   const totalCheckItems = checklist.checkItems.length;
-  const completedCheckItems = (checklist.checkItems.filter((checkItem) => checkItem.state === 'complete')).length;
-  const completePercentage = totalCheckItems === 0
-    ? 100
-    : (completedCheckItems / totalCheckItems) * 100;
+  const completedCheckItems = checklist.checkItems.filter(
+    checkItem => checkItem.state === 'complete',
+  ).length;
+  const completePercentage =
+    totalCheckItems === 0 ? 100 : (completedCheckItems / totalCheckItems) * 100;
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Box
-        display="flex"
-      >
-        <SvgIcon
-          fontSize="small"
-          color="action"
-          className={classes.listIcon}
-        >
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Box display="flex">
+        <SvgIcon fontSize="small" color="action" className={classes.listIcon}>
           <ListIcon />
         </SvgIcon>
         {editingName ? (
@@ -151,20 +140,13 @@ const Checklist: FC<ChecklistProps> = ({
               >
                 Save
               </Button>
-              <Button
-                size="small"
-                onClick={handleNameCancel}
-              >
+              <Button size="small" onClick={handleNameCancel}>
                 Cancel
               </Button>
             </Box>
           </Box>
         ) : (
-          <Box
-            display="flex"
-            alignItems="center"
-            flexGrow={1}
-          >
+          <Box display="flex" alignItems="center" flexGrow={1}>
             <Typography
               variant="h4"
               color="textPrimary"
@@ -173,31 +155,17 @@ const Checklist: FC<ChecklistProps> = ({
               {checklist.name}
             </Typography>
             <Box flexGrow={1} />
-            <Button
-              size="small"
-              onClick={handleDelete}
-            >
+            <Button size="small" onClick={handleDelete}>
               Delete
             </Button>
           </Box>
         )}
       </Box>
-      <Box
-        mt={1}
-        display="flex"
-        alignItems="center"
-      >
-        <Typography
-          variant="caption"
-          color="textSecondary"
-        >
-          {Math.round(completePercentage)}
-          %
+      <Box mt={1} display="flex" alignItems="center">
+        <Typography variant="caption" color="textSecondary">
+          {Math.round(completePercentage)}%
         </Typography>
-        <Box
-          ml={2}
-          flexGrow={1}
-        >
+        <Box ml={2} flexGrow={1}>
           <LinearProgress
             variant="determinate"
             value={completePercentage}
@@ -206,7 +174,7 @@ const Checklist: FC<ChecklistProps> = ({
         </Box>
       </Box>
       <Box mt={3}>
-        {checklist.checkItems.map((checkItem) => (
+        {checklist.checkItems.map(checkItem => (
           <CheckItem
             editing={editingCheckItem === checkItem.id}
             checkItem={checkItem}
@@ -219,14 +187,8 @@ const Checklist: FC<ChecklistProps> = ({
           />
         ))}
       </Box>
-      <Box
-        mt={1}
-        ml={6}
-      >
-        <CheckItemAdd
-          card={card}
-          checklist={checklist}
-        />
+      <Box mt={1} ml={6}>
+        <CheckItemAdd card={card} checklist={checklist} />
       </Box>
     </div>
   );
@@ -237,7 +199,7 @@ Checklist.propTypes = {
   // @ts-ignore
   card: PropTypes.object.isRequired,
   // @ts-ignore
-  checklist: PropTypes.object.isRequired
+  checklist: PropTypes.object.isRequired,
 };
 
 export default Checklist;

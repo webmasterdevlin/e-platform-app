@@ -10,14 +10,14 @@ import {
   Typography,
   Link,
   makeStyles,
-  colors
+  colors,
 } from '@material-ui/core';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import DashboardIcon from '@material-ui/icons/DashboardOutlined';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { ProjectActivity } from 'src/types/project';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { ProjectActivity } from '../../../../../types/project';
 
 interface ActivityProps {
   activity: ProjectActivity;
@@ -27,53 +27,53 @@ interface ActivityProps {
 const avatarsMap = {
   upload_file: {
     icon: GetAppIcon,
-    className: 'avatarBlue'
+    className: 'avatarBlue',
   },
   join_team: {
     icon: PersonAddIcon,
-    className: 'avatarOrange'
+    className: 'avatarOrange',
   },
   price_change: {
     icon: AttachMoneyIcon,
-    className: 'avatarGreen'
+    className: 'avatarGreen',
   },
   contest_created: {
     icon: DashboardIcon,
-    className: 'avatarIndigo'
-  }
+    className: 'avatarIndigo',
+  },
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   card: {
     marginLeft: theme.spacing(2),
     flexGrow: 1,
     display: 'flex',
     padding: theme.spacing(2),
-    alignItems: 'center'
+    alignItems: 'center',
   },
   date: {
     marginLeft: 'auto',
-    flexShrink: 0
+    flexShrink: 0,
   },
   avatar: {
-    color: colors.common.white
+    color: colors.common.white,
   },
   avatarBlue: {
-    backgroundColor: colors.blue[500]
+    backgroundColor: colors.blue[500],
   },
   avatarGreen: {
-    backgroundColor: colors.green[500]
+    backgroundColor: colors.green[500],
   },
   avatarOrange: {
-    backgroundColor: colors.orange[500]
+    backgroundColor: colors.orange[500],
   },
   avatarIndigo: {
-    backgroundColor: colors.indigo[500]
-  }
+    backgroundColor: colors.indigo[500],
+  },
 }));
 
 const Activity: FC<ActivityProps> = ({ activity, className, ...rest }) => {
@@ -81,33 +81,18 @@ const Activity: FC<ActivityProps> = ({ activity, className, ...rest }) => {
   const avatar = avatarsMap[activity.type];
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <Avatar className={clsx(classes.avatar, classes[avatar.className])}>
         <avatar.icon />
       </Avatar>
       <Card className={classes.card}>
-        <Typography
-          variant="body1"
-          color="textPrimary"
-        >
-          <Link
-            color="textPrimary"
-            component={RouterLink}
-            to="#"
-            variant="h6"
-          >
+        <Typography variant="body1" color="textPrimary">
+          <Link color="textPrimary" component={RouterLink} to="#" variant="h6">
             {activity.subject}
-          </Link>
-          {' '}
+          </Link>{' '}
           {activity.description}
         </Typography>
-        <Typography
-          className={classes.date}
-          variant="caption"
-        >
+        <Typography className={classes.date} variant="caption">
           {moment(activity.createdAt).fromNow()}
         </Typography>
       </Card>
@@ -118,7 +103,7 @@ const Activity: FC<ActivityProps> = ({ activity, className, ...rest }) => {
 Activity.propTypes = {
   // @ts-ignore
   activity: PropTypes.object.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Activity;

@@ -1,18 +1,11 @@
-import React, {
-  useState
-} from 'react';
+import React, { useState } from 'react';
 import type { FC, ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
-import {
-  Box,
-  Button,
-  TextField,
-  makeStyles
-} from '@material-ui/core';
-import { useDispatch } from 'src/store';
-import { createCard } from 'src/slices/kanban';
+import { Box, Button, TextField, makeStyles } from '@material-ui/core';
+import { useDispatch } from '../../../../store';
+import { createCard } from '../../../../slices/kanban';
 
 interface CardAddProps {
   className?: string;
@@ -20,14 +13,10 @@ interface CardAddProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
-const CardAdd: FC<CardAddProps> = ({
-  className,
-  listId,
-  ...rest
-}) => {
+const CardAdd: FC<CardAddProps> = ({ className, listId, ...rest }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -54,21 +43,18 @@ const CardAdd: FC<CardAddProps> = ({
       setExpanded(false);
       setName('');
       enqueueSnackbar('Card created', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       {isExpanded ? (
         <>
           <TextField
@@ -79,15 +65,8 @@ const CardAdd: FC<CardAddProps> = ({
             value={name}
             variant="outlined"
           />
-          <Box
-            mt={2}
-            display="flex"
-            justifyContent="space-between"
-          >
-            <Button
-              onClick={handleAddCancel}
-              variant="text"
-            >
+          <Box mt={2} display="flex" justifyContent="space-between">
+            <Button onClick={handleAddCancel} variant="text">
               Cancel
             </Button>
             <Button
@@ -100,13 +79,8 @@ const CardAdd: FC<CardAddProps> = ({
           </Box>
         </>
       ) : (
-        <Box
-          display="flex"
-          justifyContent="center"
-        >
-          <Button onClick={handleAddInit}>
-            Add another card
-          </Button>
+        <Box display="flex" justifyContent="center">
+          <Button onClick={handleAddInit}>Add another card</Button>
         </Box>
       )}
     </div>
@@ -115,7 +89,7 @@ const CardAdd: FC<CardAddProps> = ({
 
 CardAdd.propTypes = {
   className: PropTypes.string,
-  listId: PropTypes.string.isRequired
+  listId: PropTypes.string.isRequired,
 };
 
 export default CardAdd;

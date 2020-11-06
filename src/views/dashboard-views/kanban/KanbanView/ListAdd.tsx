@@ -1,19 +1,12 @@
-
 import React, { useState } from 'react';
 import type { FC, ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
-import {
-  Box,
-  Button,
-  Card,
-  TextField,
-  makeStyles
-} from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import { useDispatch } from 'src/store';
-import { createList } from 'src/slices/kanban';
+import { Box, Button, Card, TextField, makeStyles } from '@material-ui/core';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import { useDispatch } from '../../../../store';
+import { createList } from '../../../../slices/kanban';
 
 interface ListAddProps {
   className?: string;
@@ -26,9 +19,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: theme.spacing(1),
     width: 380,
     [theme.breakpoints.down('xs')]: {
-      width: 300
-    }
-  }
+      width: 300,
+    },
+  },
 }));
 
 const ListAdd: FC<ListAddProps> = ({ className, ...rest }) => {
@@ -58,21 +51,18 @@ const ListAdd: FC<ListAddProps> = ({ className, ...rest }) => {
       setExpanded(false);
       setName('');
       enqueueSnackbar('List created', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <Card className={classes.inner}>
         <Box p={2}>
           {isExpanded ? (
@@ -85,15 +75,8 @@ const ListAdd: FC<ListAddProps> = ({ className, ...rest }) => {
                 value={name}
                 variant="outlined"
               />
-              <Box
-                mt={2}
-                display="flex"
-                justifyContent="space-between"
-              >
-                <Button
-                  onClick={handleAddCancel}
-                  variant="text"
-                >
+              <Box mt={2} display="flex" justifyContent="space-between">
+                <Button onClick={handleAddCancel} variant="text">
                   Cancel
                 </Button>
                 <Button
@@ -106,13 +89,8 @@ const ListAdd: FC<ListAddProps> = ({ className, ...rest }) => {
               </Box>
             </>
           ) : (
-            <Box
-              display="flex"
-              justifyContent="center"
-            >
-              <Button onClick={handleAddInit}>
-                Add another list
-              </Button>
+            <Box display="flex" justifyContent="center">
+              <Button onClick={handleAddInit}>Add another list</Button>
             </Box>
           )}
         </Box>
@@ -122,7 +100,7 @@ const ListAdd: FC<ListAddProps> = ({ className, ...rest }) => {
 };
 
 ListAdd.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default ListAdd;

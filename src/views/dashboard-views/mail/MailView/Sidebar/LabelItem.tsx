@@ -6,7 +6,7 @@ import {
   ListItem,
   ButtonBase,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DraftsIcon from '@material-ui/icons/Drafts';
@@ -17,8 +17,8 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import MailIcon from '@material-ui/icons/Mail';
 import ReportIcon from '@material-ui/icons/Report';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { Label } from 'src/types/mail';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Label } from '../../../../../types/mail';
 
 interface LabelItemProps {
   label: Label;
@@ -32,7 +32,7 @@ const systemLabelIcons = {
   spam: ReportIcon,
   sent: SendIcon,
   starred: StarIcon,
-  important: LabelImportantIcon
+  important: LabelImportantIcon,
 };
 
 const getIcon = (label: any) => {
@@ -67,7 +67,7 @@ const getColor = (label: any): string => {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    padding: 0
+    padding: 0,
   },
   content: {
     flexGrow: 1,
@@ -79,29 +79,29 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingLeft: 32,
     fontWeight: theme.typography.fontWeightRegular,
     '&:hover': {
-      backgroundColor: theme.palette.action.hover
-    }
+      backgroundColor: theme.palette.action.hover,
+    },
   },
   active: {
     fontWeight: theme.typography.fontWeightMedium,
-    backgroundColor: theme.palette.action.selected
+    backgroundColor: theme.palette.action.selected,
   },
   label: {
     fontWeight: 'inherit',
-    color: 'inherit'
+    color: 'inherit',
   },
   labelRoot: {
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(1, 0)
+    padding: theme.spacing(1, 0),
   },
   icon: {
     marginRight: theme.spacing(1),
   },
   text: {
     fontWeight: 'inherit',
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 }));
 
 const LabelItem: FC<LabelItemProps> = ({ label, ...rest }) => {
@@ -110,35 +110,24 @@ const LabelItem: FC<LabelItemProps> = ({ label, ...rest }) => {
   const Icon = getIcon(label);
   const to = getTo(label);
   const color = getColor(label);
-  const displayUnreadCount = Boolean(label.unreadCount && label.unreadCount > 0);
+  const displayUnreadCount = Boolean(
+    label.unreadCount && label.unreadCount > 0,
+  );
 
   return (
-    <ListItem
-      className={classes.root}
-      {...rest}
-    >
+    <ListItem className={classes.root} {...rest}>
       <ButtonBase
         activeClassName={classes.active}
         component={RouterLink}
         to={to}
         className={classes.content}
       >
-        <Icon
-          className={classes.icon}
-          color="inherit"
-          style={{ color }}
-        />
-        <Typography
-          className={classes.text}
-          variant="body2"
-        >
+        <Icon className={classes.icon} color="inherit" style={{ color }} />
+        <Typography className={classes.text} variant="body2">
           {label.name}
         </Typography>
         {displayUnreadCount && (
-          <Typography
-            color="inherit"
-            variant="caption"
-          >
+          <Typography color="inherit" variant="caption">
             {label.unreadCount}
           </Typography>
         )}
@@ -149,7 +138,7 @@ const LabelItem: FC<LabelItemProps> = ({ label, ...rest }) => {
 
 LabelItem.propTypes = {
   // @ts-ignore
-  label: PropTypes.object.isRequired
+  label: PropTypes.object.isRequired,
 };
 
 export default LabelItem;

@@ -1,19 +1,10 @@
-import {
-  useDispatch as useReduxDispatch,
-  useSelector as useReduxSelector,
-} from 'react-redux';
-import type { TypedUseSelectorHook } from 'react-redux';
-import type { ThunkAction } from 'redux-thunk';
-
-import type { Action } from '@reduxjs/toolkit';
-import { ENABLE_REDUX_DEV_TOOLS } from 'src/constants';
+import { ENABLE_REDUX_DEV_TOOLS } from '../constants';
 import rootReducer, { createReducer } from './rootReducer';
 
 import createSagaMiddleware from 'redux-saga';
-import thunk from 'redux-thunk';
 import { heroSaga } from '../features/heroes/hero-saga';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { createInjectorsEnhancer, forceReducerReload } from 'redux-injectors';
+import { createInjectorsEnhancer } from 'redux-injectors';
 import logger from 'redux-logger';
 
 const reduxSagaMonitorOptions = {};

@@ -1,7 +1,4 @@
-import React, {
-  useRef,
-  useState
-} from 'react';
+import React, { useRef, useState } from 'react';
 import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
@@ -14,19 +11,19 @@ import {
   Menu,
   MenuItem,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import useAuth from 'src/hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   avatar: {
     height: 32,
     width: 32,
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   popover: {
-    width: 200
-  }
+    width: 200,
+  },
 }));
 
 const Account: FC = () => {
@@ -53,7 +50,7 @@ const Account: FC = () => {
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Unable to logout', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
@@ -68,16 +65,9 @@ const Account: FC = () => {
         // @ts-ignore
         ref={ref}
       >
-        <Avatar
-          alt="User"
-          className={classes.avatar}
-          src={user.avatar}
-        />
+        <Avatar alt="User" className={classes.avatar} src={user.avatar} />
         <Hidden smDown>
-          <Typography
-            variant="h6"
-            color="inherit"
-          >
+          <Typography variant="h6" color="inherit">
             {user.name}
           </Typography>
         </Hidden>
@@ -86,7 +76,7 @@ const Account: FC = () => {
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'center'
+          horizontal: 'center',
         }}
         keepMounted
         PaperProps={{ className: classes.popover }}
@@ -94,24 +84,16 @@ const Account: FC = () => {
         anchorEl={ref.current}
         open={isOpen}
       >
-        <MenuItem
-          component={RouterLink}
-          to="/app/social/profile"
-        >
+        <MenuItem component={RouterLink} to="/app/social/profile">
           Profile
         </MenuItem>
-        <MenuItem
-          component={RouterLink}
-          to="/app/account"
-        >
+        <MenuItem component={RouterLink} to="/app/account">
           Account
         </MenuItem>
-        <MenuItem onClick={handleLogout}>
-          Logout
-        </MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </>
   );
-}
+};
 
 export default Account;

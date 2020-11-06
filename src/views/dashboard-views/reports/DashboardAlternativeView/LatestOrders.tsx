@@ -1,8 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState
-} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
@@ -23,14 +19,14 @@ import {
   TableRow,
   TableSortLabel,
   Tooltip,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import Label from 'src/components/Label';
-import GenericMoreButton from 'src/components/GenericMoreButton';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import type { Order, OrderStatus } from 'src/types/reports';
+import Label from '../../../../components/Label';
+import GenericMoreButton from '../../../../components/GenericMoreButton';
+import axios from '../../../../utils/axios';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import type { Order, OrderStatus } from '../../../../types/reports';
 
 interface LatestOrdersProps {
   className?: string;
@@ -39,11 +35,11 @@ interface LatestOrdersProps {
 const labelColors: Record<OrderStatus, 'success' | 'warning' | 'error'> = {
   complete: 'success',
   pending: 'warning',
-  rejected: 'error'
+  rejected: 'error',
 };
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const LatestOrders: FC<LatestOrdersProps> = ({ className, ...rest }) => {
@@ -53,8 +49,10 @@ const LatestOrders: FC<LatestOrdersProps> = ({ className, ...rest }) => {
 
   const getOrders = useCallback(async () => {
     try {
-      const response = await axios.get<{ orders: Order[]; }>('/api/reports/latest-orders');
-  
+      const response = await axios.get<{ orders: Order[] }>(
+        '/api/reports/latest-orders',
+      );
+
       if (isMountedRef.current) {
         setOrders(response.data.orders);
       }
@@ -68,14 +66,8 @@ const LatestOrders: FC<LatestOrdersProps> = ({ className, ...rest }) => {
   }, [getOrders]);
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <CardHeader
-        action={<GenericMoreButton />}
-        title="Latest Orders"
-      />
+    <Card className={clsx(classes.root, className)} {...rest}>
+      <CardHeader action={<GenericMoreButton />} title="Latest Orders" />
       <Divider />
       <PerfectScrollbar>
         <Box minWidth={700}>
@@ -83,46 +75,29 @@ const LatestOrders: FC<LatestOrdersProps> = ({ className, ...rest }) => {
             <TableHead>
               <TableRow>
                 <TableCell sortDirection="desc">
-                  <Tooltip
-                    enterDelay={300}
-                    title="Sort"
-                  >
-                    <TableSortLabel
-                      active
-                      direction="desc"
-                    >
+                  <Tooltip enterDelay={300} title="Sort">
+                    <TableSortLabel active direction="desc">
                       Number
                     </TableSortLabel>
                   </Tooltip>
                 </TableCell>
-                <TableCell>
-                  Customer
-                </TableCell>
-                <TableCell>
-                  Items
-                </TableCell>
-                <TableCell>
-                  Total
-                </TableCell>
-                <TableCell>
-                  Status
-                </TableCell>
-                <TableCell align="right">
-                  Date
-                </TableCell>
+                <TableCell>Customer</TableCell>
+                <TableCell>Items</TableCell>
+                <TableCell>Total</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell align="right">Date</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders.map((order) => (
-                <TableRow
-                  hover
-                  key={order.id}
-                >
+              {orders.map(order => (
+                <TableRow hover key={order.id}>
                   <TableCell>{order.number}</TableCell>
                   <TableCell>{order.customer.name}</TableCell>
                   <TableCell>{order.items}</TableCell>
                   <TableCell>
-                    {numeral(order.totalAmount).format(`${order.currency}0,0.00`)}
+                    {numeral(order.totalAmount).format(
+                      `${order.currency}0,0.00`,
+                    )}
                   </TableCell>
                   <TableCell>
                     <Label color={labelColors[order.status]}>
@@ -138,11 +113,7 @@ const LatestOrders: FC<LatestOrdersProps> = ({ className, ...rest }) => {
           </Table>
         </Box>
       </PerfectScrollbar>
-      <Box
-        p={2}
-        display="flex"
-        justifyContent="flex-end"
-      >
+      <Box p={2} display="flex" justifyContent="flex-end">
         <Button
           component={RouterLink}
           size="small"
@@ -157,7 +128,7 @@ const LatestOrders: FC<LatestOrdersProps> = ({ className, ...rest }) => {
 };
 
 LatestOrders.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default LatestOrders;

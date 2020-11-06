@@ -1,62 +1,62 @@
 import moment from 'moment';
 import { colors } from '@material-ui/core';
-import mock from 'src/utils/mock';
-import type { Mail, Label } from 'src/types/mail';
+import mock from '../../src/utils/mock';
+import type { Mail, Label } from '../types/mail';
 
 const labels: Label[] = [
   {
     id: 'all',
     type: 'system_label',
-    name: 'All Mail'
+    name: 'All Mail',
   },
   {
     id: 'inbox',
     type: 'system_label',
     name: 'Inbox',
     unreadCount: 1,
-    totalCount: 0
+    totalCount: 0,
   },
   {
     id: 'sent',
     type: 'system_label',
     name: 'Sent',
     unreadCount: 0,
-    totalCount: 0
+    totalCount: 0,
   },
   {
     id: 'drafts',
     type: 'system_label',
     name: 'Drafts',
     unreadCount: 0,
-    totalCount: 0
+    totalCount: 0,
   },
   {
     id: 'trash',
     type: 'system_label',
     name: 'Trash',
     unreadCount: 0,
-    totalCount: 1
+    totalCount: 1,
   },
   {
     id: 'spam',
     type: 'system_label',
     name: 'Spam',
     unreadCount: 1,
-    totalCount: 1
+    totalCount: 1,
   },
   {
     id: 'important',
     type: 'system_label',
     name: 'Important',
     unreadCount: 0,
-    totalCount: 1
+    totalCount: 1,
   },
   {
     id: 'starred',
     type: 'system_label',
     name: 'Starred',
     unreadCount: 1,
-    totalCount: 1
+    totalCount: 1,
   },
   {
     id: '5e892628d4bc60b4514d5d36',
@@ -64,7 +64,7 @@ const labels: Label[] = [
     name: 'Work',
     unreadCount: 1,
     totalCount: 1,
-    color: colors.green[600]
+    color: colors.green[600],
   },
   {
     id: '5e8926820cf9ec6c834114ec',
@@ -72,7 +72,7 @@ const labels: Label[] = [
     name: 'Business',
     unreadCount: 0,
     totalCount: 2,
-    color: colors.blue[600]
+    color: colors.blue[600],
   },
   {
     id: '5e892696db60f561c43c6f81',
@@ -80,8 +80,8 @@ const labels: Label[] = [
     name: 'Personal',
     unreadCount: 0,
     totalCount: 1,
-    color: colors.orange[600]
-  }
+    color: colors.orange[600],
+  },
 ];
 
 const mails: Mail[] = [
@@ -108,18 +108,16 @@ Ekaterina Tankova
     from: {
       name: 'Ekaterina Tankova',
       email: 'ekaterina.tankova@eplatform.io',
-      avatar: '/static/images/avatars/avatar_2.png'
+      avatar: '/static/images/avatars/avatar_2.png',
     },
     to: [
       {
         name: 'Devlin Duldulao',
         email: 'devlin.duldulao@eplatform.io',
-        avatar: null
-      }
+        avatar: null,
+      },
     ],
-    createdAt: moment()
-      .toDate()
-      .getTime()
+    createdAt: moment().toDate().getTime(),
   },
   {
     id: '5e86bcbd8406cd3055f2b6c8',
@@ -135,18 +133,16 @@ Hey, nice projects! I really liked the one in react. What's your quote on kinda 
     from: {
       name: 'Adam Denisov',
       email: 'adam.denisov@eplatform.io',
-      avatar: '/static/images/avatars/avatar_7.png'
+      avatar: '/static/images/avatars/avatar_7.png',
     },
     to: [
       {
         name: 'Devlin Duldulao',
         email: 'devlin.duldulao@eplatform.io',
-        avatar: null
-      }
+        avatar: null,
+      },
     ],
-    createdAt: moment()
-      .toDate()
-      .getTime()
+    createdAt: moment().toDate().getTime(),
   },
   {
     id: '5e86bcb9fee1ec12453fa13b',
@@ -162,18 +158,16 @@ Dear Shen, Your flight is coming up soon. Please don’t forget to check in for 
     from: {
       name: 'Miller Edwards',
       email: 'miller.edwards@eplatform.io',
-      avatar: '/static/images/avatars/avatar_8.png'
+      avatar: '/static/images/avatars/avatar_8.png',
     },
     to: [
       {
         name: 'Devlin Duldulao',
         email: 'devlin.duldulao@eplatform.io',
-        avatar: null
-      }
+        avatar: null,
+      },
     ],
-    createdAt: moment()
-      .toDate()
-      .getTime()
+    createdAt: moment().toDate().getTime(),
   },
   {
     id: '5e86bcb5575181a5e527e24f',
@@ -189,35 +183,33 @@ My market leading client has another fantastic opportunity for an experienced So
     from: {
       name: 'Cao Yu',
       email: 'cao.yu@eplatform.io',
-      avatar: '/static/images/avatars/avatar_3.png'
+      avatar: '/static/images/avatars/avatar_3.png',
     },
     to: [
       {
         name: 'Devlin Duldulao',
         email: 'devlin.duldulao@eplatform.io',
-        avatar: null
-      }
+        avatar: null,
+      },
     ],
-    createdAt: moment()
-      .toDate()
-      .getTime()
-  }
+    createdAt: moment().toDate().getTime(),
+  },
 ];
 
 const filterMails = (
   mails: Mail[],
   labels: Label[],
   systemLabel?: string,
-  customLabel?: string
+  customLabel?: string,
 ): Mail[] => {
   if (customLabel) {
-    const label = labels.find((_label) => _label.name === customLabel);
+    const label = labels.find(_label => _label.name === customLabel);
 
     if (!label) {
       return [];
     }
 
-    return mails.filter((mail) => mail.labelIds.includes(label.id));
+    return mails.filter(mail => mail.labelIds.includes(label.id));
   }
 
   if (systemLabel === 'all') {
@@ -227,16 +219,20 @@ const filterMails = (
   // "Starred" can be both folder and filter
   if (['starred', 'important'].includes(systemLabel)) {
     if (systemLabel === 'starred') {
-      return mails.filter((mail) => mail.isStarred);
+      return mails.filter(mail => mail.isStarred);
     }
 
     if (systemLabel === 'important') {
-      return mails.filter((mail) => mail.isImportant);
+      return mails.filter(mail => mail.isImportant);
     }
   }
 
-  if (['inbox', 'sent', 'drafts', 'trash', 'spam', 'starred'].includes(systemLabel)) {
-    return mails.filter((mail) => mail.folder === systemLabel);
+  if (
+    ['inbox', 'sent', 'drafts', 'trash', 'spam', 'starred'].includes(
+      systemLabel,
+    )
+  ) {
+    return mails.filter(mail => mail.folder === systemLabel);
   }
 
   return [];
@@ -244,15 +240,10 @@ const filterMails = (
 
 mock.onGet('/api/mail/labels').reply(200, { labels });
 
-mock.onGet('/api/mail/mails').reply((config) => {
+mock.onGet('/api/mail/mails').reply(config => {
   try {
     const { systemLabel, customLabel } = config.params;
-    const filteredMails = filterMails(
-      mails,
-      labels,
-      systemLabel,
-      customLabel
-    );
+    const filteredMails = filterMails(mails, labels, systemLabel, customLabel);
 
     return [200, { mails: filteredMails }];
   } catch (err) {
@@ -261,10 +252,10 @@ mock.onGet('/api/mail/mails').reply((config) => {
   }
 });
 
-mock.onGet('/api/mail/mail').reply((config) => {
+mock.onGet('/api/mail/mail').reply(config => {
   try {
     const { mailId } = config.params;
-    const mail = mails.find((_mail) => _mail.id === mailId);
+    const mail = mails.find(_mail => _mail.id === mailId);
 
     if (!mail) {
       return [404, { message: 'Mail not found' }];

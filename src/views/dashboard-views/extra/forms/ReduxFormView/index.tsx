@@ -8,11 +8,11 @@ import {
   Grid,
   Link,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from 'src/themes/dashboard-theme';
-import Page from 'src/components/Page';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import Page from '../../../../../components/Page';
 import BasicForm from './BasicForm';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -20,18 +20,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-  }
+    paddingBottom: theme.spacing(3),
+  },
 }));
 
 const ReduxFormView: FC = () => {
   const classes = useStyles();
 
   return (
-    <Page
-      className={classes.root}
-      title="Formik Form"
-    >
+    <Page className={classes.root} title="Formik Form">
       <Container maxWidth="lg">
         <Breadcrumbs
           separator={<NavigateNextIcon fontSize="small" />}
@@ -45,26 +42,16 @@ const ReduxFormView: FC = () => {
           >
             Dashboard
           </Link>
-          <Typography
-            variant="body1"
-            color="textPrimary"
-          >
+          <Typography variant="body1" color="textPrimary">
             Forms
           </Typography>
         </Breadcrumbs>
-        <Typography
-          variant="h3"
-          color="textPrimary"
-        >
+        <Typography variant="h3" color="textPrimary">
           Redux Form
         </Typography>
         <Box mt={3}>
           <Grid container>
-            <Grid
-              item
-              xs={12}
-              md={6}
-            >
+            <Grid item xs={12} md={6}>
               <BasicForm />
             </Grid>
           </Grid>

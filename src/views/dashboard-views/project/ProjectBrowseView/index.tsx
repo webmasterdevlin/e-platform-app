@@ -1,19 +1,11 @@
-import React, {
-  useCallback,
-  useState,
-  useEffect
-} from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import type { FC } from 'react';
-import {
-  Box,
-  Container,
-  makeStyles
-} from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import Page from 'src/components/Page';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import type { Project } from 'src/types/project';
+import { Box, Container, makeStyles } from '@material-ui/core';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import Page from '../../../../components/Page';
+import axios from '../../../../utils/axios';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import type { Project } from '../../../../types/project';
 import Header from './Header';
 import Filter from './Filter';
 import Results from './Results';
@@ -23,8 +15,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-  }
+    paddingBottom: theme.spacing(3),
+  },
 }));
 
 const ProjectBrowseView: FC = () => {
@@ -34,7 +26,9 @@ const ProjectBrowseView: FC = () => {
 
   const getProjects = useCallback(async () => {
     try {
-      const response = await axios.get<{ projects: Project[]; }>('/api/projects/projects');
+      const response = await axios.get<{ projects: Project[] }>(
+        '/api/projects/projects',
+      );
 
       if (isMountedRef.current) {
         setProjects(response.data.projects);
@@ -49,10 +43,7 @@ const ProjectBrowseView: FC = () => {
   }, [getProjects]);
 
   return (
-    <Page
-      className={classes.root}
-      title="Project List"
-    >
+    <Page className={classes.root} title="Project List">
       <Container maxWidth="lg">
         <Header />
         <Box mt={3}>
@@ -64,6 +55,6 @@ const ProjectBrowseView: FC = () => {
       </Container>
     </Page>
   );
-}
+};
 
 export default ProjectBrowseView;

@@ -11,15 +11,15 @@ import {
   Link,
   SvgIcon,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import {
   PlusCircle as PlusCircleIcon,
   Download as DownloadIcon,
-  Upload as UploadIcon
+  Upload as UploadIcon,
 } from 'react-feather';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../themes/dashboard-theme';
 
 interface HeaderProps {
   className?: string;
@@ -30,9 +30,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   action: {
     marginBottom: theme.spacing(1),
     '& + &': {
-      marginLeft: theme.spacing(1)
-    }
-  }
+      marginLeft: theme.spacing(1),
+    },
+  },
 }));
 
 const Header: FC<HeaderProps> = ({ className, ...rest }) => {
@@ -67,17 +67,11 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
           >
             Management
           </Link>
-          <Typography
-            variant="body1"
-            color="textPrimary"
-          >
+          <Typography variant="body1" color="textPrimary">
             Products
           </Typography>
         </Breadcrumbs>
-        <Typography
-          variant="h3"
-          color="textPrimary"
-        >
+        <Typography variant="h3" color="textPrimary">
           All Products
         </Typography>
         <Box mt={2}>
@@ -124,7 +118,7 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
 };
 
 Header.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Header;

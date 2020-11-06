@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
-import type {
-  ChangeEvent,
-  FC,
-  FocusEvent
-} from 'react';
+import type { ChangeEvent, FC, FocusEvent } from 'react';
 import clsx from 'clsx';
 import { useHistory } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { makeStyles } from '@material-ui/core';
-import type { Contact } from 'src/types/chat';
-import axios from 'src/utils/axios';
+import type { Contact } from '../../../../../types/chat';
+import axios from '../../../../../utils/axios';
 import Search from './Search';
 import ThreadList from './ThreadList';
 
 const useStyles = makeStyles(() => ({
   hideThreadList: {
-    display: 'none'
-  }
+    display: 'none',
+  },
 }));
 
 const RecentThreads: FC = () => {
@@ -31,7 +27,9 @@ const RecentThreads: FC = () => {
     setSearchQuery('');
   };
 
-  const handleSearchChange = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
+  const handleSearchChange = async (
+    event: ChangeEvent<HTMLInputElement>,
+  ): Promise<void> => {
     try {
       event.persist();
 
@@ -40,11 +38,14 @@ const RecentThreads: FC = () => {
       setSearchQuery(value);
 
       if (value) {
-        const response = await axios.get<{ results: any[]; }>('/api/chat/search', {
-          params: {
-            query: value
-          }
-        });
+        const response = await axios.get<{ results: any[] }>(
+          '/api/chat/search',
+          {
+            params: {
+              query: value,
+            },
+          },
+        );
 
         setSearchResults(response.data.results);
       } else {
@@ -77,7 +78,9 @@ const RecentThreads: FC = () => {
         query={searchQuery}
         results={searchResults}
       />
-      <ThreadList className={clsx({ [classes.hideThreadList]: isSearchFocused })} />
+      <ThreadList
+        className={clsx({ [classes.hideThreadList]: isSearchFocused })}
+      />
     </PerfectScrollbar>
   );
 };

@@ -1,19 +1,11 @@
-import React, {
-  useState,
-  useCallback,
-  useEffect
-} from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import type { FC } from 'react';
-import {
-  Box,
-  Container,
-  makeStyles
-} from '@material-ui/core';
-import axios from 'src/utils/axios';
-import type { Theme } from 'src/themes/dashboard-theme';
-import Page from 'src/components/Page';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import type { Customer } from 'src/types/customer';
+import { Box, Container, makeStyles } from '@material-ui/core';
+import axios from '../../../../utils/axios';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import Page from '../../../../components/Page';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import type { Customer } from '../../../../types/customer';
 import CustomerEditForm from './CustomerEditForm';
 import Header from './Header';
 
@@ -22,8 +14,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-  }
+    paddingBottom: theme.spacing(3),
+  },
 }));
 
 const CustomerEditView: FC = () => {
@@ -33,7 +25,9 @@ const CustomerEditView: FC = () => {
 
   const getCustomer = useCallback(async () => {
     try {
-      const response = await axios.get<{ customer: Customer; }>('/api/customers/1');
+      const response = await axios.get<{ customer: Customer }>(
+        '/api/customers/1',
+      );
 
       if (isMountedRef.current) {
         setCustomer(response.data.customer);
@@ -52,10 +46,7 @@ const CustomerEditView: FC = () => {
   }
 
   return (
-    <Page
-      className={classes.root}
-      title="Customer Edit"
-    >
+    <Page className={classes.root} title="Customer Edit">
       <Container maxWidth={false}>
         <Header />
       </Container>

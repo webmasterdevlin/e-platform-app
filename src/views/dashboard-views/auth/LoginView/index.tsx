@@ -13,10 +13,10 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import Page from 'src/components/Page';
-import Logo from 'src/components/Logo';
-import useAuth from 'src/hooks/useAuth';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import Page from '../../../../components/Page';
+import Logo from '../../../../components/Logo';
+import useAuth from '../../../../hooks/useAuth';
 import Auth0Login from './Auth0Login';
 import FirebaseAuthLogin from './FirebaseAuthLogin';
 import JWTLogin from './JWTLogin';

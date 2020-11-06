@@ -13,12 +13,12 @@ import {
   Grid,
   Typography,
   makeStyles,
-  Hidden
+  Hidden,
 } from '@material-ui/core';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { Invoice } from 'src/types/invoice';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Invoice } from '../../../../types/invoice';
 import InvoicePDF from './InvoicePDF';
 
 interface HeaderProps {
@@ -31,16 +31,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   action: {
     marginBottom: theme.spacing(1),
     '& + &': {
-      marginLeft: theme.spacing(1)
-    }
-  }
+      marginLeft: theme.spacing(1),
+    },
+  },
 }));
 
-const Header:FC<HeaderProps> = ({
-  className,
-  invoice,
-  ...rest
-}) => {
+const Header: FC<HeaderProps> = ({ className, invoice, ...rest }) => {
   const classes = useStyles();
   const [viewPDF, setViewPDF] = useState<boolean>(false);
 
@@ -73,26 +69,17 @@ const Header:FC<HeaderProps> = ({
           >
             Management
           </Link>
-          <Typography
-            variant="body1"
-            color="textPrimary"
-          >
+          <Typography variant="body1" color="textPrimary">
             Invoices
           </Typography>
         </Breadcrumbs>
-        <Typography
-          variant="h3"
-          color="textPrimary"
-        >
+        <Typography variant="h3" color="textPrimary">
           Invoice Details
         </Typography>
       </Grid>
       <Grid item>
         <Hidden smDown>
-          <Button
-            className={classes.action}
-            onClick={() => setViewPDF(true)}
-          >
+          <Button className={classes.action} onClick={() => setViewPDF(true)}>
             Preview PDF
           </Button>
         </Hidden>
@@ -110,15 +97,8 @@ const Header:FC<HeaderProps> = ({
           </Button>
         </PDFDownloadLink>
         <Dialog fullScreen open={viewPDF}>
-          <Box
-            height="100%"
-            display="flex"
-            flexDirection="column"
-          >
-            <Box
-              bgcolor="common.white"
-              p={2}
-            >
+          <Box height="100%" display="flex" flexDirection="column">
+            <Box bgcolor="common.white" p={2}>
               <Button
                 variant="contained"
                 color="secondary"
@@ -129,11 +109,7 @@ const Header:FC<HeaderProps> = ({
               </Button>
             </Box>
             <Box flexGrow={1}>
-              <PDFViewer
-                width="100%"
-                height="100%"
-                style={{ border: 'none' }}
-              >
+              <PDFViewer width="100%" height="100%" style={{ border: 'none' }}>
                 <InvoicePDF invoice={invoice} />
               </PDFViewer>
             </Box>
@@ -147,7 +123,7 @@ const Header:FC<HeaderProps> = ({
 Header.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  invoice: PropTypes.object.isRequired
+  invoice: PropTypes.object.isRequired,
 };
 
 export default Header;

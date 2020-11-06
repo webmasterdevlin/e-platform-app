@@ -9,7 +9,7 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../themes/dashboard-theme';
 
 interface CTAProps {
   className?: string;

@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
-import type {
-  FC,
-  ChangeEvent,
-  KeyboardEvent
-} from 'react';
+import type { FC, ChangeEvent, KeyboardEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
-import {
-  Avatar,
-  TextField,
-  makeStyles
-} from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import { useDispatch } from 'src/store';
-import useAuth from 'src/hooks/useAuth';
-import { addComment } from 'src/slices/kanban';
+import { Avatar, TextField, makeStyles } from '@material-ui/core';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import { useDispatch } from '../../../../../store';
+import useAuth from '../../../../../hooks/useAuth';
+import { addComment } from '../../../../../slices/kanban';
 
 interface CommentAddProps {
   className?: string;
@@ -25,11 +17,11 @@ interface CommentAddProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   field: {
-    marginLeft: theme.spacing(2)
-  }
+    marginLeft: theme.spacing(2),
+  },
 }));
 
 const CommentAdd: FC<CommentAddProps> = ({ cardId, className, ...rest }) => {
@@ -44,7 +36,9 @@ const CommentAdd: FC<CommentAddProps> = ({ cardId, className, ...rest }) => {
     setMessage(event.target.value);
   };
 
-  const handleKeyUp = async (event: KeyboardEvent<HTMLInputElement>): Promise<void> => {
+  const handleKeyUp = async (
+    event: KeyboardEvent<HTMLInputElement>,
+  ): Promise<void> => {
     try {
       event.persist();
 
@@ -52,26 +46,20 @@ const CommentAdd: FC<CommentAddProps> = ({ cardId, className, ...rest }) => {
         await dispatch(addComment(cardId, message));
         setMessage('');
         enqueueSnackbar('Comment added', {
-          variant: 'success'
+          variant: 'success',
         });
       }
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Avatar
-        alt="Person"
-        src={user.avatar}
-      />
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Avatar alt="Person" src={user.avatar} />
       <TextField
         fullWidth
         className={classes.field}
@@ -83,11 +71,11 @@ const CommentAdd: FC<CommentAddProps> = ({ cardId, className, ...rest }) => {
       />
     </div>
   );
-}
+};
 
 CommentAdd.propTypes = {
   cardId: PropTypes.string.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default CommentAdd;

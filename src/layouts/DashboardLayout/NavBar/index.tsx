@@ -21,21 +21,12 @@ import {
 } from '@material-ui/core';
 import ReceiptIcon from '@material-ui/icons/ReceiptOutlined';
 import {
-  Briefcase as BriefcaseIcon,
   Monitor as MonitorIcon,
   Calendar as CalendarIcon,
   Hexagon as HexagonIcon,
-  ShoppingCart as ShoppingCartIcon,
   Folder as FolderIcon,
-  BarChart as BarChartIcon,
-  Lock as LockIcon,
-  UserPlus as UserPlusIcon,
-  AlertCircle as AlertCircleIcon,
   Trello as TrelloIcon,
   User as UserIcon,
-  Layout as LayoutIcon,
-  Edit as EditIcon,
-  DollarSign as DollarSignIcon,
   Mail as MailIcon,
   MessageCircle as MessageCircleIcon,
   PieChart as PieChartIcon,
@@ -43,9 +34,10 @@ import {
   Users as UsersIcon,
   BookOpen as BookOpenIcon,
 } from 'react-feather';
-import Logo from 'src/components/Logo';
-import useAuth from 'src/hooks/useAuth';
+
 import NavItem from './NavItem';
+import Logo from '../../../components/Logo';
+import useAuth from '../../../hooks/useAuth';
 
 interface NavBarProps {
   onMobileClose: () => void;
@@ -316,7 +308,7 @@ const useStyles = makeStyles(() => ({
 const NavBar: FC<NavBarProps> = ({ onMobileClose, openMobile }) => {
   const classes = useStyles();
   const location = useLocation();
-  const { user } = useAuth();
+  const { user }: any = useAuth();
 
   useEffect(() => {
     if (openMobile && onMobileClose) {

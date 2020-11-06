@@ -3,15 +3,10 @@ import type { FC, ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
-import {
-  Box,
-  Button,
-  makeStyles,
-  TextField
-} from '@material-ui/core';
-import { useDispatch } from 'src/store';
-import { addCheckItem } from 'src/slices/kanban';
-import type { Card, Checklist } from 'src/types/kanban';
+import { Box, Button, makeStyles, TextField } from '@material-ui/core';
+import { useDispatch } from '../../../../../store';
+import { addCheckItem } from '../../../../../slices/kanban';
+import type { Card, Checklist } from '../../../../../types/kanban';
 
 interface CheckItemAddProps {
   className?: string;
@@ -20,7 +15,7 @@ interface CheckItemAddProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const CheckItemAdd: FC<CheckItemAddProps> = ({
@@ -59,21 +54,18 @@ const CheckItemAdd: FC<CheckItemAddProps> = ({
       setExpanded(false);
       setName('');
       enqueueSnackbar('Check item added', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       {isExpanded ? (
         <div>
           <TextField
@@ -92,20 +84,13 @@ const CheckItemAdd: FC<CheckItemAddProps> = ({
             >
               Save
             </Button>
-            <Button
-              size="small"
-              onClick={handleCancel}
-            >
+            <Button size="small" onClick={handleCancel}>
               Cancel
             </Button>
           </Box>
         </div>
       ) : (
-        <Button
-          variant="outlined"
-          size="small"
-          onClick={handleAdd}
-        >
+        <Button variant="outlined" size="small" onClick={handleAdd}>
           Add an item
         </Button>
       )}
@@ -118,7 +103,7 @@ CheckItemAdd.propTypes = {
   card: PropTypes.object.isRequired,
   // @ts-ignore
   checklist: PropTypes.object.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default CheckItemAdd;

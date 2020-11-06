@@ -10,11 +10,11 @@ import {
   Link,
   SvgIcon,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { PlusCircle as PlusCircleIcon } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../themes/dashboard-theme';
 
 interface HeaderProps {
   className?: string;
@@ -26,16 +26,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   action: {
     marginBottom: theme.spacing(1),
     '& + &': {
-      marginLeft: theme.spacing(1)
-    }
-  }
+      marginLeft: theme.spacing(1),
+    },
+  },
 }));
 
-const Header: FC<HeaderProps> = ({
-  className,
-  onAddClick,
-  ...rest
-}) => {
+const Header: FC<HeaderProps> = ({ className, onAddClick, ...rest }) => {
   const classes = useStyles();
 
   return (
@@ -59,17 +55,11 @@ const Header: FC<HeaderProps> = ({
           >
             Dashboard
           </Link>
-          <Typography
-            variant="body1"
-            color="textPrimary"
-          >
+          <Typography variant="body1" color="textPrimary">
             Calendar
           </Typography>
         </Breadcrumbs>
-        <Typography
-          variant="h3"
-          color="textPrimary"
-        >
+        <Typography variant="h3" color="textPrimary">
           Here&apos;s what you planned
         </Typography>
       </Grid>
@@ -90,15 +80,15 @@ const Header: FC<HeaderProps> = ({
       </Grid>
     </Grid>
   );
-}
+};
 
 Header.propTypes = {
   className: PropTypes.string,
-  onAddClick: PropTypes.func
+  onAddClick: PropTypes.func,
 };
 
 Header.defaultProps = {
-  onAddClick: () => {}
+  onAddClick: () => {},
 };
 
 export default Header;

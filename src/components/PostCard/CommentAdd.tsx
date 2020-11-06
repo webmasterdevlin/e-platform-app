@@ -1,7 +1,4 @@
-import React, {
-  useRef,
-  useState
-} from 'react';
+import React, { useRef, useState } from 'react';
 import type { FC, ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -12,13 +9,13 @@ import {
   Input,
   Paper,
   Tooltip,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import AddPhotoIcon from '@material-ui/icons/AddPhotoAlternate';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
-import useAuth from 'src/hooks/useAuth';
-import type { Theme } from 'src/themes/dashboard-theme';
+import useAuth from '../../hooks/useAuth';
+import type { Theme } from '../../themes/dashboard-theme';
 
 interface CommentAddProps {
   className?: string;
@@ -27,7 +24,7 @@ interface CommentAddProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     alignItems: 'center',
-    display: 'flex'
+    display: 'flex',
   },
   inputContainer: {
     flexGrow: 1,
@@ -35,15 +32,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: theme.spacing(0.5),
     paddingLeft: theme.spacing(0.5),
     paddingRight: theme.spacing(0.5),
-    paddingTop: theme.spacing(0.5)
+    paddingTop: theme.spacing(0.5),
   },
   divider: {
     height: 24,
-    width: 1
+    width: 1,
   },
   fileInput: {
-    display: 'none'
-  }
+    display: 'none',
+  },
 }));
 
 const CommentAdd: FC<CommentAddProps> = ({ className, ...rest }) => {
@@ -62,18 +59,9 @@ const CommentAdd: FC<CommentAddProps> = ({ className, ...rest }) => {
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Avatar
-        alt="Person"
-        src={user.avatar}
-      />
-      <Paper
-        className={classes.inputContainer}
-        variant="outlined"
-      >
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Avatar alt="Person" src={user.avatar} />
+      <Paper className={classes.inputContainer} variant="outlined">
         <Input
           disableUnderline
           fullWidth
@@ -88,32 +76,22 @@ const CommentAdd: FC<CommentAddProps> = ({ className, ...rest }) => {
       </Tooltip>
       <Divider className={classes.divider} />
       <Tooltip title="Attach image">
-        <IconButton
-          edge="end"
-          onClick={handleAttach}
-        >
+        <IconButton edge="end" onClick={handleAttach}>
           <AddPhotoIcon />
         </IconButton>
       </Tooltip>
       <Tooltip title="Attach file">
-        <IconButton
-          edge="end"
-          onClick={handleAttach}
-        >
+        <IconButton edge="end" onClick={handleAttach}>
           <AttachFileIcon />
         </IconButton>
       </Tooltip>
-      <input
-        className={classes.fileInput}
-        ref={fileInputRef}
-        type="file"
-      />
+      <input className={classes.fileInput} ref={fileInputRef} type="file" />
     </div>
   );
 };
 
 CommentAdd.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default CommentAdd;

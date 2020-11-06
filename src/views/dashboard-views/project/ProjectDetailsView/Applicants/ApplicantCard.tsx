@@ -13,10 +13,10 @@ import {
   Divider,
   Link,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { ProjectApplicant } from 'src/types/project';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { ProjectApplicant } from '../../../../../types/project';
 
 interface ApplicantCardProps {
   className?: string;
@@ -26,39 +26,32 @@ interface ApplicantCardProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   media: {
-    height: 125
+    height: 125,
   },
   content: {
-    paddingTop: 0
+    paddingTop: 0,
   },
   avatar: {
     height: 64,
-    width: 64
+    width: 64,
   },
   chip: {
-    margin: theme.spacing(0.5)
-  }
+    margin: theme.spacing(0.5),
+  },
 }));
 
-const ApplicantCard: FC<ApplicantCardProps> = ({ className, applicant, ...rest }) => {
+const ApplicantCard: FC<ApplicantCardProps> = ({
+  className,
+  applicant,
+  ...rest
+}) => {
   const classes = useStyles();
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <CardMedia
-        className={classes.media}
-        image={applicant.cover}
-      />
+    <Card className={clsx(classes.root, className)} {...rest}>
+      <CardMedia className={classes.media} image={applicant.cover} />
       <CardContent className={classes.content}>
-        <Box
-          mt={-4}
-          mb={2}
-          display="flex"
-          justifyContent="center"
-        >
+        <Box mt={-4} mb={2} display="flex" justifyContent="center">
           <Avatar
             alt="Applicant"
             className={classes.avatar}
@@ -78,19 +71,13 @@ const ApplicantCard: FC<ApplicantCardProps> = ({ className, applicant, ...rest }
         >
           {applicant.name}
         </Link>
-        <Typography
-          align="center"
-          variant="body2"
-          color="textSecondary"
-        >
-          {applicant.commonConnections}
-          {' '}
-          contacts in common
+        <Typography align="center" variant="body2" color="textSecondary">
+          {applicant.commonConnections} contacts in common
         </Typography>
         <Box my={2}>
           <Divider />
         </Box>
-        {applicant.labels.map((label) => (
+        {applicant.labels.map(label => (
           <Chip
             key={label}
             className={classes.chip}
@@ -101,12 +88,12 @@ const ApplicantCard: FC<ApplicantCardProps> = ({ className, applicant, ...rest }
       </CardContent>
     </Card>
   );
-}
+};
 
 ApplicantCard.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  applicant: PropTypes.object.isRequired
+  applicant: PropTypes.object.isRequired,
 };
 
 export default ApplicantCard;

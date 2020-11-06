@@ -1,19 +1,11 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback
-} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import type { FC } from 'react';
-import {
-  Box,
-  Container,
-  makeStyles
-} from '@material-ui/core';
-import axios from 'src/utils/axios';
-import type { Theme } from 'src/themes/dashboard-theme';
-import Page from 'src/components/Page';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import type { Customer } from 'src/types/customer';
+import { Box, Container, makeStyles } from '@material-ui/core';
+import axios from '../../../../utils/axios';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import Page from '../../../../components/Page';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import type { Customer } from '../../../../types/customer';
 import Header from './Header';
 import Results from './Results';
 
@@ -22,8 +14,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-  }
+    paddingBottom: theme.spacing(3),
+  },
 }));
 
 const CustomerListView: FC = () => {
@@ -33,7 +25,9 @@ const CustomerListView: FC = () => {
 
   const getCustomers = useCallback(async () => {
     try {
-      const response = await axios.get<{ customers: Customer[]; }>('/api/customers');
+      const response = await axios.get<{ customers: Customer[] }>(
+        '/api/customers',
+      );
 
       if (isMountedRef.current) {
         setCustomers(response.data.customers);
@@ -48,10 +42,7 @@ const CustomerListView: FC = () => {
   }, [getCustomers]);
 
   return (
-    <Page
-      className={classes.root}
-      title="Customer List"
-    >
+    <Page className={classes.root} title="Customer List">
       <Container maxWidth={false}>
         <Header />
         <Box mt={3}>

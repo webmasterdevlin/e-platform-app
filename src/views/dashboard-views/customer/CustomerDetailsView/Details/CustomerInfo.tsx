@@ -13,13 +13,13 @@ import {
   TableCell,
   TableRow,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import LockOpenIcon from '@material-ui/icons/LockOpenOutlined';
 import PersonIcon from '@material-ui/icons/PersonOutline';
-import type { Theme } from 'src/themes/dashboard-theme';
-import Label from 'src/components/Label';
-import type { Customer } from 'src/types/customer';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import Label from '../../../../../components/Label';
+import type { Customer } from '../../../../../types/customer';
 
 interface CustomerInfoProps {
   customer: Customer;
@@ -29,8 +29,8 @@ interface CustomerInfoProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   fontWeightMedium: {
-    fontWeight: theme.typography.fontWeightMedium
-  }
+    fontWeight: theme.typography.fontWeightMedium,
+  },
 }));
 
 const CustomerInfo: FC<CustomerInfoProps> = ({
@@ -41,23 +41,15 @@ const CustomerInfo: FC<CustomerInfoProps> = ({
   const classes = useStyles();
 
   return (
-    <Card
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <Card className={clsx(classes.root, className)} {...rest}>
       <CardHeader title="Customer info" />
       <Divider />
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell className={classes.fontWeightMedium}>
-              Email
-            </TableCell>
+            <TableCell className={classes.fontWeightMedium}>Email</TableCell>
             <TableCell>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-              >
+              <Typography variant="body2" color="textSecondary">
                 {customer.email}
               </Typography>
               <Label color={customer.isVerified ? 'success' : 'error'}>
@@ -66,27 +58,17 @@ const CustomerInfo: FC<CustomerInfoProps> = ({
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell className={classes.fontWeightMedium}>
-              Phone
-            </TableCell>
+            <TableCell className={classes.fontWeightMedium}>Phone</TableCell>
             <TableCell>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-              >
+              <Typography variant="body2" color="textSecondary">
                 {customer.phone}
               </Typography>
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell className={classes.fontWeightMedium}>
-              Country
-            </TableCell>
+            <TableCell className={classes.fontWeightMedium}>Country</TableCell>
             <TableCell>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-              >
+              <Typography variant="body2" color="textSecondary">
                 {customer.country}
               </Typography>
             </TableCell>
@@ -96,10 +78,7 @@ const CustomerInfo: FC<CustomerInfoProps> = ({
               State/Region
             </TableCell>
             <TableCell>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-              >
+              <Typography variant="body2" color="textSecondary">
                 {customer.state}
               </Typography>
             </TableCell>
@@ -109,10 +88,7 @@ const CustomerInfo: FC<CustomerInfoProps> = ({
               Address 1
             </TableCell>
             <TableCell>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-              >
+              <Typography variant="body2" color="textSecondary">
                 {customer.address1}
               </Typography>
             </TableCell>
@@ -122,28 +98,16 @@ const CustomerInfo: FC<CustomerInfoProps> = ({
               Address 2
             </TableCell>
             <TableCell>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-              >
+              <Typography variant="body2" color="textSecondary">
                 {customer.address2}
               </Typography>
             </TableCell>
           </TableRow>
         </TableBody>
       </Table>
-      <Box
-        p={1}
-        display="flex"
-        flexDirection="column"
-        alignItems="flex-start"
-      >
-        <Button startIcon={<LockOpenIcon />}>
-          Reset &amp; Send Password
-        </Button>
-        <Button startIcon={<PersonIcon />}>
-          Login as Customer
-        </Button>
+      <Box p={1} display="flex" flexDirection="column" alignItems="flex-start">
+        <Button startIcon={<LockOpenIcon />}>Reset &amp; Send Password</Button>
+        <Button startIcon={<PersonIcon />}>Login as Customer</Button>
       </Box>
     </Card>
   );
@@ -152,7 +116,7 @@ const CustomerInfo: FC<CustomerInfoProps> = ({
 CustomerInfo.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  customer: PropTypes.object.isRequired
+  customer: PropTypes.object.isRequired,
 };
 
 export default CustomerInfo;

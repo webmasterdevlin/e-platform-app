@@ -11,11 +11,11 @@ import {
   FormHelperText,
   TextField,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import useAuth from 'src/hooks/useAuth';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import useAuth from '../../../../hooks/useAuth';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
 
 interface FirebaseAuthLoginProps {
   className?: string;
@@ -24,20 +24,23 @@ interface FirebaseAuthLoginProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   googleButton: {
-    backgroundColor: theme.palette.common.white
+    backgroundColor: theme.palette.common.white,
   },
   providerIcon: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   divider: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   dividerText: {
-    margin: theme.spacing(2)
-  }
+    margin: theme.spacing(2),
+  },
 }));
 
-const FirebaseAuthLogin: FC<FirebaseAuthLoginProps> = ({ className, ...rest }) => {
+const FirebaseAuthLogin: FC<FirebaseAuthLoginProps> = ({
+  className,
+  ...rest
+}) => {
   const classes = useStyles();
   const { signInWithEmailAndPassword, signInWithGoogle } = useAuth() as any;
   const isMountedRef = useIsMountedRef();
@@ -45,7 +48,7 @@ const FirebaseAuthLogin: FC<FirebaseAuthLoginProps> = ({ className, ...rest }) =
   const handleGoogleClick = async () => {
     try {
       await signInWithGoogle();
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   };
@@ -66,15 +69,8 @@ const FirebaseAuthLogin: FC<FirebaseAuthLoginProps> = ({ className, ...rest }) =
         />
         Sign in with Google
       </Button>
-      <Box
-        alignItems="center"
-        display="flex"
-        mt={2}
-      >
-        <Divider
-          className={classes.divider}
-          orientation="horizontal"
-        />
+      <Box alignItems="center" display="flex" mt={2}>
+        <Divider className={classes.divider} orientation="horizontal" />
         <Typography
           color="textSecondary"
           variant="body1"
@@ -82,26 +78,22 @@ const FirebaseAuthLogin: FC<FirebaseAuthLoginProps> = ({ className, ...rest }) =
         >
           OR
         </Typography>
-        <Divider
-          className={classes.divider}
-          orientation="horizontal"
-        />
+        <Divider className={classes.divider} orientation="horizontal" />
       </Box>
       <Formik
         initialValues={{
           email: '',
           password: '',
-          submit: null
+          submit: null,
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string().max(255).required('Password is required')
+          email: Yup.string()
+            .email('Must be a valid email')
+            .max(255)
+            .required('Email is required'),
+          password: Yup.string().max(255).required('Password is required'),
         })}
-        onSubmit={async (values, {
-          setErrors,
-          setStatus,
-          setSubmitting
-        }) => {
+        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
             await signInWithEmailAndPassword(values.email, values.password);
 
@@ -126,7 +118,7 @@ const FirebaseAuthLogin: FC<FirebaseAuthLoginProps> = ({ className, ...rest }) =
           handleSubmit,
           isSubmitting,
           touched,
-          values
+          values,
         }) => (
           <form
             noValidate
@@ -162,9 +154,7 @@ const FirebaseAuthLogin: FC<FirebaseAuthLoginProps> = ({ className, ...rest }) =
             />
             {errors.submit && (
               <Box mt={3}>
-                <FormHelperText error>
-                  {errors.submit}
-                </FormHelperText>
+                <FormHelperText error>{errors.submit}</FormHelperText>
               </Box>
             )}
             <Box mt={2}>

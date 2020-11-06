@@ -1,8 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-  useEffect
-} from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import type { FC, ChangeEvent } from 'react';
 import {
   Box,
@@ -10,13 +6,13 @@ import {
   Divider,
   Tab,
   Tabs,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import Page from 'src/components/Page';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import type { Customer } from 'src/types/customer';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import Page from '../../../../components/Page';
+import axios from '../../../../utils/axios';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import type { Customer } from '../../../../types/customer';
 import Header from './Header';
 import Details from './Details';
 import Invoices from './Invoices';
@@ -27,8 +23,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
-  }
+    paddingBottom: theme.spacing(3),
+  },
 }));
 
 const CustomerDetailsView: FC = () => {
@@ -40,7 +36,7 @@ const CustomerDetailsView: FC = () => {
   const tabs = [
     { value: 'details', label: 'Details' },
     { value: 'invoices', label: 'Invoices' },
-    { value: 'logs', label: 'Logs' }
+    { value: 'logs', label: 'Logs' },
   ];
 
   const handleTabsChange = (event: ChangeEvent<{}>, value: string): void => {
@@ -49,7 +45,9 @@ const CustomerDetailsView: FC = () => {
 
   const getCustomer = useCallback(async () => {
     try {
-      const response = await axios.get<{ customer: Customer; }>('/api/customers/1');
+      const response = await axios.get<{ customer: Customer }>(
+        '/api/customers/1',
+      );
 
       if (isMountedRef.current) {
         setCustomer(response.data.customer);
@@ -68,10 +66,7 @@ const CustomerDetailsView: FC = () => {
   }
 
   return (
-    <Page
-      className={classes.root}
-      title="Customer Details"
-    >
+    <Page className={classes.root} title="Customer Details">
       <Container maxWidth={false}>
         <Header customer={customer} />
         <Box mt={3}>
@@ -82,12 +77,8 @@ const CustomerDetailsView: FC = () => {
             variant="scrollable"
             textColor="secondary"
           >
-            {tabs.map((tab) => (
-              <Tab
-                key={tab.value}
-                label={tab.label}
-                value={tab.value}
-              />
+            {tabs.map(tab => (
+              <Tab key={tab.value} label={tab.label} value={tab.value} />
             ))}
           </Tabs>
         </Box>

@@ -10,7 +10,7 @@ import {
   Typography,
   makeStyles,
   IconButton,
-  SvgIcon
+  SvgIcon,
 } from '@material-ui/core';
 import {
   XCircle as CloseIcon,
@@ -22,16 +22,16 @@ import {
   Copy as CopyIcon,
   Users as UsersIcon,
   File as FileIcon,
-  Layout as LayoutIcon
+  Layout as LayoutIcon,
 } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
-import { useDispatch } from 'src/store';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import { useDispatch } from '../../../../../store';
 import {
   deleteCard,
   updateCard,
-  addChecklist
-} from 'src/slices/kanban';
-import type { Card, List } from 'src/types/kanban';
+  addChecklist,
+} from '../../../../../slices/kanban';
+import type { Card, List } from '../../../../../types/kanban';
 import Details from './Details';
 import Checklist from './Checklist';
 import Comment from './Comment';
@@ -48,16 +48,16 @@ interface CardEditModalProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
   },
   listName: {
-    fontWeight: theme.typography.fontWeightMedium
+    fontWeight: theme.typography.fontWeightMedium,
   },
   checklist: {
     '& + &': {
-      marginTop: theme.spacing(3)
-    }
-  }
+      marginTop: theme.spacing(3),
+    },
+  },
 }));
 
 const CardEditModal: FC<CardEditModalProps> = ({
@@ -76,12 +76,12 @@ const CardEditModal: FC<CardEditModalProps> = ({
     try {
       await dispatch(updateCard(card.id, { isSubscribed: true }));
       enqueueSnackbar('Unsubscribed', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
@@ -90,12 +90,12 @@ const CardEditModal: FC<CardEditModalProps> = ({
     try {
       await dispatch(updateCard(card.id, { isSubscribed: false }));
       enqueueSnackbar('Subscribed', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
@@ -104,12 +104,12 @@ const CardEditModal: FC<CardEditModalProps> = ({
     try {
       await dispatch(deleteCard(card.id));
       enqueueSnackbar('Card archived', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
@@ -118,38 +118,22 @@ const CardEditModal: FC<CardEditModalProps> = ({
     try {
       await dispatch(addChecklist(card.id, 'Untitled Checklist'));
       enqueueSnackbar('Checklist added', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
 
   return (
-    <Dialog
-      onClose={onClose}
-      open={open}
-      maxWidth="md"
-      fullWidth
-      {...rest}
-    >
+    <Dialog onClose={onClose} open={open} maxWidth="md" fullWidth {...rest}>
       <div className={classes.root}>
-        <Box
-          display="flex"
-          justifyContent="space-between"
-        >
-          <Typography
-            variant="body2"
-            color="textSecondary"
-          >
-            in list
-            {' '}
-            <span className={classes.listName}>
-              {list.name}
-            </span>
+        <Box display="flex" justifyContent="space-between">
+          <Typography variant="body2" color="textSecondary">
+            in list <span className={classes.listName}>{list.name}</span>
           </Typography>
           <IconButton onClick={onClose}>
             <SvgIcon>
@@ -157,22 +141,12 @@ const CardEditModal: FC<CardEditModalProps> = ({
             </SvgIcon>
           </IconButton>
         </Box>
-        <Grid
-          container
-          spacing={5}
-        >
-          <Grid
-            item
-            xs={12}
-            sm={8}
-          >
-            <Details
-              card={card}
-              list={list}
-            />
+        <Grid container spacing={5}>
+          <Grid item xs={12} sm={8}>
+            <Details card={card} list={list} />
             {card.checklists.length > 0 && (
               <Box mt={5}>
-                {card.checklists.map((checklist) => (
+                {card.checklists.map(checklist => (
                   <Checklist
                     key={checklist.id}
                     card={card}
@@ -183,107 +157,61 @@ const CardEditModal: FC<CardEditModalProps> = ({
               </Box>
             )}
             <Box mt={3}>
-              <Typography
-                variant="h4"
-                color="textPrimary"
-              >
+              <Typography variant="h4" color="textPrimary">
                 Activity
               </Typography>
               <Box mt={2}>
                 <CommentAdd cardId={card.id} />
                 {card.comments.length > 0 && (
                   <Box mt={3}>
-                    {card.comments.map((comment) => (
-                      <Comment
-                        key={comment.id}
-                        comment={comment}
-                      />
+                    {card.comments.map(comment => (
+                      <Comment key={comment.id} comment={comment} />
                     ))}
                   </Box>
                 )}
               </Box>
             </Box>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-          >
-            <Typography
-              variant="overline"
-              color="textSecondary"
-            >
+          <Grid item xs={12} sm={4}>
+            <Typography variant="overline" color="textSecondary">
               Add to card
             </Typography>
-            <ActionButton
-              icon={<CheckIcon />}
-              onClick={handleAddChecklist}
-            >
+            <ActionButton icon={<CheckIcon />} onClick={handleAddChecklist}>
               Checklist
             </ActionButton>
-            <ActionButton
-              icon={<UsersIcon />}
-              disabled
-            >
+            <ActionButton icon={<UsersIcon />} disabled>
               Members
             </ActionButton>
-            <ActionButton
-              icon={<UsersIcon />}
-              disabled
-            >
+            <ActionButton icon={<UsersIcon />} disabled>
               Labels
             </ActionButton>
-            <ActionButton
-              icon={<FileIcon />}
-              disabled
-            >
+            <ActionButton icon={<FileIcon />} disabled>
               Attachments
             </ActionButton>
             <Box mt={3}>
-              <Typography
-                variant="overline"
-                color="textSecondary"
-              >
+              <Typography variant="overline" color="textSecondary">
                 Actions
               </Typography>
-              <ActionButton
-                icon={<ArrowRightIcon />}
-                disabled
-              >
+              <ActionButton icon={<ArrowRightIcon />} disabled>
                 Move
               </ActionButton>
-              <ActionButton
-                icon={<CopyIcon />}
-                disabled
-              >
+              <ActionButton icon={<CopyIcon />} disabled>
                 Copy
               </ActionButton>
-              <ActionButton
-                icon={<LayoutIcon />}
-                disabled
-              >
+              <ActionButton icon={<LayoutIcon />} disabled>
                 Make Template
               </ActionButton>
               {card.isSubscribed ? (
-                <ActionButton
-                  icon={<EyeOffIcon />}
-                  onClick={handleUnsubscribe}
-                >
+                <ActionButton icon={<EyeOffIcon />} onClick={handleUnsubscribe}>
                   Unwatch
                 </ActionButton>
               ) : (
-                <ActionButton
-                  icon={<EyeIcon />}
-                  onClick={handleSubscribe}
-                >
+                <ActionButton icon={<EyeIcon />} onClick={handleSubscribe}>
                   Watch
                 </ActionButton>
               )}
               <Divider />
-              <ActionButton
-                icon={<ArchiveIcon />}
-                onClick={handleDelete}
-              >
+              <ActionButton icon={<ArchiveIcon />} onClick={handleDelete}>
                 Archive
               </ActionButton>
             </Box>
@@ -301,12 +229,12 @@ CardEditModal.propTypes = {
   // @ts-ignore
   list: PropTypes.object.isRequired,
   onClose: PropTypes.func,
-  open: PropTypes.bool.isRequired
+  open: PropTypes.bool.isRequired,
 };
 
 CardEditModal.defaultProps = {
   open: false,
-  onClose: () => {}
+  onClose: () => {},
 };
 
 export default CardEditModal;

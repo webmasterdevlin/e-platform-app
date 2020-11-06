@@ -1,8 +1,4 @@
-import React, {
-  useRef,
-  useState,
-  useEffect
-} from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
@@ -18,37 +14,37 @@ import {
   SvgIcon,
   Tooltip,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import {
   Bell as BellIcon,
   Package as PackageIcon,
   MessageCircle as MessageIcon,
-  Truck as TruckIcon
+  Truck as TruckIcon,
 } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
-import { useDispatch, useSelector } from 'src/store';
-import { getNotifications } from 'src/slices/notification';
+import type { Theme } from '../../../themes/dashboard-theme';
+import { useDispatch, useSelector } from '../../../store';
+import { getNotifications } from '../../../slices/notification';
 
 const iconsMap = {
   order_placed: PackageIcon,
   new_message: MessageIcon,
-  item_shipped: TruckIcon
+  item_shipped: TruckIcon,
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
   popover: {
-    width: 320
+    width: 320,
   },
   icon: {
     backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.secondary.contrastText
-  }
+    color: theme.palette.secondary.contrastText,
+  },
 }));
 
 const Notifications: FC = () => {
   const classes = useStyles();
-  const { notifications } = useSelector((state) => state.notifications);
+  const { notifications } = useSelector(state => state.notifications);
   const ref = useRef<any>(null);
   const dispatch = useDispatch();
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -68,11 +64,7 @@ const Notifications: FC = () => {
   return (
     <>
       <Tooltip title="Notifications">
-        <IconButton
-          color="inherit"
-          ref={ref}
-          onClick={handleOpen}
-        >
+        <IconButton color="inherit" ref={ref} onClick={handleOpen}>
           <SvgIcon>
             <BellIcon />
           </SvgIcon>
@@ -81,7 +73,7 @@ const Notifications: FC = () => {
       <Popover
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'center'
+          horizontal: 'center',
         }}
         classes={{ paper: classes.popover }}
         anchorEl={ref.current}
@@ -89,26 +81,20 @@ const Notifications: FC = () => {
         open={isOpen}
       >
         <Box p={2}>
-          <Typography
-            variant="h5"
-            color="textPrimary"
-          >
+          <Typography variant="h5" color="textPrimary">
             Notifications
           </Typography>
         </Box>
         {notifications.length === 0 ? (
           <Box p={2}>
-            <Typography
-              variant="h6"
-              color="textPrimary"
-            >
+            <Typography variant="h6" color="textPrimary">
               There are no notifications
             </Typography>
           </Box>
         ) : (
           <>
             <List disablePadding>
-              {notifications.map((notification) => {
+              {notifications.map(notification => {
                 const Icon = iconsMap[notification.type];
 
                 return (
@@ -119,9 +105,7 @@ const Notifications: FC = () => {
                     to="#"
                   >
                     <ListItemAvatar>
-                      <Avatar
-                        className={classes.icon}
-                      >
+                      <Avatar className={classes.icon}>
                         <SvgIcon fontSize="small">
                           <Icon />
                         </SvgIcon>
@@ -129,23 +113,18 @@ const Notifications: FC = () => {
                     </ListItemAvatar>
                     <ListItemText
                       primary={notification.title}
-                      primaryTypographyProps={{ variant: 'subtitle2', color: 'textPrimary' }}
+                      primaryTypographyProps={{
+                        variant: 'subtitle2',
+                        color: 'textPrimary',
+                      }}
                       secondary={notification.description}
                     />
                   </ListItem>
                 );
               })}
             </List>
-            <Box
-              p={1}
-              display="flex"
-              justifyContent="center"
-            >
-              <Button
-                component={RouterLink}
-                size="small"
-                to="#"
-              >
+            <Box p={1} display="flex" justifyContent="center">
+              <Button component={RouterLink} size="small" to="#">
                 Mark all as read
               </Button>
             </Box>

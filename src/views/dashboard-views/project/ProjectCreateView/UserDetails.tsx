@@ -9,9 +9,9 @@ import {
   Typography,
   Radio,
   Button,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../../../../themes/dashboard-theme';
 
 interface UserDetailsProps {
   className?: string;
@@ -22,19 +22,21 @@ interface UserDetailsProps {
 const typeOptions = [
   {
     value: 'freelancer',
-    title: 'I\'m a freelancer',
-    description: 'I\'m looking for teamates to join in a personal project'
+    title: "I'm a freelancer",
+    description: "I'm looking for teamates to join in a personal project",
   },
   {
     value: 'projectOwner',
     title: 'I’m a project owner',
-    description: 'I\'m looking for freelancer or contractors to take care of my project'
+    description:
+      "I'm looking for freelancer or contractors to take care of my project",
   },
   {
     value: 'affiliate',
     title: 'I want to join affiliate',
-    description: 'I\'m looking for freelancer or contractors to take care of my project'
-  }
+    description:
+      "I'm looking for freelancer or contractors to take care of my project",
+  },
 ];
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -43,13 +45,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'flex-start',
     display: 'flex',
     marginBottom: theme.spacing(2),
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
   stepButton: {
     '& + &': {
-      marginLeft: theme.spacing(2)
-    }
-  }
+      marginLeft: theme.spacing(2),
+    },
+  },
 }));
 
 const UserDetails: FC<UserDetailsProps> = ({
@@ -67,7 +69,9 @@ const UserDetails: FC<UserDetailsProps> = ({
     setType(newType);
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    event: FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
 
     try {
@@ -92,23 +96,17 @@ const UserDetails: FC<UserDetailsProps> = ({
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <Typography
-        variant="h3"
-        color="textPrimary"
-      >
+      <Typography variant="h3" color="textPrimary">
         Please select one option
       </Typography>
       <Box mt={2}>
-        <Typography
-          variant="subtitle1"
-          color="textSecondary"
-        >
-          Proin tincidunt lacus sed ante efficitur efficitur.
-          Quisque aliquam fringilla velit sit amet euismod.
+        <Typography variant="subtitle1" color="textSecondary">
+          Proin tincidunt lacus sed ante efficitur efficitur. Quisque aliquam
+          fringilla velit sit amet euismod.
         </Typography>
       </Box>
       <Box mt={2}>
-        {typeOptions.map((typeOption) => (
+        {typeOptions.map(typeOption => (
           <Paper
             className={classes.typeOption}
             elevation={type === typeOption.value ? 10 : 1}
@@ -119,17 +117,10 @@ const UserDetails: FC<UserDetailsProps> = ({
               onClick={() => handleChange(typeOption.value)}
             />
             <Box ml={2}>
-              <Typography
-                gutterBottom
-                variant="h5"
-                color="textPrimary"
-              >
+              <Typography gutterBottom variant="h5" color="textPrimary">
                 {typeOption.title}
               </Typography>
-              <Typography
-                variant="body1"
-                color="textPrimary"
-              >
+              <Typography variant="body1" color="textPrimary">
                 {typeOption.description}
               </Typography>
             </Box>
@@ -138,20 +129,12 @@ const UserDetails: FC<UserDetailsProps> = ({
       </Box>
       {error && (
         <Box mt={2}>
-          <FormHelperText error>
-            {error}
-          </FormHelperText>
+          <FormHelperText error>{error}</FormHelperText>
         </Box>
       )}
-      <Box
-        mt={6}
-        display="flex"
-      >
+      <Box mt={6} display="flex">
         {onBack && (
-          <Button
-            onClick={onBack}
-            size="large"
-          >
+          <Button onClick={onBack} size="large">
             Previous
           </Button>
         )}
@@ -173,12 +156,12 @@ const UserDetails: FC<UserDetailsProps> = ({
 UserDetails.propTypes = {
   className: PropTypes.string,
   onNext: PropTypes.func,
-  onBack: PropTypes.func
+  onBack: PropTypes.func,
 };
 
 UserDetails.defaultProps = {
   onNext: () => {},
-  onBack: () => {}
+  onBack: () => {},
 };
 
 export default UserDetails;

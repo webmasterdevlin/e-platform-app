@@ -15,8 +15,8 @@ import {
   Link,
   makeStyles,
 } from '@material-ui/core';
-import { APP_VERSION } from 'src/constants';
-import Logo from 'src/components/Logo';
+import { APP_VERSION } from '../../constants';
+import Logo from '../../components/Logo';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { AuthUser, ProfileModel } from '../../auth/auth.model';

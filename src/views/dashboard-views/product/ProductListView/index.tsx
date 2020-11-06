@@ -1,19 +1,11 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback
-} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import type { FC } from 'react';
-import {
-  Box,
-  Container,
-  makeStyles
-} from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
-import axios from 'src/utils/axios';
-import Page from 'src/components/Page';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import type { Product } from 'src/types/product';
+import { Box, Container, makeStyles } from '@material-ui/core';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import axios from '../../../../utils/axios';
+import Page from '../../../../components/Page';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import type { Product } from '../../../../types/product';
 import Header from './Header';
 import Results from './Results';
 
@@ -22,8 +14,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingTop: theme.spacing(3),
-    paddingBottom: 100
-  }
+    paddingBottom: 100,
+  },
 }));
 
 const ProductListView: FC = () => {
@@ -33,7 +25,9 @@ const ProductListView: FC = () => {
 
   const getProducts = useCallback(async () => {
     try {
-      const response = await axios.get<{ products: Product[]; }>('/api/products');
+      const response = await axios.get<{ products: Product[] }>(
+        '/api/products',
+      );
 
       if (isMountedRef.current) {
         setProducts(response.data.products);
@@ -48,10 +42,7 @@ const ProductListView: FC = () => {
   }, [getProducts]);
 
   return (
-    <Page
-      className={classes.root}
-      title="Product List"
-    >
+    <Page className={classes.root} title="Product List">
       <Container maxWidth={false}>
         <Header />
         {products && (

@@ -12,17 +12,17 @@ import {
   TextField,
   Typography,
   Link,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import useAuth from 'src/hooks/useAuth';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import useAuth from '../../../../hooks/useAuth';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
 
 interface JWTRegisterProps {
   className?: string;
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const JWTRegister: FC<JWTRegisterProps> = ({ className, ...rest }) => {
@@ -37,19 +37,18 @@ const JWTRegister: FC<JWTRegisterProps> = ({ className, ...rest }) => {
         name: '',
         password: '',
         policy: false,
-        submit: null
+        submit: null,
       }}
       validationSchema={Yup.object().shape({
-        email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+        email: Yup.string()
+          .email('Must be a valid email')
+          .max(255)
+          .required('Email is required'),
         name: Yup.string().max(255).required('Name is required'),
         password: Yup.string().min(7).max(255).required('Password is required'),
-        policy: Yup.boolean().oneOf([true], 'This field must be checked')
+        policy: Yup.boolean().oneOf([true], 'This field must be checked'),
       })}
-      onSubmit={async (values, {
-        setErrors,
-        setStatus,
-        setSubmitting
-      }) => {
+      onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
         try {
           await register(values.email, values.name, values.password);
 
@@ -72,7 +71,7 @@ const JWTRegister: FC<JWTRegisterProps> = ({ className, ...rest }) => {
         handleSubmit,
         isSubmitting,
         touched,
-        values
+        values,
       }) => (
         <form
           noValidate
@@ -118,42 +117,25 @@ const JWTRegister: FC<JWTRegisterProps> = ({ className, ...rest }) => {
             value={values.password}
             variant="outlined"
           />
-          <Box
-            alignItems="center"
-            display="flex"
-            mt={2}
-            ml={-1}
-          >
+          <Box alignItems="center" display="flex" mt={2} ml={-1}>
             <Checkbox
               checked={values.policy}
               name="policy"
               onChange={handleChange}
             />
-            <Typography
-              variant="body2"
-              color="textSecondary"
-            >
-              I have read the
-              {' '}
-              <Link
-                component="a"
-                href="#"
-                color="secondary"
-              >
+            <Typography variant="body2" color="textSecondary">
+              I have read the{' '}
+              <Link component="a" href="#" color="secondary">
                 Terms and Conditions
               </Link>
             </Typography>
           </Box>
           {Boolean(touched.policy && errors.policy) && (
-            <FormHelperText error>
-              {errors.policy}
-            </FormHelperText>
+            <FormHelperText error>{errors.policy}</FormHelperText>
           )}
           {errors.submit && (
             <Box mt={3}>
-              <FormHelperText error>
-                {errors.submit}
-              </FormHelperText>
+              <FormHelperText error>{errors.submit}</FormHelperText>
             </Box>
           )}
           <Box mt={2}>
@@ -175,7 +157,7 @@ const JWTRegister: FC<JWTRegisterProps> = ({ className, ...rest }) => {
 };
 
 JWTRegister.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default JWTRegister;

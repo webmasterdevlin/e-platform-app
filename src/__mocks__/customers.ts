@@ -1,11 +1,11 @@
 import moment from 'moment';
-import mock from 'src/utils/mock';
+import mock from '../../src/utils/mock';
 import type {
   Customer,
   CustomerEmail,
   Invoice,
-  CustomerLog
-} from 'src/types/customer';
+  CustomerLog,
+} from '../types/customer';
 
 mock.onGet('/api/customers').reply(() => {
   const customers: Customer[] = [
@@ -21,13 +21,13 @@ mock.onGet('/api/customers').reply(() => {
       isReturning: true,
       name: 'Cao Yu',
       state: 'Ohio',
-      totalAmountSpent: 300.00,
+      totalAmountSpent: 300.0,
       totalOrders: 3,
       updatedAt: moment()
         .subtract(1, 'days')
         .subtract(7, 'hours')
         .toDate()
-        .getTime()
+        .getTime(),
     },
     {
       id: '5e887b209c28ac3dd97f6db5',
@@ -41,13 +41,13 @@ mock.onGet('/api/customers').reply(() => {
       isReturning: false,
       name: 'Alex Richardson',
       state: 'Georgia',
-      totalAmountSpent: 0.00,
+      totalAmountSpent: 0.0,
       totalOrders: 0,
       updatedAt: moment()
         .subtract(2, 'days')
         .subtract(1, 'hours')
         .toDate()
-        .getTime()
+        .getTime(),
     },
     {
       id: '5e887b7602bdbc4dbb234b27',
@@ -61,13 +61,13 @@ mock.onGet('/api/customers').reply(() => {
       isReturning: false,
       name: 'Anje Keizer',
       state: 'Ohio',
-      totalAmountSpent: 5600.00,
+      totalAmountSpent: 5600.0,
       totalOrders: 6,
       updatedAt: moment()
         .subtract(2, 'days')
         .subtract(4, 'hours')
         .toDate()
-        .getTime()
+        .getTime(),
     },
     {
       id: '5e86809283e28b96d2d38537',
@@ -81,13 +81,13 @@ mock.onGet('/api/customers').reply(() => {
       isReturning: true,
       name: 'Devlin Duldulao',
       state: 'Madrid',
-      totalAmountSpent: 500.00,
+      totalAmountSpent: 500.0,
       totalOrders: 1,
       updatedAt: moment()
         .subtract(2, 'days')
         .subtract(11, 'hours')
         .toDate()
-        .getTime()
+        .getTime(),
     },
     {
       id: '5e86805e2bafd54f66cc95c3',
@@ -100,14 +100,14 @@ mock.onGet('/api/customers').reply(() => {
       isProspect: true,
       isReturning: false,
       name: 'Adam Denisov',
-      totalAmountSpent: 0.00,
+      totalAmountSpent: 0.0,
       totalOrders: 0,
       state: 'California',
       updatedAt: moment()
         .subtract(3, 'days')
         .subtract(7, 'hours')
         .toDate()
-        .getTime()
+        .getTime(),
     },
     {
       id: '5e887a1fbefd7938eea9c981',
@@ -121,13 +121,13 @@ mock.onGet('/api/customers').reply(() => {
       isReturning: false,
       name: 'Miller Edwards',
       state: 'California',
-      totalAmountSpent: 0.00,
+      totalAmountSpent: 0.0,
       totalOrders: 0,
       updatedAt: moment()
         .subtract(4, 'days')
         .subtract(5, 'hours')
         .toDate()
-        .getTime()
+        .getTime(),
     },
     {
       id: '5e887d0b3d090c1b8f162003',
@@ -141,13 +141,13 @@ mock.onGet('/api/customers').reply(() => {
       country: 'USA',
       name: 'Emilee Simchenko',
       state: 'Nevada',
-      totalAmountSpent: 100.00,
+      totalAmountSpent: 100.0,
       totalOrders: 4,
       updatedAt: moment()
         .subtract(4, 'days')
         .subtract(15, 'hours')
         .toDate()
-        .getTime()
+        .getTime(),
     },
     {
       id: '5e88792be2d4cfb4bf0971d9',
@@ -161,13 +161,13 @@ mock.onGet('/api/customers').reply(() => {
       isReturning: true,
       name: 'Elliott Stone',
       state: 'California',
-      totalAmountSpent: 1000.00,
+      totalAmountSpent: 1000.0,
       totalOrders: 2,
       updatedAt: moment()
         .subtract(5, 'days')
         .subtract(2, 'hours')
         .toDate()
-        .getTime()
+        .getTime(),
     },
     {
       id: '5e8877da9a65442b11551975',
@@ -180,13 +180,13 @@ mock.onGet('/api/customers').reply(() => {
       isReturning: false,
       name: 'Shen Zhi',
       state: 'Utah',
-      totalAmountSpent: 0.00,
+      totalAmountSpent: 0.0,
       totalOrders: 0,
       updatedAt: moment()
         .subtract(6, 'days')
         .subtract(8, 'hours')
         .toDate()
-        .getTime()
+        .getTime(),
     },
     {
       id: '5e8680e60cba5019c5ca6fda',
@@ -200,14 +200,14 @@ mock.onGet('/api/customers').reply(() => {
       isReturning: true,
       name: 'Merrile Burgett',
       state: 'Utah',
-      totalAmountSpent: 200.00,
+      totalAmountSpent: 200.0,
       totalOrders: 7,
       updatedAt: moment()
         .subtract(9, 'days')
         .subtract(1, 'hours')
         .toDate()
-        .getTime()
-    }
+        .getTime(),
+    },
   ];
 
   return [200, { customers }];
@@ -230,7 +230,7 @@ mock.onGet('/api/customers/1').reply(() => {
     phone: '+55 748 327 439',
     state: 'New York',
     vatRate: 19,
-    zipCode: '240355'
+    zipCode: '240355',
   };
 
   return [200, { customer }];
@@ -246,7 +246,7 @@ mock.onGet('/api/customers/1/emails').reply(() => {
         .subtract(34, 'minutes')
         .toDate()
         .getTime(),
-      description: 'Order confirmation'
+      description: 'Order confirmation',
     },
     {
       id: '5ece2ce8cebf7ad1d100c0cd',
@@ -256,8 +256,8 @@ mock.onGet('/api/customers/1/emails').reply(() => {
         .subtract(49, 'minutes')
         .toDate()
         .getTime(),
-      description: 'Order confirmation'
-    }
+      description: 'Order confirmation',
+    },
   ];
 
   return [200, { emails }];
@@ -269,24 +269,20 @@ mock.onGet('/api/customers/1/invoices').reply(() => {
       id: '5ece2cef3e562cbd61996259',
       currency: '$',
       description: 'Freelancer Subscription (12/05/2019 - 11/06/2019)',
-      issueDate: moment()
-        .toDate()
-        .getTime(),
+      issueDate: moment().toDate().getTime(),
       paymentMethod: 'Vipps',
       status: 'paid',
-      value: 5.25
+      value: 5.25,
     },
     {
       id: '5ece2cf461b9484866f2968c',
       currency: '$',
       description: 'Freelancer Subscription (12/05/2019 - 11/06/2019)',
-      issueDate: moment()
-        .toDate()
-        .getTime(),
+      issueDate: moment().toDate().getTime(),
       paymentMethod: 'Bankaksept',
       status: 'paid',
-      value: 5.25
-    }
+      value: 5.25,
+    },
   ];
 
   return [200, { invoices }];
@@ -306,7 +302,7 @@ mock.onGet('/api/customers/1/logs').reply(() => {
       ip: '84.234.243.42',
       method: 'POST',
       route: '/api/purchase',
-      status: 200
+      status: 200,
     },
     {
       id: '5ece2d02510484b2952e1e05',
@@ -320,7 +316,7 @@ mock.onGet('/api/customers/1/logs').reply(() => {
       ip: '84.234.243.42',
       method: 'POST',
       route: '/api/purchase',
-      status: 522
+      status: 522,
     },
     {
       id: '5ece2d08e2748e4e9788901a',
@@ -334,7 +330,7 @@ mock.onGet('/api/customers/1/logs').reply(() => {
       ip: '84.234.243.42',
       method: 'DELETE',
       route: '/api/products/d65654e/remove',
-      status: 200
+      status: 200,
     },
     {
       id: '5ece2d0c47214e342c2d7f28',
@@ -348,7 +344,7 @@ mock.onGet('/api/customers/1/logs').reply(() => {
       ip: '84.234.243.42',
       method: 'GET',
       route: '/api/products/d65654e/add',
-      status: 200
+      status: 200,
     },
     {
       id: '5ece2d11e4060a97b2b57623',
@@ -362,7 +358,7 @@ mock.onGet('/api/customers/1/logs').reply(() => {
       ip: '84.234.243.42',
       method: 'GET',
       route: '/api/products/c85727f/add',
-      status: 200
+      status: 200,
     },
     {
       id: '5ece2d16cf6d53d8e33656af',
@@ -376,7 +372,7 @@ mock.onGet('/api/customers/1/logs').reply(() => {
       ip: '84.234.243.42',
       method: 'GET',
       route: '/api/products/c85727f',
-      status: 200
+      status: 200,
     },
     {
       id: '5ece2d1b2ec5071be9286a96',
@@ -390,7 +386,7 @@ mock.onGet('/api/customers/1/logs').reply(() => {
       ip: '84.234.243.42',
       method: 'GET',
       route: '/api/products',
-      status: 200
+      status: 200,
     },
     {
       id: '5ece2d22e68d5498917e47bc',
@@ -404,8 +400,8 @@ mock.onGet('/api/customers/1/logs').reply(() => {
       ip: '84.234.243.42',
       method: 'POST',
       route: '/api/login',
-      status: 200
-    }
+      status: 200,
+    },
   ];
 
   return [200, { logs }];

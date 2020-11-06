@@ -9,10 +9,10 @@ import {
   List,
   Button,
   Divider,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import { useDispatch, useSelector } from 'src/store';
-import { closeSidebar, openCompose } from 'src/slices/mail';
+import { useDispatch, useSelector } from '../../../../../store';
+import { closeSidebar, openCompose } from '../../../../../slices/mail';
 import LabelItem from './LabelItem';
 
 interface SidebarProps {
@@ -22,25 +22,25 @@ interface SidebarProps {
 const useStyles = makeStyles(() => ({
   drawerDesktopRoot: {
     width: 280,
-    flexShrink: 0
+    flexShrink: 0,
   },
   drawerDesktopPaper: {
-    position: 'relative'
+    position: 'relative',
   },
   drawerMobilePaper: {
     position: 'relative',
-    width: 280
+    width: 280,
   },
   drawerMobileBackdrop: {
-    position: 'absolute'
-  }
+    position: 'absolute',
+  },
 }));
 
 const Sidebar: FC<SidebarProps> = ({ containerRef }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const location = useLocation();
-  const { labels, isSidebarOpen } = useSelector((state) => state.mail);
+  const { labels, isSidebarOpen } = useSelector(state => state.mail);
 
   const handleCloseSidebar = (): void => {
     dispatch(closeSidebar());
@@ -59,10 +59,7 @@ const Sidebar: FC<SidebarProps> = ({ containerRef }) => {
 
   const content = (
     <div>
-      <Box
-        px={3}
-        py={2}
-      >
+      <Box px={3} py={2}>
         <Button
           color="secondary"
           fullWidth
@@ -73,16 +70,10 @@ const Sidebar: FC<SidebarProps> = ({ containerRef }) => {
         </Button>
       </Box>
       <Divider />
-      <Box
-        py={2}
-        pr={2}
-      >
+      <Box py={2} pr={2}>
         <List>
-          {labels.map((label) => (
-            <LabelItem
-              key={label.id}
-              label={label}
-            />
+          {labels.map(label => (
+            <LabelItem key={label.id} label={label} />
           ))}
         </List>
       </Box>
@@ -96,7 +87,7 @@ const Sidebar: FC<SidebarProps> = ({ containerRef }) => {
           variant="permanent"
           classes={{
             root: classes.drawerDesktopRoot,
-            paper: classes.drawerDesktopPaper
+            paper: classes.drawerDesktopPaper,
           }}
         >
           {content}
@@ -108,7 +99,7 @@ const Sidebar: FC<SidebarProps> = ({ containerRef }) => {
           open={isSidebarOpen}
           onClose={handleCloseSidebar}
           classes={{
-            paper: classes.drawerMobilePaper
+            paper: classes.drawerMobilePaper,
           }}
           style={{ position: 'absolute', zIndex: 1200 }}
           BackdropProps={{ classes: { root: classes.drawerMobileBackdrop } }}
@@ -122,7 +113,7 @@ const Sidebar: FC<SidebarProps> = ({ containerRef }) => {
 };
 
 Sidebar.propTypes = {
-  containerRef: PropTypes.any.isRequired
+  containerRef: PropTypes.any.isRequired,
 };
 
 export default Sidebar;

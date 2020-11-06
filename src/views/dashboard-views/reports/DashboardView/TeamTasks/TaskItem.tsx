@@ -10,12 +10,12 @@ import {
   ListItemProps,
   ListItemText,
   Tooltip,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import { AvatarGroup } from '@material-ui/lab';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { Task } from 'src/types/reports';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Task } from '../../../../../types/reports';
 
 interface TaskItemProps extends ListItemProps {
   className?: string;
@@ -26,8 +26,8 @@ interface TaskItemProps extends ListItemProps {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   viewButton: {
-    marginLeft: theme.spacing(2)
-  }
+    marginLeft: theme.spacing(2),
+  },
 }));
 
 const TaskItem: FC<TaskItemProps> = ({ className, task, ...rest }) => {
@@ -45,30 +45,21 @@ const TaskItem: FC<TaskItemProps> = ({ className, task, ...rest }) => {
   }
 
   return (
-    <ListItem
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <ListItem className={clsx(classes.root, className)} {...rest}>
       <ListItemText
         primary={task.title}
         primaryTypographyProps={{ variant: 'h6', noWrap: true }}
         secondary={deadline}
       />
       <AvatarGroup max={3}>
-        {task.members.map((member) => (
-          <Tooltip
-            key={member.name}
-            title="View"
-          >
+        {task.members.map(member => (
+          <Tooltip key={member.name} title="View">
             <Avatar src={member.avatar} />
           </Tooltip>
         ))}
       </AvatarGroup>
       <Tooltip title="View task">
-        <IconButton
-          className={classes.viewButton}
-          edge="end"
-        >
+        <IconButton className={classes.viewButton} edge="end">
           <OpenInNewIcon fontSize="small" />
         </IconButton>
       </Tooltip>
@@ -79,7 +70,7 @@ const TaskItem: FC<TaskItemProps> = ({ className, task, ...rest }) => {
 TaskItem.propTypes = {
   className: PropTypes.string,
   // @ts-ignore
-  task: PropTypes.object.isRequired
+  task: PropTypes.object.isRequired,
 };
 
 export default TaskItem;

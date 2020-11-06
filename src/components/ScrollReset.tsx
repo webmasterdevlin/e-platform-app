@@ -1,4 +1,4 @@
-import useScrollReset from 'src/hooks/useScrollReset';
+import useScrollReset from '../hooks/useScrollReset';
 
 const ScrollReset = () => {
   useScrollReset();

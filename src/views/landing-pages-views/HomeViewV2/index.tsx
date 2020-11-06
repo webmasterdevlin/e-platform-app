@@ -10,7 +10,7 @@ import {
   Button,
 } from '@material-ui/core';
 import { Icon } from '../../../components/atoms';
-import { SectionHeader } from 'src/components/molecules';
+import { SectionHeader } from '../../../components/molecules';
 import { Section } from '../../../components/organisms';
 import Footer from '../../../layouts/MainLayout/Footer';
 import Page from '../../../components/Page';

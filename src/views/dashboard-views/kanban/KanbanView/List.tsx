@@ -1,15 +1,9 @@
-import React, {
-  useState,
-  useRef
-} from 'react';
+import React, { useState, useRef } from 'react';
 import type { FC, ChangeEvent } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { useSnackbar } from 'notistack';
-import {
-  Droppable,
-  Draggable
-} from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 import {
   Box,
   ClickAwayListener,
@@ -21,18 +15,14 @@ import {
   SvgIcon,
   TextField,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import { MoreVertical as MoreIcon } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
-import { useDispatch, useSelector } from 'src/store';
-import type { RootState } from 'src/store';
-import {
-  clearList,
-  deleteList,
-  updateList
-} from 'src/slices/kanban';
-import type { List as ListType } from 'src/types/kanban';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import { useDispatch, useSelector } from '../../../../store';
+import type { RootState } from '../../../../store';
+import { clearList, deleteList, updateList } from '../../../../slices/kanban';
+import type { List as ListType } from '../../../../types/kanban';
 import Card from './Card';
 import CardAdd from './CardAdd';
 
@@ -59,11 +49,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflowX: 'hidden',
     width: 380,
     [theme.breakpoints.down('xs')]: {
-      width: 300
-    }
+      width: 300,
+    },
   },
   title: {
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   droppableArea: {
     minHeight: 80,
@@ -72,17 +62,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1),
     paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2)
+    paddingRight: theme.spacing(2),
   },
   menu: {
-    width: 240
-  }
+    width: 240,
+  },
 }));
 
 const List: FC<ListProps> = ({ className, listId, ...rest }) => {
   const classes = useStyles();
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
-  const list = useSelector((state) => listSelector(state, listId));
+  const list = useSelector(state => listSelector(state, listId));
   const dispatch = useDispatch();
   const moreRef = useRef<HTMLButtonElement | null>(null);
   const { enqueueSnackbar } = useSnackbar();
@@ -120,12 +110,12 @@ const List: FC<ListProps> = ({ className, listId, ...rest }) => {
       setRenaming(false);
       await dispatch(updateList(list.id, update));
       enqueueSnackbar('List updated', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
@@ -135,12 +125,12 @@ const List: FC<ListProps> = ({ className, listId, ...rest }) => {
       setMenuOpen(false);
       await dispatch(deleteList(list.id));
       enqueueSnackbar('List deleted', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
@@ -150,28 +140,20 @@ const List: FC<ListProps> = ({ className, listId, ...rest }) => {
       setMenuOpen(false);
       await dispatch(clearList(list.id));
       enqueueSnackbar('List cleared', {
-        variant: 'success'
+        variant: 'success',
       });
     } catch (err) {
       console.error(err);
       enqueueSnackbar('Something went wrong', {
-        variant: 'error'
+        variant: 'error',
       });
     }
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <Paper className={classes.inner}>
-        <Box
-          py={1}
-          px={2}
-          display="flex"
-          alignItems="center"
-        >
+        <Box py={1} px={2} display="flex" alignItems="center">
           {isRenaming ? (
             <ClickAwayListener onClickAway={handleRename}>
               <TextField
@@ -183,11 +165,7 @@ const List: FC<ListProps> = ({ className, listId, ...rest }) => {
               />
             </ClickAwayListener>
           ) : (
-            <Typography
-              color="inherit"
-              variant="h5"
-              onClick={handleRenameInit}
-            >
+            <Typography color="inherit" variant="h5" onClick={handleRenameInit}>
               {list.name}
             </Typography>
           )}
@@ -204,21 +182,11 @@ const List: FC<ListProps> = ({ className, listId, ...rest }) => {
           </IconButton>
         </Box>
         <Divider />
-        <Droppable
-          droppableId={list.id}
-          type="card"
-        >
-          {(provided) => (
-            <div
-              ref={provided.innerRef}
-              className={classes.droppableArea}
-            >
+        <Droppable droppableId={list.id} type="card">
+          {provided => (
+            <div ref={provided.innerRef} className={classes.droppableArea}>
               {list.cardIds.map((cardId, index) => (
-                <Draggable
-                  draggableId={cardId}
-                  index={index}
-                  key={cardId}
-                >
+                <Draggable draggableId={cardId} index={index} key={cardId}>
                   {(provided, snapshot) => (
                     <Card
                       cardId={cardId}
@@ -250,20 +218,14 @@ const List: FC<ListProps> = ({ className, listId, ...rest }) => {
           onClose={handleMenuClose}
           anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'center'
+            horizontal: 'center',
           }}
           PaperProps={{ className: classes.menu }}
           getContentAnchorEl={null}
         >
-          <MenuItem onClick={handleRenameInit}>
-            Rename
-          </MenuItem>
-          <MenuItem onClick={handleClear}>
-            Clear
-          </MenuItem>
-          <MenuItem onClick={handleDelete}>
-            Delete
-          </MenuItem>
+          <MenuItem onClick={handleRenameInit}>Rename</MenuItem>
+          <MenuItem onClick={handleClear}>Clear</MenuItem>
+          <MenuItem onClick={handleDelete}>Delete</MenuItem>
         </Menu>
       </Paper>
     </div>
@@ -272,7 +234,7 @@ const List: FC<ListProps> = ({ className, listId, ...rest }) => {
 
 List.propTypes = {
   className: PropTypes.string,
-  listId: PropTypes.string.isRequired
+  listId: PropTypes.string.isRequired,
 };
 
 export default List;

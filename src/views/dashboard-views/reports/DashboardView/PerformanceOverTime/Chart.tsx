@@ -3,12 +3,8 @@ import type { FC } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
-import {
-  fade,
-  makeStyles,
-  useTheme
-} from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import { fade, makeStyles, useTheme } from '@material-ui/core';
+import type { Theme } from '../../../../../themes/dashboard-theme';
 
 interface ChartProps {
   className?: string;
@@ -18,8 +14,8 @@ interface ChartProps {
 
 const useStyles = makeStyles(() => ({
   root: {
-    position: 'relative'
-  }
+    position: 'relative',
+  },
 }));
 
 const Chart: FC<ChartProps> = ({
@@ -48,10 +44,10 @@ const Chart: FC<ChartProps> = ({
           pointBorderColor: theme.palette.background.default,
           pointBorderWidth: 3,
           pointRadius: 6,
-          pointBackgroundColor: theme.palette.secondary.main
-        }
+          pointBackgroundColor: theme.palette.secondary.main,
+        },
       ],
-      labels
+      labels,
     };
   };
 
@@ -60,23 +56,23 @@ const Chart: FC<ChartProps> = ({
     maintainAspectRatio: false,
     animation: false,
     legend: {
-      display: false
+      display: false,
     },
     layout: {
-      padding: 0
+      padding: 0,
     },
     scales: {
       xAxes: [
         {
           gridLines: {
             display: false,
-            drawBorder: false
+            drawBorder: false,
           },
           ticks: {
             padding: 20,
-            fontColor: theme.palette.text.secondary
-          }
-        }
+            fontColor: theme.palette.text.secondary,
+          },
+        },
       ],
       yAxes: [
         {
@@ -87,7 +83,7 @@ const Chart: FC<ChartProps> = ({
             drawBorder: false,
             zeroLineBorderDash: [2],
             zeroLineBorderDashOffset: [2],
-            zeroLineColor: theme.palette.divider
+            zeroLineColor: theme.palette.divider,
           },
           ticks: {
             padding: 20,
@@ -95,10 +91,10 @@ const Chart: FC<ChartProps> = ({
             beginAtZero: true,
             min: 0,
             maxTicksLimit: 7,
-            callback: (value: number) => (value > 0 ? `${value}K` : value)
-          }
-        }
-      ]
+            callback: (value: number) => (value > 0 ? `${value}K` : value),
+          },
+        },
+      ],
     },
     tooltips: {
       enabled: true,
@@ -123,20 +119,14 @@ const Chart: FC<ChartProps> = ({
           }
 
           return label;
-        }
-      }
-    }
+        },
+      },
+    },
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Line
-        data={data}
-        options={options}
-      />
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Line data={data} options={options} />
     </div>
   );
 };
@@ -144,7 +134,7 @@ const Chart: FC<ChartProps> = ({
 Chart.propTypes = {
   className: PropTypes.string,
   data: PropTypes.array.isRequired,
-  labels: PropTypes.array.isRequired
+  labels: PropTypes.array.isRequired,
 };
 
 export default Chart;

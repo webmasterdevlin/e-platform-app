@@ -15,10 +15,10 @@ import {
   Grid,
   Link,
   TextField,
-  Typography
+  Typography,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import wait from 'src/utils/wait';
+import wait from '../../../../../utils/wait';
 
 const BasicForm: FC = () => {
   const [isAlertVisible, setAlertVisible] = useState<boolean>(true);
@@ -31,21 +31,22 @@ const BasicForm: FC = () => {
         lastName: 'Doe',
         password: 'thisisasecuredpassword',
         policy: false,
-        submit: null
+        submit: null,
       }}
       validationSchema={Yup.object().shape({
         email: Yup.string().email().required('Required'),
         firstName: Yup.string().required('Required'),
         lastName: Yup.string().required('Required'),
-        password: Yup.string().min(7, 'Must be at least 7 characters').max(255).required('Required'),
-        policy: Yup.boolean().oneOf([true], 'This field must be checked')
+        password: Yup.string()
+          .min(7, 'Must be at least 7 characters')
+          .max(255)
+          .required('Required'),
+        policy: Yup.boolean().oneOf([true], 'This field must be checked'),
       })}
-      onSubmit={async (values, {
-        resetForm,
-        setErrors,
-        setStatus,
-        setSubmitting
-      }) => {
+      onSubmit={async (
+        values,
+        { resetForm, setErrors, setStatus, setSubmitting },
+      ) => {
         try {
           // NOTE: Make API request
           await wait(1000);
@@ -67,7 +68,7 @@ const BasicForm: FC = () => {
         handleSubmit,
         isSubmitting,
         touched,
-        values
+        values,
       }) => (
         <Card>
           <CardHeader title="Basic Form" />
@@ -75,33 +76,19 @@ const BasicForm: FC = () => {
           <CardContent>
             {isAlertVisible && (
               <Box mb={3}>
-                <Alert
-                  onClose={() => setAlertVisible(false)}
-                  severity="info"
-                >
+                <Alert onClose={() => setAlertVisible(false)} severity="info">
                   This is an info alert - check it out!
                 </Alert>
               </Box>
             )}
             {isSubmitting ? (
-              <Box
-                display="flex"
-                justifyContent="center"
-                my={5}
-              >
+              <Box display="flex" justifyContent="center" my={5}>
                 <CircularProgress />
               </Box>
             ) : (
               <form onSubmit={handleSubmit}>
-                <Grid
-                  container
-                  spacing={2}
-                >
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                  >
+                <Grid container spacing={2}>
+                  <Grid item md={6} xs={12}>
                     <TextField
                       error={Boolean(touched.firstName && errors.firstName)}
                       fullWidth
@@ -114,11 +101,7 @@ const BasicForm: FC = () => {
                       variant="outlined"
                     />
                   </Grid>
-                  <Grid
-                    item
-                    md={6}
-                    xs={12}
-                  >
+                  <Grid item md={6} xs={12}>
                     <TextField
                       error={Boolean(touched.lastName && errors.lastName)}
                       fullWidth
@@ -160,36 +143,21 @@ const BasicForm: FC = () => {
                     variant="outlined"
                   />
                 </Box>
-                <Box
-                  alignItems="center"
-                  display="flex"
-                  mt={2}
-                  ml={-1}
-                >
+                <Box alignItems="center" display="flex" mt={2} ml={-1}>
                   <Checkbox
                     checked={values.policy}
                     name="policy"
                     onChange={handleChange}
                   />
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                  >
-                    I have read the
-                    {' '}
-                    <Link
-                      component="a"
-                      href="#"
-                      color="secondary"
-                    >
+                  <Typography variant="body2" color="textSecondary">
+                    I have read the{' '}
+                    <Link component="a" href="#" color="secondary">
                       Terms and Conditions
                     </Link>
                   </Typography>
                 </Box>
                 {Boolean(touched.policy && errors.policy) && (
-                  <FormHelperText error>
-                    {errors.policy}
-                  </FormHelperText>
+                  <FormHelperText error>{errors.policy}</FormHelperText>
                 )}
                 <Box mt={2}>
                   <Button

@@ -1,12 +1,5 @@
-import React, {
-  useRef,
-  useState
-} from 'react';
-import type {
-  ChangeEvent,
-  FC,
-  KeyboardEvent
-} from 'react';
+import React, { useRef, useState } from 'react';
+import type { ChangeEvent, FC, KeyboardEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -17,13 +10,13 @@ import {
   Paper,
   SvgIcon,
   Tooltip,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import AddPhotoIcon from '@material-ui/icons/AddPhotoAlternate';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import { Send as SendIcon } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
-import useAuth from 'src/hooks/useAuth';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import useAuth from '../../../../../hooks/useAuth';
 
 interface MessageComposerProps {
   className?: string;
@@ -36,20 +29,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     backgroundColor: theme.palette.background.default,
     display: 'flex',
-    padding: theme.spacing(1, 2)
+    padding: theme.spacing(1, 2),
   },
   inputContainer: {
     flexGrow: 1,
     marginLeft: theme.spacing(2),
-    padding: theme.spacing(1)
+    padding: theme.spacing(1),
   },
   divider: {
     height: 24,
-    width: 1
+    width: 1,
   },
   fileInput: {
-    display: 'none'
-  }
+    display: 'none',
+  },
 }));
 
 const MessageComposer: FC<MessageComposerProps> = ({
@@ -91,18 +84,9 @@ const MessageComposer: FC<MessageComposerProps> = ({
   };
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Avatar
-        alt="Person"
-        src={user.avatar}
-      />
-      <Paper
-        variant="outlined"
-        className={classes.inputContainer}
-      >
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Avatar alt="Person" src={user.avatar} />
+      <Paper variant="outlined" className={classes.inputContainer}>
         <Input
           disableUnderline
           fullWidth
@@ -129,31 +113,19 @@ const MessageComposer: FC<MessageComposerProps> = ({
       <Divider className={classes.divider} />
       <Tooltip title="Attach photo">
         <span>
-          <IconButton
-            edge="end"
-            onClick={handleAttach}
-            disabled={disabled}
-          >
+          <IconButton edge="end" onClick={handleAttach} disabled={disabled}>
             <AddPhotoIcon />
           </IconButton>
         </span>
       </Tooltip>
       <Tooltip title="Attach file">
         <span>
-          <IconButton
-            edge="end"
-            onClick={handleAttach}
-            disabled={disabled}
-          >
+          <IconButton edge="end" onClick={handleAttach} disabled={disabled}>
             <AttachFileIcon />
           </IconButton>
         </span>
       </Tooltip>
-      <input
-        className={classes.fileInput}
-        ref={fileInputRef}
-        type="file"
-      />
+      <input className={classes.fileInput} ref={fileInputRef} type="file" />
     </div>
   );
 };
@@ -161,12 +133,12 @@ const MessageComposer: FC<MessageComposerProps> = ({
 MessageComposer.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  onSend: PropTypes.func
+  onSend: PropTypes.func,
 };
 
 MessageComposer.defaultProps = {
   disabled: false,
-  onSend: () => {}
+  onSend: () => {},
 };
 
 export default MessageComposer;

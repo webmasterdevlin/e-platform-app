@@ -1,6 +1,6 @@
 import moment from 'moment';
-import mock from 'src/utils/mock';
-import type { Order } from 'src/types/order';
+import mock from '../../src/utils/mock';
+import type { Order } from '../types/order';
 
 mock.onGet('/api/orders').reply(() => {
   const orders: Order[] = [
@@ -13,12 +13,12 @@ mock.onGet('/api/orders').reply(() => {
         .getTime(),
       currency: '$',
       customer: {
-        name: 'Cao Yu'
+        name: 'Cao Yu',
       },
       number: 'DEV-102',
       paymentMethod: 'Vipps',
       status: 'pending',
-      totalAmount: 500.00
+      totalAmount: 500.0,
     },
     {
       id: '5ecb8a738aa6f3e577c2b3ec',
@@ -29,12 +29,12 @@ mock.onGet('/api/orders').reply(() => {
         .getTime(),
       currency: '$',
       customer: {
-        name: 'Alex Richardson'
+        name: 'Alex Richardson',
       },
       number: 'DEV-101',
       paymentMethod: 'Bankaksept',
       status: 'completed',
-      totalAmount: 500.00
+      totalAmount: 500.0,
     },
     {
       id: '5ecb8a795e53f134013eba3b',
@@ -45,12 +45,12 @@ mock.onGet('/api/orders').reply(() => {
         .getTime(),
       currency: '$',
       customer: {
-        name: 'Anje Keizer'
+        name: 'Anje Keizer',
       },
       number: 'DEV-100',
       paymentMethod: 'Bankaksept',
       status: 'pending',
-      totalAmount: 500.00
+      totalAmount: 500.0,
     },
     {
       id: '5ecb8a7f738cc572a9ce0277',
@@ -61,12 +61,12 @@ mock.onGet('/api/orders').reply(() => {
         .getTime(),
       currency: '$',
       customer: {
-        name: 'Clarke Gillebert'
+        name: 'Clarke Gillebert',
       },
       number: 'DEV-99',
       paymentMethod: 'Klarna Checkout',
       status: 'completed',
-      totalAmount: 500.00
+      totalAmount: 500.0,
     },
     {
       id: '5e86805e2bafd54f66cc95c3',
@@ -77,12 +77,12 @@ mock.onGet('/api/orders').reply(() => {
         .getTime(),
       currency: '$',
       customer: {
-        name: 'Adam Denisov'
+        name: 'Adam Denisov',
       },
       number: 'DEV-98',
       paymentMethod: 'Klarna Checkout',
       status: 'completed',
-      totalAmount: 500.00
+      totalAmount: 500.0,
     },
     {
       id: '5ecb8a85a850c16fa413849c',
@@ -93,12 +93,12 @@ mock.onGet('/api/orders').reply(() => {
         .getTime(),
       currency: '$',
       customer: {
-        name: 'Miller Edwards'
+        name: 'Miller Edwards',
       },
       status: 'pending',
       number: 'DEV-97',
       paymentMethod: 'Vipps',
-      totalAmount: 500.00
+      totalAmount: 500.0,
     },
     {
       id: '5ecb8a8e69ba2e409ea0168f',
@@ -109,12 +109,12 @@ mock.onGet('/api/orders').reply(() => {
         .getTime(),
       currency: '$',
       customer: {
-        name: 'Emilee Simchenko'
+        name: 'Emilee Simchenko',
       },
       number: 'DEV-96',
       paymentMethod: 'Bankaksept',
       status: 'completed',
-      totalAmount: 500.00
+      totalAmount: 500.0,
     },
     {
       id: '5ecb8a9341c68839d387e1c4',
@@ -125,12 +125,12 @@ mock.onGet('/api/orders').reply(() => {
         .getTime(),
       currency: '$',
       customer: {
-        name: 'Elliott Stone'
+        name: 'Elliott Stone',
       },
       number: 'DEV-95',
       paymentMethod: 'Klarna Checkout',
       status: 'rejected',
-      totalAmount: 500.00
+      totalAmount: 500.0,
     },
     {
       id: '5ecb8a984bfbb97c9ae458e8',
@@ -141,12 +141,12 @@ mock.onGet('/api/orders').reply(() => {
         .getTime(),
       currency: '$',
       customer: {
-        name: 'Shen Zhi'
+        name: 'Shen Zhi',
       },
       number: 'DEV-94',
       paymentMethod: 'Vipps',
       status: 'canceled',
-      totalAmount: 500.00
+      totalAmount: 500.0,
     },
     {
       id: '5ecb8aa08d9127dba654ce7a',
@@ -158,13 +158,13 @@ mock.onGet('/api/orders').reply(() => {
         .getTime(),
       currency: '$',
       customer: {
-        name: 'Merrile Burgett'
+        name: 'Merrile Burgett',
       },
       number: 'DEV-93',
       paymentMethod: 'Klarna Checkout',
       status: 'canceled',
-      totalAmount: 500.00
-    }
+      totalAmount: 500.0,
+    },
   ];
 
   return [200, { orders }];
@@ -174,16 +174,14 @@ mock.onGet('/api/orders/1').reply(() => {
   const order: Order = {
     id: '5ecb8a6879877087d4aa2690',
     coupon: null,
-    createdAt: moment()
-      .toDate()
-      .getTime(),
+    createdAt: moment().toDate().getTime(),
     currency: '$',
     customer: {
       address1: 'Street John Wick, no. 7',
       address2: 'House #25',
       city: 'San Diego',
       country: 'USA',
-      name: 'Adam Denisov'
+      name: 'Adam Denisov',
     },
     items: [
       {
@@ -192,7 +190,7 @@ mock.onGet('/api/orders/1').reply(() => {
         currency: '$',
         name: 'Project Points',
         quantity: 25,
-        unitAmount: 50.25
+        unitAmount: 50.25,
       },
       {
         id: '5ecb8ac10f116d04bed990eb',
@@ -200,13 +198,13 @@ mock.onGet('/api/orders/1').reply(() => {
         currency: '$',
         name: 'Freelancer Subscription',
         quantity: 1,
-        unitAmount: 5.00
-      }
+        unitAmount: 5.0,
+      },
     ],
     number: 'DEV-103',
     paymentMethod: 'Vipps',
     status: 'pending',
-    totalAmount: 500.00
+    totalAmount: 500.0,
   };
 
   return [200, { order }];

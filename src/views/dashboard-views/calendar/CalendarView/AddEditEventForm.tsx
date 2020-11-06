@@ -17,18 +17,18 @@ import {
   FormHelperText,
   Switch,
   SvgIcon,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
 import { Trash as TrashIcon } from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
-import type { Event } from 'src/types/calendar';
-import { useDispatch } from 'src/store';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Event } from '../../../../types/calendar';
+import { useDispatch } from '../../../../store';
 import {
   createEvent,
   updateEvent,
-  deleteEvent
-} from 'src/slices/calendar';
+  deleteEvent,
+} from '../../../../slices/calendar';
 
 interface AddEditEventModalProps {
   event?: Event;
@@ -36,32 +36,43 @@ interface AddEditEventModalProps {
   onCancel?: () => void;
   onDeleteComplete?: () => void;
   onEditComplete?: () => void;
-  range?: { start: number, end: number };
+  range?: { start: number; end: number };
 }
 
-const getInitialValues = (event?: Event, range?: { start: number, end: number; }) => {
+const getInitialValues = (
+  event?: Event,
+  range?: { start: number; end: number },
+) => {
   if (event) {
-    return _.merge({}, {
-      allDay: false,
-      color: '',
-      description: '',
-      end: moment().add(30, 'minutes').toDate(),
-      start: moment().toDate(),
-      title: '',
-      submit: null
-    }, event);
+    return _.merge(
+      {},
+      {
+        allDay: false,
+        color: '',
+        description: '',
+        end: moment().add(30, 'minutes').toDate(),
+        start: moment().toDate(),
+        title: '',
+        submit: null,
+      },
+      event,
+    );
   }
 
   if (range) {
-    return _.merge({}, {
-      allDay: false,
-      color: '',
-      description: '',
-      end: new Date(range.end),
-      start: new Date(range.start),
-      title: '',
-      submit: null
-    }, event);
+    return _.merge(
+      {},
+      {
+        allDay: false,
+        color: '',
+        description: '',
+        end: new Date(range.end),
+        start: new Date(range.start),
+        title: '',
+        submit: null,
+      },
+      event,
+    );
   }
 
   return {
@@ -71,15 +82,15 @@ const getInitialValues = (event?: Event, range?: { start: number, end: number; }
     end: moment().add(30, 'minutes').toDate(),
     start: moment().toDate(),
     title: '',
-    submit: null
+    submit: null,
   };
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   confirmButton: {
-    marginLeft: theme.spacing(2)
-  }
+    marginLeft: theme.spacing(2),
+  },
 }));
 
 const AddEditEventForm: FC<AddEditEventModalProps> = ({
@@ -88,7 +99,7 @@ const AddEditEventForm: FC<AddEditEventModalProps> = ({
   onCancel,
   onDeleteComplete,
   onEditComplete,
-  range
+  range,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -111,27 +122,26 @@ const AddEditEventForm: FC<AddEditEventModalProps> = ({
       validationSchema={Yup.object().shape({
         allDay: Yup.bool(),
         description: Yup.string().max(5000),
-        end: Yup.date()
-          .when(
-            'start',
-            (start: Date, schema: any) => (start && schema.min(start, 'End date must be later than start date'))
-          ),
+        end: Yup.date().when(
+          'start',
+          (start: Date, schema: any) =>
+            start &&
+            schema.min(start, 'End date must be later than start date'),
+        ),
         start: Yup.date(),
-        title: Yup.string().max(255).required('Title is required')
+        title: Yup.string().max(255).required('Title is required'),
       })}
-      onSubmit={async (values, {
-        resetForm,
-        setErrors,
-        setStatus,
-        setSubmitting
-      }) => {
+      onSubmit={async (
+        values,
+        { resetForm, setErrors, setStatus, setSubmitting },
+      ) => {
         try {
           const data = {
             allDay: values.allDay,
             description: values.description,
             end: values.end,
             start: values.start,
-            title: values.title
+            title: values.title,
           };
 
           if (event) {
@@ -144,7 +154,7 @@ const AddEditEventForm: FC<AddEditEventModalProps> = ({
           setStatus({ success: true });
           setSubmitting(false);
           enqueueSnackbar('Calendar updated', {
-            variant: 'success'
+            variant: 'success',
           });
 
           if (isCreating) {
@@ -169,7 +179,7 @@ const AddEditEventForm: FC<AddEditEventModalProps> = ({
         setFieldTouched,
         setFieldValue,
         touched,
-        values
+        values,
       }) => (
         <form onSubmit={handleSubmit}>
           <Box p={3}>
@@ -209,13 +219,13 @@ const AddEditEventForm: FC<AddEditEventModalProps> = ({
             </Box>
             <Box mt={2}>
               <FormControlLabel
-                control={(
+                control={
                   <Switch
                     checked={values.allDay}
                     name="allDay"
                     onChange={handleChange}
                   />
-                )}
+                }
                 label="All day"
               />
             </Box>
@@ -226,7 +236,7 @@ const AddEditEventForm: FC<AddEditEventModalProps> = ({
                 label="Start date"
                 name="start"
                 onClick={() => setFieldTouched('end')}
-                onChange={(date) => setFieldValue('start', date)}
+                onChange={date => setFieldValue('start', date)}
                 value={values.start}
               />
             </Box>
@@ -237,24 +247,18 @@ const AddEditEventForm: FC<AddEditEventModalProps> = ({
                 label="End date"
                 name="end"
                 onClick={() => setFieldTouched('end')}
-                onChange={(date) => setFieldValue('end', date)}
+                onChange={date => setFieldValue('end', date)}
                 value={values.end}
               />
             </Box>
             {Boolean(touched.end && errors.end) && (
               <Box mt={2}>
-                <FormHelperText error>
-                  {errors.end}
-                </FormHelperText>
+                <FormHelperText error>{errors.end}</FormHelperText>
               </Box>
             )}
           </Box>
           <Divider />
-          <Box
-            p={2}
-            display="flex"
-            alignItems="center"
-          >
+          <Box p={2} display="flex" alignItems="center">
             {!isCreating && (
               <IconButton onClick={() => handleDelete()}>
                 <SvgIcon>
@@ -263,9 +267,7 @@ const AddEditEventForm: FC<AddEditEventModalProps> = ({
               </IconButton>
             )}
             <Box flexGrow={1} />
-            <Button onClick={onCancel}>
-              Cancel
-            </Button>
+            <Button onClick={onCancel}>Cancel</Button>
             <Button
               variant="contained"
               type="submit"
@@ -290,14 +292,14 @@ AddEditEventForm.propTypes = {
   onDeleteComplete: PropTypes.func,
   onEditComplete: PropTypes.func,
   // @ts-ignore
-  range: PropTypes.object
+  range: PropTypes.object,
 };
 
 AddEditEventForm.defaultProps = {
-  onAddComplete: () => { },
-  onCancel: () => { },
-  onDeleteComplete: () => { },
-  onEditComplete: () => { }
+  onAddComplete: () => {},
+  onCancel: () => {},
+  onDeleteComplete: () => {},
+  onEditComplete: () => {},
 };
 
 export default AddEditEventForm;

@@ -12,19 +12,16 @@ import {
   Tooltip,
   Typography,
   makeStyles,
-  SvgIcon
+  SvgIcon,
 } from '@material-ui/core';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import {
-  Search as SearchIcon,
-  Menu as MenuIcon
-} from 'react-feather';
-import type { Theme } from 'src/themes/dashboard-theme';
-import { useDispatch } from 'src/store';
-import { openSidebar } from 'src/slices/mail';
+import { Search as SearchIcon, Menu as MenuIcon } from 'react-feather';
+import type { Theme } from '../../../../../themes/dashboard-theme';
+import { useDispatch } from '../../../../../store';
+import { openSidebar } from '../../../../../slices/mail';
 
 interface ToolbarProps {
   className?: string;
@@ -40,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(2),
     height: 68,
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   searchContainer: {
     alignItems: 'center',
@@ -49,12 +46,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: theme.spacing(0.5),
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
-    paddingTop: theme.spacing(0.5)
+    paddingTop: theme.spacing(0.5),
   },
   searchInput: {
     marginLeft: theme.spacing(2),
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 }));
 
 const Toolbar: FC<ToolbarProps> = ({
@@ -72,16 +69,14 @@ const Toolbar: FC<ToolbarProps> = ({
     dispatch(openSidebar());
   };
 
-  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => (event.target.checked ? onSelectAll() : onDeselectAll());
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) =>
+    event.target.checked ? onSelectAll() : onDeselectAll();
 
   const selectedAllMails = selectedMails === mails && mails > 0;
   const selectedSomeMails = selectedMails > 0 && selectedMails < mails;
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <Hidden mdUp>
         <IconButton onClick={handleOpenSidebar}>
           <SvgIcon fontSize="small">
@@ -90,31 +85,19 @@ const Toolbar: FC<ToolbarProps> = ({
         </IconButton>
       </Hidden>
       <Hidden smDown>
-        <Box
-          display="flex"
-          alignItems="center"
-        >
+        <Box display="flex" alignItems="center">
           <Checkbox
             checked={selectedAllMails}
             indeterminate={selectedSomeMails}
             onChange={handleCheckboxChange}
           />
-          <Typography
-            variant="h6"
-            color="textPrimary"
-          >
+          <Typography variant="h6" color="textPrimary">
             Select all
           </Typography>
         </Box>
         <Box flexGrow={1} />
-        <Paper
-          className={classes.searchContainer}
-          variant="outlined"
-        >
-          <SvgIcon
-            color="action"
-            fontSize="small"
-          >
+        <Paper className={classes.searchContainer} variant="outlined">
+          <SvgIcon color="action" fontSize="small">
             <SearchIcon />
           </SvgIcon>
           <Input
@@ -133,10 +116,7 @@ const Toolbar: FC<ToolbarProps> = ({
             <MoreIcon fontSize="small" />
           </IconButton>
         </Tooltip>
-        <Box
-          display="flex"
-          alignItems="center"
-        >
+        <Box display="flex" alignItems="center">
           <Tooltip title="Next page">
             <IconButton>
               <KeyboardArrowLeftIcon fontSize="small" />
@@ -144,18 +124,8 @@ const Toolbar: FC<ToolbarProps> = ({
           </Tooltip>
           {mails > 0 && (
             <>
-              <Typography
-                noWrap
-                variant="body2"
-                color="textSecondary"
-              >
-                1 -
-                {' '}
-                {mails}
-                {' '}
-                of
-                {' '}
-                {mails}
+              <Typography noWrap variant="body2" color="textSecondary">
+                1 - {mails} of {mails}
               </Typography>
               <Tooltip title="Previous page">
                 <IconButton>
@@ -175,12 +145,12 @@ Toolbar.propTypes = {
   mails: PropTypes.number.isRequired,
   onDeselectAll: PropTypes.func,
   onSelectAll: PropTypes.func,
-  selectedMails: PropTypes.number.isRequired
+  selectedMails: PropTypes.number.isRequired,
 };
 
 Toolbar.defaultProps = {
   onDeselectAll: () => {},
-  onSelectAll: () => {}
+  onSelectAll: () => {},
 };
 
 export default Toolbar;

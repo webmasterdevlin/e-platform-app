@@ -11,7 +11,7 @@ import {
   Divider,
   makeStyles,
 } from '@material-ui/core';
-import GenericMoreButton from 'src/components/GenericMoreButton';
+import GenericMoreButton from '../../../../../components/GenericMoreButton';
 import Chart from './Chart';
 
 interface PerformanceOverTimeProps {

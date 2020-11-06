@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import type { FC } from 'react';
 import NProgress from 'nprogress';
-import {
-  Box,
-  LinearProgress,
-  makeStyles
-} from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import { Box, LinearProgress, makeStyles } from '@material-ui/core';
+import type { Theme } from '../themes/dashboard-theme';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -17,8 +13,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '100%',
     justifyContent: 'center',
     minHeight: '100%',
-    padding: theme.spacing(3)
-  }
+    padding: theme.spacing(3),
+  },
 }));
 
 const LoadingScreen: FC = () => {

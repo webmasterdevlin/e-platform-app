@@ -1,25 +1,15 @@
-import React, {
-  useCallback,
-  useState,
-  useEffect
-} from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  Box,
-  Button,
-  Grid,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
+import { Box, Button, Grid, Typography, makeStyles } from '@material-ui/core';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import type { Theme } from 'src/themes/dashboard-theme';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import type { Project } from 'src/types/project';
-import ProjectCard from 'src/components/ProjectCard';
+import type { Theme } from '../../../../themes/dashboard-theme';
+import axios from '../../../../utils/axios';
+import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import type { Project } from '../../../../types/project';
+import ProjectCard from '../../../../components/ProjectCard';
 
 interface ProjectsProps {
   className?: string;
@@ -36,9 +26,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       content: '" "',
       height: 3,
       width: 48,
-      backgroundColor: theme.palette.primary.main
-    }
-  }
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
 }));
 
 const Projects: FC<ProjectsProps> = ({ className, ...rest }) => {
@@ -48,7 +38,9 @@ const Projects: FC<ProjectsProps> = ({ className, ...rest }) => {
 
   const getProjects = useCallback(async () => {
     try {
-      const response = await axios.get<{ projects: Project[]; }>('/api/projects/overview/projects');
+      const response = await axios.get<{ projects: Project[] }>(
+        '/api/projects/overview/projects',
+      );
 
       if (isMountedRef.current) {
         setProjects(response.data.projects);
@@ -63,21 +55,14 @@ const Projects: FC<ProjectsProps> = ({ className, ...rest }) => {
   }, [getProjects]);
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <Box
         display="flex"
         alignItems="center"
         justifyContent="space-between"
         mb={2}
       >
-        <Typography
-          className={classes.title}
-          variant="h5"
-          color="textPrimary"
-        >
+        <Typography className={classes.title} variant="h5" color="textPrimary">
           Active Projects
         </Typography>
         <Button
@@ -88,18 +73,9 @@ const Projects: FC<ProjectsProps> = ({ className, ...rest }) => {
           See all
         </Button>
       </Box>
-      <Grid
-        container
-        spacing={3}
-      >
-        {projects.map((project) => (
-          <Grid
-            item
-            key={project.id}
-            md={4}
-            sm={6}
-            xs={12}
-          >
+      <Grid container spacing={3}>
+        {projects.map(project => (
+          <Grid item key={project.id} md={4} sm={6} xs={12}>
             <ProjectCard project={project} />
           </Grid>
         ))}
@@ -109,7 +85,7 @@ const Projects: FC<ProjectsProps> = ({ className, ...rest }) => {
 };
 
 Projects.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Projects;

@@ -13,22 +13,24 @@ import {
   FormControlLabel,
   Grid,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import wait from 'src/utils/wait';
+import wait from '../../../../utils/wait';
 
 interface NotificationProps {
   className?: string;
 }
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
 }));
 
 const Notifications: FC<NotificationProps> = ({ className, ...rest }) => {
   const classes = useStyles();
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    event: FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
     // NOTE: Make API request
     await wait(500);
@@ -36,43 +38,21 @@ const Notifications: FC<NotificationProps> = ({ className, ...rest }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Card
-        className={clsx(classes.root, className)}
-        {...rest}
-      >
+      <Card className={clsx(classes.root, className)} {...rest}>
         <CardHeader title="Notifications" />
         <Divider />
         <CardContent>
-          <Grid
-            container
-            spacing={6}
-            wrap="wrap"
-          >
-            <Grid
-              item
-              md={4}
-              sm={6}
-              xs={12}
-            >
-              <Typography
-                gutterBottom
-                variant="h6"
-                color="textPrimary"
-              >
+          <Grid container spacing={6} wrap="wrap">
+            <Grid item md={4} sm={6} xs={12}>
+              <Typography gutterBottom variant="h6" color="textPrimary">
                 System
               </Typography>
-              <Typography
-                gutterBottom
-                variant="body2"
-                color="textSecondary"
-              >
+              <Typography gutterBottom variant="body2" color="textSecondary">
                 You will recieve emails in your business email address
               </Typography>
               <div>
                 <FormControlLabel
-                  control={(
-                    <Checkbox defaultChecked />
-                  )}
+                  control={<Checkbox defaultChecked />}
                   label="Email alerts"
                 />
               </div>
@@ -84,66 +64,42 @@ const Notifications: FC<NotificationProps> = ({ className, ...rest }) => {
               </div>
               <div>
                 <FormControlLabel
-                  control={(
-                    <Checkbox defaultChecked />
-                  )}
+                  control={<Checkbox defaultChecked />}
                   label="Text message"
                 />
               </div>
               <div>
                 <FormControlLabel
-                  control={(
-                    <Checkbox defaultChecked />
-                  )}
-                  label={(
+                  control={<Checkbox defaultChecked />}
+                  label={
                     <>
-                      <Typography
-                        variant="body1"
-                        color="textPrimary"
-                      >
+                      <Typography variant="body1" color="textPrimary">
                         Phone calls
                       </Typography>
                       <Typography variant="caption">
                         Short voice phone updating you
                       </Typography>
                     </>
-                  )}
+                  }
                 />
               </div>
             </Grid>
-            <Grid
-              item
-              md={4}
-              sm={6}
-              xs={12}
-            >
-              <Typography
-                gutterBottom
-                variant="h6"
-                color="textPrimary"
-              >
+            <Grid item md={4} sm={6} xs={12}>
+              <Typography gutterBottom variant="h6" color="textPrimary">
                 Chat App
               </Typography>
-              <Typography
-                gutterBottom
-                variant="body2"
-                color="textSecondary"
-              >
+              <Typography gutterBottom variant="body2" color="textSecondary">
                 You will recieve emails in your business email address
               </Typography>
               <div>
                 <FormControlLabel
-                  control={(
-                    <Checkbox defaultChecked />
-                  )}
+                  control={<Checkbox defaultChecked />}
                   label="Email"
                 />
               </div>
               <div>
                 <FormControlLabel
-                  control={(
-                    <Checkbox defaultChecked />
-                  )}
+                  control={<Checkbox defaultChecked />}
                   label="Push notifications"
                 />
               </div>
@@ -151,16 +107,8 @@ const Notifications: FC<NotificationProps> = ({ className, ...rest }) => {
           </Grid>
         </CardContent>
         <Divider />
-        <Box
-          p={2}
-          display="flex"
-          justifyContent="flex-end"
-        >
-          <Button
-            color="secondary"
-            type="submit"
-            variant="contained"
-          >
+        <Box p={2} display="flex" justifyContent="flex-end">
+          <Button color="secondary" type="submit" variant="contained">
             Save Settings
           </Button>
         </Box>
@@ -170,7 +118,7 @@ const Notifications: FC<NotificationProps> = ({ className, ...rest }) => {
 };
 
 Notifications.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Notifications;

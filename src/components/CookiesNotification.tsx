@@ -7,9 +7,9 @@ import {
   Link,
   Portal,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
-import type { Theme } from 'src/themes/dashboard-theme';
+import type { Theme } from '../themes/dashboard-theme';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: theme.spacing(3),
     padding: theme.spacing(3),
     outline: 'none',
-    zIndex: 2000
+    zIndex: 2000,
   },
   action: {
     backgroundColor: theme.palette.common.white,
-    color: theme.palette.common.black
-  }
+    color: theme.palette.common.black,
+  },
 }));
 
 const CookiesNotification: FC = () => {

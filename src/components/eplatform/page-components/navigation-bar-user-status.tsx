@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 // import { ApplicationStateType } from '../../store/types';
 // import UserMenu from '../features/auth/components/user-menu';
 // import AuthDialog from '../features/auth/sign-in/auth-dialog';
