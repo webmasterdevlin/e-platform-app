@@ -190,11 +190,6 @@ const sections: Section[] = [
         ],
       },
       {
-        title: 'Kanban',
-        href: '/app/kanban',
-        icon: TrelloIcon,
-      },
-      {
         title: 'Chat',
         href: '/app/chat',
         icon: MessageCircleIcon,
@@ -209,11 +204,6 @@ const sections: Section[] = [
         title: 'Account',
         href: '/app/account',
         icon: UserIcon,
-      },
-      {
-        title: 'development docs',
-        href: '/docs',
-        icon: BookOpenIcon,
       },
     ],
   },

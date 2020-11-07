@@ -8,6 +8,7 @@ import {
   Tabs,
   makeStyles,
 } from '@material-ui/core';
+
 import type { Theme } from '../../../../themes/dashboard-theme';
 import axios from '../../../../utils/axios';
 import useIsMountedRef from '../../../../hooks/useIsMountedRef';
@@ -16,6 +17,7 @@ import type { Profile } from '../../../../types/social';
 import Header from './Header';
 import Timeline from './Timeline';
 import Connections from './Connections';
+import MyProfileContainer from './my-profile/my-profile-container';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -33,6 +35,7 @@ const ProfileView: FC = () => {
   const tabs = [
     { value: 'timeline', label: 'Timeline' },
     { value: 'connections', label: 'Connections' },
+    { value: 'my-profile', label: 'My Profile' },
   ];
 
   const handleTabsChange = (event: ChangeEvent, value: string): void => {
@@ -82,6 +85,7 @@ const ProfileView: FC = () => {
         <Box py={3} pb={6}>
           {currentTab === 'timeline' && <Timeline profile={profile} />}
           {currentTab === 'connections' && <Connections />}
+          {currentTab === 'my-profile' && <MyProfileContainer />}
         </Box>
       </Container>
     </Page>
