@@ -16,7 +16,7 @@ const TextareaFormik: React.FC<Props> = ({
   placeholder,
 }) => {
   return (
-    <section className={'mb-5'}>
+    <section>
       <label htmlFor={id}>{label}</label>
       <textarea
         id={id}

@@ -6,8 +6,8 @@ function StyledCircularProgress(props) {
   const classes = useStylesFacebook();
 
   return (
-    <div className={'flex-center'}>
-      <div className={classes.root}>
+    <div>
+      <div>
         <CircularProgress
           variant="determinate"
           className={classes.bottom}

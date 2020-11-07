@@ -19,7 +19,7 @@ const DateTimePickerFormik: React.FC<Props> = ({
   disableFuture,
 }) => {
   return (
-    <div className={'mb-2'}>
+    <div>
       <label>{label}</label>
       <DateTimePicker
         autoOk

@@ -3,18 +3,18 @@ import React from 'react';
 import MyProfileForm from './components/my-profile-form';
 
 import { Divider } from '@material-ui/core';
-import ResumeContent from '../../../../../features/resume';
+import ResumeContent from './resume';
 
 const MyProfileContainer = () => {
   return (
-    <div className="dashboard-content">
-      <div className="row d-flex justify-content-center">
+    <div>
+      <div>
         <div>
-          <div className="col-lg-9 mb-5">
+          <div>
             <MyProfileForm />
           </div>
           <Divider />
-          <div className="col-lg-9 mt-5 d-flex row justify-content-center">
+          <div>
             <ResumeContent />
           </div>
         </div>

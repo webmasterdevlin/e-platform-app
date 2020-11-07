@@ -51,10 +51,7 @@ const ConfirmationDialog: React.FC<any> = (
       <DialogTitle id="confirmation-dialog-title">
         Are you sure you want to delete this?
       </DialogTitle>
-      <DialogContent
-        className={'d-flex flex-row justify-content-center align-items-center'}
-        dividers
-      >
+      <DialogContent dividers>
         <RadioGroup
           ref={radioGroupRef}
           aria-label="confirmation"

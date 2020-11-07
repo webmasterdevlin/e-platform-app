@@ -36,9 +36,7 @@ const CreateOfferingsDialog = () => {
 
   return (
     <>
-      <a onClick={handleClickOpen} className="button with-icon">
-        Create Offerings <i className="fa fa-hand-grab-o" />
-      </a>
+      <a onClick={handleClickOpen}>Create Offerings</a>
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"

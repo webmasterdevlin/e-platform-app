@@ -5,7 +5,7 @@ type Props = {
   formikProps: FormikProps<any>;
 };
 const YupFormikValidationViewer: React.FC<Props> = ({ formikProps }) => (
-  <Box color={'purple'}>
+  <Box>
     <pre>FIELDS : {JSON.stringify(formikProps.values, null, 2)}</pre>
     <pre>IS_VALID : {formikProps.isValid.toString()}</pre>
     <pre>ERRORS : {JSON.stringify(formikProps.errors, null, 2)}</pre>

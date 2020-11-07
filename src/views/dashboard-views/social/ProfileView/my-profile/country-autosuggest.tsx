@@ -75,7 +75,7 @@ const CountryAutosuggest: React.FC<Props> = ({ setFieldValue, id, label }) => {
           },
         }}
         renderInputComponent={inputProps => {
-          return <InputWithSearchIconFormik inputProps={inputProps} />;
+          return null;
         }}
       />
       <PlainErrorMessage id={id} />

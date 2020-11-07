@@ -9,15 +9,12 @@ type Props = {
 
 const CheckboxesHorizontalFormik: React.FC<Props> = ({ options, id }) => {
   return (
-    <section className={'d-flex flex-row justify-content-start'}>
+    <section>
       <Field name={id}>
         {({ field }) => {
           return options.map(option => {
             return (
-              <div
-                className="checkboxes in-row margin-bottom-20"
-                key={option.key}
-              >
+              <div key={option.key}>
                 <input
                   type="checkbox"
                   id={option.value}

@@ -10,12 +10,8 @@ type Props = {
  * */
 const InputWithSearchIconFormik: React.FC<Props> = ({ inputProps }) => (
   <section>
-    <div className={'widget'}>
-      <div className="search-blog-input">
-        <div className="input">
-          <input {...(inputProps as any)} className="search-field" />
-        </div>
-      </div>
+    <div>
+      <input {...(inputProps as any)} />
     </div>
   </section>
 );

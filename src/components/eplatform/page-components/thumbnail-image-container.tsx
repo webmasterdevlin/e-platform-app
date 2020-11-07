@@ -1,18 +1,20 @@
 import React from 'react';
 import { FormikProps } from 'formik';
 import ThumbnailImage from './thumbnail-image';
+import { Box, Typography } from '@material-ui/core';
 
 type Props = {
   formikProps: FormikProps<any>;
 };
 export const ThumbnailImageContainer: React.FC<Props> = ({ formikProps }) => (
-  <div className="edit-profile-photo">
+  <div>
     <ThumbnailImage imageFile={formikProps.values.imageFile} />
-    <div className="change-photo-btn">
-      <div className="photoUpload">
-        <span>
-          <i className="fa fa-upload" /> Upload a picture
-        </span>
+    <div>
+      <Box mb={2}>
+        <Typography variant="body2" color="textSecondary" gutterBottom>
+          Upload a picture{' '}
+        </Typography>
+
         <input
           id="imageFile"
           name="imageFile"
@@ -27,7 +29,7 @@ export const ThumbnailImageContainer: React.FC<Props> = ({ formikProps }) => (
             );
           }}
         />
-      </div>
+      </Box>
     </div>
   </div>
 );

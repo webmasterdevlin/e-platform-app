@@ -9,7 +9,7 @@ type Props = {
 
 const CheckboxFormik: React.FC<Props> = ({ formikProps, id, label }) => {
   return (
-    <div className="mb-5 checkboxes in-row margin-bottom-20">
+    <div>
       <input
         checked={formikProps.values[`${id}`]}
         onChange={() => {
