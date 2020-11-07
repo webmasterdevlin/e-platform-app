@@ -6,7 +6,6 @@ import {
 } from '../schema/personal-summary.value';
 import { Box, Button } from '@material-ui/core';
 import { personalSummaryYupObject } from '../schema/personal-summary.validation';
-import TextareaFormik from '../../../../../../../../../components/eplatform/dashboard-components/TextareaFormik';
 
 type Props = {
   personalSummary: PersonalSummaryModel;

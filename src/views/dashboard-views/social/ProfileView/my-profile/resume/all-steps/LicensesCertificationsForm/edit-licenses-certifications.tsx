@@ -49,7 +49,7 @@ const EditLicensesCertifications: React.FC<Props> = ({
             </Button>
           </div>
           <div className="dashboard-list-box-static">
-            <LicenseCertificationForm formikProps={formikProps} />
+            <LicenseCertificationForm />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save
             </Button>

@@ -1,19 +1,20 @@
 import React from 'react';
-import { FormikProps } from 'formik';
+import { FormikProps, useFormikContext } from 'formik';
 
 type Props = {
-  formikProps: FormikProps<any>;
   id: string;
   label: string;
 };
 
-const CheckboxFormik: React.FC<Props> = ({ formikProps, id, label }) => {
+const CheckboxFormik: React.FC<Props> = ({ id, label }) => {
+  const { values, setFieldValue } = useFormikContext<any>();
+
   return (
     <div>
       <input
-        checked={formikProps.values[`${id}`]}
+        checked={values[`${id}`]}
         onChange={() => {
-          formikProps.setFieldValue(id, !formikProps.values[`${id}`]);
+          setFieldValue(id, !values[`${id}`]);
         }}
         id={id}
         type="checkbox"

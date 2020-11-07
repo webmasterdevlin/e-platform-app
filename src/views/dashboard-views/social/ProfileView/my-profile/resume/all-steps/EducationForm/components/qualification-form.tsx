@@ -3,18 +3,17 @@ import { FormikProps } from 'formik';
 import { QualificationModel } from '../schema/qualification.value';
 import { Box } from '@material-ui/core';
 
-import CheckboxFormik from '../../../../../../../../../components/eplatform/dashboard-components/checkbox-formik';
-import DatePickerFormik from '../../../../../../../../../components/eplatform/dashboard-components/date-picker-formik';
-import InputFormik from '../../../../../../../../../components/eplatform/page-components/input-formik';
+import CheckboxFormik from '../../../../../../../../../components/eplatform/components/checkbox-formik';
+import DatePickerFormik from '../../../../../../../../../components/eplatform/components/date-picker-formik';
+import InputFormik from '../../../../../../../../../components/eplatform/components/input-formik';
 
 type Props = {
   formikProps: FormikProps<QualificationModel>;
 };
 
 const QualificationForm: React.FC<Props> = ({ formikProps }) => (
-  <section className={'mb-4'}>
+  <section>
     <CheckboxFormik
-      formikProps={formikProps}
       id={'qualificationComplete'}
       label={'Qualification complete'}
     />
@@ -23,7 +22,6 @@ const QualificationForm: React.FC<Props> = ({ formikProps }) => (
         id={'finished'}
         label={'Finished (optional)'}
         disableFuture={true}
-        formikProps={formikProps}
       />
     ) : (
       <>
@@ -31,7 +29,6 @@ const QualificationForm: React.FC<Props> = ({ formikProps }) => (
           id={'expectedFinish'}
           label={'Expected finish (optional)'}
           disablePast={true}
-          formikProps={formikProps}
         />
       </>
     )}

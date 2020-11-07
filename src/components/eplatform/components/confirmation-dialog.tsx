@@ -7,7 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Dialog from '@material-ui/core/Dialog';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import StyledRadio from '../dashboard-components/styled-radio';
+import StyledRadio from './styled-radio';
 
 const options = ['Yes', 'No'];
 

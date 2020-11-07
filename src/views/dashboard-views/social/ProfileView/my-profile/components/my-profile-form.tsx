@@ -23,9 +23,11 @@ import {
   Typography,
 } from '@material-ui/core';
 import { useHistory } from 'react-router';
-import { ThumbnailImageContainer } from '../../../../../../components/eplatform/page-components/thumbnail-image-container';
-import InputFormik from '../../../../../../components/eplatform/page-components/input-formik';
+import { ThumbnailImageContainer } from '../../../../../../components/eplatform/components/thumbnail-image-container';
+import InputFormik from '../../../../../../components/eplatform/components/input-formik';
 import { Theme } from '../../../../../../themes/dashboard-theme';
+import TextAreaFormik from '../../../../../../components/eplatform/components/text-area-formik';
+import CountrySelect from '../../../../../../components/eplatform/components/country-select';
 
 const MyProfileForm = () => {
   const classes = useStyles();
@@ -72,15 +74,15 @@ const MyProfileForm = () => {
     >
       {formikProps => (
         <div>
-          <h4 className="gray">
-            <Grid
-              container
-              direction="row"
-              justify="space-between"
-              alignItems="center"
+          <h4>
+            <Box
+              display={'flex'}
+              flexDirection={'row'}
+              justifyContent={'space-between'}
             >
-              <Typography variant={'h4'}>Profile Details</Typography>
-
+              <Box mb={2}>
+                <Typography variant={'h4'}>Profile Details</Typography>
+              </Box>
               <div>
                 <Button
                   onClick={() => {
@@ -93,13 +95,60 @@ const MyProfileForm = () => {
                   View Public Profile
                 </Button>
               </div>
-            </Grid>
+            </Box>
           </h4>
           <div>
             <Form>
-              <section>
+              <Box mb={4}>
                 {/* Avatar */}
-                <ThumbnailImageContainer formikProps={formikProps} />
+                <Box mb={4}>
+                  <ThumbnailImageContainer />
+                </Box>
+                <section>
+                  <Box mb={4}>
+                    <Typography variant={'h4'}>Basic Info</Typography>
+                  </Box>
+                  <InputFormik
+                    name={'firstName'}
+                    label={'First Name'}
+                    placeholder={'Alex'}
+                  />
+                  <InputFormik
+                    name={'lastName'}
+                    label={'Last Name'}
+                    placeholder={'Hansen'}
+                  />
+                  <InputFormik
+                    name={'mobileNumber'}
+                    label={'Mobile No.'}
+                    placeholder={'+4790263785'}
+                  />
+                  <InputFormik
+                    name={'yearBorn'}
+                    label={'Born'}
+                    placeholder={'1999'}
+                  />
+                  <TextAreaFormik
+                    name={'personalSummary'}
+                    label={'Personal Summary'}
+                  />
+                </section>
+                <section>
+                  <Box mb={4}>
+                    <Typography variant={'h4'}>Address</Typography>
+                  </Box>
+                  <InputFormik
+                    name={'address.streetAddress'}
+                    label={'Street Address'}
+                  />
+                  <InputFormik name={'address.province'} label={'Province'} />
+                  <InputFormik
+                    name={'address.state'}
+                    label={'State (US only)'}
+                  />
+
+                  <CountrySelect />
+                </section>
 
                 <Button
                   variant={'contained'}
@@ -108,7 +157,7 @@ const MyProfileForm = () => {
                 >
                   Save Changes
                 </Button>
-              </section>
+              </Box>
             </Form>
           </div>
         </div>

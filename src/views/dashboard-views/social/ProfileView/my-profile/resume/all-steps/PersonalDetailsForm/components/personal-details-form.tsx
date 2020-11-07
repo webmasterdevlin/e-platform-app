@@ -9,7 +9,7 @@ import {
   personalDetailsValue,
 } from '../schema/personal-details.value';
 import { personalDetailsYupObject } from '../schema/personal-details.validation';
-import InputFormik from '../../../../../../../../../components/eplatform/page-components/input-formik';
+import InputFormik from '../../../../../../../../../components/eplatform/components/input-formik';
 import CountryAutosuggest from '../../../../country-autosuggest';
 
 type Props = {

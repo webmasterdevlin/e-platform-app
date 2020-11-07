@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Formik, FormikProps } from 'formik';
 import { Button } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 import {
   LicenseCertificationModel,
@@ -30,7 +29,7 @@ const NewLicenseCertification: React.FC<Props> = ({
       <Form>
         <h4 className="gray">New License or Certificate</h4>
         <div className="dashboard-list-box-static">
-          <LicenseCertificationForm formikProps={formikProps} />
+          <LicenseCertificationForm />
           <Button type={'submit'} variant={'contained'} color={'primary'}>
             Save
           </Button>

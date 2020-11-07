@@ -47,7 +47,7 @@ const EditRole: React.FC<Props> = ({
             </Button>
           </section>
           <div className="dashboard-list-box-static">
-            <RoleForm formikProps={formikProps} />
+            <RoleForm />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save
             </Button>

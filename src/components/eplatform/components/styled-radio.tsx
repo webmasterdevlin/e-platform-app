@@ -1,10 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Radio, { RadioProps } from '@material-ui/core/Radio';
 
 const StyledRadio = (props: RadioProps) => {
   const classes = useStyles();
+
   return (
     <Radio
       className={classes.root}

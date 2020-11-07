@@ -1,15 +1,13 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
-import { FormikProps } from 'formik';
-import { ExperienceModel } from '../schema/experience.value';
-import DatePickerFormik from '../../../../../../../../../components/eplatform/dashboard-components/date-picker-formik';
-import CheckboxFormik from '../../../../../../../../../components/eplatform/dashboard-components/checkbox-formik';
-import InputFormik from '../../../../../../../../../components/eplatform/page-components/input-formik';
+import { useFormikContext } from 'formik';
 
-type Props = {
-  formikProps: FormikProps<ExperienceModel>;
-};
-const RoleForm: React.FC<Props> = ({ formikProps }) => {
+import DatePickerFormik from '../../../../../../../../../components/eplatform/components/date-picker-formik';
+import CheckboxFormik from '../../../../../../../../../components/eplatform/components/checkbox-formik';
+
+const RoleForm: React.FC = () => {
+  const { handleChange, values } = useFormikContext<any>();
+
   return (
     <section>
       <div>
@@ -17,23 +15,13 @@ const RoleForm: React.FC<Props> = ({ formikProps }) => {
           id={'started'}
           label={'Started'}
           disableFuture={true}
-          formikProps={formikProps}
         />
-        {!formikProps.values.stillInRole && (
-          <DatePickerFormik
-            id={'ended'}
-            label={'Ended'}
-            disableFuture={true}
-            formikProps={formikProps}
-          />
+        {!values.stillInRole && (
+          <DatePickerFormik id={'ended'} label={'Ended'} disableFuture={true} />
         )}
       </div>
 
-      <CheckboxFormik
-        formikProps={formikProps}
-        id={'stillInRole'}
-        label={'Still In Role'}
-      />
+      <CheckboxFormik id={'stillInRole'} label={'Still In Role'} />
       <div>
         <label>
           <Box fontWeight={'700'}>Description (recommended)</Box>
@@ -44,8 +32,8 @@ const RoleForm: React.FC<Props> = ({ formikProps }) => {
         </label>
         <textarea
           id={'description'}
-          value={formikProps.values.description}
-          onChange={formikProps.handleChange}
+          value={values.description}
+          onChange={handleChange}
           cols={15}
           rows={5}
         />

@@ -25,7 +25,7 @@ const NewExperience: React.FC<Props> = ({
       <Form>
         <h4 className="gray">New Role</h4>
         <div className="dashboard-list-box-static">
-          <RoleForm formikProps={formikProps} />
+          <RoleForm />
           <Button type={'submit'} variant={'contained'} color={'primary'}>
             Save
           </Button>
