@@ -104,7 +104,7 @@ const MyProfileForm = () => {
                 <Box mb={4}>
                   <ThumbnailImageContainer />
                 </Box>
-                <section>
+                <Box mb={2}>
                   <Box mb={4}>
                     <Typography variant={'h4'}>Basic Info</Typography>
                   </Box>
@@ -132,8 +132,8 @@ const MyProfileForm = () => {
                     name={'personalSummary'}
                     label={'Personal Summary'}
                   />
-                </section>
-                <section>
+                </Box>
+                <Box mb={2}>
                   <Box mb={4}>
                     <Typography variant={'h4'}>Address</Typography>
                   </Box>
@@ -148,14 +148,36 @@ const MyProfileForm = () => {
                   />
 
                   <CountrySelect />
-                </section>
+                </Box>
 
-                <Button
-                  variant={'contained'}
-                  color={'primary'}
-                  onClick={() => formikProps.handleSubmit()}
-                >
-                  Save Changes
+                <Box mb={4}>
+                  <Box mb={2}>
+                    <Typography variant={'h4'}>Social</Typography>
+                  </Box>
+                  <InputFormik
+                    name={'socialLinks.personalWebsite'}
+                    label={'Personal Website'}
+                    placeholder={'https://yourownwebsite.com'}
+                  />
+                  <InputFormik
+                    name={'socialLinks.linkedIn'}
+                    label={'LinkedIn (optional)'}
+                    placeholder={'https://linkedin.com/in/username'}
+                  />
+                  <InputFormik
+                    name={'socialLinks.twitter'}
+                    label={'Twitter (optional)'}
+                    placeholder={'https://www.twitter.com/Username'}
+                  />
+                  <InputFormik
+                    name={'socialLinks.facebook'}
+                    label={'Facebook (optional)'}
+                    placeholder={'https://www.facebook.com/username'}
+                  />
+                </Box>
+
+                <Button variant={'contained'} color={'primary'} type={'submit'}>
+                  Save Changes Now
                 </Button>
               </Box>
             </Form>
