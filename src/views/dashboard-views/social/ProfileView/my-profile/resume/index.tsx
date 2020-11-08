@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import GetAllStepForms from './all-steps/getAllStepForms';
 import {
   Backdrop,
+  Box,
   Button,
   CircularProgress,
+  Paper,
   Step,
   StepButton,
   Stepper,
@@ -111,14 +113,10 @@ function ResumeContent() {
   const isStepComplete = (step: number): boolean => completed.has(step);
 
   return (
-    // <div className="dashboard-content">
     <div>
-      {/*<DashboardTitleBar title={'Résumé'} />*/}
-
-      <div className="row d-flex justify-content-center">
-        <div className="col-lg-9">
-          {/* Resume */}
-          <div className={classes.root}>
+      <div>
+        <div className={classes.root}>
+          <Box mb={2}>
             <Stepper alternativeLabel nonLinear activeStep={activeStep}>
               {steps.map((label, index) => {
                 const stepProps: { completed?: boolean } = {};
@@ -144,86 +142,82 @@ function ResumeContent() {
                 );
               })}
             </Stepper>
-            <div>
-              {allStepsCompleted() ? (
+          </Box>
+          <Paper style={{ padding: '4rem' }}>
+            {allStepsCompleted() ? (
+              <div>
+                <Typography className={classes.instructions}>
+                  All steps completed - you&apos;re almost finished
+                </Typography>
+                <Button
+                  onClick={handleToggle}
+                  type={'submit'}
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                >
+                  Publish Résumé
+                </Button>
+              </div>
+            ) : (
+              <div>
                 <div>
-                  <Typography className={classes.instructions}>
-                    All steps completed - you&apos;re almost finished
-                  </Typography>
-                  <Button
-                    onClick={handleToggle}
-                    type={'submit'}
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                  >
-                    Publish Résumé
-                  </Button>
-                </div>
-              ) : (
-                <div className="row d-flex justify-content-center">
-                  <div className="col-lg-12">
-                    <div
-                      className={`container ${isMobileSize ? '' : 'm-5 p-5'}`}
-                    >
-                      <div className="col-md-9 mb-5">
-                        <div className="dashboard-list-box margin-top-0">
-                          {<GetAllStepForms step={activeStep} />}
-                        </div>
-                      </div>
+                  <div className={`container ${isMobileSize ? '' : 'm-5 p-5'}`}>
+                    <div>
+                      <div>{<GetAllStepForms step={activeStep} />}</div>
                     </div>
-                    <>
-                      <Button
-                        disabled={activeStep === 0}
-                        onClick={handleBack}
-                        className={classes.button}
-                      >
-                        Back
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleNext}
-                        className={classes.button}
-                      >
-                        Next
-                      </Button>
-                      {isOneOfTheOptionals(activeStep) &&
-                        !completed.has(activeStep) && (
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={handleSkip}
-                            className={classes.button}
-                          >
-                            Skip
-                          </Button>
-                        )}
-                      {activeStep !== steps.length &&
-                        (completed.has(activeStep) ? (
-                          <Typography
-                            variant="caption"
-                            className={classes.completed}
-                          >
-                            Step {activeStep + 1} already completed
-                          </Typography>
-                        ) : (
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={handleComplete}
-                          >
-                            {completedSteps() === totalSteps() - 1
-                              ? 'Finish'
-                              : 'Complete Step'}
-                          </Button>
-                        ))}
-                    </>
                   </div>
+                  <>
+                    <Button
+                      disabled={activeStep === 0}
+                      onClick={handleBack}
+                      className={classes.button}
+                    >
+                      Back
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleNext}
+                      className={classes.button}
+                    >
+                      Next
+                    </Button>
+                    {isOneOfTheOptionals(activeStep) &&
+                      !completed.has(activeStep) && (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={handleSkip}
+                          className={classes.button}
+                        >
+                          Skip
+                        </Button>
+                      )}
+                    {activeStep !== steps.length &&
+                      (completed.has(activeStep) ? (
+                        <Typography
+                          variant="caption"
+                          className={classes.completed}
+                        >
+                          Step {activeStep + 1} already completed
+                        </Typography>
+                      ) : (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={handleComplete}
+                        >
+                          {completedSteps() === totalSteps() - 1
+                            ? 'Finish'
+                            : 'Complete Step'}
+                        </Button>
+                      ))}
+                  </>
                 </div>
-              )}
-            </div>
-          </div>
+              </div>
+            )}
+          </Paper>
         </div>
       </div>
 

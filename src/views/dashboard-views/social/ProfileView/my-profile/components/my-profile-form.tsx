@@ -35,6 +35,7 @@ const MyProfileForm = () => {
   const [myProfile, setMyProfile] = useState<MyProfileModel>(
     myProfileEmptyValue,
   );
+
   const [isNew, setIsNew] = useState(true);
 
   useEffect(() => {
@@ -147,7 +148,7 @@ const MyProfileForm = () => {
                     label={'State (US only)'}
                   />
 
-                  <CountrySelect />
+                  <CountrySelect name={'address.country'} />
                 </Box>
 
                 <Box mb={4}>
@@ -177,7 +178,7 @@ const MyProfileForm = () => {
                 </Box>
 
                 <Button variant={'contained'} color={'primary'} type={'submit'}>
-                  Save Changes Now
+                  Save Changes
                 </Button>
               </Box>
             </Form>

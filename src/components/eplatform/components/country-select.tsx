@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import { useFormikContext } from 'formik';
+import YupFormikValidationViewer from './yup-formik-validation-viewer';
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE 11
@@ -26,44 +27,45 @@ const useStyles = makeStyles({
   },
 });
 
-const CountrySelect = () => {
+const CountrySelect: React.FC<{ name: string }> = ({ name }) => {
   const { values, handleChange, handleBlur, setFieldValue } = useFormikContext<
     any
   >();
   const classes = useStyles();
 
   return (
-    <Autocomplete
-      id="country-select-demo"
-      style={{ width: 300 }}
-      options={countries as CountryType[]}
-      classes={{
-        option: classes.option,
-      }}
-      autoHighlight
-      getOptionLabel={option => option.label}
-      renderOption={option => (
-        <React.Fragment>
-          <span>{countryToFlag(option.code)}</span>
-          {option.label} ({option.code}) +{option.phone}
-        </React.Fragment>
-      )}
-      renderInput={params => (
-        <TextField
-          {...params}
-          onChange={handleChange}
-          label="Choose a country"
-          variant="outlined"
-          inputProps={{
-            ...params.inputProps,
-            autoComplete: 'new-password',
-            onChange: e => {
-              setFieldValue('country', e.currentTarget.value);
-            },
-          }}
-        />
-      )}
-    />
+    <>
+      <Autocomplete
+        id={name}
+        style={{ width: 300, marginBottom: '1rem' }}
+        options={countries as CountryType[]}
+        classes={{
+          option: classes.option,
+        }}
+        autoHighlight
+        getOptionLabel={option => option.label}
+        onChange={(e: any) => {
+          console.log(e);
+          setFieldValue(name, e.target.innerText);
+        }}
+        renderOption={option => <React.Fragment>{option.label}</React.Fragment>}
+        renderInput={(params: any) => {
+          return (
+            <TextField
+              {...params}
+              label="Choose a country"
+              variant="outlined"
+              value={values[name]}
+              inputProps={{
+                ...params.inputProps,
+                autoComplete: name,
+              }}
+            />
+          );
+        }}
+      />
+      <YupFormikValidationViewer />
+    </>
   );
 };
 

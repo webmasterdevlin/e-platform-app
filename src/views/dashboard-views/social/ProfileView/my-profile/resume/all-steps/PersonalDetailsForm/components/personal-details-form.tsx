@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
 import { Alert } from '@material-ui/lab';
-import { Button, Typography } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 import {
@@ -10,7 +10,8 @@ import {
 } from '../schema/personal-details.value';
 import { personalDetailsYupObject } from '../schema/personal-details.validation';
 import InputFormik from '../../../../../../../../../components/eplatform/components/input-formik';
-import CountryAutosuggest from '../../../../country-autosuggest';
+
+import CountrySelect from '../../../../../../../../../components/eplatform/components/country-select';
 
 type Props = {
   personalDetails: PersonalDetailsModel;
@@ -48,27 +49,25 @@ const PersonalDetailsForm: React.FC<Props> = ({
     >
       {formikProps => (
         <Form>
-          <h4 className="gray">{`${
-            isNew ? 'New' : 'Edit'
-          } Personal Details`}</h4>
-          <div className="dashboard-list-box-static">
-            <section className={'my-4'}>
-              <div className="row">
-                <div className="col-md-6"></div>
-                <div></div>
+          <Box mb={2}>
+            <Typography variant={'h4'}>{`${
+              isNew ? 'New' : 'Edit'
+            } Personal Details`}</Typography>
+          </Box>
+          <div>
+            <section>
+              <div>
+                <div>
+                  <InputFormik name={'firstName'} label={'First Name'} />
+                </div>
+                <div>
+                  <InputFormik name={'lastName'} label={'Last Name'} />
+                </div>
               </div>
 
-              {formikProps.values.country ? (
-                <></>
-              ) : (
-                // TODO: Fix the navigates when backspace is pressed on Firefox
-                <CountryAutosuggest
-                  id={'country'}
-                  label={'Country'}
-                  setFieldValue={formikProps.setFieldValue}
-                />
-              )}
-              <label>Email address</label>
+              <CountrySelect name={'country'} />
+
+              <Typography variant={'h6'}>Email address</Typography>
               <label>
                 <em>{formikProps.values.email}</em>
               </label>
