@@ -20,9 +20,9 @@ const Experience: React.FC<Props> = ({
   showAddExperienceButton,
 }) => {
   return (
-    <div className="dashboard-list-box-static">
-      <section className={'mb-4'}>
-        <div className="d-flex flex-row justify-content-between">
+    <div>
+      <section>
+        <div>
           <Box color={'#222'} fontSize={'1.80rem'} fontWeight={'500'}>
             {experience?.jobTitle}
           </Box>

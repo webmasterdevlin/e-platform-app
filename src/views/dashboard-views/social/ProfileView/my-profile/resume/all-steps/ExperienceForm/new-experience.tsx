@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import { Button } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 
 import { experienceValue } from './schema/experience.value';
 import { experienceYupObject } from './schema/experience.validation';
@@ -23,8 +23,10 @@ const NewExperience: React.FC<Props> = ({
   >
     {formikProps => (
       <Form>
-        <h4 className="gray">New Role</h4>
-        <div className="dashboard-list-box-static">
+        <Box mb={4}>
+          <Typography variant={'h4'}>New Role</Typography>
+        </Box>
+        <div>
           <RoleForm />
           <Button type={'submit'} variant={'contained'} color={'primary'}>
             Save

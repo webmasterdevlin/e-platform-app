@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik, FormikProps } from 'formik';
 import { SkillsModel, skillsValues } from '../schema/skills.value';
-import { Box, Button, Fab } from '@material-ui/core';
+import { Box, Button, Fab, Typography } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Chip from '@material-ui/core/Chip';
 import { useStyles } from '../mui.style';
@@ -82,31 +82,45 @@ const SkillsForm: React.FC<Props> = ({ setIsEditing, skills }) => {
     >
       {formikProps => (
         <Form>
-          <h4 className="gray">{`${isNew ? 'New' : 'Edit'} Skills`}</h4>
-          <div className="dashboard-list-box-static">
+          <Box mb={4}>
+            <Typography variant={'h4'}>{`${
+              isNew ? 'New' : 'Edit'
+            } Skills`}</Typography>
+          </Box>
+          <div>
             <section>
               <Box mb={2}>
-                Help employers find you by showcasing all of your skills.
+                <Typography>
+                  Help employers find you by showcasing all of your skills.
+                </Typography>
               </Box>
-              <label className={'font-weight-bold'}>Add new</label>
-              <div className={'d-flex justify-content-start'}>
-                <input
-                  name={'label'}
-                  type={'text'}
-                  value={newChip}
-                  onChange={handleOnChange}
-                  onKeyPress={event => handleInputKeyPress(event, formikProps)}
-                  placeholder={'Add new (e.g. Team building)'}
-                />
+              <label>Add new</label>
+              <Box
+                display={'flex'}
+                flexDirection={'row'}
+                justifyContent={'flex-start'}
+                alignItems={'center'}
+              >
+                <Box mr={1}>
+                  <input
+                    name={'label'}
+                    type={'text'}
+                    value={newChip}
+                    onChange={handleOnChange}
+                    onKeyPress={event =>
+                      handleInputKeyPress(event, formikProps)
+                    }
+                    placeholder={'Add new (e.g. Team building)'}
+                  />
+                </Box>
                 <Fab
                   onClick={() => handleAdd(formikProps, newChip)}
-                  className={'ml-2'}
                   color="primary"
                   aria-label="add"
                 >
                   <AddIcon />
                 </Fab>
-              </div>
+              </Box>
               <section className={'my-4'}>
                 <label className={'font-weight-bold'}>Added skills</label>
                 <div className={classes.root}>
@@ -114,7 +128,7 @@ const SkillsForm: React.FC<Props> = ({ setIsEditing, skills }) => {
                     return (
                       <div key={data}>
                         <Chip
-                          style={{ fontSize: '1.8rem' }}
+                          style={{ fontSize: '1rem' }}
                           label={data}
                           className={classes.chip}
                           onDelete={() => handleDelete(formikProps, data)}

@@ -32,9 +32,7 @@ const ExperienceFormsContainer: React.FC<Props> = ({ experiences }) => {
         />
       ) : (
         <>
-          {showEditingExperience === resetIdTracking && (
-            <h4 className="gray">Career History</h4>
-          )}
+          {showEditingExperience === resetIdTracking && <h4>Career History</h4>}
           {experiences.map(experience => (
             <div key={experience.id}>
               {experience.id === showEditingExperience && (

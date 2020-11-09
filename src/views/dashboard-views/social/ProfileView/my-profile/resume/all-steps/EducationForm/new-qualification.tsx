@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Formik, FormikProps } from 'formik';
-import { Button } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 
 import {
   QualificationModel,
@@ -28,7 +28,9 @@ const NewQualification: React.FC<Props> = ({
     >
       {(formikProps: FormikProps<QualificationModel>) => (
         <Form>
-          <h4 className="gray">New Qualification</h4>
+          <Box mb={4}>
+            <Typography variant={'h4'}>New Qualification</Typography>
+          </Box>
           <div className="dashboard-list-box-static">
             <QualificationForm formikProps={formikProps} />
             <Button type={'submit'} variant={'contained'} color={'primary'}>

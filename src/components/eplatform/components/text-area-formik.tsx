@@ -21,9 +21,7 @@ const TextAreaFormik: React.FC<Props> = ({ name, label, placeholder }) => {
       <Paper className={classes.textareaContainer} variant="outlined">
         <TextareaAutosize
           className={classes.textarea}
-          onChange={({ target }) =>
-            setFieldValue('personalSummary', target.value)
-          }
+          onChange={({ target }) => setFieldValue(name, target.value)}
           placeholder={placeholder}
           rows={3}
           value={values[name]}

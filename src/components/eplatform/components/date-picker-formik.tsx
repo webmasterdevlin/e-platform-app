@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { DatePicker } from '@material-ui/pickers';
-import { FormikProps, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 import PlainErrorMessage from './plain-error-message';
+import { Box } from '@material-ui/core';
 
 type Props = {
   id: string;
@@ -20,24 +21,24 @@ const DatePickerFormik: React.FC<Props> = ({
   const { handleBlur, values, setFieldValue } = useFormikContext<any>();
 
   return (
-    <div className={'mb-2'}>
-      <label>{label}</label>
+    <Box mb={2}>
       <DatePicker
         id={id}
-        variant="inline"
+        label={label}
+        variant={'inline'}
         openTo="year"
         views={['year', 'month']}
         helperText="Start from year selection"
         disablePast={disablePast}
         disableFuture={disableFuture}
-        value={values[`${id}`]}
+        value={values[id]}
         onBlur={handleBlur}
         onChange={dateProps => {
           setFieldValue(id, dateProps);
         }}
       />
       <PlainErrorMessage id={id} />
-    </div>
+    </Box>
   );
 };
 

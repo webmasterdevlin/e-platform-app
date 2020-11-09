@@ -12,6 +12,8 @@ import {
 } from '@material-ui/core';
 
 import { Section, CardBase } from '../../../../../components/organisms';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../../store';
 
 const Hero: React.FC = () => {
   const classes = useStyles();
@@ -20,8 +22,11 @@ const Hero: React.FC = () => {
     defaultMatches: true,
   });
 
+  const { user } = useSelector((state: RootState) => state.oidc);
+
   return (
     <section className={classes.hero}>
+      <span>{JSON.stringify(user, null, 2)}</span>
       <Section className={classes.heroWrapper}>
         <Grid container spacing={isMd ? 6 : 4} className={classes.heroGrid}>
           <Grid item xs={12} className={classes.searchGridText}>

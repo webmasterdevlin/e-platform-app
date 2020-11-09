@@ -4,8 +4,9 @@ import {
   PersonalSummaryModel,
   personalSummaryValue,
 } from '../schema/personal-summary.value';
-import { Box, Button } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import { personalSummaryYupObject } from '../schema/personal-summary.validation';
+import TextAreaFormik from '../../../../../../../../../components/eplatform/components/text-area-formik';
 
 type Props = {
   personalSummary: PersonalSummaryModel;
@@ -42,16 +43,31 @@ const PersonalSummaryForm: React.FC<Props> = ({
     >
       {formikProps => (
         <Form>
-          <h4>{`${isNew ? 'New' : 'Edit'} Personal Summary`}</h4>
+          <Box mb={4}>
+            <Typography variant={'h4'}>{`${
+              isNew ? 'New' : 'Edit'
+            } Personal Summary`}</Typography>
+          </Box>
           <div>
             <section>
-              <label>
-                Highlight your unique experiences, ambitions and strengths.
-              </label>
+              <Box mb={1}>
+                <Typography>
+                  Highlight your unique experiences, ambitions and strengths.
+                </Typography>
+              </Box>
             </section>
-            <Button type={'submit'} variant={'contained'} color={'primary'}>
+
+            <TextAreaFormik name={'summary'} label={'Summary'} />
+
+            <Button
+              style={{ marginRight: '1rem' }}
+              type={'submit'}
+              variant={'contained'}
+              color={'primary'}
+            >
               Save
             </Button>
+
             {!isNew && (
               <Button onClick={setIsEditing} variant={'text'} color={'primary'}>
                 Cancel

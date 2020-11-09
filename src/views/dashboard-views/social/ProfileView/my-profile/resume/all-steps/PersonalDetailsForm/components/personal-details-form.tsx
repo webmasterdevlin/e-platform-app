@@ -65,13 +65,15 @@ const PersonalDetailsForm: React.FC<Props> = ({
                 </div>
               </div>
 
+              <InputFormik name={'mobileNumber'} label={'Mobile Number'} />
+
               <CountrySelect name={'country'} />
 
               <Typography variant={'h6'}>Email address</Typography>
               <label>
                 <em>{formikProps.values.email}</em>
               </label>
-              <Alert severity="info">
+              <Alert severity="info" style={{ marginBottom: '2rem' }}>
                 <Typography variant={'caption'}>
                   Change your email, password, or delete your account in{' '}
                   <Link to={'dashboard-settings'}>Settings</Link>.

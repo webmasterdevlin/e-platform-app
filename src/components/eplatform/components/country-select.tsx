@@ -3,7 +3,6 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import { useFormikContext } from 'formik';
-import YupFormikValidationViewer from './yup-formik-validation-viewer';
 
 // ISO 3166-1 alpha-2
 // ⚠️ No support for IE 11
@@ -64,7 +63,6 @@ const CountrySelect: React.FC<{ name: string }> = ({ name }) => {
           );
         }}
       />
-      <YupFormikValidationViewer />
     </>
   );
 };

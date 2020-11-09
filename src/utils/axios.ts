@@ -13,8 +13,9 @@ axiosInstance.interceptors.response.use(
 export default axiosInstance;
 
 export const api = axios.create({
-  baseURL: `http://localhost:5000/`,
+  baseURL: `https://thedreamteamelearningapi20200520103954.azurewebsites.net/api/`,
 });
+
 export enum EndPoints {
   antiHeroes = 'anti-heroes',
   heroes = 'heroes',

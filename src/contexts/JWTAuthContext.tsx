@@ -1,9 +1,11 @@
 import React, { createContext, useEffect, useReducer } from 'react';
 import type { FC, ReactNode } from 'react';
 import jwtDecode from 'jwt-decode';
-import type { User } from '../../src/types/user';
+import type { User } from '../types/user';
 import SplashScreen from '../../src/components/SplashScreen';
 import axios from '../../src/utils/axios';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 interface AuthState {
   isInitialised: boolean;
@@ -130,7 +132,7 @@ const AuthContext = createContext<AuthContextValue>({
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialAuthState);
-
+  const { user: authUser } = useSelector((state: RootState) => state.oidc);
   const login = async (email: string, password: string) => {
     const response = await axios.post<{ accessToken: string; user: User }>(
       '/api/account/login',
@@ -138,6 +140,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     );
     const { accessToken, user } = response.data;
 
+    // setSession(authUser.access_token);
     setSession(accessToken);
     dispatch({
       type: 'LOGIN',

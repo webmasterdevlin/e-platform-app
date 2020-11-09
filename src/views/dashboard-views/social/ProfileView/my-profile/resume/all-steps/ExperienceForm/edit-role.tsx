@@ -27,8 +27,8 @@ const EditRole: React.FC<Props> = ({
     >
       {formikProps => (
         <Form>
-          <section className={'d-flex flex-row justify-content-between'}>
-            <h4 className="gray">Edit Role</h4>
+          <section>
+            <h4>Edit Role</h4>
             <Button
               onClick={async () => {
                 try {
@@ -46,7 +46,7 @@ const EditRole: React.FC<Props> = ({
               Delete
             </Button>
           </section>
-          <div className="dashboard-list-box-static">
+          <div>
             <RoleForm />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save

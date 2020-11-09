@@ -37,7 +37,7 @@ const Timeline: FC<TimelineProps> = ({ className, profile, ...rest }) => {
   }, [isMountedRef]);
 
   useEffect(() => {
-    getPosts();
+    getPosts().then();
   }, [getPosts]);
 
   return (

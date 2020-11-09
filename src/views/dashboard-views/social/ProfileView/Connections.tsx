@@ -93,7 +93,7 @@ const Connections: FC<ConnectionsProps> = ({ className, ...rest }) => {
   }, [isMountedRef]);
 
   useEffect(() => {
-    getConnections();
+    getConnections().then();
   }, [getConnections]);
 
   return (

@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  makeStyles,
   Paper,
   Step,
   StepButton,
@@ -13,6 +14,7 @@ import {
   useMediaQuery,
 } from '@material-ui/core';
 import { useStyles } from './mui.style';
+import { Theme } from '../../../../../../themes/dashboard-theme';
 
 /*
   TODO:
@@ -143,7 +145,7 @@ function ResumeContent() {
               })}
             </Stepper>
           </Box>
-          <Paper style={{ padding: '4rem' }}>
+          <div>
             {allStepsCompleted() ? (
               <div>
                 <Typography className={classes.instructions}>
@@ -163,9 +165,9 @@ function ResumeContent() {
               <div>
                 <div>
                   <div className={`container ${isMobileSize ? '' : 'm-5 p-5'}`}>
-                    <div>
-                      <div>{<GetAllStepForms step={activeStep} />}</div>
-                    </div>
+                    <Paper style={{ padding: '4rem', marginBottom: '2rem' }}>
+                      {<GetAllStepForms step={activeStep} />}
+                    </Paper>
                   </div>
                   <>
                     <Button
@@ -217,7 +219,7 @@ function ResumeContent() {
                 </div>
               </div>
             )}
-          </Paper>
+          </div>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useReducer } from 'react';
 import type { FC, ReactNode } from 'react';
-import type { User } from '../../src/types/user';
+import type { User } from '../types/user';
 import SplashScreen from '../../src/components/SplashScreen';
 import firebase from '../../src/lib/firebase';
 
