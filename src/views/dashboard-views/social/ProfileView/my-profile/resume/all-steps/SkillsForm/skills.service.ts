@@ -1,8 +1,8 @@
 import { SkillsModel } from './schema/skills.value';
-import { api } from '../../../../../../../../utils/axios';
+import api from '../../../../../../../../utils/axios2';
 
 export async function getSkillsAxios() {
-  return await api.get<SkillsModel>('skills');
+  return await api.get<SkillsModel>('Skills');
 }
 
 export async function postSkillsAxios(value: SkillsModel) {

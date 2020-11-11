@@ -26,7 +26,6 @@ const Hero: React.FC = () => {
 
   return (
     <section className={classes.hero}>
-      <span>{JSON.stringify(user, null, 2)}</span>
       <Section className={classes.heroWrapper}>
         <Grid container spacing={isMd ? 6 : 4} className={classes.heroGrid}>
           <Grid item xs={12} className={classes.searchGridText}>

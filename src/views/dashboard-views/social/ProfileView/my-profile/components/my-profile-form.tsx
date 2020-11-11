@@ -60,11 +60,9 @@ const MyProfileForm = () => {
       initialValues={isNew ? myProfileEmptyValue : myProfile}
       validationSchema={myProfileYupObject}
       onSubmit={async (values, actions) => {
-        alert(isNew ? 'New' : 'Editing');
-        alert(JSON.stringify(values, null, 2));
         try {
           if (isNew) {
-            alert('await postMyProfileAxios(values)');
+            await putMyProfileAxios(values);
           } else {
             alert('await putMyProfileAxios(values)');
           }
@@ -177,7 +175,12 @@ const MyProfileForm = () => {
                   />
                 </Box>
 
-                <Button variant={'contained'} color={'primary'} type={'submit'}>
+                <Button
+                  onClick={() => formikProps.setFieldValue('id', '')}
+                  variant={'contained'}
+                  color={'primary'}
+                  type={'submit'}
+                >
                   Save Changes
                 </Button>
               </Box>

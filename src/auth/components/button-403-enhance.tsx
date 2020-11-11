@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { compose, withProps } from 'recompose';
 import { withAuthentication } from '@axa-fr/react-oidc-redux-fetch';
 

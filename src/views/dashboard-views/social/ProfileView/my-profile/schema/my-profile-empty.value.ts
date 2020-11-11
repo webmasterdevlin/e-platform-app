@@ -1,10 +1,28 @@
+/*
+* {
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "firstName": "string",
+  "lastName": "string",
+  "mobile": "string",
+  "mobileCountryCode": "string",
+  "email": "string",
+  "imageUrl": "string",
+  "personalWebsite": "string",
+  "linkedinProfile": "string",
+  "facebookProfile": "string",
+  "twitterProfile": "string",
+  "profileSummary": "string",
+  "country": "string",
+  "zip": "string",
+  "city": "string",
+  "streetAddress": "string",
+  "addressLineExtra": "string",
+  "state": "string"
+}
+* */
+
 export const myProfileEmptyValue: MyProfileModel = {
   id: '',
-  imageFile: {
-    name: '',
-    type: '',
-    size: '',
-  },
   firstName: '',
   lastName: '',
   mobileNumber: '',
@@ -23,6 +41,11 @@ export const myProfileEmptyValue: MyProfileModel = {
     twitter: '',
     facebook: '',
     other: '',
+  },
+  imageFile: {
+    name: '',
+    type: '',
+    size: '',
   },
 };
 

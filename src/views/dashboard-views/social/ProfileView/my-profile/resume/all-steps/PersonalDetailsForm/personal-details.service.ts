@@ -1,5 +1,5 @@
 import { PersonalDetailsModel } from './schema/personal-details.value';
-import { api } from '../../../../../../../../utils/axios';
+import api from '../../../../../../../../utils/axios2';
 
 export async function getPersonalDetailsAxios() {
   return await api.get<PersonalDetailsModel>('personal-details');
