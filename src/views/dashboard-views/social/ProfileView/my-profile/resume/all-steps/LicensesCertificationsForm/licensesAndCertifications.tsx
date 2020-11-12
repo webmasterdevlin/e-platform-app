@@ -21,9 +21,9 @@ const LicensesAndCertifications: React.FC<Props> = ({
   setShowNewLicenseCertification,
 }) => {
   return (
-    <div className="dashboard-list-box-static">
-      <section className={'mb-4'}>
-        <div className="d-flex flex-row justify-content-between">
+    <div>
+      <section>
+        <div>
           <Box color={'#222'} fontSize={'1.80rem'} fontWeight={'500'}>
             {licenseCertification.name}
           </Box>
@@ -33,7 +33,6 @@ const LicensesAndCertifications: React.FC<Props> = ({
                 setIsEditing();
                 setShowEditingLicenseCertification(licenseCertification.id);
               }}
-              className={'p-0'}
               color="primary"
               aria-label="edit experience"
               component="span"
@@ -43,24 +42,24 @@ const LicensesAndCertifications: React.FC<Props> = ({
           </label>
         </div>
         <Box mb={1}>
-          <Box color={'#222'}>{licenseCertification.issuingOrganization}</Box>
+          <Box color={'#222'}>{licenseCertification.issuer}</Box>
           <Box color={'#222'}>
             {`Issued ${monthNameFormDate(
               new Date(licenseCertification.issueDate),
             )} ${new Date(
               licenseCertification.issueDate,
             ).getFullYear()} . Expires ${monthNameFormDate(
-              new Date(licenseCertification.expirationDate),
-            )} ${new Date(licenseCertification.expirationDate).getFullYear()}`}
+              new Date(licenseCertification.expiryDate),
+            )} ${new Date(licenseCertification.expiryDate).getFullYear()}`}
           </Box>
-          {licenseCertification.credentialId && (
-            <Box>Credential ID {licenseCertification.credentialId}</Box>
+          {licenseCertification.certificateId && (
+            <Box>Credential ID {licenseCertification.certificateId}</Box>
           )}
         </Box>
-        {licenseCertification.credentialUrl && (
+        {licenseCertification.certificateUrl && (
           <Box>
             <a
-              href={licenseCertification.credentialUrl}
+              href={licenseCertification.certificateUrl}
               rel={'noopener noreferrer'}
               target={'_blank'}
             >

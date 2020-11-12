@@ -20,11 +20,11 @@ const Qualification: React.FC<Props> = ({
   setShowEditingQualification,
 }) => {
   return (
-    <div className="dashboard-list-box-static">
+    <div>
       <section className={'mb-4'}>
-        <div className="d-flex flex-row justify-content-between">
+        <div>
           <Box color={'#222'} fontSize={'1.80rem'} fontWeight={'500'}>
-            {qualification?.courseOrQualification}
+            {qualification?.qualification}
           </Box>
           <label htmlFor="edit">
             <IconButton
@@ -32,7 +32,6 @@ const Qualification: React.FC<Props> = ({
                 setIsEditing();
                 setShowEditingQualification(qualification.id);
               }}
-              className={'p-0'}
               color="primary"
               aria-label="edit experience"
               component="span"
@@ -42,14 +41,14 @@ const Qualification: React.FC<Props> = ({
           </label>
         </div>
         <Box color={'#222'}>{qualification.institution}</Box>
-        {qualification.finished ? (
+        {qualification.completedDate ? (
           <Box>{`Graduated ${new Date(
-            qualification.finished,
+            qualification.completedDate,
           ).getFullYear()}`}</Box>
         ) : (
           <Box>
             {`Graduating ${new Date(
-              qualification.expectedFinish,
+              qualification.expectedCompletionDate,
             ).getFullYear()}`}
           </Box>
         )}

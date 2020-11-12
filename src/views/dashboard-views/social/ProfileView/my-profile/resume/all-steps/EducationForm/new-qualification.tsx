@@ -31,7 +31,7 @@ const NewQualification: React.FC<Props> = ({
           <Box mb={4}>
             <Typography variant={'h4'}>New Qualification</Typography>
           </Box>
-          <div className="dashboard-list-box-static">
+          <div>
             <QualificationForm formikProps={formikProps} />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save

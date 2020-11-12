@@ -32,7 +32,6 @@ const Experience: React.FC<Props> = ({
                 setIsEditing();
                 setShowEditingExperience(experience?.id);
               }}
-              className={'p-0'}
               color="primary"
               aria-label="edit experience"
               component="span"

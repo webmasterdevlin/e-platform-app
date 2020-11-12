@@ -1,36 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
+import { useSelector } from 'react-redux';
+import {
+  Backdrop,
+  Box,
+  Button,
+  makeStyles,
+  Typography,
+} from '@material-ui/core';
 
-import CountryAutosuggest from '../country-autosuggest';
 import {
   MyProfileModel,
   myProfileEmptyValue,
 } from '../schema/my-profile-empty.value';
 import { myProfileYupObject } from '../schema/my-profile.validation';
-import {
-  getMyProfileAxios,
-  postMyProfileAxios,
-  putMyProfileAxios,
-} from '../my-profile.service';
-
-import {
-  Box,
-  Button,
-  Grid,
-  makeStyles,
-  Paper,
-  TextareaAutosize,
-  Typography,
-} from '@material-ui/core';
-import { useHistory } from 'react-router';
-import { ThumbnailImageContainer } from '../../../../../../components/eplatform/components/thumbnail-image-container';
+import { getMyProfileAxios, putMyProfileAxios } from '../my-profile.service';
 import InputFormik from '../../../../../../components/eplatform/components/input-formik';
 import { Theme } from '../../../../../../themes/dashboard-theme';
 import TextAreaFormik from '../../../../../../components/eplatform/components/text-area-formik';
 import CountrySelect from '../../../../../../components/eplatform/components/country-select';
+import { RootState } from '../../../../../../store';
+import { ProfileModel } from '../../../../../../auth/auth.model';
 
 const MyProfileForm = () => {
   const classes = useStyles();
+
+  const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
+  const [userId, setUserId] = useState('');
 
   const [myProfile, setMyProfile] = useState<MyProfileModel>(
     myProfileEmptyValue,
@@ -40,19 +36,21 @@ const MyProfileForm = () => {
 
   useEffect(() => {
     fetchMyProfile().then();
+    const profile: ProfileModel = user?.profile;
+    setUserId(profile?.oid);
   }, []);
 
   const fetchMyProfile = async (): Promise<void> => {
     try {
       const { data } = await getMyProfileAxios();
-      // setMyProfile(data);
-      // setIsNew(false);
+      if (!data) return;
+
+      setMyProfile(data);
+      setIsNew(false);
     } catch (e) {
       alert(`Something happened: ${e.message}`);
     }
   };
-
-  const history = useHistory();
 
   return (
     <Formik
@@ -60,12 +58,9 @@ const MyProfileForm = () => {
       initialValues={isNew ? myProfileEmptyValue : myProfile}
       validationSchema={myProfileYupObject}
       onSubmit={async (values, actions) => {
+        const request = { ...values, id: userId };
         try {
-          if (isNew) {
-            await putMyProfileAxios(values);
-          } else {
-            alert('await putMyProfileAxios(values)');
-          }
+          await putMyProfileAxios(request);
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
@@ -82,54 +77,69 @@ const MyProfileForm = () => {
               <Box mb={2}>
                 <Typography variant={'h4'}>Profile Details</Typography>
               </Box>
-              <div>
-                <Button
-                  onClick={() => {
-                    return;
-                    history.push('');
-                  }}
-                  variant={'outlined'}
-                  color={'primary'}
-                >
-                  View Public Profile
-                </Button>
+              <div
+                style={{
+                  width: '20rem',
+                  height: 'auto',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                }}
+              >
+                {formikProps.values.imageUrl && (
+                  <img
+                    alt={'image profile'}
+                    src={formikProps.values.imageUrl}
+                    height={'auto'}
+                    width={'100%'}
+                    style={{
+                      borderRadius: '1rem',
+                    }}
+                  />
+                )}
               </div>
+              {/*<div>*/}
+              {/*  <Button*/}
+              {/*    onClick={() => {*/}
+              {/*      return;*/}
+              {/*      history.push('');*/}
+              {/*    }}*/}
+              {/*    variant={'outlined'}*/}
+              {/*    color={'primary'}*/}
+              {/*  >*/}
+              {/*    View Public Profile*/}
+              {/*  </Button>*/}
+              {/*</div>*/}
             </Box>
           </h4>
           <div>
             <Form>
               <Box mb={4}>
                 {/* Avatar */}
-                <Box mb={4}>
-                  <ThumbnailImageContainer />
-                </Box>
+                {/*<Box mb={4}>*/}
+                {/*  <ThumbnailImageContainer id={'imageUrl'} />*/}
+                {/*</Box>*/}
                 <Box mb={2}>
                   <Box mb={4}>
                     <Typography variant={'h4'}>Basic Info</Typography>
                   </Box>
+                  <InputFormik name={'imageUrl'} label={'Image URL'} />
+                  <InputFormik name={'firstName'} label={'First Name'} />
+                  <InputFormik name={'lastName'} label={'Last Name'} />
                   <InputFormik
-                    name={'firstName'}
-                    label={'First Name'}
-                    placeholder={'Alex'}
+                    name={'mobileCountryCode'}
+                    label={'Country code'}
+                    placeholder={'+47'}
                   />
                   <InputFormik
-                    name={'lastName'}
-                    label={'Last Name'}
-                    placeholder={'Hansen'}
-                  />
-                  <InputFormik
-                    name={'mobileNumber'}
+                    name={'mobile'}
                     label={'Mobile No.'}
-                    placeholder={'+4790263785'}
+                    placeholder={'90263785'}
                   />
-                  <InputFormik
-                    name={'yearBorn'}
-                    label={'Born'}
-                    placeholder={'1999'}
-                  />
+                  <InputFormik name={'email'} label={'Email'} />
                   <TextAreaFormik
-                    name={'personalSummary'}
-                    label={'Personal Summary'}
+                    name={'profileSummary'}
+                    label={'Profile Summary'}
                   />
                 </Box>
                 <Box mb={2}>
@@ -137,50 +147,45 @@ const MyProfileForm = () => {
                     <Typography variant={'h4'}>Address</Typography>
                   </Box>
                   <InputFormik
-                    name={'address.streetAddress'}
+                    name={'streetAddress'}
                     label={'Street Address'}
                   />
-                  <InputFormik name={'address.province'} label={'Province'} />
                   <InputFormik
-                    name={'address.state'}
-                    label={'State (US only)'}
+                    name={'addressLineExtra'}
+                    label={'Address line extra'}
                   />
-
-                  <CountrySelect name={'address.country'} />
+                  <InputFormik name={'city'} label={'City'} />
+                  <InputFormik name={'state'} label={'State (US only)'} />
+                  <CountrySelect name={'country'} />
+                  <InputFormik name={'zip'} label={'Zip'} />
                 </Box>
-
                 <Box mb={4}>
                   <Box mb={2}>
                     <Typography variant={'h4'}>Social</Typography>
                   </Box>
                   <InputFormik
-                    name={'socialLinks.personalWebsite'}
+                    name={'personalWebsite'}
                     label={'Personal Website'}
                     placeholder={'https://yourownwebsite.com'}
                   />
                   <InputFormik
-                    name={'socialLinks.linkedIn'}
+                    name={'linkedinProfile'}
                     label={'LinkedIn (optional)'}
                     placeholder={'https://linkedin.com/in/username'}
                   />
                   <InputFormik
-                    name={'socialLinks.twitter'}
+                    name={'twitterProfile'}
                     label={'Twitter (optional)'}
                     placeholder={'https://www.twitter.com/Username'}
                   />
                   <InputFormik
-                    name={'socialLinks.facebook'}
+                    name={'facebookProfile'}
                     label={'Facebook (optional)'}
                     placeholder={'https://www.facebook.com/username'}
                   />
                 </Box>
 
-                <Button
-                  onClick={() => formikProps.setFieldValue('id', '')}
-                  variant={'contained'}
-                  color={'primary'}
-                  type={'submit'}
-                >
+                <Button variant={'contained'} color={'primary'} type={'submit'}>
                   Save Changes
                 </Button>
               </Box>
@@ -194,31 +199,4 @@ const MyProfileForm = () => {
 
 export default MyProfileForm;
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    padding: theme.spacing(3),
-    display: 'flex',
-  },
-  avatar: {
-    marginRight: theme.spacing(2),
-  },
-  textareaContainer: {
-    flexGrow: 1,
-    padding: theme.spacing(2),
-  },
-  textarea: {
-    ...theme.typography.body1,
-    backgroundColor: theme.palette.background.default,
-    color: theme.palette.text.primary,
-    border: 'none',
-    outline: 'none',
-    resize: 'none',
-    width: '100%',
-  },
-  action: {
-    marginRight: theme.spacing(1),
-  },
-  fileInput: {
-    display: 'none',
-  },
-}));
+const useStyles = makeStyles((theme: Theme) => ({}));

@@ -25,7 +25,7 @@ const PersonalDetails: React.FC<Props> = ({
           <Typography noWrap>
             {`${personalDetails?.firstName} ${personalDetails?.lastName}`}
           </Typography>
-          <Typography noWrap>{personalDetails?.mobileNumber}</Typography>
+          <Typography noWrap>{personalDetails?.mobile}</Typography>
           <Typography noWrap>{personalDetails?.country}</Typography>
           <Typography noWrap>{personalDetails?.email}</Typography>
         </Grid>

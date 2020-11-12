@@ -32,9 +32,7 @@ const EducationFormsContainer: React.FC<Props> = ({ qualifications }) => {
         />
       ) : (
         <>
-          {showEditingQualification === resetIdTracking && (
-            <h4 className="gray">Education</h4>
-          )}
+          {showEditingQualification === resetIdTracking && <h4>Education</h4>}
           {qualifications.map(qualification => (
             <div key={qualification.id}>
               {qualification.id === showEditingQualification && (

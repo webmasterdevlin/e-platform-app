@@ -22,7 +22,7 @@ const experienceYupObject = Yup.object({
           ({ min }) => `Date needs to be after ${formatDate(min)}.`,
         ),
     }),
-  stillInRole: Yup.boolean(),
+  isCurrentRole: Yup.boolean(),
   description: Yup.string(),
 });
 

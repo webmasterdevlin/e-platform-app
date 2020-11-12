@@ -14,20 +14,17 @@ type Props = {
 
 const QualificationForm: React.FC<Props> = ({ formikProps }) => (
   <section>
-    <CheckboxFormik
-      id={'qualificationComplete'}
-      label={'Qualification complete'}
-    />
-    {formikProps.values.qualificationComplete ? (
+    <CheckboxFormik id={'isCourseCompleted'} label={'Course complete'} />
+    {formikProps.values.isCourseCompleted ? (
       <DatePickerFormik
-        id={'finished'}
-        label={'Finished (optional)'}
+        id={'completedDate'}
+        label={'Completed date (optional)'}
         disableFuture={true}
       />
     ) : (
       <DatePickerFormik
-        id={'expectedFinish'}
-        label={'Expected finish (optional)'}
+        id={'expectedCompletionDate'}
+        label={'Expected completion date (optional)'}
         disablePast={true}
       />
     )}

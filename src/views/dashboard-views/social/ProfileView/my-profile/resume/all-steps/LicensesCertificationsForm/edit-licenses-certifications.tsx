@@ -27,8 +27,8 @@ const EditLicensesCertifications: React.FC<Props> = ({
     >
       {formikProps => (
         <Form>
-          <div className={'d-flex flex-row justify-content-between'}>
-            <h4 className="gray">Edit License or Certificate</h4>
+          <div>
+            <h4>Edit License or Certificate</h4>
             <Button
               onClick={async () => {
                 try {
@@ -48,7 +48,7 @@ const EditLicensesCertifications: React.FC<Props> = ({
               Delete
             </Button>
           </div>
-          <div className="dashboard-list-box-static">
+          <div>
             <LicenseCertificationForm />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save

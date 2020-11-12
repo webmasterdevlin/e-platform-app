@@ -5,26 +5,25 @@ const myProfileYupObject = Yup.object({
   imageFile: Yup.mixed().nullable().notRequired(),
   firstName: Yup.string().min(2).max(50).required().label('First Name'),
   lastName: Yup.string().max(2).max(50).required().label('Last Name'),
-  mobileNumber: Yup.string().max(50).nullable().notRequired(),
-  yearBorn: Yup.string().min(4).max(4).nullable().notRequired(),
-  personalSummary: Yup.string().max(1200).nullable().notRequired(),
-  address: Yup.object({
-    streetAddress: Yup.string().max(240),
-    zipCode: Yup.string().max(50),
-    province: Yup.string().max(50),
-    state: Yup.string().max(50),
-    country: Yup.string().max(50),
-  })
+  mobile: Yup.string().max(10).nullable().notRequired(),
+  mobileCountryCode: Yup.string()
+    .max(3)
     .nullable()
-    .notRequired(),
-  socialLinks: Yup.object({
-    personalWebsite: Yup.string().url().max(100),
-    linkedIn: Yup.string().url().max(100),
-    twitter: Yup.string().url().max(100),
-    facebook: Yup.string().url().max(100),
-  })
-    .nullable()
-    .notRequired(),
+    .notRequired()
+    .label('Country code'),
+  email: Yup.string().email().nullable().notRequired(),
+  imageUrl: Yup.string().nullable().notRequired(),
+  personalWebsite: Yup.string().url().max(100).nullable().notRequired(),
+  facebookProfile: Yup.string().url().max(100).nullable().notRequired(),
+  linkedinProfile: Yup.string().url().max(100).nullable().notRequired(),
+  twitterProfile: Yup.string().url().max(100).nullable().notRequired(),
+  profileSummary: Yup.string().max(1200).nullable().notRequired(),
+  country: Yup.string().max(50).nullable().notRequired(),
+  zip: Yup.string().max(50).nullable().notRequired(),
+  city: Yup.string().max(50).nullable().notRequired(),
+  streetAddress: Yup.string().max(240).nullable().notRequired(),
+  addressLineExtra: Yup.string().max(50).nullable().notRequired(),
+  state: Yup.string().max(50).nullable().notRequired(),
 });
 
 export { myProfileYupObject };

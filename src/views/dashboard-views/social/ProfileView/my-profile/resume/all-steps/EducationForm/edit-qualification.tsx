@@ -29,8 +29,8 @@ const EditQualification: React.FC<Props> = ({
     >
       {formikProps => (
         <Form>
-          <div className={'d-flex flex-row justify-content-between'}>
-            <h4 className="gray">Edit Qualification</h4>
+          <div>
+            <h4>Edit Qualification</h4>
             <Button
               onClick={async () => {
                 try {
@@ -48,7 +48,7 @@ const EditQualification: React.FC<Props> = ({
               Delete
             </Button>
           </div>
-          <div className="dashboard-list-box-static">
+          <div>
             <QualificationForm formikProps={formikProps} />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save

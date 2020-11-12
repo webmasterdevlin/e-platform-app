@@ -2,13 +2,18 @@ import React from 'react';
 import { useFormikContext } from 'formik';
 import ThumbnailImage from './thumbnail-image';
 import { Box, Typography } from '@material-ui/core';
+import { MyProfileModel } from '../../../views/dashboard-views/social/ProfileView/my-profile/schema/my-profile-empty.value';
 
-export const ThumbnailImageContainer: React.FC = () => {
-  const { values, setFieldValue } = useFormikContext<any>();
+type Props = {
+  id: string;
+};
+
+export const ThumbnailImageContainer: React.FC<Props> = ({ id }) => {
+  const { values, setFieldValue } = useFormikContext<MyProfileModel>();
 
   return (
     <div>
-      <ThumbnailImage imageFile={values.imageFile} />
+      <ThumbnailImage imageFile={values.imageUrl} />
       <div>
         <Box mb={2}>
           <Typography variant="body2" color="textSecondary" gutterBottom>
@@ -23,7 +28,7 @@ export const ThumbnailImageContainer: React.FC = () => {
             alt={'image file upload'}
             className="upload"
             onChange={event => {
-              setFieldValue('imageFile', event.currentTarget.files[0]);
+              setFieldValue(id, event.currentTarget.files[0]);
             }}
           />
         </Box>

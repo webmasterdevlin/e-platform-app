@@ -10,7 +10,7 @@ const LicenseCertificationForm: React.FC = () => {
         id={'doesNotExpire'}
         label={'This credential does not expire'}
       />
-      <div className={'d-flex flex-row justify-content-around'}>
+      <div>
         <DatePickerFormik
           id={'issueDate'}
           label={'Issue Date'}

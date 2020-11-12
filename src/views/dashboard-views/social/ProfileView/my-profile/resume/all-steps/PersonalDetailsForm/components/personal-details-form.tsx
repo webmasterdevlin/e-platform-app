@@ -52,7 +52,7 @@ const PersonalDetailsForm: React.FC<Props> = ({
           <Box mb={2}>
             <Typography variant={'h4'}>{`${
               isNew ? 'New' : 'Edit'
-            } Personal Details`}</Typography>
+            } Personal Details (No Endpoint)`}</Typography>
           </Box>
           <div>
             <section>
@@ -65,7 +65,7 @@ const PersonalDetailsForm: React.FC<Props> = ({
                 </div>
               </div>
 
-              <InputFormik name={'mobileNumber'} label={'Mobile Number'} />
+              <InputFormik name={'mobile'} label={'Mobile Number'} />
 
               <CountrySelect name={'country'} />
 
