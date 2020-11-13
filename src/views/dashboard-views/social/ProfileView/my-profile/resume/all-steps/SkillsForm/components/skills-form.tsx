@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik, FormikProps } from 'formik';
 import { SkillsModel, skillsValues } from '../schema/skills.value';
-import { Box, Button, Fab, Typography } from '@material-ui/core';
+import { Box, Button, Fab, TextField, Typography } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Chip from '@material-ui/core/Chip';
 import { useStyles } from '../mui.style';
@@ -85,7 +85,7 @@ const SkillsForm: React.FC<Props> = ({ setIsEditing, skills }) => {
           <Box mb={4}>
             <Typography variant={'h4'}>{`${
               isNew ? 'New' : 'Edit'
-            } Skills`}</Typography>
+            } Skills (only GET request)`}</Typography>
           </Box>
           <div>
             <section>
@@ -101,8 +101,8 @@ const SkillsForm: React.FC<Props> = ({ setIsEditing, skills }) => {
                 justifyContent={'flex-start'}
                 alignItems={'center'}
               >
-                <Box mr={1}>
-                  <input
+                <Box mr={2} mb={4}>
+                  <TextField
                     name={'label'}
                     type={'text'}
                     value={newChip}
@@ -121,9 +121,11 @@ const SkillsForm: React.FC<Props> = ({ setIsEditing, skills }) => {
                   <AddIcon />
                 </Fab>
               </Box>
-              <section className={'my-4'}>
-                <label className={'font-weight-bold'}>Added skills</label>
-                <div className={classes.root}>
+              <section>
+                <Box fontWeight={'bold'} mb={4}>
+                  <Typography>Added skills</Typography>
+                </Box>
+                <Box mb={4}>
                   {formikProps?.values?.list.map(data => {
                     return (
                       <div key={data}>
@@ -136,7 +138,7 @@ const SkillsForm: React.FC<Props> = ({ setIsEditing, skills }) => {
                       </div>
                     );
                   })}
-                </div>
+                </Box>
               </section>
               <Button
                 type={'submit'}

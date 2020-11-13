@@ -9,7 +9,7 @@ import {
   QualificationModel,
   qualificationValue,
 } from './EducationForm/schema/qualification.value';
-import { getQualificationAxios } from './EducationForm/qualification.service';
+import { getEducationsAxios } from './EducationForm/qualification.service';
 import {
   ExperienceModel,
   experienceValue,
@@ -28,7 +28,7 @@ import {
   personalSummaryValue,
 } from './PesonalSummaryForm/schema/personal-summary.value';
 import { SkillsModel, skillsValues } from './SkillsForm/schema/skills.value';
-import { getLicensesCertificationsAxios } from './LicensesCertificationsForm/licenses-certifications.service';
+import { getCertificatesOrLicensesAxios } from './LicensesCertificationsForm/licenses-certifications.service';
 import { getPersonalDetailsAxios } from './PersonalDetailsForm/personal-details.service';
 import { getPersonalSummaryAxios } from './PesonalSummaryForm/personal-summary.service';
 import { getSkillsAxios } from './SkillsForm/skills.service';
@@ -61,7 +61,7 @@ const GetAllStepForms = ({ step }) => {
   }, []);
 
   const fetchEducation = async () => {
-    const { data } = await getQualificationAxios();
+    const { data } = await getEducationsAxios();
     setQualifications(data);
   };
   const fetchExperience = async () => {
@@ -69,7 +69,7 @@ const GetAllStepForms = ({ step }) => {
     setExperiences(data);
   };
   const fetchLicensesCertifications = async () => {
-    const { data } = await getLicensesCertificationsAxios();
+    const { data } = await getCertificatesOrLicensesAxios();
     setLicensesCertifications(data);
   };
   const fetchPersonalDetails = async () => {

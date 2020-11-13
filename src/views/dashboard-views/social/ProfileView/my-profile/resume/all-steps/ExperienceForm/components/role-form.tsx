@@ -5,24 +5,29 @@ import { useFormikContext } from 'formik';
 import DatePickerFormik from '../../../../../../../../../components/eplatform/components/date-picker-formik';
 import CheckboxFormik from '../../../../../../../../../components/eplatform/components/checkbox-formik';
 import TextAreaFormik from '../../../../../../../../../components/eplatform/components/text-area-formik';
+import InputFormik from '../../../../../../../../../components/eplatform/components/input-formik';
 
 const RoleForm: React.FC = () => {
   const { handleChange, values } = useFormikContext<any>();
 
   return (
     <section>
+      <InputFormik name={'jobTitle'} label={'Job Title'} />
+      <InputFormik name={'companyName'} label={'Company Name'} />
+      <InputFormik name={'location'} label={'Location'} />
+
       <div>
         <DatePickerFormik
           id={'started'}
           label={'Started'}
           disableFuture={true}
         />
-        {!values.stillInRole && (
+        {!values.isCurrentRole && (
           <DatePickerFormik id={'ended'} label={'Ended'} disableFuture={true} />
         )}
       </div>
 
-      <CheckboxFormik id={'stillInRole'} label={'Still In Role'} />
+      <CheckboxFormik id={'isCurrentRole'} label={'Still In Role'} />
       <div>
         <Typography variant={'subtitle1'}>Description (recommended)</Typography>
         <TextAreaFormik

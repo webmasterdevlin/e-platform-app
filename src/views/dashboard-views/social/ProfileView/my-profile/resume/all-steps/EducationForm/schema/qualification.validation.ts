@@ -10,10 +10,21 @@ const qualificationYupObject = Yup.object({
     .nullable()
     .notRequired(),
   expectedCompletionDate: Yup.date()
-    .min(new Date(), ({ min }) => `Date needs to be after ${formatDate(min)}.`)
-    .nullable()
-    .notRequired(),
+    .when('isCourseCompleted', {
+      is: true,
+      then: Yup.date().nullable().notRequired(),
+    })
+    .when('isCurrentRole', {
+      is: false,
+      then: Yup.date().nullable().notRequired(),
+    }),
   courseHighlights: Yup.string().nullable().notRequired(),
 });
 
 export { qualificationYupObject };
+
+/*
+*  .min(new Date(), ({ min }) => `Date needs to be after ${formatDate(min)}.`)
+    .nullable()
+    .notRequired()
+* */

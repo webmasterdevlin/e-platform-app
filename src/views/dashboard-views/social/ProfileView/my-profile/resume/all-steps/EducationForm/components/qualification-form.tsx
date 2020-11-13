@@ -1,12 +1,13 @@
 import React from 'react';
 import { FormikProps } from 'formik';
 import { QualificationModel } from '../schema/qualification.value';
-import { Box } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 import CheckboxFormik from '../../../../../../../../../components/eplatform/components/checkbox-formik';
 import DatePickerFormik from '../../../../../../../../../components/eplatform/components/date-picker-formik';
 import InputFormik from '../../../../../../../../../components/eplatform/components/input-formik';
 import TextAreaFormik from '../../../../../../../../../components/eplatform/components/text-area-formik';
+import YupFormikValidationViewer from '../../../../../../../../../components/eplatform/components/yup-formik-validation-viewer';
 
 type Props = {
   formikProps: FormikProps<QualificationModel>;
@@ -14,22 +15,27 @@ type Props = {
 
 const QualificationForm: React.FC<Props> = ({ formikProps }) => (
   <section>
+    <InputFormik name={'institution'} label={'Institution'} />
+    <InputFormik name={'qualification'} label={'Qualification'} />
     <CheckboxFormik id={'isCourseCompleted'} label={'Course complete'} />
     {formikProps.values.isCourseCompleted ? (
-      <DatePickerFormik
-        id={'completedDate'}
-        label={'Completed date (optional)'}
-        disableFuture={true}
-      />
+      <div>
+        <span>(Not included in the endpoint)</span>
+        <DatePickerFormik
+          id={'completedDate'}
+          label={'Completed date'}
+          disableFuture={true}
+        />
+      </div>
     ) : (
       <DatePickerFormik
         id={'expectedCompletionDate'}
-        label={'Expected completion date (optional)'}
+        label={'Expected date'}
         disablePast={true}
       />
     )}
     <Box mb={1}>
-      <Box fontWeight={'700'}>Course highlights (optional)</Box>
+      <Typography>Course highlights (optional)</Typography>
     </Box>
     <TextAreaFormik
       name={'courseHighlights'}
@@ -38,6 +44,7 @@ const QualificationForm: React.FC<Props> = ({ formikProps }) => (
         '        study.'
       }
     />
+    <YupFormikValidationViewer />
   </section>
 );
 export default QualificationForm;

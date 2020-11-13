@@ -9,11 +9,11 @@ const experienceYupObject = Yup.object({
     .max(new Date(), ({ max }) => `Date needs to be before ${formatDate(max)}.`)
     .required(),
   ended: Yup.date()
-    .when('stillInRole', {
+    .when('isCurrentRole', {
       is: true,
       then: Yup.date().nullable().notRequired(),
     })
-    .when('stillInRole', {
+    .when('isCurrentRole', {
       is: false,
       then: Yup.date()
         .nullable()

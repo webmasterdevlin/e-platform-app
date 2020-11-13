@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Formik, FormikProps } from 'formik';
 import { Box, Button, Typography } from '@material-ui/core';
 
@@ -8,6 +8,10 @@ import {
 } from './schema/qualification.value';
 import { qualificationYupObject } from './schema/qualification.validation';
 import QualificationForm from './components/qualification-form';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../../../../../store';
+import { ProfileModel } from '../../../../../../../../auth/auth.model';
+import { postEducationAxios } from './qualification.service';
 
 type Props = {
   setShowNewQualification: (boolean) => void;
@@ -18,12 +22,26 @@ const NewQualification: React.FC<Props> = ({
   setShowNewQualification,
   showCancelButton,
 }) => {
+  const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
+  const [userId, setUserId] = useState('');
+
+  useEffect(() => {
+    const profile: ProfileModel = user?.profile;
+    setUserId(profile?.oid);
+  }, []);
+
   return (
     <Formik
       initialValues={qualificationValue}
       validationSchema={qualificationYupObject}
-      onSubmit={(values, actions) => {
-        alert(JSON.stringify(values, null, 2));
+      onSubmit={async (values, actions) => {
+        const request: any = { ...values, id: userId };
+        try {
+          await postEducationAxios(request);
+        } catch (e) {
+          alert(`Something happened: ${e.message}`);
+        }
+        // alert(JSON.stringify(values, null, 2));
       }}
     >
       {(formikProps: FormikProps<QualificationModel>) => (
