@@ -2,24 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { Form, Formik, FormikProps } from 'formik';
 import { Box, Button, Typography } from '@material-ui/core';
 
-import {
-  QualificationModel,
-  qualificationValue,
-} from './schema/qualification.value';
-import { qualificationYupObject } from './schema/qualification.validation';
-import QualificationForm from './components/qualification-form';
+import { EducationModel, educationValue } from './schema/education.value';
+import { educationYupObject } from './schema/education.validation';
+import EducationForm from './components/education-form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../../../store';
 import { ProfileModel } from '../../../../../../../../auth/auth.model';
-import { postEducationAxios } from './qualification.service';
+import { postEducationAxios } from './education.service';
 
 type Props = {
-  setShowNewQualification: (boolean) => void;
+  setShowNewEducation: (boolean) => void;
   showCancelButton: boolean;
 };
 
-const NewQualification: React.FC<Props> = ({
-  setShowNewQualification,
+const NewEducation: React.FC<Props> = ({
+  setShowNewEducation,
   showCancelButton,
 }) => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
@@ -32,10 +29,10 @@ const NewQualification: React.FC<Props> = ({
 
   return (
     <Formik
-      initialValues={qualificationValue}
-      validationSchema={qualificationYupObject}
+      initialValues={educationValue}
+      validationSchema={educationYupObject}
       onSubmit={async (values, actions) => {
-        const request: any = { ...values, id: userId };
+        const request = { ...values, id: userId };
         try {
           await postEducationAxios(request);
         } catch (e) {
@@ -44,19 +41,19 @@ const NewQualification: React.FC<Props> = ({
         // alert(JSON.stringify(values, null, 2));
       }}
     >
-      {(formikProps: FormikProps<QualificationModel>) => (
+      {(formikProps: FormikProps<EducationModel>) => (
         <Form>
           <Box mb={4}>
             <Typography variant={'h4'}>New Qualification</Typography>
           </Box>
           <div>
-            <QualificationForm formikProps={formikProps} />
+            <EducationForm formikProps={formikProps} />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save
             </Button>
             {showCancelButton && (
               <Button
-                onClick={setShowNewQualification}
+                onClick={setShowNewEducation}
                 variant={'text'}
                 color={'primary'}
               >
@@ -70,4 +67,4 @@ const NewQualification: React.FC<Props> = ({
   );
 };
 
-export default NewQualification;
+export default NewEducation;

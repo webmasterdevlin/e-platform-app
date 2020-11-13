@@ -4,7 +4,7 @@ import CheckboxFormik from '../../../../../../../../../components/eplatform/comp
 import DatePickerFormik from '../../../../../../../../../components/eplatform/components/date-picker-formik';
 import InputFormik from '../../../../../../../../../components/eplatform/components/input-formik';
 
-const LicenseCertificationForm: React.FC = () => {
+const CertificationForm: React.FC = () => {
   return (
     <section>
       <InputFormik name={'name'} label={'Name'} />
@@ -30,4 +30,4 @@ const LicenseCertificationForm: React.FC = () => {
   );
 };
 
-export default LicenseCertificationForm;
+export default CertificationForm;

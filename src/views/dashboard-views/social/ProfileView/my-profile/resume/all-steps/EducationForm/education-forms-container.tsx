@@ -1,62 +1,58 @@
 import React, { useState } from 'react';
 
-import { QualificationModel } from './schema/qualification.value';
-import Qualification from './qualification';
-import NewQualification from './new-qualification';
-import EditQualification from './edit-qualification';
+import { EducationModel } from './schema/education.value';
+import Education from './education';
+import NewEducation from './new-education';
+import EditEducation from './edit-education';
 
 type Props = {
-  qualifications: QualificationModel[];
+  educations: EducationModel[];
 };
 
-const EducationFormsContainer: React.FC<Props> = ({ qualifications }) => {
+const EducationFormsContainer: React.FC<Props> = ({ educations }) => {
   const resetIdTracking = '0';
   const [isEditing, setIsEditing] = useState(false);
-  const [showNewQualification, setShowNewQualification] = useState(false);
-  const [showEditingQualification, setShowEditingQualification] = useState(
+  const [showNewEducation, setShowNewEducation] = useState(false);
+  const [showEditingEducation, setShowEditingEducation] = useState(
     resetIdTracking,
   );
 
-  const { length, [length - 1]: lastQualification } = qualifications;
+  const { length, [length - 1]: lastEducation } = educations;
 
-  qualifications = null;
+  // educations = null;
 
   return (
     <>
-      {showNewQualification || !qualifications ? (
-        <NewQualification
-          showCancelButton={showNewQualification}
-          setShowNewQualification={() =>
-            setShowNewQualification(!showNewQualification)
-          }
+      {showNewEducation || !educations ? (
+        <NewEducation
+          showCancelButton={showNewEducation}
+          setShowNewEducation={() => setShowNewEducation(!showNewEducation)}
         />
       ) : (
         <>
-          {showEditingQualification === resetIdTracking && <h4>Education</h4>}
-          {qualifications.map(qualification => (
-            <div key={qualification.id}>
-              {qualification.id === showEditingQualification && (
-                <EditQualification
-                  qualification={qualification}
+          {showEditingEducation === resetIdTracking && <h4>Education</h4>}
+          {educations.map(education => (
+            <div key={education.id}>
+              {education.id === showEditingEducation && (
+                <EditEducation
+                  education={education}
                   setIsEditing={() => setIsEditing(!isEditing)}
-                  setShowEditingQualification={() =>
-                    setShowEditingQualification(resetIdTracking)
+                  setShowEditingEducation={() =>
+                    setShowEditingEducation(resetIdTracking)
                   }
                 />
               )}
-              {showEditingQualification === resetIdTracking && (
-                <Qualification
-                  qualification={qualification}
+              {showEditingEducation === resetIdTracking && (
+                <Education
+                  education={education}
                   setShowNewQualification={() =>
-                    setShowNewQualification(!showNewQualification)
+                    setShowNewEducation(!showNewEducation)
                   }
                   setIsEditing={() => setIsEditing(!isEditing)}
                   setShowEditingQualification={() =>
-                    setShowEditingQualification(qualification.id)
+                    setShowEditingEducation(education.id)
                   }
-                  showAddQualificationButton={
-                    lastQualification === qualification
-                  }
+                  showAddQualificationButton={lastEducation === education}
                 />
               )}
             </div>

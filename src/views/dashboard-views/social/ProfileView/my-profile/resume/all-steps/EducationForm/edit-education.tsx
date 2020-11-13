@@ -3,26 +3,26 @@ import { Form, Formik } from 'formik';
 import { Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import { QualificationModel } from './schema/qualification.value';
-import { qualificationYupObject } from './schema/qualification.validation';
-import QualificationForm from './components/qualification-form';
+import { EducationModel } from './schema/education.value';
+import { educationYupObject } from './schema/education.validation';
+import EducationForm from './components/education-form';
 
 type Props = {
   setIsEditing: () => void;
-  setShowEditingQualification: () => void;
-  qualification: QualificationModel;
+  setShowEditingEducation: () => void;
+  education: EducationModel;
 };
 
-const EditQualification: React.FC<Props> = ({
-  qualification,
+const EditEducation: React.FC<Props> = ({
+  education,
   setIsEditing,
-  setShowEditingQualification,
+  setShowEditingEducation,
 }) => {
   return (
     <Formik
       enableReinitialize={true}
-      initialValues={qualification}
-      validationSchema={qualificationYupObject}
+      initialValues={education}
+      validationSchema={educationYupObject}
       onSubmit={(values, actions) => {
         alert(JSON.stringify(values, null, 2));
       }}
@@ -30,13 +30,13 @@ const EditQualification: React.FC<Props> = ({
       {formikProps => (
         <Form>
           <div>
-            <h4>Edit Qualification</h4>
+            <h4>Edit Education</h4>
             <Button
               onClick={async () => {
                 try {
-                  alert(`await deleteQualificationAxios(${qualification.id})`);
+                  alert(`await deleteEducationAxios(${education.id})`);
                   setIsEditing();
-                  setShowEditingQualification();
+                  setShowEditingEducation();
                 } catch (e) {
                   alert(`Something happened: ${e.message}`);
                 }
@@ -49,14 +49,14 @@ const EditQualification: React.FC<Props> = ({
             </Button>
           </div>
           <div>
-            <QualificationForm formikProps={formikProps} />
+            <EducationForm formikProps={formikProps} />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save
             </Button>
             <Button
               onClick={() => {
                 setIsEditing();
-                setShowEditingQualification();
+                setShowEditingEducation();
               }}
               variant={'text'}
               color={'primary'}
@@ -70,4 +70,4 @@ const EditQualification: React.FC<Props> = ({
   );
 };
 
-export default EditQualification;
+export default EditEducation;

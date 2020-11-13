@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { formatDate } from '../../../../../../../../../utils/date-converter';
 
-const licensesCertificationsYupObject = Yup.object({
+const certificationsYupObject = Yup.object({
   name: Yup.string().required().label('Name'),
   issuer: Yup.string().required().label('Issuing Organization'),
   isCertificateNeverExpire: Yup.boolean().nullable().notRequired(),
@@ -17,4 +17,4 @@ const licensesCertificationsYupObject = Yup.object({
   certificateUrl: Yup.string().url().nullable().notRequired(),
 });
 
-export { licensesCertificationsYupObject };
+export { certificationsYupObject };

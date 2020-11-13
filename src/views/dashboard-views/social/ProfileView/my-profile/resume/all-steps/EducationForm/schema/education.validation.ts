@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { formatDate } from '../../../../../../../../../utils/date-converter';
 
-const qualificationYupObject = Yup.object({
+const educationYupObject = Yup.object({
   institution: Yup.string().required().label('Institution'),
   qualification: Yup.string().required().label('Course or Qualification'),
   isCourseCompleted: Yup.boolean(),
@@ -21,7 +21,7 @@ const qualificationYupObject = Yup.object({
   courseHighlights: Yup.string().nullable().notRequired(),
 });
 
-export { qualificationYupObject };
+export { educationYupObject };
 
 /*
 *  .min(new Date(), ({ min }) => `Date needs to be after ${formatDate(min)}.`)

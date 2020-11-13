@@ -2,24 +2,24 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 import { Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { LicenseCertificationModel } from './schema/license-certification.value';
+import { CertificationModel } from './schema/certification.value';
 import { experienceYupObject } from '../ExperienceForm/schema/experience.validation';
-import LicenseCertificationForm from './components/license-certification-form';
+import CertificationForm from './components/certification-form';
 
 type Props = {
   setIsEditing: () => void;
-  setShowEditingLicenseCertification: () => void;
-  licenseCertification: LicenseCertificationModel;
+  setShowEditingCertification: () => void;
+  certification: CertificationModel;
 };
 
-const EditLicensesCertifications: React.FC<Props> = ({
-  licenseCertification,
+const EditCertifications: React.FC<Props> = ({
+  certification,
   setIsEditing,
-  setShowEditingLicenseCertification,
+  setShowEditingCertification,
 }) => {
   return (
     <Formik
-      initialValues={licenseCertification}
+      initialValues={certification}
       validationSchema={experienceYupObject}
       onSubmit={(values, actions) => {
         alert(JSON.stringify(values, null, 2));
@@ -32,11 +32,9 @@ const EditLicensesCertifications: React.FC<Props> = ({
             <Button
               onClick={async () => {
                 try {
-                  alert(
-                    `await deleteEducationAxios(${licenseCertification.id})`,
-                  );
+                  alert(`await deleteCertificationAxios(${certification.id})`);
                   setIsEditing();
-                  setShowEditingLicenseCertification();
+                  setShowEditingCertification();
                 } catch (e) {
                   alert(`Something happened: ${e.message}`);
                 }
@@ -49,14 +47,14 @@ const EditLicensesCertifications: React.FC<Props> = ({
             </Button>
           </div>
           <div>
-            <LicenseCertificationForm />
+            <CertificationForm />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save
             </Button>
             <Button
               onClick={() => {
                 setIsEditing();
-                setShowEditingLicenseCertification();
+                setShowEditingCertification();
               }}
               variant={'text'}
               color={'primary'}
@@ -70,4 +68,4 @@ const EditLicensesCertifications: React.FC<Props> = ({
   );
 };
 
-export default EditLicensesCertifications;
+export default EditCertifications;

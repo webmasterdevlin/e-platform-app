@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { LicenseCertificationModel } from './schema/license-certification.value';
-import LicensesAndCertifications from './licensesAndCertifications';
-import EditLicensesCertifications from './edit-licenses-certifications';
-import NewLicenseCertification from './new-license-certification';
+import { CertificationModel } from './schema/certification.value';
+import Certifications from './certifications';
+import EditCertifications from './edit-certifications';
+import NewCertification from './new-certification';
 
 type Props = {
-  licensesCertifications: LicenseCertificationModel[];
+  licensesCertifications: CertificationModel[];
 };
 
-const LicenseCertificationFormsContainer: React.FC<Props> = ({
+const CertificationFormsContainer: React.FC<Props> = ({
   licensesCertifications,
 }) => {
   const resetIdTracking = '0';
@@ -33,9 +33,9 @@ const LicenseCertificationFormsContainer: React.FC<Props> = ({
   return (
     <>
       {showNewLicenseCertification || !licensesCertifications ? (
-        <NewLicenseCertification
+        <NewCertification
           showCancelButton={showNewLicenseCertification}
-          setShowNewLicenseExperience={() => {
+          setShowNewExperience={() => {
             setShowNewLicenseCertification(!showNewLicenseCertification);
           }}
         />
@@ -47,25 +47,23 @@ const LicenseCertificationFormsContainer: React.FC<Props> = ({
           {licensesCertifications.map(lc => (
             <div key={lc.id}>
               {lc.id === showEditingLicenseCertification && (
-                <EditLicensesCertifications
-                  licenseCertification={lc}
+                <EditCertifications
+                  certification={lc}
                   setIsEditing={() => setIsEditing(!isEditing)}
-                  setShowEditingLicenseCertification={() =>
+                  setShowEditingCertification={() =>
                     setShowEditingLicenseCertification(resetIdTracking)
                   }
                 />
               )}
               {showEditingLicenseCertification === resetIdTracking && (
-                <LicensesAndCertifications
+                <Certifications
                   setIsEditing={() => setIsEditing(!isEditing)}
-                  setShowNewLicenseCertification={() =>
+                  setShowNewCertification={() =>
                     setShowNewLicenseCertification(!showNewLicenseCertification)
                   }
-                  licenseCertification={lc}
-                  showAddLicenseCertificationButton={
-                    lastLicenseCertification === lc
-                  }
-                  setShowEditingLicenseCertification={() =>
+                  certification={lc}
+                  showAddCertificationButton={lastLicenseCertification === lc}
+                  setShowEditingCertification={() =>
                     setShowEditingLicenseCertification(lc.id)
                   }
                 />
@@ -78,4 +76,4 @@ const LicenseCertificationFormsContainer: React.FC<Props> = ({
   );
 };
 
-export default LicenseCertificationFormsContainer;
+export default CertificationFormsContainer;

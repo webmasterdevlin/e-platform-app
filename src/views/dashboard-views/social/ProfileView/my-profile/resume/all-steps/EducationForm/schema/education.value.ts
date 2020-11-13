@@ -1,4 +1,4 @@
-export const qualificationValue: QualificationModel = {
+export const educationValue: EducationModel = {
   id: '',
   institution: '',
   qualification: '',
@@ -8,7 +8,7 @@ export const qualificationValue: QualificationModel = {
   courseHighlights: '',
 };
 
-export type QualificationModel = {
+export type EducationModel = {
   id: string;
   institution: string;
   qualification: string;

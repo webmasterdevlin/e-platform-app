@@ -2,23 +2,23 @@ import React, { useEffect, useState } from 'react';
 import PersonalDetailsFormsContainer from './PersonalDetailsForm/personal-details-forms-container';
 import ExperienceFormsContainer from './ExperienceForm/experience-forms-container';
 import EducationFormsContainer from './EducationForm/education-forms-container';
-import LicenseCertificationFormsContainer from './LicensesCertificationsForm/license-certification-forms-container';
+import CertificationFormsContainer from './CertificationsForm/certification-forms-container';
 import SkillsFormsContainer from './SkillsForm/skills-forms-container';
 import PersonalSummaryFormsContainer from './PesonalSummaryForm/personal-summary-forms-container';
 import {
-  QualificationModel,
-  qualificationValue,
-} from './EducationForm/schema/qualification.value';
-import { getEducationsAxios } from './EducationForm/qualification.service';
+  EducationModel,
+  educationValue,
+} from './EducationForm/schema/education.value';
+import { getEducationsAxios } from './EducationForm/education.service';
 import {
   ExperienceModel,
   experienceValue,
 } from './ExperienceForm/schema/experience.value';
 import { getExperienceAxios } from './ExperienceForm/experience.service';
 import {
-  LicenseCertificationModel,
-  licenseCertificationValue,
-} from './LicensesCertificationsForm/schema/license-certification.value';
+  CertificationModel,
+  certificationValue,
+} from './CertificationsForm/schema/certification.value';
 import {
   PersonalDetailsModel,
   personalDetailsValue,
@@ -28,21 +28,21 @@ import {
   personalSummaryValue,
 } from './PesonalSummaryForm/schema/personal-summary.value';
 import { SkillsModel, skillsValues } from './SkillsForm/schema/skills.value';
-import { getCertificatesOrLicensesAxios } from './LicensesCertificationsForm/licenses-certifications.service';
+import { getCertificatesAxios } from './CertificationsForm/certifications.service';
 import { getPersonalDetailsAxios } from './PersonalDetailsForm/personal-details.service';
 import { getPersonalSummaryAxios } from './PesonalSummaryForm/personal-summary.service';
 import { getSkillsAxios } from './SkillsForm/skills.service';
 
 const GetAllStepForms = ({ step }) => {
-  const [qualifications, setQualifications] = useState<QualificationModel[]>([
-    qualificationValue,
+  const [qualifications, setQualifications] = useState<EducationModel[]>([
+    educationValue,
   ]);
   const [experiences, setExperiences] = useState<ExperienceModel[]>([
     experienceValue,
   ]);
   const [licensesCertifications, setLicensesCertifications] = useState<
-    LicenseCertificationModel[]
-  >([licenseCertificationValue]);
+    CertificationModel[]
+  >([certificationValue]);
   const [personalDetails, setPersonalDetails] = useState<PersonalDetailsModel>(
     personalDetailsValue,
   );
@@ -54,7 +54,7 @@ const GetAllStepForms = ({ step }) => {
   useEffect(() => {
     fetchEducation().then();
     fetchExperience().then();
-    fetchLicensesCertifications().then();
+    fetchCertifications().then();
     fetchPersonalDetails().then();
     fetchPersonalSummary().then();
     fetchSkills().then();
@@ -68,8 +68,8 @@ const GetAllStepForms = ({ step }) => {
     const { data } = await getExperienceAxios();
     setExperiences(data);
   };
-  const fetchLicensesCertifications = async () => {
-    const { data } = await getCertificatesOrLicensesAxios();
+  const fetchCertifications = async () => {
+    const { data } = await getCertificatesAxios();
     setLicensesCertifications(data);
   };
   const fetchPersonalDetails = async () => {
@@ -101,13 +101,13 @@ const GetAllStepForms = ({ step }) => {
     case 2:
       return (
         <>
-          <EducationFormsContainer qualifications={qualifications} />
+          <EducationFormsContainer educations={qualifications} />
         </>
       );
     case 3:
       return (
         <>
-          <LicenseCertificationFormsContainer
+          <CertificationFormsContainer
             licensesCertifications={licensesCertifications}
           />
         </>

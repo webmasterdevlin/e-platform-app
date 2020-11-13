@@ -1,4 +1,4 @@
-export const licenseCertificationValue: LicenseCertificationModel = {
+export const certificationValue: CertificationModel = {
   id: '',
   name: '',
   issuer: '',
@@ -9,7 +9,7 @@ export const licenseCertificationValue: LicenseCertificationModel = {
   certificateUrl: '',
 };
 
-export type LicenseCertificationModel = {
+export type CertificationModel = {
   id: string;
   name: string;
   issuer: string;

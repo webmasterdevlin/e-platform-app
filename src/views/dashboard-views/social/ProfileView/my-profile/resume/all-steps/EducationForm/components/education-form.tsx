@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormikProps } from 'formik';
-import { QualificationModel } from '../schema/qualification.value';
+import { EducationModel } from '../schema/education.value';
 import { Box, Typography } from '@material-ui/core';
 
 import CheckboxFormik from '../../../../../../../../../components/eplatform/components/checkbox-formik';
@@ -10,10 +10,10 @@ import TextAreaFormik from '../../../../../../../../../components/eplatform/comp
 import YupFormikValidationViewer from '../../../../../../../../../components/eplatform/components/yup-formik-validation-viewer';
 
 type Props = {
-  formikProps: FormikProps<QualificationModel>;
+  formikProps: FormikProps<EducationModel>;
 };
 
-const QualificationForm: React.FC<Props> = ({ formikProps }) => (
+const EducationForm: React.FC<Props> = ({ formikProps }) => (
   <section>
     <InputFormik name={'institution'} label={'Institution'} />
     <InputFormik name={'qualification'} label={'Qualification'} />
@@ -44,7 +44,6 @@ const QualificationForm: React.FC<Props> = ({ formikProps }) => (
         '        study.'
       }
     />
-    <YupFormikValidationViewer />
   </section>
 );
-export default QualificationForm;
+export default EducationForm;
