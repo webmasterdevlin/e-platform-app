@@ -40,9 +40,9 @@ const GetAllStepForms = ({ step }) => {
   const [experiences, setExperiences] = useState<ExperienceModel[]>([
     experienceValue,
   ]);
-  const [licensesCertifications, setLicensesCertifications] = useState<
-    CertificationModel[]
-  >([certificationValue]);
+  const [certifications, setCertifications] = useState<CertificationModel[]>([
+    certificationValue,
+  ]);
   const [personalDetails, setPersonalDetails] = useState<PersonalDetailsModel>(
     personalDetailsValue,
   );
@@ -70,7 +70,7 @@ const GetAllStepForms = ({ step }) => {
   };
   const fetchCertifications = async () => {
     const { data } = await getCertificatesAxios();
-    setLicensesCertifications(data);
+    setCertifications(data);
   };
   const fetchPersonalDetails = async () => {
     const { data } = await getPersonalDetailsAxios();
@@ -107,9 +107,7 @@ const GetAllStepForms = ({ step }) => {
     case 3:
       return (
         <>
-          <CertificationFormsContainer
-            licensesCertifications={licensesCertifications}
-          />
+          <CertificationFormsContainer certifications={certifications} />
         </>
       );
     case 4:

@@ -28,7 +28,7 @@ const EditCertifications: React.FC<Props> = ({
       {formikProps => (
         <Form>
           <div>
-            <h4>Edit License or Certificate</h4>
+            <h4>Edit Certificate</h4>
             <Button
               onClick={async () => {
                 try {

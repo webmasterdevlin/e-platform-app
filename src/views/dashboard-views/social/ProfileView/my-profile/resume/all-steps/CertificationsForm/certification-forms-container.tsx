@@ -3,48 +3,41 @@ import { CertificationModel } from './schema/certification.value';
 import Certifications from './certifications';
 import EditCertifications from './edit-certifications';
 import NewCertification from './new-certification';
+import { Typography } from '@material-ui/core';
 
 type Props = {
-  licensesCertifications: CertificationModel[];
+  certifications: CertificationModel[];
 };
 
-const CertificationFormsContainer: React.FC<Props> = ({
-  licensesCertifications,
-}) => {
+const CertificationFormsContainer: React.FC<Props> = ({ certifications }) => {
   const resetIdTracking = '0';
   const [isEditing, setIsEditing] = useState(false);
-  const [
-    showNewLicenseCertification,
-    setShowNewLicenseCertification,
-  ] = useState(false);
+  const [showNewCertification, setShowNewCertification] = useState(false);
 
   const [
     showEditingLicenseCertification,
     setShowEditingLicenseCertification,
   ] = useState(resetIdTracking);
 
-  const {
-    length,
-    [length - 1]: lastLicenseCertification,
-  } = licensesCertifications;
+  const { length, [length - 1]: lastCertification } = certifications;
 
-  licensesCertifications = null;
+  certifications = null;
 
   return (
     <>
-      {showNewLicenseCertification || !licensesCertifications ? (
+      {showNewCertification || !certifications ? (
         <NewCertification
-          showCancelButton={showNewLicenseCertification}
+          showCancelButton={showNewCertification}
           setShowNewExperience={() => {
-            setShowNewLicenseCertification(!showNewLicenseCertification);
+            setShowNewCertification(!showNewCertification);
           }}
         />
       ) : (
         <>
           {showEditingLicenseCertification === resetIdTracking && (
-            <h4 className="gray">Licenses and Certifications</h4>
+            <Typography variant={'h2'}>Certifications</Typography>
           )}
-          {licensesCertifications.map(lc => (
+          {certifications.map(lc => (
             <div key={lc.id}>
               {lc.id === showEditingLicenseCertification && (
                 <EditCertifications
@@ -59,10 +52,10 @@ const CertificationFormsContainer: React.FC<Props> = ({
                 <Certifications
                   setIsEditing={() => setIsEditing(!isEditing)}
                   setShowNewCertification={() =>
-                    setShowNewLicenseCertification(!showNewLicenseCertification)
+                    setShowNewCertification(!showNewCertification)
                   }
                   certification={lc}
-                  showAddCertificationButton={lastLicenseCertification === lc}
+                  showAddCertificationButton={lastCertification === lc}
                   setShowEditingCertification={() =>
                     setShowEditingLicenseCertification(lc.id)
                   }

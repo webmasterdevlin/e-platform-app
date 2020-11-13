@@ -44,7 +44,7 @@ const NewEducation: React.FC<Props> = ({
       {(formikProps: FormikProps<EducationModel>) => (
         <Form>
           <Box mb={4}>
-            <Typography variant={'h4'}>New Qualification</Typography>
+            <Typography variant={'h2'}>New Qualification</Typography>
           </Box>
           <div>
             <EducationForm formikProps={formikProps} />

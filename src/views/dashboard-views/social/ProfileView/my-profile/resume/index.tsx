@@ -21,7 +21,7 @@ import { Theme } from '../../../../../../themes/dashboard-theme';
   'Personal details - Swagger API is GET /api/Profile',
   'Experience - Swagger API is GET & POST /api/Profile/experiences',
   'Education - Swagger API is GET & POST /api/Profile/educations',
-  'Licenses & Certifications - Swagger API is GET & POST /api/Profile/certificates',
+  'Certifications - Swagger API is GET & POST /api/Profile/certificates',
   'Skills - Swagger API is TO FOLLOW',
   'Personal summary - Swagger API is GET /api/Profile',
 * */
@@ -29,7 +29,7 @@ const getStepsTitles = (): Array<string> => [
   'Personal details',
   'Experience',
   'Education',
-  'Licenses & Certifications',
+  'Certifications',
   'Skills',
   'Personal summary',
 ];
