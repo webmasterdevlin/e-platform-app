@@ -82,8 +82,8 @@ const SkillsForm: React.FC<Props> = ({ setIsEditing, skills }) => {
     >
       {formikProps => (
         <Form>
-          <Box mb={4}>
-            <Typography variant={'h4'}>{`${
+          <Box mb={6}>
+            <Typography variant={'h3'}>{`${
               isNew ? 'New' : 'Edit'
             } Skills (only GET request)`}</Typography>
           </Box>

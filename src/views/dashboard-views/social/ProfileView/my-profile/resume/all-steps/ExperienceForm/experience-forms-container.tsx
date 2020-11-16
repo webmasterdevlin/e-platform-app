@@ -4,7 +4,7 @@ import { ExperienceModel } from './schema/experience.value';
 import EditRole from './edit-role';
 import NewExperience from './new-experience';
 import Experience from './experience';
-import { Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 type Props = {
   experiences: ExperienceModel[];
@@ -34,7 +34,9 @@ const ExperienceFormsContainer: React.FC<Props> = ({ experiences }) => {
       ) : (
         <>
           {showEditingExperience === resetIdTracking && (
-            <Typography variant={'h3'}>Career History</Typography>
+            <Box mb={6}>
+              <Typography variant={'h3'}>Career History</Typography>
+            </Box>
           )}
           {experiences.map(experience => (
             <div key={experience.id}>

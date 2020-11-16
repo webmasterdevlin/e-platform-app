@@ -27,23 +27,27 @@ const EditEducation: React.FC<Props> = ({
       onSubmit={async (values, actions) => {
         try {
           await putEducationAxios(values);
+          actions.resetForm();
+          setShowEditingEducation();
+          setIsEditing();
         } catch (e) {
           alert('Something wrong happened. Please try again.');
         }
       }}
     >
-      {formikProps => (
+      {() => (
         <Form>
           <Box
             mb={4}
             display={'flex'}
             flexDirection={'row'}
             justifyContent={'space-between'}
+            alignItems={'center'}
           >
-            <div>
-              <Typography variant={'h2'}>Edit Education</Typography>
-            </div>
-            <div>
+            <Box mb={6}>
+              <Typography variant={'h3'}>Edit Education</Typography>
+            </Box>
+            <Box>
               <Button
                 onClick={async () => {
                   try {
@@ -60,10 +64,10 @@ const EditEducation: React.FC<Props> = ({
               >
                 Delete
               </Button>
-            </div>
+            </Box>
           </Box>
           <div>
-            <EducationForm formikProps={formikProps} />
+            <EducationForm />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save
             </Button>

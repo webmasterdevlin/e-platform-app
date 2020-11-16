@@ -49,8 +49,8 @@ const PersonalDetailsForm: React.FC<Props> = ({
     >
       {formikProps => (
         <Form>
-          <Box mb={2}>
-            <Typography variant={'h2'}>{`${
+          <Box mb={6}>
+            <Typography variant={'h3'}>{`${
               isNew ? 'New' : 'Edit'
             } Personal Details (No Endpoint)`}</Typography>
           </Box>

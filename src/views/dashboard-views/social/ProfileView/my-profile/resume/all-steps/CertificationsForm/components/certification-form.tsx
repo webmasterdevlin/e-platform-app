@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core';
 import React from 'react';
 
 import CheckboxFormik from '../../../../../../../../../components/eplatform/components/checkbox-formik';
@@ -7,8 +8,10 @@ import InputFormik from '../../../../../../../../../components/eplatform/compone
 const CertificationForm: React.FC = () => {
   return (
     <section>
-      <InputFormik name={'name'} label={'Name'} />
-      <InputFormik name={'issuer'} label={'Issuer'} />
+      <Box mb={4}>
+        <InputFormik name={'name'} label={'Name'} />
+        <InputFormik name={'issuer'} label={'Issuer'} />
+      </Box>
       <CheckboxFormik
         id={'isCertificateNeverExpire'}
         label={'This credential does not expire'}

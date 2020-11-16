@@ -34,16 +34,17 @@ const NewExperience: React.FC<Props> = ({
         const request = { ...values, id: userId };
         try {
           await postExperienceAxios(request);
+          actions.resetForm();
+          setShowNewExperience(false);
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
-        // alert(JSON.stringify(values, null, 2));
       }}
     >
-      {formikProps => (
+      {() => (
         <Form>
-          <Box mb={4}>
-            <Typography variant={'h4'}>New Role</Typography>
+          <Box mb={6}>
+            <Typography variant={'h3'}>New Role</Typography>
           </Box>
           <div>
             <RoleForm />

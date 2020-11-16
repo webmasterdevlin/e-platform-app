@@ -38,16 +38,15 @@ const NewEducation: React.FC<Props> = ({
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
-        // alert(JSON.stringify(values, null, 2));
       }}
     >
-      {(formikProps: FormikProps<EducationModel>) => (
+      {() => (
         <Form>
-          <Box mb={4}>
-            <Typography variant={'h2'}>New Qualification</Typography>
+          <Box mb={6}>
+            <Typography variant={'h3'}>New Qualification</Typography>
           </Box>
           <div>
-            <EducationForm formikProps={formikProps} />
+            <EducationForm />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save
             </Button>

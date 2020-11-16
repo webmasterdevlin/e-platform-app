@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormikProps } from 'formik';
+import { FormikProps, useFormikContext } from 'formik';
 import { EducationModel } from '../schema/education.value';
 import { Box, Typography } from '@material-ui/core';
 
@@ -9,41 +9,41 @@ import InputFormik from '../../../../../../../../../components/eplatform/compone
 import TextAreaFormik from '../../../../../../../../../components/eplatform/components/text-area-formik';
 import YupFormikValidationViewer from '../../../../../../../../../components/eplatform/components/yup-formik-validation-viewer';
 
-type Props = {
-  formikProps: FormikProps<EducationModel>;
-};
+const EducationForm = () => {
+  const { values } = useFormikContext<EducationModel>();
 
-const EducationForm: React.FC<Props> = ({ formikProps }) => (
-  <section>
-    <InputFormik name={'institution'} label={'Institution'} />
-    <InputFormik name={'qualification'} label={'Qualification'} />
-    <CheckboxFormik id={'isCourseCompleted'} label={'Course complete'} />
-    {formikProps.values.isCourseCompleted ? (
-      <div>
-        <span>(Not included in the endpoint)</span>
+  return (
+    <section>
+      <InputFormik name={'institution'} label={'Institution'} />
+      <InputFormik name={'qualification'} label={'Qualification'} />
+      <CheckboxFormik id={'isCourseCompleted'} label={'Course complete'} />
+      {values.isCourseCompleted ? (
+        <div>
+          <span>(Not included in the endpoint)</span>
+          <DatePickerFormik
+            id={'completedDate'}
+            label={'Completed date'}
+            disableFuture={true}
+          />
+        </div>
+      ) : (
         <DatePickerFormik
-          id={'completedDate'}
-          label={'Completed date'}
-          disableFuture={true}
+          id={'expectedCompletionDate'}
+          label={'Expected date'}
+          disablePast={true}
         />
-      </div>
-    ) : (
-      <DatePickerFormik
-        id={'expectedCompletionDate'}
-        label={'Expected date'}
-        disablePast={true}
+      )}
+      <Box mb={1}>
+        <Typography>Course highlights (optional)</Typography>
+      </Box>
+      <TextAreaFormik
+        name={'courseHighlights'}
+        label={
+          'Add activities, honours, awards or specialities achieved during your\n' +
+          '        study.'
+        }
       />
-    )}
-    <Box mb={1}>
-      <Typography>Course highlights (optional)</Typography>
-    </Box>
-    <TextAreaFormik
-      name={'courseHighlights'}
-      label={
-        'Add activities, honours, awards or specialities achieved during your\n' +
-        '        study.'
-      }
-    />
-  </section>
-);
+    </section>
+  );
+};
 export default EducationForm;

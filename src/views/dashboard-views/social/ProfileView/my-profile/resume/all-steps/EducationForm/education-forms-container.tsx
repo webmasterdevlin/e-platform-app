@@ -4,7 +4,7 @@ import { EducationModel } from './schema/education.value';
 import Education from './education';
 import NewEducation from './new-education';
 import EditEducation from './edit-education';
-import { Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 type Props = {
   educations: EducationModel[];
@@ -32,7 +32,9 @@ const EducationFormsContainer: React.FC<Props> = ({ educations }) => {
       ) : (
         <>
           {showEditingEducation === resetIdTracking && (
-            <Typography variant={'h2'}>Education</Typography>
+            <Box mb={6}>
+              <Typography variant={'h3'}>Education</Typography>
+            </Box>
           )}
           {educations.map(education => (
             <div key={education.id}>

@@ -1,5 +1,12 @@
-import React from 'react';
-import { Box, Button, IconButton } from '@material-ui/core';
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  IconButton,
+  LinearProgress,
+  Typography,
+} from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 
 import { CertificationModel } from './schema/certification.value';
@@ -21,53 +28,66 @@ const Certifications: React.FC<Props> = ({
   setShowNewCertification,
 }) => {
   return (
-    <div>
-      <section>
-        <div>
-          <Box color={'#222'} fontSize={'1.80rem'} fontWeight={'500'}>
-            {certification.name}
+    <Box mb={4}>
+      <Box mb={4}>
+        <Box
+          display={'flex'}
+          flexDirection={'row'}
+          justifyContent={'space-between'}
+          alignItems={'center'}
+        >
+          <Box mb={2}>
+            <Typography variant={'h4'}>{certification.name}</Typography>
           </Box>
-          <label htmlFor="edit">
-            <IconButton
-              onClick={() => {
-                setIsEditing();
-                setShowEditingCertification(certification.id);
-              }}
-              color="primary"
-              aria-label="edit experience"
-              component="span"
-            >
-              <CreateIcon />
-            </IconButton>
-          </label>
-        </div>
-        <Box mb={1}>
-          <Box color={'#222'}>{certification.issuer}</Box>
-          <Box color={'#222'}>
-            {`Issued ${monthNameFormDate(
-              new Date(certification.issueDate),
-            )} ${new Date(
-              certification.issueDate,
-            ).getFullYear()} . Expires ${monthNameFormDate(
-              new Date(certification.expiryDate),
-            )} ${new Date(certification.expiryDate).getFullYear()}`}
+          <div>
+            <label htmlFor="edit">
+              <IconButton
+                onClick={() => {
+                  setIsEditing();
+                  setShowEditingCertification(certification.id);
+                }}
+                color="primary"
+                aria-label="edit experience"
+                component="span"
+              >
+                <CreateIcon />
+              </IconButton>
+            </label>
+          </div>
+        </Box>
+        <Box mb={2}>
+          <Box mb={1}>
+            <Typography>{certification.issuer}</Typography>
+            <Typography>
+              {`Issued ${monthNameFormDate(
+                new Date(certification.issueDate),
+              )} ${new Date(
+                certification.issueDate,
+              ).getFullYear()} . Expires ${monthNameFormDate(
+                new Date(certification.expiryDate),
+              )} ${new Date(certification.expiryDate).getFullYear()}`}
+            </Typography>
+            {certification.certificateId && (
+              <Typography>
+                Credential ID {certification.certificateId}
+              </Typography>
+            )}
           </Box>
-          {certification.certificateId && (
-            <Box>Credential ID {certification.certificateId}</Box>
+          {certification.certificateUrl && (
+            <Box>
+              <Typography>
+                <a
+                  href={certification.certificateUrl}
+                  rel={'noopener noreferrer'}
+                  target={'_blank'}
+                >
+                  See credential
+                </a>
+              </Typography>
+            </Box>
           )}
         </Box>
-        {certification.certificateUrl && (
-          <Box>
-            <a
-              href={certification.certificateUrl}
-              rel={'noopener noreferrer'}
-              target={'_blank'}
-            >
-              See credential
-            </a>
-          </Box>
-        )}
-      </section>
+      </Box>
       {showAddCertificationButton && (
         <Button
           onClick={setShowNewCertification}
@@ -77,7 +97,7 @@ const Certifications: React.FC<Props> = ({
           Add Certification
         </Button>
       )}
-    </div>
+    </Box>
   );
 };
 

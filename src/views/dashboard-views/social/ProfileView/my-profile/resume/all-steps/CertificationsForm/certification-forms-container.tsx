@@ -3,7 +3,7 @@ import { CertificationModel } from './schema/certification.value';
 import Certifications from './certifications';
 import EditCertifications from './edit-certifications';
 import NewCertification from './new-certification';
-import { Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 type Props = {
   certifications: CertificationModel[];
@@ -21,21 +21,23 @@ const CertificationFormsContainer: React.FC<Props> = ({ certifications }) => {
 
   const { length, [length - 1]: lastCertification } = certifications;
 
-  certifications = null;
+  // certifications = null;
 
   return (
     <>
       {showNewCertification || !certifications ? (
         <NewCertification
           showCancelButton={showNewCertification}
-          setShowNewExperience={() => {
+          setShowNewCertificate={() => {
             setShowNewCertification(!showNewCertification);
           }}
         />
       ) : (
         <>
           {showEditingLicenseCertification === resetIdTracking && (
-            <Typography variant={'h2'}>Certifications</Typography>
+            <Box mb={6}>
+              <Typography variant={'h3'}>Certifications</Typography>
+            </Box>
           )}
           {certifications.map(lc => (
             <div key={lc.id}>
