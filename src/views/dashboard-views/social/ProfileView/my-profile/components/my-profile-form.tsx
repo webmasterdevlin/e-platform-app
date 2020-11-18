@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
 import { useSelector } from 'react-redux';
+import { createStyles } from '@material-ui/styles';
 import {
   Backdrop,
   Box,
   Button,
   CircularProgress,
   makeStyles,
-  Portal,
   Typography,
 } from '@material-ui/core';
 
@@ -23,7 +23,6 @@ import TextAreaFormik from '../../../../../../components/eplatform/components/te
 import CountrySelect from '../../../../../../components/eplatform/components/country-select';
 import { RootState } from '../../../../../../store';
 import { ProfileModel } from '../../../../../../auth/auth.model';
-import { createStyles } from '@material-ui/styles';
 
 const MyProfileForm = () => {
   const classes = useStyles();
