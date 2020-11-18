@@ -5,7 +5,9 @@ import {
   Backdrop,
   Box,
   Button,
+  CircularProgress,
   makeStyles,
+  Portal,
   Typography,
 } from '@material-ui/core';
 
@@ -21,6 +23,7 @@ import TextAreaFormik from '../../../../../../components/eplatform/components/te
 import CountrySelect from '../../../../../../components/eplatform/components/country-select';
 import { RootState } from '../../../../../../store';
 import { ProfileModel } from '../../../../../../auth/auth.model';
+import { createStyles } from '@material-ui/styles';
 
 const MyProfileForm = () => {
   const classes = useStyles();
@@ -42,6 +45,7 @@ const MyProfileForm = () => {
   }, []);
 
   const fetchMyProfile = async (): Promise<void> => {
+    setLoading(true);
     try {
       const { data } = await getMyProfileAxios();
       if (!data) return;
@@ -51,6 +55,7 @@ const MyProfileForm = () => {
     } catch (e) {
       alert(`Something happened: ${e.message}`);
     }
+    setLoading(false);
   };
 
   return (
@@ -59,12 +64,14 @@ const MyProfileForm = () => {
       initialValues={isNew ? myProfileEmptyValue : myProfile}
       validationSchema={myProfileYupObject}
       onSubmit={async (values, actions) => {
+        setLoading(true);
         const request = { ...values, id: userId };
         try {
           await putMyProfileAxios(request);
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
+        setLoading(false);
       }}
     >
       {formikProps => (
@@ -115,6 +122,9 @@ const MyProfileForm = () => {
           </h4>
           <div>
             <Form>
+              <Backdrop className={classes.backdrop} open={loading}>
+                <CircularProgress color="inherit" />
+              </Backdrop>
               <Box mb={4}>
                 {/* Avatar */}
                 {/*<Box mb={4}>*/}
@@ -200,4 +210,11 @@ const MyProfileForm = () => {
 
 export default MyProfileForm;
 
-const useStyles = makeStyles((theme: Theme) => ({}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
+  }),
+);
