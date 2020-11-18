@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button, LinearProgress, Typography } from '@material-ui/core';
 
 import { experienceValue } from './schema/experience.value';
 import { experienceYupObject } from './schema/experience.validation';
-import RoleForm from './components/role-form';
+import ExperienceForm from './components/experience-form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../../../store';
 import { ProfileModel } from '../../../../../../../../auth/auth.model';
@@ -18,6 +18,7 @@ const NewExperience: React.FC<Props> = ({
   setShowNewExperience,
   showCancelButton,
 }) => {
+  const [loading, setLoading] = useState(false);
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
 
@@ -31,6 +32,7 @@ const NewExperience: React.FC<Props> = ({
       initialValues={experienceValue}
       validationSchema={experienceYupObject}
       onSubmit={async (values, actions) => {
+        setLoading(true);
         const request = { ...values, id: userId };
         try {
           await postExperienceAxios(request);
@@ -39,15 +41,21 @@ const NewExperience: React.FC<Props> = ({
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
+        setLoading(false);
       }}
     >
       {() => (
         <Form>
+          {loading && (
+            <Box my={2}>
+              <LinearProgress color="secondary" />
+            </Box>
+          )}
           <Box mb={6}>
             <Typography variant={'h3'}>New Role</Typography>
           </Box>
           <div>
-            <RoleForm />
+            <ExperienceForm />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save
             </Button>

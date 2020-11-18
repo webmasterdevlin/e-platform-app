@@ -1,13 +1,12 @@
 import React from 'react';
-import { FormikProps, useFormikContext } from 'formik';
-import { EducationModel } from '../schema/education.value';
+import { useFormikContext } from 'formik';
 import { Box, Typography } from '@material-ui/core';
 
+import { EducationModel } from '../schema/education.value';
 import CheckboxFormik from '../../../../../../../../../components/eplatform/components/checkbox-formik';
 import DatePickerFormik from '../../../../../../../../../components/eplatform/components/date-picker-formik';
 import InputFormik from '../../../../../../../../../components/eplatform/components/input-formik';
 import TextAreaFormik from '../../../../../../../../../components/eplatform/components/text-area-formik';
-import YupFormikValidationViewer from '../../../../../../../../../components/eplatform/components/yup-formik-validation-viewer';
 
 const EducationForm = () => {
   const { values } = useFormikContext<EducationModel>();

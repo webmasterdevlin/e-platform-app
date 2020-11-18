@@ -52,7 +52,7 @@ const NewCertification: React.FC<Props> = ({
           </Box>
           <div>
             {loading && (
-              <Box mb={2} mt={2}>
+              <Box my={2}>
                 <LinearProgress color="secondary" />
               </Box>
             )}

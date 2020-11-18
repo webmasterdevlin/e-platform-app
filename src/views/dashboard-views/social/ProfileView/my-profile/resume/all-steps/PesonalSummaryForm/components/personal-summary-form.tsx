@@ -4,7 +4,7 @@ import {
   PersonalSummaryModel,
   personalSummaryValue,
 } from '../schema/personal-summary.value';
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button, LinearProgress, Typography } from '@material-ui/core';
 import { personalSummaryYupObject } from '../schema/personal-summary.validation';
 import TextAreaFormik from '../../../../../../../../../components/eplatform/components/text-area-formik';
 
@@ -12,10 +12,12 @@ type Props = {
   personalSummary: PersonalSummaryModel;
   setIsEditing: () => void;
 };
+
 const PersonalSummaryForm: React.FC<Props> = ({
   setIsEditing,
   personalSummary,
 }) => {
+  const [loading, setLoading] = useState(false);
   const [isNew, setIsNew] = useState(true);
 
   useEffect(() => {
@@ -28,6 +30,7 @@ const PersonalSummaryForm: React.FC<Props> = ({
       initialValues={isNew ? personalSummaryValue : personalSummary}
       validationSchema={personalSummaryYupObject}
       onSubmit={async (values, actions) => {
+        setLoading(true);
         alert(isNew ? 'New' : 'Editing');
         alert(JSON.stringify(values, null, 2));
         try {
@@ -39,10 +42,16 @@ const PersonalSummaryForm: React.FC<Props> = ({
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
+        setLoading(false);
       }}
     >
       {formikProps => (
         <Form>
+          {loading && (
+            <Box my={2}>
+              <LinearProgress color="secondary" />
+            </Box>
+          )}
           <Box mb={6}>
             <Typography variant={'h3'}>{`${
               isNew ? 'New' : 'Edit'

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { ExperienceModel } from './schema/experience.value';
-import EditRole from './edit-role';
+import EditExperience from './edit-experience';
 import NewExperience from './new-experience';
 import Experience from './experience';
 import { Box, Typography } from '@material-ui/core';
@@ -41,7 +41,7 @@ const ExperienceFormsContainer: React.FC<Props> = ({ experiences }) => {
           {experiences.map(experience => (
             <div key={experience.id}>
               {experience.id === showEditingExperience && (
-                <EditRole
+                <EditExperience
                   experience={experience}
                   setIsEditing={() => setIsEditing(!isEditing)}
                   setShowEditingExperience={() =>

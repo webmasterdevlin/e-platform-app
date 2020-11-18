@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
 import { Alert } from '@material-ui/lab';
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button, LinearProgress, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 import {
@@ -10,7 +10,6 @@ import {
 } from '../schema/personal-details.value';
 import { personalDetailsYupObject } from '../schema/personal-details.validation';
 import InputFormik from '../../../../../../../../../components/eplatform/components/input-formik';
-
 import CountrySelect from '../../../../../../../../../components/eplatform/components/country-select';
 
 type Props = {
@@ -22,6 +21,7 @@ const PersonalDetailsForm: React.FC<Props> = ({
   setIsEditing,
   personalDetails,
 }) => {
+  const [loading, setLoading] = useState(false);
   const [isNew, setIsNew] = useState(true);
 
   useEffect(() => {
@@ -34,6 +34,7 @@ const PersonalDetailsForm: React.FC<Props> = ({
       initialValues={isNew ? personalDetailsValue : personalDetails}
       validationSchema={personalDetailsYupObject}
       onSubmit={async (values, actions) => {
+        setLoading(true);
         alert(isNew ? 'New' : 'Editing');
         alert(JSON.stringify(values, null, 2));
         try {
@@ -45,10 +46,16 @@ const PersonalDetailsForm: React.FC<Props> = ({
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
+        setLoading(false);
       }}
     >
       {formikProps => (
         <Form>
+          {loading && (
+            <Box my={2}>
+              <LinearProgress color="secondary" />
+            </Box>
+          )}
           <Box mb={6}>
             <Typography variant={'h3'}>{`${
               isNew ? 'New' : 'Edit'

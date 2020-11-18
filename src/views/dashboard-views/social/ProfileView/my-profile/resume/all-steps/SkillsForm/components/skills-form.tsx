@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik, FormikProps } from 'formik';
 import { SkillsModel, skillsValues } from '../schema/skills.value';
-import { Box, Button, Fab, TextField, Typography } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Fab,
+  LinearProgress,
+  TextField,
+  Typography,
+} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Chip from '@material-ui/core/Chip';
 import { useStyles } from '../mui.style';
@@ -16,6 +23,7 @@ const SkillsForm: React.FC<Props> = ({ setIsEditing, skills }) => {
   const classes = useStyles();
   const [newChip, setNewChip] = useState('');
   const [isNew, setIsNew] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (skills?.list) setIsNew(false);
@@ -82,6 +90,11 @@ const SkillsForm: React.FC<Props> = ({ setIsEditing, skills }) => {
     >
       {formikProps => (
         <Form>
+          {loading && (
+            <Box my={2}>
+              <LinearProgress color="secondary" />
+            </Box>
+          )}
           <Box mb={6}>
             <Typography variant={'h3'}>{`${
               isNew ? 'New' : 'Edit'

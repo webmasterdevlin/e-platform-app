@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Grid, Typography } from '@material-ui/core';
+
 import { PersonalDetailsModel } from '../schema/personal-details.value';
 
 type Props = {

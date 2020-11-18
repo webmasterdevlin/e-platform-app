@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
 import { Box, Button, LinearProgress, Typography } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { useSelector } from 'react-redux';
+
 import { CertificationModel } from './schema/certification.value';
 import { experienceYupObject } from '../ExperienceForm/schema/experience.validation';
 import CertificationForm from './components/certification-form';
 import {
-  postCertificateAxios,
+  deleteCertificateAxios,
   putCertificateAxios,
 } from './certifications.service';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../../../store';
 import { ProfileModel } from '../../../../../../../../auth/auth.model';
 
@@ -52,32 +53,32 @@ const EditCertifications: React.FC<Props> = ({
       {() => (
         <Form>
           {loading && (
-            <Box mb={2} mt={2}>
+            <Box my={2}>
               <LinearProgress color="secondary" />
             </Box>
           )}
           <Box
-            mb={4}
+            mb={6}
             display={'flex'}
             flexDirection={'row'}
             justifyContent={'space-between'}
             alignItems={'center'}
           >
-            <Box mb={6}>
+            <Box>
               <Typography variant={'h3'}>Edit Certificate</Typography>
             </Box>
             <Box>
               <Button
                 onClick={async () => {
+                  setLoading(true);
                   try {
-                    alert(
-                      `await deleteCertificationAxios(${certification.id})`,
-                    );
+                    await deleteCertificateAxios(certification.id);
                     setIsEditing();
                     setShowEditingCertification();
                   } catch (e) {
                     alert(`Something happened: ${e.message}`);
                   }
+                  setLoading(false);
                 }}
                 color={'inherit'}
                 variant="text"

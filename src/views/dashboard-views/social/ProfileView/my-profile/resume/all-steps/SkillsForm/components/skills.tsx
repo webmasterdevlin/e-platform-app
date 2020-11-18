@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Chip from '@material-ui/core/Chip';
 import { Button } from '@material-ui/core';
 import { useStyles } from '../mui.style';
 import { SkillsModel } from '../schema/skills.value';
-import { PersonalSummaryModel } from '../../PesonalSummaryForm/schema/personal-summary.value';
 
 type Props = {
   setIsEditing: (boolean) => void;
@@ -12,9 +11,11 @@ type Props = {
 
 const Skills: React.FC<Props> = ({ skills, setIsEditing }) => {
   const classes = useStyles();
+
   useEffect(() => {
     console.log('SKILLS::', skills);
   }, []);
+
   return (
     <>
       <h4 className="gray">Skills</h4>

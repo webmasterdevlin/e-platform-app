@@ -64,7 +64,7 @@ const Experience: React.FC<Props> = ({
           variant={'outlined'}
           color={'primary'}
         >
-          Add Role
+          Add Experience
         </Button>
       )}
     </div>

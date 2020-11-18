@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Formik, FormikProps } from 'formik';
-import { Box, Button, Typography } from '@material-ui/core';
+import { Form, Formik } from 'formik';
+import { Box, Button, LinearProgress, Typography } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
-import { EducationModel, educationValue } from './schema/education.value';
+import { educationValue } from './schema/education.value';
 import { educationYupObject } from './schema/education.validation';
 import EducationForm from './components/education-form';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../../../store';
 import { ProfileModel } from '../../../../../../../../auth/auth.model';
 import { postEducationAxios } from './education.service';
@@ -19,6 +19,7 @@ const NewEducation: React.FC<Props> = ({
   setShowNewEducation,
   showCancelButton,
 }) => {
+  const [loading, setLoading] = useState(false);
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
 
@@ -42,6 +43,11 @@ const NewEducation: React.FC<Props> = ({
     >
       {() => (
         <Form>
+          {loading && (
+            <Box my={2}>
+              <LinearProgress color="secondary" />
+            </Box>
+          )}
           <Box mb={6}>
             <Typography variant={'h3'}>New Qualification</Typography>
           </Box>

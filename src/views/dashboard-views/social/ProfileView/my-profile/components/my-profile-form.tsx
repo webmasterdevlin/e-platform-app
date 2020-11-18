@@ -25,6 +25,7 @@ import { ProfileModel } from '../../../../../../auth/auth.model';
 const MyProfileForm = () => {
   const classes = useStyles();
 
+  const [loading, setLoading] = useState(false);
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
 

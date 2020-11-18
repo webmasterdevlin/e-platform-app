@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { Box, Typography } from '@material-ui/core';
 
 import { EducationModel } from './schema/education.value';
 import Education from './education';
 import NewEducation from './new-education';
 import EditEducation from './edit-education';
-import { Box, Typography } from '@material-ui/core';
 
 type Props = {
   educations: EducationModel[];

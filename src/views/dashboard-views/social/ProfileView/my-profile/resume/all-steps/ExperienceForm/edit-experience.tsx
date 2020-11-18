@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button, LinearProgress, Typography } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Formik, Form } from 'formik';
+import { useSelector } from 'react-redux';
+
 import { ExperienceModel } from './schema/experience.value';
 import { experienceYupObject } from './schema/experience.validation';
-import RoleForm from './components/role-form';
-import { useSelector } from 'react-redux';
+import ExperienceForm from './components/experience-form';
 import { RootState } from '../../../../../../../../store';
 import { ProfileModel } from '../../../../../../../../auth/auth.model';
-import { putExperienceAxios } from './experience.service';
+import {
+  deleteExperienceAxios,
+  putExperienceAxios,
+} from './experience.service';
 
 type Props = {
   setIsEditing: () => void;
@@ -16,11 +20,12 @@ type Props = {
   experience: ExperienceModel;
 };
 
-const EditRole: React.FC<Props> = ({
+const EditExperience: React.FC<Props> = ({
   experience,
   setIsEditing,
   setShowEditingExperience,
 }) => {
+  const [loading, setLoading] = useState(false);
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
 
@@ -34,6 +39,7 @@ const EditRole: React.FC<Props> = ({
       initialValues={experience}
       validationSchema={experienceYupObject}
       onSubmit={async (values, actions) => {
+        setLoading(true);
         try {
           await putExperienceAxios(values);
           setShowEditingExperience();
@@ -41,10 +47,16 @@ const EditRole: React.FC<Props> = ({
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
+        setLoading(false);
       }}
     >
       {() => (
         <Form>
+          {loading && (
+            <Box my={2}>
+              <LinearProgress color="secondary" />
+            </Box>
+          )}
           <Box
             mb={6}
             display={'flex'}
@@ -53,18 +65,20 @@ const EditRole: React.FC<Props> = ({
             alignItems={'center'}
           >
             <Box>
-              <Typography variant={'h3'}>Edit Role</Typography>
+              <Typography variant={'h3'}>Edit Experience</Typography>
             </Box>
             <Box>
               <Button
                 onClick={async () => {
+                  setLoading(true);
                   try {
-                    alert(`await deleteExperienceAxios(${experience.id})`);
+                    await deleteExperienceAxios(experience.id);
                     setIsEditing();
                     setShowEditingExperience();
                   } catch (e) {
                     alert(`Something happened: ${e.message}`);
                   }
+                  setLoading(false);
                 }}
                 color={'inherit'}
                 variant="text"
@@ -75,7 +89,7 @@ const EditRole: React.FC<Props> = ({
             </Box>
           </Box>
           <div>
-            <RoleForm />
+            <ExperienceForm />
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save
             </Button>
@@ -96,4 +110,4 @@ const EditRole: React.FC<Props> = ({
   );
 };
 
-export default EditRole;
+export default EditExperience;

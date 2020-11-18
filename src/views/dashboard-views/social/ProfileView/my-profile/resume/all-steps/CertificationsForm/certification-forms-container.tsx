@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Box, Typography } from '@material-ui/core';
+
 import { CertificationModel } from './schema/certification.value';
 import Certifications from './certifications';
 import EditCertifications from './edit-certifications';
 import NewCertification from './new-certification';
-import { Box, Typography } from '@material-ui/core';
 
 type Props = {
   certifications: CertificationModel[];
