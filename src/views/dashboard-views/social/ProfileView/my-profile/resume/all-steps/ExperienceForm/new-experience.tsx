@@ -14,10 +14,7 @@ type Props = {
   setShowNewExperience: (boolean) => void;
   showCancelButton: boolean;
 };
-const NewExperience: React.FC<Props> = ({
-  setShowNewExperience,
-  showCancelButton,
-}) => {
+const NewExperience = ({ setShowNewExperience, showCancelButton }: Props) => {
   const [loading, setLoading] = useState(false);
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');

@@ -14,11 +14,11 @@ type Props = {
   education: EducationModel;
 };
 
-const EditEducation: React.FC<Props> = ({
+const EditEducation = ({
   education,
   setIsEditing,
   setShowEditingEducation,
-}) => {
+}: Props) => {
   const [loading, setLoading] = useState(false);
 
   return (

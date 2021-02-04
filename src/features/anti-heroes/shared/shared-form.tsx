@@ -5,7 +5,7 @@ type Props = {
   formikProps: FormikProps<any>;
 };
 
-const SharedForm: React.FC<Props> = ({ formikProps }) => {
+const SharedForm = ({ formikProps }: Props) => {
   return null;
 };
 

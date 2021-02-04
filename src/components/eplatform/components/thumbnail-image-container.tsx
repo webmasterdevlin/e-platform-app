@@ -8,7 +8,7 @@ type Props = {
   id: string;
 };
 
-export const ThumbnailImageContainer: React.FC<Props> = ({ id }) => {
+export const ThumbnailImageContainer = ({ id }: Props) => {
   const { values, setFieldValue } = useFormikContext<MyProfileModel>();
 
   return (

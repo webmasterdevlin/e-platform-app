@@ -17,7 +17,7 @@ type Props = {
   style?: any;
 };
 
-const CardBase: React.FC<Props> = props => {
+const CardBase = (props: Props) => {
   const {
     withShadow,
     noShadow,

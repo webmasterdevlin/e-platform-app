@@ -13,10 +13,7 @@ type Props = {
   setIsEditing: () => void;
 };
 
-const PersonalSummaryForm: React.FC<Props> = ({
-  setIsEditing,
-  personalSummary,
-}) => {
+const PersonalSummaryForm = ({ setIsEditing, personalSummary }: Props) => {
   const [loading, setLoading] = useState(false);
   const [isNew, setIsNew] = useState(true);
 

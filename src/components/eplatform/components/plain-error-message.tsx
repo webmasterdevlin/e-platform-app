@@ -5,7 +5,7 @@ import { ErrorMessage } from 'formik';
 type Props = {
   id: string;
 };
-const PlainErrorMessage: React.FC<Props> = ({ id }) => (
+const PlainErrorMessage = ({ id }: Props) => (
   <Box color={'#f91942'}>
     <ErrorMessage name={id} component="div" />
   </Box>

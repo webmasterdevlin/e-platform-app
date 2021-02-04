@@ -10,7 +10,7 @@ type Props = {
   className?: string;
 };
 
-const Partners: React.FC<Props> = ({ className, data, ...rest }) => {
+const Partners = ({ className, data, ...rest }: Props) => {
   // const { data, className, ...rest } = props;
   const classes = useStyles();
 

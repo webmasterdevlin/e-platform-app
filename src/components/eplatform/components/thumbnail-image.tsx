@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 type Props = {
   imageFile?: any | (any & Blob);
 };
-const ThumbnailImage: React.FC<Props> = ({ imageFile }) => {
+const ThumbnailImage = ({ imageFile }: Props) => {
   const [loading, setLoading] = useState(false);
   const [thumb, setThumb] = useState(undefined);
 

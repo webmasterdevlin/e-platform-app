@@ -12,7 +12,7 @@ type Props = {
   className?: string;
 };
 
-const Application: React.FC<Props> = ({ className, ...rest }) => {
+const Application = ({ className, ...rest }: Props) => {
   // const { data, className, ...rest } = props;
   const classes = useStyles();
 

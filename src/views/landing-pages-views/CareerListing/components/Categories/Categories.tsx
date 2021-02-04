@@ -14,7 +14,7 @@ type Props = {
   className?: string;
 };
 
-const Categories: React.FC<Props> = ({ className, data, ...rest }) => {
+const Categories = ({ className, data, ...rest }: Props) => {
   // const { data, className, ...rest } = props;
   const classes = useStyles();
 

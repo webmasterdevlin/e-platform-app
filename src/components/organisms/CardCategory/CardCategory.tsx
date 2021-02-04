@@ -12,7 +12,7 @@ type Props = {
   liftUp?: any;
 };
 
-const CardCategory: React.FC<Props> = props => {
+const CardCategory = (props: Props) => {
   const { align, className, title, icon, ...rest } = props;
 
   const classes = useStyles();

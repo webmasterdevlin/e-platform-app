@@ -19,7 +19,7 @@ type Props = {
   setIsEditing: () => void;
 };
 
-const SkillsForm: React.FC<Props> = ({ setIsEditing, skills }) => {
+const SkillsForm = ({ setIsEditing, skills }: Props) => {
   const classes = useStyles();
   const [newChip, setNewChip] = useState('');
   const [isNew, setIsNew] = useState(true);

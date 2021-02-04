@@ -1,12 +1,12 @@
 import React from 'react';
-import { ErrorMessage, Field, FormikProps } from 'formik';
+import { ErrorMessage, Field, FormikProps, useFormikContext } from 'formik';
 
 type Props = {
-  formikProps: FormikProps<any>;
   id: string;
 };
 
-const SharedInput: React.FC<Props> = ({ formikProps, id }) => {
+const SharedInput = ({ id }: Props) => {
+  const formikProps = useFormikContext();
   return (
     <>
       <Field

@@ -12,7 +12,7 @@ type Props = {
   data?: any[];
 };
 
-const Process: React.FC<Props> = ({ className, data, ...rest }) => {
+const Process = ({ className, data, ...rest }: Props) => {
   const classes = useStyles();
 
   return (

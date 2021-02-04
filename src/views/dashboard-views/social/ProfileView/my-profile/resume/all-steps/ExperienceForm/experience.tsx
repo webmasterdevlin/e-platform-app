@@ -12,13 +12,13 @@ type Props = {
   setShowEditingExperience: (string) => void;
 };
 
-const Experience: React.FC<Props> = ({
+const Experience = ({
   setShowEditingExperience,
   setShowNewExperience,
   setIsEditing,
   experience,
   showAddExperienceButton,
-}) => {
+}: Props) => {
   return (
     <div>
       <Box mb={4}>

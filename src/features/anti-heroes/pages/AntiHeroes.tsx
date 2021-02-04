@@ -13,7 +13,7 @@ import { RootState } from '../../../store';
 
 type Props = {};
 
-const AntiHeroes: React.FC<Props> = () => {
+const AntiHeroes = ({}: Props) => {
   const dispatch = useDispatch();
   const { loading, antiHeroes } = useSelector(
     (state: RootState) => state.antiHero,

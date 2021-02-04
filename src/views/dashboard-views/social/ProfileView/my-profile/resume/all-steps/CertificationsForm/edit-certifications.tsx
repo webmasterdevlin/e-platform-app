@@ -20,11 +20,11 @@ type Props = {
   certification: CertificationModel;
 };
 
-const EditCertifications: React.FC<Props> = ({
+const EditCertifications = ({
   certification,
   setIsEditing,
   setShowEditingCertification,
-}) => {
+}: Props) => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
   const [loading, setLoading] = useState(false);

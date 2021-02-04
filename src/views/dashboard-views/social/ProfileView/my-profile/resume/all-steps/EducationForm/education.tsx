@@ -12,13 +12,13 @@ type Props = {
   setShowEditingQualification: (string) => void;
 };
 
-const Education: React.FC<Props> = ({
+const Education = ({
   education,
   setIsEditing,
   setShowNewQualification,
   showAddQualificationButton,
   setShowEditingQualification,
-}) => {
+}: Props) => {
   return (
     <div>
       <Box mb={4}>

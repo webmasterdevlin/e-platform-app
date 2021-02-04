@@ -12,12 +12,7 @@ type Props = {
   disableFuture?: boolean;
 };
 
-const DatePickerFormik: React.FC<Props> = ({
-  label,
-  id,
-  disableFuture,
-  disablePast,
-}) => {
+const DatePickerFormik = ({ label, id, disableFuture, disablePast }: Props) => {
   const { handleBlur, values, setFieldValue } = useFormikContext<any>();
 
   return (

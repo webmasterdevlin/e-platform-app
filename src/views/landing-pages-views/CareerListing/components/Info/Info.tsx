@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-const Info: React.FC<Props> = ({ data, className, ...rest }) => {
+const Info = ({ data, className, ...rest }: Props) => {
   // const { data, className, ...rest } = props;
   const classes = useStyles();
 

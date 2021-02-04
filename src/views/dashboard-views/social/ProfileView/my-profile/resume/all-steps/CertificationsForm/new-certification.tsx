@@ -15,10 +15,10 @@ type Props = {
   showCancelButton: boolean;
 };
 
-const NewCertification: React.FC<Props> = ({
+const NewCertification = ({
   setShowNewCertificate,
   showCancelButton,
-}) => {
+}: Props) => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
   const [loading, setLoading] = useState(false);

@@ -7,9 +7,7 @@ type Props = {
   personalSummary: PersonalSummaryModel;
 };
 
-const PersonalSummaryFormsContainer: React.FC<Props> = ({
-  personalSummary,
-}) => {
+const PersonalSummaryFormsContainer = ({ personalSummary }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
 
   personalSummary = null;

@@ -10,7 +10,7 @@ type Props = {
   educations: EducationModel[];
 };
 
-const EducationFormsContainer: React.FC<Props> = ({ educations }) => {
+const EducationFormsContainer = ({ educations }: Props) => {
   const resetIdTracking = '0';
   const [isEditing, setIsEditing] = useState(false);
   const [showNewEducation, setShowNewEducation] = useState(false);

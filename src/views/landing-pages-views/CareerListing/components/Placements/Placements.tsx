@@ -13,7 +13,7 @@ type Props = {
   className?: string;
 };
 
-const Placements: React.FC<Props> = ({ className, data, ...rest }) => {
+const Placements = ({ className, data, ...rest }: Props) => {
   // const { data, className, ...rest } = props;
   const classes = useStyles();
 

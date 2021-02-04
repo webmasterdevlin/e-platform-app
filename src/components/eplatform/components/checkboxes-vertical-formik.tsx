@@ -7,7 +7,7 @@ type Props = {
   id: string;
 };
 
-const CheckboxesVerticalFormik: React.FC<Props> = ({ options, id }) => {
+const CheckboxesVerticalFormik = ({ options, id }: Props) => {
   return (
     <section>
       <Field name={id}>

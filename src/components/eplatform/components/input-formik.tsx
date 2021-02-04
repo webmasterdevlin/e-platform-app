@@ -9,7 +9,7 @@ type Props = {
   placeholder?: string;
 };
 
-const InputFormik: React.FC<Props> = ({ name, label, placeholder }) => {
+const InputFormik = ({ name, label, placeholder }: Props) => {
   const {
     touched,
     errors,

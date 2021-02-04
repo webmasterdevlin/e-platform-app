@@ -18,7 +18,7 @@ type Props = {
   className?: string;
 };
 
-const Team: React.FC<Props> = ({ data, className, ...rest }) => {
+const Team = ({ data, className, ...rest }: Props) => {
   // const { data, className, ...rest } = props;
   const classes = useStyles();
 

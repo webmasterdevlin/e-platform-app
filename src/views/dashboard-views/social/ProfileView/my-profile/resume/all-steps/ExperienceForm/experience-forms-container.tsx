@@ -10,7 +10,7 @@ type Props = {
   experiences: ExperienceModel[];
 };
 
-const ExperienceFormsContainer: React.FC<Props> = ({ experiences }) => {
+const ExperienceFormsContainer = ({ experiences }: Props) => {
   const resetIdTracking = '0';
   const [isEditing, setIsEditing] = useState(false);
   const [showNewExperience, setShowNewExperience] = useState(false);

@@ -20,11 +20,11 @@ type Props = {
   experience: ExperienceModel;
 };
 
-const EditExperience: React.FC<Props> = ({
+const EditExperience = ({
   experience,
   setIsEditing,
   setShowEditingExperience,
-}) => {
+}: Props) => {
   const [loading, setLoading] = useState(false);
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');

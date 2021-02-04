@@ -66,137 +66,137 @@ const sections: Section[] = [
         icon: PieChartIcon,
         href: '/app/reports/dashboard-alternative',
       },
-      {
-        title: 'Mail',
-        href: '/app/mail',
-        icon: MailIcon,
-      },
-      {
-        title: 'Calendar',
-        href: '/app/calendar',
-        icon: CalendarIcon,
-        info: () => <Chip color="secondary" size="small" label="Updated" />,
-      },
+      // {
+      //   title: 'Mail',
+      //   href: '/app/mail',
+      //   icon: MailIcon,
+      // },
+      // {
+      //   title: 'Calendar',
+      //   href: '/app/calendar',
+      //   icon: CalendarIcon,
+      //   info: () => <Chip color="secondary" size="small" label="Updated" />,
+      // },
     ],
   },
-  {
-    subheader: 'Management',
-    items: [
-      {
-        title: 'Customers',
-        icon: UsersIcon,
-        href: '/app/management/customers',
-        items: [
-          {
-            title: 'List Customers',
-            href: '/app/management/customers',
-          },
-          {
-            title: 'View Customer',
-            href: '/app/management/customers/1',
-          },
-          {
-            title: 'Edit Customer',
-            href: '/app/management/customers/1/edit',
-          },
-        ],
-      },
-      {
-        title: 'Products',
-        icon: HexagonIcon,
-        href: '/app/management/products',
-        items: [
-          {
-            title: 'List Products',
-            href: '/app/management/products',
-          },
-          {
-            title: 'Create Product',
-            href: '/app/management/products/create',
-          },
-        ],
-      },
-      {
-        title: 'Orders',
-        icon: FolderIcon,
-        href: '/app/management/orders',
-        items: [
-          {
-            title: 'List Orders',
-            href: '/app/management/orders',
-          },
-          {
-            title: 'View Order',
-            href: '/app/management/orders/1',
-          },
-        ],
-      },
-      {
-        title: 'Invoices',
-        icon: ReceiptIcon,
-        href: '/app/management/invoices',
-        items: [
-          {
-            title: 'List Invoices',
-            href: '/app/management/invoices',
-          },
-          {
-            title: 'View Invoice',
-            href: '/app/management/invoices/1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    subheader: 'Account',
-    items: [
-      {
-        title: 'Projects Platform',
-        href: '/app/projects',
-        icon: MonitorIcon,
-        items: [
-          {
-            title: 'Overview',
-            href: '/app/projects/overview',
-          },
-          {
-            title: 'Browse Projects',
-            href: '/app/projects/browse',
-          },
-          {
-            title: 'Create Project',
-            href: '/app/projects/create',
-          },
-          {
-            title: 'View Project',
-            href: '/app/projects/1',
-          },
-        ],
-      },
-      {
-        title: 'Social Platform',
-        href: '/app/social',
-        icon: ShareIcon,
-        items: [
-          {
-            title: 'Profile',
-            href: '/app/social/profile',
-          },
-          {
-            title: 'Feed',
-            href: '/app/social/feed',
-          },
-        ],
-      },
-      {
-        title: 'Chat',
-        href: '/app/chat',
-        icon: MessageCircleIcon,
-        info: () => <Chip color="secondary" size="small" label="Updated" />,
-      },
-    ],
-  },
+  // {
+  //   subheader: 'Management',
+  //   items: [
+  //     // {
+  //     //   title: 'Customers',
+  //     //   icon: UsersIcon,
+  //     //   href: '/app/management/customers',
+  //     //   items: [
+  //     //     {
+  //     //       title: 'List Customers',
+  //     //       href: '/app/management/customers',
+  //     //     },
+  //     //     {
+  //     //       title: 'View Customer',
+  //     //       href: '/app/management/customers/1',
+  //     //     },
+  //     //     {
+  //     //       title: 'Edit Customer',
+  //     //       href: '/app/management/customers/1/edit',
+  //     //     },
+  //     //   ],
+  //     // },
+  //     {
+  //       title: 'Products',
+  //       icon: HexagonIcon,
+  //       href: '/app/management/products',
+  //       items: [
+  //         {
+  //           title: 'List Products',
+  //           href: '/app/management/products',
+  //         },
+  //         {
+  //           title: 'Create Product',
+  //           href: '/app/management/products/create',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       title: 'Orders',
+  //       icon: FolderIcon,
+  //       href: '/app/management/orders',
+  //       items: [
+  //         {
+  //           title: 'List Orders',
+  //           href: '/app/management/orders',
+  //         },
+  //         {
+  //           title: 'View Order',
+  //           href: '/app/management/orders/1',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       title: 'Invoices',
+  //       icon: ReceiptIcon,
+  //       href: '/app/management/invoices',
+  //       items: [
+  //         {
+  //           title: 'List Invoices',
+  //           href: '/app/management/invoices',
+  //         },
+  //         {
+  //           title: 'View Invoice',
+  //           href: '/app/management/invoices/1',
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
+  // {
+  //   subheader: 'Account',
+  //   items: [
+  //     {
+  //       title: 'Projects Platform',
+  //       href: '/app/projects',
+  //       icon: MonitorIcon,
+  //       items: [
+  //         {
+  //           title: 'Overview',
+  //           href: '/app/projects/overview',
+  //         },
+  //         {
+  //           title: 'Browse Projects',
+  //           href: '/app/projects/browse',
+  //         },
+  //         {
+  //           title: 'Create Project',
+  //           href: '/app/projects/create',
+  //         },
+  //         {
+  //           title: 'View Project',
+  //           href: '/app/projects/1',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       title: 'Social Platform',
+  //       href: '/app/social',
+  //       icon: ShareIcon,
+  //       items: [
+  //         {
+  //           title: 'Profile',
+  //           href: '/app/social/profile',
+  //         },
+  //         {
+  //           title: 'Feed',
+  //           href: '/app/social/feed',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       title: 'Chat',
+  //       href: '/app/chat',
+  //       icon: MessageCircleIcon,
+  //       info: () => <Chip color="secondary" size="small" label="Updated" />,
+  //     },
+  //   ],
+  // },
   {
     subheader: 'Pages',
     items: [

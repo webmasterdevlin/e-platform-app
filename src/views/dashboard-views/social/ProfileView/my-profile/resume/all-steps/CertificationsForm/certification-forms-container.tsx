@@ -10,7 +10,7 @@ type Props = {
   certifications: CertificationModel[];
 };
 
-const CertificationFormsContainer: React.FC<Props> = ({ certifications }) => {
+const CertificationFormsContainer = ({ certifications }: Props) => {
   const resetIdTracking = '0';
   const [isEditing, setIsEditing] = useState(false);
   const [showNewCertification, setShowNewCertification] = useState(false);

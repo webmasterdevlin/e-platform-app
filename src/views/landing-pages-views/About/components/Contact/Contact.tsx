@@ -16,7 +16,7 @@ type Props = {
   data?: any[];
 };
 
-const Contact: React.FC<Props> = ({ className, data, ...rest }) => {
+const Contact = ({ className, data, ...rest }: Props) => {
   // const { data, className, ...rest } = props;
   const classes = useStyles();
 

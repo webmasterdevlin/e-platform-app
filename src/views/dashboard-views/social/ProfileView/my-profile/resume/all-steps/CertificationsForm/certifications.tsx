@@ -20,13 +20,13 @@ type Props = {
   setShowEditingCertification: (string) => void;
 };
 
-const Certifications: React.FC<Props> = ({
+const Certifications = ({
   certification,
   setIsEditing,
   showAddCertificationButton,
   setShowEditingCertification,
   setShowNewCertification,
-}) => {
+}: Props) => {
   return (
     <Box mb={4}>
       <Box mb={4}>

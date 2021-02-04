@@ -14,7 +14,7 @@ import { Box, Button } from '@material-ui/core';
 
 type Props = {};
 
-const Heroes: React.FC<Props> = () => {
+const Heroes = ({}: Props) => {
   const dispatch: Dispatch = useDispatch();
   const { heroes, loading } = useSelector((state: RootState) => state.hero);
   const [counter, setCounter] = useState('0');

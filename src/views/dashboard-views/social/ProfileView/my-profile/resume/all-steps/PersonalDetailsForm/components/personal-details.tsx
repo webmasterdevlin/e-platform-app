@@ -8,10 +8,7 @@ type Props = {
   personalDetails: PersonalDetailsModel;
 };
 
-const PersonalDetails: React.FC<Props> = ({
-  setIsEditing,
-  personalDetails,
-}) => (
+const PersonalDetails = ({ setIsEditing, personalDetails }: Props) => (
   <>
     <h4>Personal Details</h4>
     <div>

@@ -9,7 +9,7 @@ type Props = {
   skills: SkillsModel;
 };
 
-const Skills: React.FC<Props> = ({ skills, setIsEditing }) => {
+const Skills = ({ skills, setIsEditing }: Props) => {
   const classes = useStyles();
 
   useEffect(() => {

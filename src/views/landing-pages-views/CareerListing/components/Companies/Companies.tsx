@@ -11,7 +11,7 @@ type Props = {
   data?: any[];
 };
 
-const Companies: React.FC<Props> = ({ className, data, ...rest }) => {
+const Companies = ({ className, data, ...rest }: Props) => {
   const classes = useStyles();
   const theme = useTheme();
 

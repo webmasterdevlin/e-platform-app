@@ -15,10 +15,7 @@ type Props = {
   showCancelButton: boolean;
 };
 
-const NewEducation: React.FC<Props> = ({
-  setShowNewEducation,
-  showCancelButton,
-}) => {
+const NewEducation = ({ setShowNewEducation, showCancelButton }: Props) => {
   const [loading, setLoading] = useState(false);
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');

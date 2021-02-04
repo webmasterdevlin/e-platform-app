@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-const WhoWeAre: React.FC<Props> = ({ className, ...rest }) => {
+const WhoWeAre = ({ className, ...rest }: Props) => {
   // const { className, ...rest } = props;
   const classes = useStyles();
 

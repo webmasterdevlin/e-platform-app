@@ -10,7 +10,7 @@ type Props = {
   data: any[];
 };
 
-const Gallery: React.FC<Props> = ({ className, data, ...rest }) => {
+const Gallery = ({ className, data, ...rest }: Props) => {
   // const { data, className, ...rest } = props;
   const classes = useStyles();
 

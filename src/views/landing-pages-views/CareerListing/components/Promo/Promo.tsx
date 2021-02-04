@@ -9,7 +9,7 @@ type Props = {
   className?: string;
 };
 
-const Promo: React.FC<Props> = ({ className, data, ...rest }) => {
+const Promo = ({ className, data, ...rest }: Props) => {
   const classes = useStyles();
 
   const theme = useTheme();

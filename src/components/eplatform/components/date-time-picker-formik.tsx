@@ -1,23 +1,22 @@
 import React from 'react';
-import { FormikProps } from 'formik';
-import { DatePicker, DateTimePicker } from '@material-ui/pickers';
+import { useFormikContext } from 'formik';
+import { DateTimePicker } from '@material-ui/pickers';
 import Box from '@material-ui/core/Box';
 
 type Props = {
   id: string;
   label: string;
-  formikProps: FormikProps<any>;
   disablePast?: boolean;
   disableFuture?: boolean;
 };
 
-const DateTimePickerFormik: React.FC<Props> = ({
+const DateTimePickerFormik = ({
   id,
   label,
-  formikProps,
   disablePast,
   disableFuture,
-}) => {
+}: Props) => {
+  const formikProps = useFormikContext();
   return (
     <div>
       <label>{label}</label>

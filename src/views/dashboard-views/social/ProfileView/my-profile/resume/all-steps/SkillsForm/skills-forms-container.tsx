@@ -7,7 +7,7 @@ type Props = {
   skills: SkillsModel;
 };
 
-const SkillsFormsContainer: React.FC<Props> = ({ skills }) => {
+const SkillsFormsContainer = ({ skills }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
 
   skills = null;

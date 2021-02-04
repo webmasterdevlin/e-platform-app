@@ -18,7 +18,7 @@ type Props = {
   classes?: Styles;
 } & SwitchProps;
 
-const StyledSwitch: React.FC<Props> = ({ label, state, handleChange }) => (
+const StyledSwitch = ({ label, state, handleChange }: Props) => (
   <Box display={'flex'} flexDirection={'column'} justifyContent={'center'}>
     {label && <div>{label}</div>}
     <Box

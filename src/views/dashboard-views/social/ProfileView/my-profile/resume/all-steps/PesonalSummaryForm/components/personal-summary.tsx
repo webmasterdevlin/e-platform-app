@@ -6,10 +6,7 @@ type Props = {
   setIsEditing: (boolean) => void;
   personalSummary: PersonalSummaryModel;
 };
-const PersonalSummary: React.FC<Props> = ({
-  setIsEditing,
-  personalSummary,
-}) => {
+const PersonalSummary = ({ setIsEditing, personalSummary }: Props) => {
   return (
     <>
       <h4>Personal summary</h4>

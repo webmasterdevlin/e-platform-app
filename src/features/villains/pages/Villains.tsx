@@ -14,7 +14,7 @@ import { Box, Button } from '@material-ui/core';
 
 type Props = {};
 
-const Villains: React.FC<Props> = () => {
+const Villains = ({}: Props) => {
   const dispatch: Dispatch = useDispatch();
   const { villains, loading } = useSelector(
     (state: RootState) => state.villain,

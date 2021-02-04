@@ -10,7 +10,7 @@ type Props = {
   rest?: React.ReactNode;
 };
 
-const Faq: React.FC<Props> = ({ data, className, ...rest }) => {
+const Faq = ({ data, className, ...rest }: Props) => {
   const classes = useStyles();
 
   return (

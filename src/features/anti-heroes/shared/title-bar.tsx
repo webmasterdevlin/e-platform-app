@@ -5,7 +5,7 @@ type Props = {
   title: string;
 };
 
-const TitleBar: React.FC<Props> = ({ title }) => (
+const TitleBar = ({ title }: Props) => (
   <Box mb={5}>
     <h1>{title}</h1>
   </Box>

@@ -8,7 +8,7 @@ type Props = {
 /*
  * This is better https://material-ui.com/components/autocomplete/
  * */
-const InputWithSearchIconFormik: React.FC<Props> = ({ inputProps }) => (
+const InputWithSearchIconFormik = ({ inputProps }: Props) => (
   <section>
     <div>
       <input {...(inputProps as any)} />

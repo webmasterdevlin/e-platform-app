@@ -10,7 +10,7 @@ type Props = {
   placeholder?: string;
 };
 
-const TextAreaFormik: React.FC<Props> = ({ name, label, placeholder }) => {
+const TextAreaFormik = ({ name, label, placeholder }: Props) => {
   const classes = useStyles();
 
   const { values, setFieldValue } = useFormikContext<any>();

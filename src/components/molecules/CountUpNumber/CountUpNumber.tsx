@@ -24,7 +24,7 @@ type Props = {
   wrapperProps?: any;
   visibilitySensorProps?: any;
 };
-const CountUpNumber: React.FC<Props> = props => {
+const CountUpNumber = (props: Props) => {
   const {
     start,
     end,

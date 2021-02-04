@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormikProps, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 import { Box, Typography } from '@material-ui/core';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   label: string;
 };
 
-const CheckboxFormik: React.FC<Props> = ({ id, label }) => {
+const CheckboxFormik = ({ id, label }: Props) => {
   const { values, setFieldValue } = useFormikContext<any>();
 
   return (

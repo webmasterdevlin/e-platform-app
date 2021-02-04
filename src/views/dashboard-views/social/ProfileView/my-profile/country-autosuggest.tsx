@@ -11,7 +11,7 @@ type Props = {
   id: string;
   label: string;
 };
-const CountryAutosuggest: React.FC<Props> = ({ setFieldValue, id, label }) => {
+const CountryAutosuggest = ({ setFieldValue, id, label }: Props) => {
   const [country, setCountry] = React.useState('');
   const [suggestions, setSuggestions] = React.useState([]);
 

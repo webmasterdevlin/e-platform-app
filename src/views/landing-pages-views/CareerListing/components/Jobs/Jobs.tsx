@@ -11,7 +11,7 @@ type Props = {
   data?: any[];
 };
 
-const Jobs: React.FC<Props> = ({ className, data, ...rest }) => {
+const Jobs = ({ className, data, ...rest }: Props) => {
   const classes = useStyles();
 
   const theme = useTheme();
