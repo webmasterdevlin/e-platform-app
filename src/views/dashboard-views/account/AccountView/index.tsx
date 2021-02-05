@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { FC, ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 import {
   Box,
   Container,
@@ -8,24 +8,15 @@ import {
   Tabs,
   makeStyles,
 } from '@material-ui/core';
-import Page from '../../../../components/Page';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import Page from 'components/Page';
+import type { Theme } from 'themes/dashboard-theme';
 import Header from './Header';
 import General from './General';
 import Subscription from './Subscription';
 import Notifications from './Notifications';
 import Security from './Security';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-  },
-}));
-
-const AccountView: FC = () => {
+const AccountView = () => {
   const classes = useStyles();
   const [currentTab, setCurrentTab] = useState<string>('general');
 
@@ -70,3 +61,12 @@ const AccountView: FC = () => {
 };
 
 export default AccountView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+  },
+}));

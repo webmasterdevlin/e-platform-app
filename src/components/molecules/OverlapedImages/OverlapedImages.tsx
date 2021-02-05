@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import { Image } from '../../../components/atoms';
+import { Image } from 'components/atoms';
 
 type Props = {
   className?: string;

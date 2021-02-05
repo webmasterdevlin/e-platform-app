@@ -18,7 +18,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import wait from '../../../../../utils/wait';
+import wait from 'utils/wait';
 
 const BasicForm: FC = () => {
   const [isAlertVisible, setAlertVisible] = useState<boolean>(true);

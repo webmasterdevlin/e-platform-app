@@ -1,33 +1,15 @@
 import React from 'react';
-import type { FC } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Avatar, Box, Card, Typography, makeStyles } from '@material-ui/core';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface RoiPerCustomerProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    color: theme.palette.secondary.contrastText,
-    backgroundColor: theme.palette.secondary.main,
-    padding: theme.spacing(3),
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  avatar: {
-    backgroundColor: theme.palette.secondary.contrastText,
-    color: theme.palette.secondary.main,
-    height: 48,
-    width: 48,
-  },
-}));
-
-const RoiPerCustomer: FC<RoiPerCustomerProps> = ({ className, ...rest }) => {
+const RoiPerCustomer = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const data = {
     value: '25.50',
@@ -64,3 +46,20 @@ RoiPerCustomer.propTypes = {
 };
 
 export default RoiPerCustomer;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    color: theme.palette.secondary.contrastText,
+    backgroundColor: theme.palette.secondary.main,
+    padding: theme.spacing(3),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  avatar: {
+    backgroundColor: theme.palette.secondary.contrastText,
+    color: theme.palette.secondary.main,
+    height: 48,
+    width: 48,
+  },
+}));

@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -11,28 +10,20 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
-import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface OverallReviewsProps {
+type Props = {
   className?: string;
   rating: number;
   reviewsCount: number;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  rating: {
-    marginLeft: theme.spacing(2),
-    fontWeight: theme.typography.fontWeightBold,
-  },
-}));
-
-const OverallReviews: FC<OverallReviewsProps> = ({
+const OverallReviews = ({
   className,
   rating,
   reviewsCount,
   ...rest
-}) => {
+}: Props) => {
   const classes = useStyles();
 
   return (
@@ -74,3 +65,11 @@ OverallReviews.propTypes = {
 };
 
 export default OverallReviews;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  rating: {
+    marginLeft: theme.spacing(2),
+    fontWeight: theme.typography.fontWeightBold,
+  },
+}));

@@ -14,24 +14,14 @@ import {
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { PlusCircle as PlusCircleIcon } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface HeaderProps {
+type Props = {
   className?: string;
   onAddClick?: () => void;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  action: {
-    marginBottom: theme.spacing(1),
-    '& + &': {
-      marginLeft: theme.spacing(1),
-    },
-  },
-}));
-
-const Header: FC<HeaderProps> = ({ className, onAddClick, ...rest }) => {
+const Header = ({ className, onAddClick, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -92,3 +82,13 @@ Header.defaultProps = {
 };
 
 export default Header;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  action: {
+    marginBottom: theme.spacing(1),
+    '& + &': {
+      marginLeft: theme.spacing(1),
+    },
+  },
+}));

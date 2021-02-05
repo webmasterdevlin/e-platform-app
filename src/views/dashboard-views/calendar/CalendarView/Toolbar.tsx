@@ -17,19 +17,7 @@ import ViewConfigIcon from '@material-ui/icons/ViewComfyOutlined';
 import ViewWeekIcon from '@material-ui/icons/ViewWeekOutlined';
 import ViewDayIcon from '@material-ui/icons/ViewDayOutlined';
 import ViewAgendaIcon from '@material-ui/icons/ViewAgendaOutlined';
-import type { View } from '../../../../types/calendar';
-
-interface ToolbarProps {
-  children?: ReactNode;
-  className?: string;
-  date: Date;
-  onDateNext?: () => void;
-  onDatePrev?: () => void;
-  onDateToday?: () => void;
-  onAddClick?: () => void;
-  onViewChange?: (view: View) => void;
-  view: View;
-}
+import type { View } from 'types/calendar';
 
 interface ViewOption {
   label: string;
@@ -60,11 +48,19 @@ const viewOptions: ViewOption[] = [
   },
 ];
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
+type Props = {
+  children?: ReactNode;
+  className?: string;
+  date: Date;
+  onDateNext?: () => void;
+  onDatePrev?: () => void;
+  onDateToday?: () => void;
+  onAddClick?: () => void;
+  onViewChange?: (view: View) => void;
+  view: View;
+};
 
-const Toolbar: FC<ToolbarProps> = ({
+const Toolbar = ({
   className,
   date,
   onDateNext,
@@ -74,7 +70,7 @@ const Toolbar: FC<ToolbarProps> = ({
   onViewChange,
   view,
   ...rest
-}) => {
+}: Props) => {
   const classes = useStyles();
 
   return (
@@ -146,3 +142,7 @@ Toolbar.defaultProps = {
 };
 
 export default Toolbar;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

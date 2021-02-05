@@ -8,28 +8,15 @@ interface HeaderProps {
   className?: string;
 }
 
-const useStyles = makeStyles(() => ({
-  root: {}
-}));
-
 const Header: FC<HeaderProps> = ({ className, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Typography
-        variant="overline"
-        color="textSecondary"
-      >
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Typography variant="overline" color="textSecondary">
         Social Feed
       </Typography>
-      <Typography
-        variant="h3"
-        color="textPrimary"
-      >
+      <Typography variant="h3" color="textPrimary">
         Here&apos;s what your connections posted
       </Typography>
     </div>
@@ -37,7 +24,11 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
 };
 
 Header.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Header;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

@@ -11,7 +11,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Settings as SettingsIcon, Edit as EditIcon } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
 interface SettingsProps {
   className?: string;

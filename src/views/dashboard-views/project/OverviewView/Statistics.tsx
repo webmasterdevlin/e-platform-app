@@ -4,14 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import numeral from 'numeral';
 import { Box, Card, Grid, Typography, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import Label from '../../../../components/Label';
-
-interface StatisticsProps {
-  className?: string;
-}
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import Label from 'components/Label';
 
 interface Statistics {
   nextPayout: string;
@@ -20,31 +16,11 @@ interface Statistics {
   watchingNow: string;
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  item: {
-    padding: theme.spacing(3),
-    textAlign: 'center',
-    [theme.breakpoints.up('md')]: {
-      '&:not(:last-of-type)': {
-        borderRight: `1px solid ${theme.palette.divider}`,
-      },
-    },
-    [theme.breakpoints.down('sm')]: {
-      '&:not(:last-of-type)': {
-        borderBottom: `1px solid ${theme.palette.divider}`,
-      },
-    },
-  },
-  label: {
-    marginLeft: theme.spacing(1),
-  },
-  overline: {
-    marginTop: theme.spacing(1),
-  },
-}));
+type Props = {
+  className?: string;
+};
 
-const Statistics: FC<StatisticsProps> = ({ className, ...rest }) => {
+const Statistics = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [statistics, setStatistics] = useState<Statistics | null>(null);
@@ -137,3 +113,27 @@ Statistics.propTypes = {
 };
 
 export default Statistics;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  item: {
+    padding: theme.spacing(3),
+    textAlign: 'center',
+    [theme.breakpoints.up('md')]: {
+      '&:not(:last-of-type)': {
+        borderRight: `1px solid ${theme.palette.divider}`,
+      },
+    },
+    [theme.breakpoints.down('sm')]: {
+      '&:not(:last-of-type)': {
+        borderBottom: `1px solid ${theme.palette.divider}`,
+      },
+    },
+  },
+  label: {
+    marginLeft: theme.spacing(1),
+  },
+  overline: {
+    marginTop: theme.spacing(1),
+  },
+}));

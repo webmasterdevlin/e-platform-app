@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
@@ -20,24 +19,16 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import type { User } from '../../../../../types/user';
-import wait from '../../../../../utils/wait';
+import type { User } from 'types/user';
+import wait from 'utils/wait';
 import countries from './countries';
 
-interface GeneralSettingsProps {
+type Props = {
   className?: string;
   user: User;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const GeneralSettings: FC<GeneralSettingsProps> = ({
-  className,
-  user,
-  ...rest
-}) => {
+const GeneralSettings = ({ className, user, ...rest }: Props) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -253,3 +244,7 @@ GeneralSettings.propTypes = {
 };
 
 export default GeneralSettings;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

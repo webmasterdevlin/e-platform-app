@@ -17,8 +17,8 @@ import {
   TableCell,
   makeStyles,
 } from '@material-ui/core';
-import Logo from '../../../../components/Logo';
-import type { Invoice } from '../../../../types/invoice';
+import Logo from 'components/Logo';
+import type { Invoice } from 'types/invoice';
 
 interface InvoicePreviewProps {
   className?: string;

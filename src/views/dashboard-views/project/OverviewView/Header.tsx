@@ -11,25 +11,14 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import BarChartIcon from '@material-ui/icons/BarChart';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import useAuth from '../../../../hooks/useAuth';
+import type { Theme } from 'themes/dashboard-theme';
+import useAuth from 'hooks/useAuth';
 
-interface HeaderProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  action: {
-    backgroundColor: theme.palette.common.white,
-  },
-  image: {
-    width: '100%',
-    maxHeight: 400,
-  },
-}));
-
-const Header: FC<HeaderProps> = ({ className, ...rest }) => {
+const Header = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const { user } = useAuth();
 
@@ -75,3 +64,14 @@ Header.propTypes = {
 };
 
 export default Header;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  action: {
+    backgroundColor: theme.palette.common.white,
+  },
+  image: {
+    width: '100%',
+    maxHeight: 400,
+  },
+}));

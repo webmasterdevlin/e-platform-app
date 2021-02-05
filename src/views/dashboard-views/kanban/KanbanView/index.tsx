@@ -1,42 +1,18 @@
 import React, { useEffect } from 'react';
-import type { FC } from 'react';
+
 import { DragDropContext } from 'react-beautiful-dnd';
 import type { DropResult } from 'react-beautiful-dnd';
 import { useSnackbar } from 'notistack';
 import { Box, makeStyles } from '@material-ui/core';
-import Page from '../../../../components/Page';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import { useDispatch, useSelector } from '../../../../store';
-import { getBoard, moveCard } from '../../../../slices/kanban';
+import Page from 'components/Page';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch, useSelector } from 'store';
+import { getBoard, moveCard } from 'slices/kanban';
 import Header from './Header';
 import List from './List';
 import ListAdd from './ListAdd';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    height: '100%',
-    display: 'flex',
-    overflow: 'hidden',
-    flexDirection: 'column',
-  },
-  content: {
-    flexGrow: 1,
-    flexShrink: 1,
-    display: 'flex',
-    overflowY: 'hidden',
-    overflowX: 'auto',
-  },
-  inner: {
-    display: 'flex',
-    paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-  },
-}));
-
-const KanbanView: FC = () => {
+const KanbanView = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { lists } = useSelector(state => state.kanban);
@@ -106,3 +82,27 @@ const KanbanView: FC = () => {
 };
 
 export default KanbanView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    height: '100%',
+    display: 'flex',
+    overflow: 'hidden',
+    flexDirection: 'column',
+  },
+  content: {
+    flexGrow: 1,
+    flexShrink: 1,
+    display: 'flex',
+    overflowY: 'hidden',
+    overflowX: 'auto',
+  },
+  inner: {
+    display: 'flex',
+    paddingBottom: theme.spacing(3),
+    paddingTop: theme.spacing(3),
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+  },
+}));

@@ -18,7 +18,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Search as SearchIcon, XCircle as XIcon } from 'react-feather';
-import axios from '../../../utils/axios';
+import axios from 'utils/axios';
 
 interface Result {
   description: string;

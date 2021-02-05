@@ -9,8 +9,8 @@ import {
   personalDetailsValue,
 } from '../schema/personal-details.value';
 import { personalDetailsYupObject } from '../schema/personal-details.validation';
-import InputFormik from '../../../../../../../../../components/eplatform/components/input-formik';
-import CountrySelect from '../../../../../../../../../components/eplatform/components/country-select';
+import InputFormik from 'components/eplatform/components/input-formik';
+import CountrySelect from 'components/eplatform/components/country-select';
 
 type Props = {
   personalDetails: PersonalDetailsModel;

@@ -24,9 +24,9 @@ import { Rating } from '@material-ui/lab';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { Users as UsersIcon } from 'react-feather';
-import type { Theme } from '../themes/dashboard-theme';
-import getInitials from '../utils/getInitials';
-import type { Project } from '../types/project';
+import type { Theme } from 'themes/dashboard-theme';
+import getInitials from 'utils/getInitials';
+import type { Project } from 'types/project';
 
 interface ProjectCardProps {
   className?: string;

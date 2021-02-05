@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import type { FC } from 'react';
 import clsx from 'clsx';
 import {
   Backdrop,
@@ -22,45 +21,12 @@ import {
   Maximize as MaximizeIcon,
   Minimize as MinimizeIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import QuillEditor from '../../../../components/QuillEditor';
-import { useDispatch, useSelector } from '../../../../store';
-import { closeCompose } from '../../../../slices/mail';
+import type { Theme } from 'themes/dashboard-theme';
+import QuillEditor from 'components/QuillEditor';
+import { useDispatch, useSelector } from 'store';
+import { closeCompose } from 'slices/mail';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    maxWidth: `calc(100% - ${theme.spacing(6)}px)`,
-    maxHeight: `calc(100% - ${theme.spacing(6)}px)`,
-    width: 600,
-    position: 'fixed',
-    bottom: 0,
-    right: 0,
-    margin: theme.spacing(3),
-    outline: 'none',
-    zIndex: 2000,
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: 500,
-  },
-  fullScreen: {
-    height: '100%',
-    width: '100%',
-  },
-  input: {
-    width: '100%',
-  },
-  editor: {
-    flexGrow: 1,
-    '& .ql-editor': {
-      minHeight: 300,
-    },
-  },
-  action: {
-    marginRight: theme.spacing(1),
-  },
-}));
-
-const Compose: FC = () => {
+const Compose = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { isComposeOpen } = useSelector(state => state.mail);
@@ -165,3 +131,36 @@ const Compose: FC = () => {
 };
 
 export default Compose;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    maxWidth: `calc(100% - ${theme.spacing(6)}px)`,
+    maxHeight: `calc(100% - ${theme.spacing(6)}px)`,
+    width: 600,
+    position: 'fixed',
+    bottom: 0,
+    right: 0,
+    margin: theme.spacing(3),
+    outline: 'none',
+    zIndex: 2000,
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: 500,
+  },
+  fullScreen: {
+    height: '100%',
+    width: '100%',
+  },
+  input: {
+    width: '100%',
+  },
+  editor: {
+    flexGrow: 1,
+    '& .ql-editor': {
+      minHeight: 300,
+    },
+  },
+  action: {
+    marginRight: theme.spacing(1),
+  },
+}));

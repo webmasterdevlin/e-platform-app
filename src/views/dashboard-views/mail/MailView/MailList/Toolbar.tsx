@@ -1,5 +1,4 @@
-import React from 'react';
-import type { FC, ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -19,49 +18,26 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import { Search as SearchIcon, Menu as MenuIcon } from 'react-feather';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import { useDispatch } from '../../../../../store';
-import { openSidebar } from '../../../../../slices/mail';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch } from 'store';
+import { openSidebar } from 'slices/mail';
 
-interface ToolbarProps {
+type Props = {
   className?: string;
   mails: number;
   onDeselectAll?: () => void;
   onSelectAll?: () => void;
   selectedMails: number;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(2),
-    height: 68,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  searchContainer: {
-    alignItems: 'center',
-    display: 'flex',
-    marginLeft: theme.spacing(2),
-    paddingBottom: theme.spacing(0.5),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    paddingTop: theme.spacing(0.5),
-  },
-  searchInput: {
-    marginLeft: theme.spacing(2),
-    flexGrow: 1,
-  },
-}));
-
-const Toolbar: FC<ToolbarProps> = ({
+const Toolbar = ({
   className,
   mails,
   onDeselectAll,
   onSelectAll,
   selectedMails,
   ...rest
-}) => {
+}: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -154,3 +130,26 @@ Toolbar.defaultProps = {
 };
 
 export default Toolbar;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(2),
+    height: 68,
+    display: 'flex',
+    alignItems: 'center',
+  },
+  searchContainer: {
+    alignItems: 'center',
+    display: 'flex',
+    marginLeft: theme.spacing(2),
+    paddingBottom: theme.spacing(0.5),
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+    paddingTop: theme.spacing(0.5),
+  },
+  searchInput: {
+    marginLeft: theme.spacing(2),
+    flexGrow: 1,
+  },
+}));

@@ -11,7 +11,7 @@ import {
   Image,
   StyleSheet,
 } from '@react-pdf/renderer';
-import type { Invoice } from '../../../../types/invoice';
+import type { Invoice } from 'types/invoice';
 
 interface InvoicePDFProps {
   invoice: Invoice;

@@ -17,10 +17,6 @@ import {
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { Calendar as CalendarIcon } from 'react-feather';
 
-interface HeaderProps {
-  className?: string;
-}
-
 const timeRanges = [
   {
     value: 'today',
@@ -40,11 +36,11 @@ const timeRanges = [
   },
 ];
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
+type Props = {
+  className?: string;
+};
 
-const Header: FC<HeaderProps> = ({ className, ...rest }) => {
+const Header = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const actionRef = useRef<any>(null);
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
@@ -126,3 +122,7 @@ Header.propTypes = {
 Header.defaultProps = {};
 
 export default Header;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

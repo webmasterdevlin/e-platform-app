@@ -13,9 +13,9 @@ import {
   SvgIcon,
 } from '@material-ui/core';
 import { Menu as MenuIcon } from 'react-feather';
-import Logo from '../../../components/Logo';
+import Logo from 'components/Logo';
 import { THEMES } from '../../../constants';
-import type { Theme } from '../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 import Account from './Account';
 import Contacts from './Contacts';
 import Notifications from './Notifications';

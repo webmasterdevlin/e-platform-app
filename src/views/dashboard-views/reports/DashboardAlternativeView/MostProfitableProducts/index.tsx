@@ -20,37 +20,18 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import axios from '../../../../../utils/axios';
-import useIsMountedRef from '../../../../../hooks/useIsMountedRef';
-import GenericMoreButton from '../../../../../components/GenericMoreButton';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { Product } from '../../../../../types/reports';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import GenericMoreButton from 'components/GenericMoreButton';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Product } from 'types/reports';
 import CircularProgress from './CircularProgress';
 
-interface MostProfitableProductsProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  image: {
-    flexShrink: 0,
-    height: 56,
-    width: 56,
-  },
-  subscriptions: {
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-  value: {
-    color: colors.green[600],
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-}));
-
-const MostProfitableProducts: FC<MostProfitableProductsProps> = ({
-  className,
-  ...rest
-}) => {
+const MostProfitableProducts = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [products, setProducts] = useState<Product[]>([]);
@@ -165,3 +146,19 @@ MostProfitableProducts.propTypes = {
 };
 
 export default MostProfitableProducts;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  image: {
+    flexShrink: 0,
+    height: 56,
+    width: 56,
+  },
+  subscriptions: {
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+  value: {
+    color: colors.green[600],
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+}));

@@ -25,25 +25,15 @@ import {
   Mail as MailIcon,
   Briefcase as BriefcaseIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { Profile } from '../../../../../types/social';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Profile } from 'types/social';
 
-interface AboutProps {
+type Props = {
   className?: string;
   profile: Profile;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  jobAvatar: {
-    backgroundColor: theme.palette.secondary.main,
-  },
-  cityAvatar: {
-    backgroundColor: colors.red[600],
-  },
-}));
-
-const About: FC<AboutProps> = ({ className, profile, ...rest }) => {
+const About = ({ className, profile, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -170,3 +160,13 @@ About.propTypes = {
 };
 
 export default About;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  jobAvatar: {
+    backgroundColor: theme.palette.secondary.main,
+  },
+  cityAvatar: {
+    backgroundColor: colors.red[600],
+  },
+}));

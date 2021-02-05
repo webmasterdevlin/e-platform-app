@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -17,67 +16,15 @@ import {
 } from '@material-ui/core';
 import AddPhotoIcon from '@material-ui/icons/AddPhotoAlternate';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import type { Profile } from '../../../../types/social';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Profile } from 'types/social';
 
-interface HeaderProps {
+type Props = {
   className?: string;
   profile: Profile;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  cover: {
-    position: 'relative',
-    height: 460,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    '&:before': {
-      position: 'absolute',
-      content: '" "',
-      top: 0,
-      left: 0,
-      height: '100%',
-      width: '100%',
-      backgroundImage:
-        'linear-gradient(-180deg, rgba(0,0,0,0.00) 58%, rgba(0,0,0,0.32) 100%)',
-    },
-    '&:hover': {
-      '& $changeButton': {
-        visibility: 'visible',
-      },
-    },
-  },
-  changeButton: {
-    visibility: 'hidden',
-    position: 'absolute',
-    bottom: theme.spacing(3),
-    right: theme.spacing(3),
-    backgroundColor: colors.blueGrey[900],
-    color: theme.palette.common.white,
-    [theme.breakpoints.down('md')]: {
-      top: theme.spacing(3),
-      bottom: 'auto',
-    },
-    '&:hover': {
-      backgroundColor: colors.blueGrey[900],
-    },
-  },
-  avatar: {
-    border: `2px solid ${theme.palette.common.white}`,
-    height: 120,
-    width: 120,
-    top: -60,
-    left: theme.spacing(3),
-    position: 'absolute',
-  },
-  action: {
-    marginLeft: theme.spacing(1),
-  },
-}));
-
-const Header: FC<HeaderProps> = ({ className, profile, ...rest }) => {
+const Header = ({ className, profile, ...rest }: Props) => {
   const classes = useStyles();
   const [connectedStatus, setConnectedStatus] = useState<string>(
     profile.connectedStatus,
@@ -169,3 +116,55 @@ Header.propTypes = {
 };
 
 export default Header;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  cover: {
+    position: 'relative',
+    height: 460,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    '&:before': {
+      position: 'absolute',
+      content: '" "',
+      top: 0,
+      left: 0,
+      height: '100%',
+      width: '100%',
+      backgroundImage:
+        'linear-gradient(-180deg, rgba(0,0,0,0.00) 58%, rgba(0,0,0,0.32) 100%)',
+    },
+    '&:hover': {
+      '& $changeButton': {
+        visibility: 'visible',
+      },
+    },
+  },
+  changeButton: {
+    visibility: 'hidden',
+    position: 'absolute',
+    bottom: theme.spacing(3),
+    right: theme.spacing(3),
+    backgroundColor: colors.blueGrey[900],
+    color: theme.palette.common.white,
+    [theme.breakpoints.down('md')]: {
+      top: theme.spacing(3),
+      bottom: 'auto',
+    },
+    '&:hover': {
+      backgroundColor: colors.blueGrey[900],
+    },
+  },
+  avatar: {
+    border: `2px solid ${theme.palette.common.white}`,
+    height: 120,
+    width: 120,
+    top: -60,
+    left: theme.spacing(3),
+    position: 'absolute',
+  },
+  action: {
+    marginLeft: theme.spacing(1),
+  },
+}));

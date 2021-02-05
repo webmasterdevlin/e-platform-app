@@ -15,34 +15,15 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import useAuth from '../../../../hooks/useAuth';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import type { Theme } from 'themes/dashboard-theme';
+import useAuth from 'hooks/useAuth';
+import useIsMountedRef from 'hooks/useIsMountedRef';
 
-interface FirebaseAuthRegisterProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  googleButton: {
-    backgroundColor: theme.palette.common.white,
-  },
-  providerIcon: {
-    marginRight: theme.spacing(2),
-  },
-  divider: {
-    flexGrow: 1,
-  },
-  dividerText: {
-    margin: theme.spacing(2),
-  },
-}));
-
-const FirebaseAuthRegister: FC<FirebaseAuthRegisterProps> = ({
-  className,
-  ...rest
-}) => {
+const FirebaseAuthRegister = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const { createUserWithEmailAndPassword, signInWithGoogle } = useAuth() as any;
   const isMountedRef = useIsMountedRef();
@@ -204,3 +185,19 @@ FirebaseAuthRegister.propTypes = {
 };
 
 export default FirebaseAuthRegister;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  googleButton: {
+    backgroundColor: theme.palette.common.white,
+  },
+  providerIcon: {
+    marginRight: theme.spacing(2),
+  },
+  divider: {
+    flexGrow: 1,
+  },
+  dividerText: {
+    margin: theme.spacing(2),
+  },
+}));

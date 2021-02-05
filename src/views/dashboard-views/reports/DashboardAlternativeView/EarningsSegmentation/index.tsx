@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -10,35 +9,17 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import GenericMoreButton from '../../../../../components/GenericMoreButton';
-import axios from '../../../../../utils/axios';
-import useIsMountedRef from '../../../../../hooks/useIsMountedRef';
+import type { Theme } from 'themes/dashboard-theme';
+import GenericMoreButton from 'components/GenericMoreButton';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
 import Chart from './Chart';
 
-interface EarningsSegmentationProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  item: {
-    textAlign: 'center',
-    flexGrow: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    padding: theme.spacing(3, 2),
-    '&:not(:last-of-type)': {
-      borderRight: `1px solid ${theme.palette.divider}`,
-    },
-  },
-}));
-
-const EarningsSegmentation: FC<EarningsSegmentationProps> = ({
-  className,
-  ...rest
-}) => {
+const EarningsSegmentation = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [earnings, setEarnings] = useState<any>(null);
@@ -95,3 +76,18 @@ EarningsSegmentation.propTypes = {
 };
 
 export default EarningsSegmentation;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  item: {
+    textAlign: 'center',
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: theme.spacing(3, 2),
+    '&:not(:last-of-type)': {
+      borderRight: `1px solid ${theme.palette.divider}`,
+    },
+  },
+}));

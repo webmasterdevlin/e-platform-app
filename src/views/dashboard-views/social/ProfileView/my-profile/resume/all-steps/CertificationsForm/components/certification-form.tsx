@@ -1,9 +1,9 @@
 import { Box } from '@material-ui/core';
 import React from 'react';
 
-import CheckboxFormik from '../../../../../../../../../components/eplatform/components/checkbox-formik';
-import DatePickerFormik from '../../../../../../../../../components/eplatform/components/date-picker-formik';
-import InputFormik from '../../../../../../../../../components/eplatform/components/input-formik';
+import CheckboxFormik from 'components/eplatform/components/checkbox-formik';
+import DatePickerFormik from 'components/eplatform/components/date-picker-formik';
+import InputFormik from 'components/eplatform/components/input-formik';
 
 const CertificationForm: React.FC = () => {
   return (

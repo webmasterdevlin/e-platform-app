@@ -17,9 +17,9 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { Contact } from '../../../../../types/chat';
-import axios from '../../../../../utils/axios';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Contact } from 'types/chat';
+import axios from 'utils/axios';
 
 interface ComposeHeaderProps {
   className?: string;

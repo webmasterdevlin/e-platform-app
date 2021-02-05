@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -16,30 +15,16 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import getInitials from '../../../../../utils/getInitials';
-import type { Project } from '../../../../../types/project';
+import type { Theme } from 'themes/dashboard-theme';
+import getInitials from 'utils/getInitials';
+import type { Project } from 'types/project';
 
-interface MetadataProps {
+type Props = {
   className?: string;
   project: Project;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  header: {
-    paddingBottom: 0,
-  },
-  content: {
-    paddingTop: 0,
-  },
-  listItem: {
-    padding: theme.spacing(2, 0),
-    justifyContent: 'space-between',
-  },
-}));
-
-const Metadata: FC<MetadataProps> = ({ className, project, ...rest }) => {
+const Metadata = ({ className, project, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -113,3 +98,17 @@ Metadata.propTypes = {
 };
 
 export default Metadata;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  header: {
+    paddingBottom: 0,
+  },
+  content: {
+    paddingTop: 0,
+  },
+  listItem: {
+    padding: theme.spacing(2, 0),
+    justifyContent: 'space-between',
+  },
+}));

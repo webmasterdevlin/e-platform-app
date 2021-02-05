@@ -12,36 +12,26 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import getInitials from '../../../../../utils/getInitials';
-import type { ProjectAuthor } from '../../../../../types/project';
+import type { Theme } from 'themes/dashboard-theme';
+import getInitials from 'utils/getInitials';
+import type { ProjectAuthor } from 'types/project';
 
-interface ApplyModalProps {
+type Props = {
   author: ProjectAuthor;
   className?: string;
   onApply?: () => void;
   onClose?: () => void;
   open: boolean;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    padding: theme.spacing(3),
-  },
-  helperText: {
-    textAlign: 'right',
-    marginRight: 0,
-  },
-}));
-
-const ApplyModal: FC<ApplyModalProps> = ({
+const ApplyModal = ({
   author,
   className,
   onApply,
   onClose,
   open,
   ...rest
-}) => {
+}: Props) => {
   const classes = useStyles();
   const [value, setValue] = useState<string>('');
   const { enqueueSnackbar } = useSnackbar();
@@ -131,3 +121,13 @@ ApplyModal.defaultProps = {
 };
 
 export default ApplyModal;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    padding: theme.spacing(3),
+  },
+  helperText: {
+    textAlign: 'right',
+    marginRight: 0,
+  },
+}));

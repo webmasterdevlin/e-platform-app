@@ -18,32 +18,18 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import getInitials from '../../../../utils/getInitials';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import GenericMoreButton from '../../../../components/GenericMoreButton';
-import type { CustomerActivity as CustomerActivityType } from '../../../../types/reports';
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import getInitials from 'utils/getInitials';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import GenericMoreButton from 'components/GenericMoreButton';
+import type { CustomerActivity as CustomerActivityType } from 'types/reports';
 
-interface CustomerActivityProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  item: {
-    padding: theme.spacing(3),
-    flexGrow: 1,
-    '&:first-of-type': {
-      borderRight: `1px solid ${theme.palette.divider}`,
-    },
-  },
-}));
-
-const CustomerActivity: FC<CustomerActivityProps> = ({
-  className,
-  ...rest
-}) => {
+const CustomerActivity = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [activities, setActivities] = useState<CustomerActivityType[]>([]);
@@ -149,3 +135,14 @@ CustomerActivity.propTypes = {
 };
 
 export default CustomerActivity;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  item: {
+    padding: theme.spacing(3),
+    flexGrow: 1,
+    '&:first-of-type': {
+      borderRight: `1px solid ${theme.palette.divider}`,
+    },
+  },
+}));

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { FC } from 'react';
+
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -10,20 +10,16 @@ import {
   Link,
   SvgIcon,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import { Edit as EditIcon } from 'react-feather';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-interface HeaderProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {}
-}));
-
-const Header: FC<HeaderProps> = ({ className, ...rest }) => {
+const Header = ({ className, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -55,17 +51,11 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
           >
             Management
           </Link>
-          <Typography
-            variant="body1"
-            color="textPrimary"
-          >
+          <Typography variant="body1" color="textPrimary">
             Orders
           </Typography>
         </Breadcrumbs>
-        <Typography
-          variant="h3"
-          color="textPrimary"
-        >
+        <Typography variant="h3" color="textPrimary">
           Order Details
         </Typography>
       </Grid>
@@ -84,10 +74,14 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
       </Grid>
     </Grid>
   );
-}
+};
 
 Header.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Header;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

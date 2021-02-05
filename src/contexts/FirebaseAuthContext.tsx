@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useReducer } from 'react';
 import type { FC, ReactNode } from 'react';
-import type { User } from '../types/user';
-import SplashScreen from '../../src/components/SplashScreen';
-import firebase from '../../src/lib/firebase';
+import type { User } from 'types/user';
+import SplashScreen from 'components/SplashScreen';
+import firebase from 'lib/firebase';
 
 interface AuthState {
   isInitialised: boolean;

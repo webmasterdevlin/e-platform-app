@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
-import {
-  Box,
-  Button,
-  CircularProgress,
-  IconButton,
-  LinearProgress,
-  Typography,
-} from '@material-ui/core';
+import React from 'react';
+import { Box, Button, IconButton, Typography } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 
 import { CertificationModel } from './schema/certification.value';
-import { monthNameFormDate } from '../../../../../../../../utils/date-converter';
+import { monthNameFormDate } from 'utils/date-converter';
 
 type Props = {
   setIsEditing: () => void;

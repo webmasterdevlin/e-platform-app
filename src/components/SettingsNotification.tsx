@@ -9,8 +9,8 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import useSettings from '../hooks/useSettings';
-import type { Theme } from '../themes/dashboard-theme';
+import useSettings from 'hooks/useSettings';
+import type { Theme } from 'themes/dashboard-theme';
 import { THEMES } from '../constants';
 
 const useStyles = makeStyles((theme: Theme) => ({

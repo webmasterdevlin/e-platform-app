@@ -17,22 +17,14 @@ import {
   TableRow,
   makeStyles,
 } from '@material-ui/core';
-import type { OrderItem } from '../../../../types/order';
+import type { OrderItem } from 'types/order';
 
-interface OrderItemsProps {
+type Props = {
   className?: string;
   orderItems: OrderItem[];
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const OrderItems: FC<OrderItemsProps> = ({
-  className,
-  orderItems,
-  ...rest
-}) => {
+const OrderItems = ({ className, orderItems, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -88,3 +80,7 @@ OrderItems.defaultProps = {
 };
 
 export default OrderItems;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

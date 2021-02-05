@@ -1,5 +1,5 @@
 import React from 'react';
-import type { FC } from 'react';
+
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -14,24 +14,16 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import getInitials from '../../../../../utils/getInitials';
-import type { ProjectReview } from '../../../../../types/project';
+import type { Theme } from 'themes/dashboard-theme';
+import getInitials from 'utils/getInitials';
+import type { ProjectReview } from 'types/project';
 
-interface ReviewCardProps {
+type Props = {
   className?: string;
   review: ProjectReview;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  value: {
-    marginLeft: theme.spacing(1),
-    fontWeight: theme.typography.fontWeightBold,
-  },
-}));
-
-const ReviewCard: FC<ReviewCardProps> = ({ className, review, ...rest }) => {
+const ReviewCard = ({ className, review, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -82,3 +74,11 @@ ReviewCard.propTypes = {
 };
 
 export default ReviewCard;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  value: {
+    marginLeft: theme.spacing(1),
+    fontWeight: theme.typography.fontWeightBold,
+  },
+}));

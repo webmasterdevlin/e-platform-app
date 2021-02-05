@@ -3,7 +3,6 @@ import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import jwt_decode from 'jwt-decode';
 import {
   AppBar,
   Box,
@@ -16,10 +15,10 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { APP_VERSION } from '../../constants';
-import Logo from '../../components/Logo';
+import Logo from 'components/Logo';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { AuthUser, ProfileModel } from '../../auth/auth.model';
+import { RootState } from 'store';
+import { ProfileModel } from 'auth/auth.model';
 
 interface TopBarProps {
   className?: string;

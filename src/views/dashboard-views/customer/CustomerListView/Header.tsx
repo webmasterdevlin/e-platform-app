@@ -19,7 +19,7 @@ import {
   Download as DownloadIcon,
   Upload as UploadIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
 interface HeaderProps {
   className?: string;

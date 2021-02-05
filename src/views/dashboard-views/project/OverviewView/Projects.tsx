@@ -1,37 +1,20 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Box, Button, Grid, Typography, makeStyles } from '@material-ui/core';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import type { Project } from '../../../../types/project';
-import ProjectCard from '../../../../components/ProjectCard';
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import type { Project } from 'types/project';
+import ProjectCard from 'components/ProjectCard';
 
-interface ProjectsProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  title: {
-    position: 'relative',
-    '&:before': {
-      position: 'absolute',
-      bottom: -8,
-      left: 0,
-      content: '" "',
-      height: 3,
-      width: 48,
-      backgroundColor: theme.palette.primary.main,
-    },
-  },
-}));
-
-const Projects: FC<ProjectsProps> = ({ className, ...rest }) => {
+const Projects = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [projects, setProjects] = useState<Project[]>([]);
@@ -89,3 +72,19 @@ Projects.propTypes = {
 };
 
 export default Projects;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  title: {
+    position: 'relative',
+    '&:before': {
+      position: 'absolute',
+      bottom: -8,
+      left: 0,
+      content: '" "',
+      height: 3,
+      width: 48,
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
+}));

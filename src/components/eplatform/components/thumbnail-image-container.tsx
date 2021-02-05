@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormikContext } from 'formik';
 import ThumbnailImage from './thumbnail-image';
 import { Box, Typography } from '@material-ui/core';
-import { MyProfileModel } from '../../../views/dashboard-views/social/ProfileView/my-profile/schema/my-profile-empty.value';
+import { MyProfileModel } from 'views/dashboard-views/social/ProfileView/my-profile/schema/my-profile-empty.value';
 
 type Props = {
   id: string;

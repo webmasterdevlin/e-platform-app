@@ -24,15 +24,10 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Edit as EditIcon, ArrowRight as ArrowRightIcon } from 'react-feather';
-import Label from '../../../../components/Label';
-import GenericMoreButton from '../../../../components/GenericMoreButton';
-import type { Order, OrderStatus } from '../../../../types/order';
+import Label from 'components/Label';
+import GenericMoreButton from 'components/GenericMoreButton';
+import type { Order, OrderStatus } from 'types/order';
 import BulkOperations from './BulkOperations';
-
-interface ResultsProps {
-  className?: string;
-  orders: Order[];
-}
 
 const getStatusLabel = (paymentStatus: OrderStatus): JSX.Element => {
   const map = {
@@ -67,11 +62,12 @@ const applyPagination = (
   return orders.slice(page * limit, page * limit + limit);
 };
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
+type Props = {
+  className?: string;
+  orders: Order[];
+};
 
-const Results: FC<ResultsProps> = ({ className, orders, ...rest }) => {
+const Results = ({ className, orders, ...rest }: Props) => {
   const classes = useStyles();
   const [selectedOrders, setSelectedOrders] = useState<string[]>([]);
   const [page, setPage] = useState<number>(0);
@@ -222,3 +218,7 @@ Results.defaultProps = {
 };
 
 export default Results;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

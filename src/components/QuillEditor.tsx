@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ReactQuill from 'react-quill';
 import { makeStyles } from '@material-ui/core';
-import type { Theme } from '../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
 // NOTE: At this moment, this ReactQuill does not export
 // the types for props and we cannot extend them

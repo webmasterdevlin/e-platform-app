@@ -21,10 +21,6 @@ import MailIcon from '@material-ui/icons/MailOutlineOutlined';
 import type { Theme } from '../../../../themes/dashboard-theme';
 import type { Notification, NotificationType } from '../../../../types/project';
 
-interface NotificationsProps {
-  className?: string;
-}
-
 const notifications: Notification[] = [
   {
     id: '5e8883a4f7877f898c408c27',
@@ -65,7 +61,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Notifications: FC<NotificationsProps> = ({ className, ...rest }) => {
+type Props = {
+  className?: string;
+};
+
+const Notifications = ({ className, ...rest }: Props) => {
   const classes = useStyles();
 
   return (

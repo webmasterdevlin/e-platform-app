@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import type { FC, ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -14,43 +14,14 @@ import {
 } from '@material-ui/core';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import AddPhotoIcon from '@material-ui/icons/AddPhotoAlternate';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import useAuth from '../../../../../hooks/useAuth';
+import type { Theme } from 'themes/dashboard-theme';
+import useAuth from 'hooks/useAuth';
 
-interface MailReplyProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    padding: theme.spacing(3),
-    display: 'flex',
-  },
-  avatar: {
-    marginRight: theme.spacing(2),
-  },
-  textareaContainer: {
-    flexGrow: 1,
-    padding: theme.spacing(2),
-  },
-  textarea: {
-    ...theme.typography.body1,
-    backgroundColor: theme.palette.background.default,
-    color: theme.palette.text.primary,
-    border: 'none',
-    outline: 'none',
-    resize: 'none',
-    width: '100%',
-  },
-  action: {
-    marginRight: theme.spacing(1),
-  },
-  fileInput: {
-    display: 'none',
-  },
-}));
-
-const MailReply: FC<MailReplyProps> = ({ className, ...rest }) => {
+const MailReply = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const { user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -114,3 +85,32 @@ MailReply.propTypes = {
 };
 
 export default MailReply;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    padding: theme.spacing(3),
+    display: 'flex',
+  },
+  avatar: {
+    marginRight: theme.spacing(2),
+  },
+  textareaContainer: {
+    flexGrow: 1,
+    padding: theme.spacing(2),
+  },
+  textarea: {
+    ...theme.typography.body1,
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.text.primary,
+    border: 'none',
+    outline: 'none',
+    resize: 'none',
+    width: '100%',
+  },
+  action: {
+    marginRight: theme.spacing(1),
+  },
+  fileInput: {
+    display: 'none',
+  },
+}));

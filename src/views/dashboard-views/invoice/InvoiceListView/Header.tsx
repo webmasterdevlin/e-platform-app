@@ -19,7 +19,7 @@ import {
   Upload as UploadIcon,
 } from 'react-feather';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
 interface HeaderProps {
   className?: string;

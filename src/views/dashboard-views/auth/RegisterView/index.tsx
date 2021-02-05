@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
@@ -13,10 +12,10 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import Page from '../../../../components/Page';
-import Logo from '../../../../components/Logo';
-import useAuth from '../../../../hooks/useAuth';
+import type { Theme } from 'themes/dashboard-theme';
+import Page from 'components/Page';
+import Logo from 'components/Logo';
+import useAuth from 'hooks/useAuth';
 import Auth0Register from './Auth0Register';
 import FirebaseAuthRegister from './FirebaseAuthRegister';
 import JWTRegister from './JWTRegister';
@@ -27,47 +26,7 @@ const methodIcons = {
   JWT: '/static/images/jwt.svg',
 };
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
-  },
-  banner: {
-    backgroundColor: theme.palette.background.paper,
-    paddingBottom: theme.spacing(2),
-    paddingTop: theme.spacing(2),
-    borderBottom: `1px solid ${theme.palette.divider}`,
-  },
-  bannerChip: {
-    marginRight: theme.spacing(2),
-  },
-  methodIcon: {
-    height: 30,
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-  },
-  cardContainer: {
-    paddingBottom: 80,
-    paddingTop: 80,
-  },
-  cardContent: {
-    padding: theme.spacing(4),
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: 400,
-  },
-  currentMethodIcon: {
-    height: 40,
-    '& > img': {
-      width: 'auto',
-      maxHeight: '100%',
-    },
-  },
-}));
-
-const RegisterView: FC = () => {
+const RegisterView = () => {
   const classes = useStyles();
   const { method } = useAuth() as any;
 
@@ -165,3 +124,43 @@ const RegisterView: FC = () => {
 };
 
 export default RegisterView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
+  banner: {
+    backgroundColor: theme.palette.background.paper,
+    paddingBottom: theme.spacing(2),
+    paddingTop: theme.spacing(2),
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+  bannerChip: {
+    marginRight: theme.spacing(2),
+  },
+  methodIcon: {
+    height: 30,
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+  },
+  cardContainer: {
+    paddingBottom: 80,
+    paddingTop: 80,
+  },
+  cardContent: {
+    padding: theme.spacing(4),
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: 400,
+  },
+  currentMethodIcon: {
+    height: 40,
+    '& > img': {
+      width: 'auto',
+      maxHeight: '100%',
+    },
+  },
+}));

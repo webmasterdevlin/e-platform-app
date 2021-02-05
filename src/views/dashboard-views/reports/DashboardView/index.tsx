@@ -1,8 +1,7 @@
 import React from 'react';
-import type { FC } from 'react';
 import { Container, Grid, makeStyles } from '@material-ui/core';
-import Page from '../../../../components/Page';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import Page from 'components/Page';
+import type { Theme } from 'themes/dashboard-theme';
 import Header from './Header';
 import LatestProjects from './LatestProjects';
 import NewProjects from './NewProjects';
@@ -13,16 +12,7 @@ import SystemHealth from './SystemHealth';
 import TeamTasks from './TeamTasks';
 import TodaysMoney from './TodaysMoney';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-  },
-}));
-
-const DashboardView: FC = () => {
+const DashboardView = () => {
   const classes = useStyles();
 
   return (
@@ -61,3 +51,12 @@ const DashboardView: FC = () => {
 };
 
 export default DashboardView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+  },
+}));

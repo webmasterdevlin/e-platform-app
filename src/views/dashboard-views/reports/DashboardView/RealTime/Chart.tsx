@@ -4,26 +4,15 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Bar } from 'react-chartjs-2';
 import { makeStyles, useTheme } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface ChartProps {
+type Props = {
   className?: string;
   data: any[];
   labels: any[];
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {
-    position: 'relative',
-  },
-}));
-
-const Chart: FC<ChartProps> = ({
-  data: dataProp,
-  labels,
-  className,
-  ...rest
-}) => {
+const Chart = ({ data: dataProp, labels, className, ...rest }: Props) => {
   const classes = useStyles();
   const theme: Theme = useTheme();
 
@@ -118,3 +107,9 @@ Chart.propTypes = {
 };
 
 export default Chart;
+
+const useStyles = makeStyles(() => ({
+  root: {
+    position: 'relative',
+  },
+}));

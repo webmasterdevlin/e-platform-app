@@ -1,35 +1,16 @@
 import React from 'react';
-import type { FC } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Avatar, Box, Card, Typography, makeStyles } from '@material-ui/core';
 import FolderOpenIcon from '@material-ui/icons/FolderOpenOutlined';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import Label from '../../../../components/Label';
+import type { Theme } from 'themes/dashboard-theme';
+import Label from 'components/Label';
 
-interface NewProjectsProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    padding: theme.spacing(3),
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  label: {
-    marginLeft: theme.spacing(1),
-  },
-  avatar: {
-    backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.secondary.contrastText,
-    height: 48,
-    width: 48,
-  },
-}));
-
-const NewProjects: FC<NewProjectsProps> = ({ className, ...rest }) => {
+const NewProjects = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const data = {
     value: 12,
@@ -72,3 +53,21 @@ NewProjects.propTypes = {
 };
 
 export default NewProjects;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    padding: theme.spacing(3),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  label: {
+    marginLeft: theme.spacing(1),
+  },
+  avatar: {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText,
+    height: 48,
+    width: 48,
+  },
+}));

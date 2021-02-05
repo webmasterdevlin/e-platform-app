@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
 import TopBar from './TopBar';
-import Page from '../../components/Page';
+import Page from 'components/Page';
 import Footer from './Footer';
 
 interface MainLayoutProps {

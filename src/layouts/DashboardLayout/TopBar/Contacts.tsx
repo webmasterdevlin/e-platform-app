@@ -18,10 +18,10 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Users as UsersIcon } from 'react-feather';
-import type { Theme } from '../../../themes/dashboard-theme';
-import { useDispatch, useSelector } from '../../../store';
-import { getContacts } from '../../../slices/chat';
-import OnlineIndicator from '../../../components/OnlineIndicator';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch, useSelector } from 'store';
+import { getContacts } from 'slices/chat';
+import OnlineIndicator from 'components/OnlineIndicator';
 
 const useStyles = makeStyles((theme: Theme) => ({
   popover: {

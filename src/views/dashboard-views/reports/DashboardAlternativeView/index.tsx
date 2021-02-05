@@ -1,8 +1,8 @@
 import React from 'react';
 import type { FC } from 'react';
 import { Container, Grid, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import Page from '../../../../components/Page';
+import type { Theme } from 'themes/dashboard-theme';
+import Page from 'components/Page';
 import CustomerActivity from './CustomerActivity';
 import EarningsSegmentation from './EarningsSegmentation';
 import FinancialStats from './FinancialStats';
@@ -11,15 +11,6 @@ import LatestOrders from './LatestOrders';
 import MostProfitableProducts from './MostProfitableProducts';
 import Overview from './Overview';
 import TopReferrals from './TopReferrals';
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-  },
-}));
 
 const DashboardAlternativeView: FC = () => {
   const classes = useStyles();
@@ -57,3 +48,12 @@ const DashboardAlternativeView: FC = () => {
 };
 
 export default DashboardAlternativeView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+  },
+}));

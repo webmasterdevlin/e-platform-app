@@ -22,15 +22,11 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import Label from '../../../../components/Label';
-import GenericMoreButton from '../../../../components/GenericMoreButton';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import type { Order, OrderStatus } from '../../../../types/reports';
-
-interface LatestOrdersProps {
-  className?: string;
-}
+import Label from 'components/Label';
+import GenericMoreButton from 'components/GenericMoreButton';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import type { Order, OrderStatus } from 'types/reports';
 
 const labelColors: Record<OrderStatus, 'success' | 'warning' | 'error'> = {
   complete: 'success',
@@ -38,11 +34,11 @@ const labelColors: Record<OrderStatus, 'success' | 'warning' | 'error'> = {
   rejected: 'error',
 };
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
+type Props = {
+  className?: string;
+};
 
-const LatestOrders: FC<LatestOrdersProps> = ({ className, ...rest }) => {
+const LatestOrders = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [orders, setOrders] = useState<Order[]>([]);
@@ -132,3 +128,7 @@ LatestOrders.propTypes = {
 };
 
 export default LatestOrders;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

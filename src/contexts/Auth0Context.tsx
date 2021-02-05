@@ -1,9 +1,9 @@
 import React, { createContext, useEffect, useReducer } from 'react';
 import type { FC, ReactNode } from 'react';
 import { Auth0Client } from '@auth0/auth0-spa-js';
-import type { User } from '../types/user';
-import SplashScreen from '../../src/components/SplashScreen';
-import { auth0Config } from '../config';
+import type { User } from 'types/user';
+import SplashScreen from 'components/SplashScreen';
+import { auth0Config } from 'config';
 
 let auth0Client: Auth0Client | null = null;
 

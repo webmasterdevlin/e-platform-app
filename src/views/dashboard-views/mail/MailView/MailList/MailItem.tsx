@@ -20,18 +20,18 @@ import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import LabelImportantOutlinedIcon from '@material-ui/icons/LabelImportantOutlined';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import getInitials from '../../../../../utils/getInitials';
-import { useSelector } from '../../../../../store';
-import type { Mail } from '../../../../../types/mail';
+import type { Theme } from 'themes/dashboard-theme';
+import getInitials from 'utils/getInitials';
+import { useSelector } from 'store';
+import type { Mail } from 'types/mail';
 
-interface MailItemProps {
+type Props = {
   className?: string;
   mail: Mail;
   onDeselect?: () => void;
   onSelect?: () => void;
   selected: boolean;
-}
+};
 
 const getTo = (params: any, mailId: string): string => {
   const { systemLabel, customLabel } = params;
@@ -48,95 +48,14 @@ const getTo = (params: any, mailId: string): string => {
   return baseUrl;
 };
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(2),
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    display: 'flex',
-    alignItems: 'center',
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-  unread: {
-    position: 'relative',
-    '&:before': {
-      content: '" "',
-      height: '100%',
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      width: 4,
-      backgroundColor: theme.palette.error.main,
-    },
-    '& $name, & $subject': {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-  },
-  selected: {
-    backgroundColor: theme.palette.action.selected,
-  },
-  filterActive: {
-    color: colors.amber[400],
-  },
-  content: {
-    cursor: 'pointer',
-    textDecoration: 'none',
-  },
-  details: {
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-      alignItems: 'center',
-      flexGrow: 1,
-    },
-  },
-  name: {
-    [theme.breakpoints.up('md')]: {
-      minWidth: 180,
-      flexBasis: 180,
-    },
-  },
-  subject: {
-    maxWidth: 400,
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-  message: {
-    maxWidth: 800,
-    flexGrow: 1,
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    marginRight: 'auto',
-  },
-  label: {
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(12),
-    color: theme.palette.common.white,
-    paddingLeft: 4,
-    paddingRight: 4,
-    paddingTop: 2,
-    paddingBottom: 2,
-    borderRadius: 2,
-    '& + &': {
-      marginLeft: theme.spacing(1),
-    },
-  },
-  date: {
-    whiteSpace: 'nowrap',
-  },
-}));
-
-const MailItem: FC<MailItemProps> = ({
+const MailItem = ({
   className,
   mail,
   onDeselect,
   onSelect,
   selected,
   ...rest
-}) => {
+}: Props) => {
   const classes = useStyles();
   const params = useParams<any>();
   const { labels } = useSelector(state => state.mail);
@@ -273,3 +192,84 @@ MailItem.defaultProps = {
 };
 
 export default MailItem;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(2),
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    display: 'flex',
+    alignItems: 'center',
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+  unread: {
+    position: 'relative',
+    '&:before': {
+      content: '" "',
+      height: '100%',
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      width: 4,
+      backgroundColor: theme.palette.error.main,
+    },
+    '& $name, & $subject': {
+      fontWeight: theme.typography.fontWeightBold,
+    },
+  },
+  selected: {
+    backgroundColor: theme.palette.action.selected,
+  },
+  filterActive: {
+    color: colors.amber[400],
+  },
+  content: {
+    cursor: 'pointer',
+    textDecoration: 'none',
+  },
+  details: {
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      alignItems: 'center',
+      flexGrow: 1,
+    },
+  },
+  name: {
+    [theme.breakpoints.up('md')]: {
+      minWidth: 180,
+      flexBasis: 180,
+    },
+  },
+  subject: {
+    maxWidth: 400,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  message: {
+    maxWidth: 800,
+    flexGrow: 1,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    marginRight: 'auto',
+  },
+  label: {
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.pxToRem(12),
+    color: theme.palette.common.white,
+    paddingLeft: 4,
+    paddingRight: 4,
+    paddingTop: 2,
+    paddingBottom: 2,
+    borderRadius: 2,
+    '& + &': {
+      marginLeft: theme.spacing(1),
+    },
+  },
+  date: {
+    whiteSpace: 'nowrap',
+  },
+}));

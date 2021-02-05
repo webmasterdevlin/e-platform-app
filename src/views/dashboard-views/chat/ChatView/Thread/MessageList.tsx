@@ -4,8 +4,8 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { Thread } from '../../../../../types/chat';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Thread } from 'types/chat';
 import MessageItem from './MessageItem';
 
 interface MessageListProps {

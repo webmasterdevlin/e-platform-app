@@ -15,29 +15,17 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import GenericMoreButton from '../../../../components/GenericMoreButton';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import type { Referral } from '../../../../types/reports';
+import type { Theme } from 'themes/dashboard-theme';
+import GenericMoreButton from 'components/GenericMoreButton';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import type { Referral } from 'types/reports';
 
-interface TopReferralsProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  avatar: {
-    fontSize: 14,
-    fontWeight: theme.typography.fontWeightBold,
-    color: theme.palette.common.white,
-  },
-}));
-
-const TopReferrals: FC<TopReferralsProps> = ({ className, ...rest }) => {
+const TopReferrals = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [referrals, setReferrals] = useState<Referral[]>([]);
@@ -94,3 +82,15 @@ TopReferrals.propTypes = {
 };
 
 export default TopReferrals;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  avatar: {
+    fontSize: 14,
+    fontWeight: theme.typography.fontWeightBold,
+    color: theme.palette.common.white,
+  },
+}));

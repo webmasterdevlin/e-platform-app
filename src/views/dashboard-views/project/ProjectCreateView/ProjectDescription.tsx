@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { FC, FormEvent } from 'react';
+import type { FormEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -10,33 +10,21 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import QuillEditor from '../../../../components/QuillEditor';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import QuillEditor from 'components/QuillEditor';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface ProjectDescriprionProps {
+type Props = {
   className?: string;
   onComplete?: () => void;
   onBack?: () => void;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  editorContainer: {
-    marginTop: theme.spacing(3),
-  },
-  editor: {
-    '& .ql-editor': {
-      height: 400,
-    },
-  },
-}));
-
-const ProjectDescription: FC<ProjectDescriprionProps> = ({
+const ProjectDescription = ({
   className,
   onBack,
   onComplete,
   ...rest
-}) => {
+}: Props) => {
   const classes = useStyles();
   const [content, setContent] = useState<string>('');
   const [isSubmitting, setSubmitting] = useState<boolean>(false);
@@ -127,3 +115,15 @@ ProjectDescription.defaultProps = {
 };
 
 export default ProjectDescription;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  editorContainer: {
+    marginTop: theme.spacing(3),
+  },
+  editor: {
+    '& .ql-editor': {
+      height: 400,
+    },
+  },
+}));

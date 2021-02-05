@@ -1,21 +1,16 @@
 import React from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Box, Card, CardContent, Grid, makeStyles } from '@material-ui/core';
-import FilesDropzone from '../../../../../../components/FilesDropzone';
+import FilesDropzone from 'components/FilesDropzone';
 import FileCard from './FileCard';
 
-interface FilesProps {
+type Props = {
   className?: string;
   files: any[];
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const Files: FC<FilesProps> = ({ className, files, ...rest }) => {
+const Files = ({ className, files, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -44,3 +39,7 @@ Files.propTypes = {
 };
 
 export default Files;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

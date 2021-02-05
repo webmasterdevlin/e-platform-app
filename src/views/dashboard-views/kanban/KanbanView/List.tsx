@@ -18,18 +18,18 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { MoreVertical as MoreIcon } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import { useDispatch, useSelector } from '../../../../store';
-import type { RootState } from '../../../../store';
-import { clearList, deleteList, updateList } from '../../../../slices/kanban';
-import type { List as ListType } from '../../../../types/kanban';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch, useSelector } from 'store';
+import type { RootState } from 'store';
+import { clearList, deleteList, updateList } from 'slices/kanban';
+import type { List as ListType } from 'types/kanban';
 import Card from './Card';
 import CardAdd from './CardAdd';
 
-interface ListProps {
+type Props = {
   className?: string;
   listId: string;
-}
+};
 
 const listSelector = (state: RootState, listId: string): ListType => {
   const { lists } = state.kanban;
@@ -37,39 +37,7 @@ const listSelector = (state: RootState, listId: string): ListType => {
   return lists.byId[listId];
 };
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  inner: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    display: 'flex',
-    flexDirection: 'column',
-    maxHeight: '100%',
-    overflowY: 'hidden',
-    overflowX: 'hidden',
-    width: 380,
-    [theme.breakpoints.down('xs')]: {
-      width: 300,
-    },
-  },
-  title: {
-    cursor: 'pointer',
-  },
-  droppableArea: {
-    minHeight: 80,
-    flexGrow: 1,
-    overflowY: 'auto',
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-  },
-  menu: {
-    width: 240,
-  },
-}));
-
-const List: FC<ListProps> = ({ className, listId, ...rest }) => {
+const List = ({ className, listId, ...rest }: Props) => {
   const classes = useStyles();
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const list = useSelector(state => listSelector(state, listId));
@@ -238,3 +206,35 @@ List.propTypes = {
 };
 
 export default List;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  inner: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    display: 'flex',
+    flexDirection: 'column',
+    maxHeight: '100%',
+    overflowY: 'hidden',
+    overflowX: 'hidden',
+    width: 380,
+    [theme.breakpoints.down('xs')]: {
+      width: 300,
+    },
+  },
+  title: {
+    cursor: 'pointer',
+  },
+  droppableArea: {
+    minHeight: 80,
+    flexGrow: 1,
+    overflowY: 'auto',
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+  },
+  menu: {
+    width: 240,
+  },
+}));

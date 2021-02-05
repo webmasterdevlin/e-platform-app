@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import type { FC, ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import {
   Button,
@@ -10,14 +10,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-
-interface MultiSelectProps {
-  label: string;
-  onChange?: (value: string[]) => void;
-  options: any[];
-  value: string[];
-}
+import type { Theme } from 'themes/dashboard-theme';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -31,12 +24,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const MultiSelect: FC<MultiSelectProps> = ({
-  label,
-  options,
-  value,
-  onChange,
-}) => {
+type Props = {
+  label: string;
+  onChange?: (value: string[]) => void;
+  options: any[];
+  value: string[];
+};
+
+const MultiSelect = ({ label, options, value, onChange }: Props) => {
   const classes = useStyles();
   const anchorRef = useRef<any>(null);
   const [openMenu, setOpenMenu] = useState<boolean>(false);

@@ -16,8 +16,8 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import wait from '../../../../utils/wait';
-import type { Customer } from '../../../../types/customer';
+import wait from 'utils/wait';
+import type { Customer } from 'types/customer';
 
 interface CustomerEditFormProps {
   className?: string;

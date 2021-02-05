@@ -1,25 +1,15 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import type { FC } from 'react';
 import { Box, Container, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import Page from '../../../../components/Page';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import type { Project } from '../../../../types/project';
+import type { Theme } from 'themes/dashboard-theme';
+import Page from 'components/Page';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import type { Project } from 'types/project';
 import Header from './Header';
 import Filter from './Filter';
 import Results from './Results';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-  },
-}));
-
-const ProjectBrowseView: FC = () => {
+const ProjectBrowseView = () => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [projects, setProjects] = useState<Project[]>([]);
@@ -58,3 +48,12 @@ const ProjectBrowseView: FC = () => {
 };
 
 export default ProjectBrowseView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+  },
+}));

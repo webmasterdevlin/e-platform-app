@@ -9,23 +9,13 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface SystemHealthProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    padding: theme.spacing(3),
-  },
-  progress: {
-    margin: theme.spacing(0, 1),
-    flexGrow: 1,
-  },
-}));
-
-const SystemHealth: FC<SystemHealthProps> = ({ className, ...rest }) => {
+const SystemHealth = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const data = {
     value: 97,
@@ -61,3 +51,13 @@ SystemHealth.propTypes = {
 };
 
 export default SystemHealth;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    padding: theme.spacing(3),
+  },
+  progress: {
+    margin: theme.spacing(0, 1),
+    flexGrow: 1,
+  },
+}));

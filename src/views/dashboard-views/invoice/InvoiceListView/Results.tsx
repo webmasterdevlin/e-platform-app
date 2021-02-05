@@ -32,10 +32,10 @@ import {
   ArrowRight as ArrowRightIcon,
   Search as SearchIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import Label from '../../../../components/Label';
-import getInitials from '../../../../utils/getInitials';
-import type { Invoice, InvoiceStatus } from '../../../../types/invoice';
+import type { Theme } from 'themes/dashboard-theme';
+import Label from 'components/Label';
+import getInitials from 'utils/getInitials';
+import type { Invoice, InvoiceStatus } from 'types/invoice';
 
 interface ResultsProps {
   className?: string;

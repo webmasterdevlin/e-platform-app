@@ -4,27 +4,17 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
 import { Avatar, TextField, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import { useDispatch } from '../../../../../store';
-import useAuth from '../../../../../hooks/useAuth';
-import { addComment } from '../../../../../slices/kanban';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch } from 'store';
+import useAuth from 'hooks/useAuth';
+import { addComment } from 'slices/kanban';
 
-interface CommentAddProps {
+type Props = {
   className?: string;
   cardId: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  field: {
-    marginLeft: theme.spacing(2),
-  },
-}));
-
-const CommentAdd: FC<CommentAddProps> = ({ cardId, className, ...rest }) => {
+const CommentAdd = ({ cardId, className, ...rest }: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { user } = useAuth();
@@ -79,3 +69,13 @@ CommentAdd.propTypes = {
 };
 
 export default CommentAdd;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  field: {
+    marginLeft: theme.spacing(2),
+  },
+}));

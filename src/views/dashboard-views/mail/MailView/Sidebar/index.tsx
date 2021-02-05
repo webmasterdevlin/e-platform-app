@@ -11,8 +11,8 @@ import {
   Divider,
   makeStyles,
 } from '@material-ui/core';
-import { useDispatch, useSelector } from '../../../../../store';
-import { closeSidebar, openCompose } from '../../../../../slices/mail';
+import { useDispatch, useSelector } from 'store';
+import { closeSidebar, openCompose } from 'slices/mail';
 import LabelItem from './LabelItem';
 
 interface SidebarProps {

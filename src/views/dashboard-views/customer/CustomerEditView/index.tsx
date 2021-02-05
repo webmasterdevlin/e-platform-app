@@ -1,11 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import type { FC } from 'react';
 import { Box, Container, makeStyles } from '@material-ui/core';
-import axios from '../../../../utils/axios';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import Page from '../../../../components/Page';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import type { Customer } from '../../../../types/customer';
+import axios from 'utils/axios';
+import type { Theme } from 'themes/dashboard-theme';
+import Page from 'components/Page';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import type { Customer } from 'types/customer';
 import CustomerEditForm from './CustomerEditForm';
 import Header from './Header';
 

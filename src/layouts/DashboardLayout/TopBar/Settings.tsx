@@ -16,9 +16,9 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Settings as SettingsIcon } from 'react-feather';
-import useSettings from '../../../hooks/useSettings';
+import useSettings from 'hooks/useSettings';
 import { THEMES } from '../../../constants';
-import type { Theme } from '../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
 const useStyles = makeStyles((theme: Theme) => ({
   badge: {

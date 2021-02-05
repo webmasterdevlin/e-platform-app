@@ -1,21 +1,16 @@
 import React from 'react';
-import type { FC } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Grid, makeStyles } from '@material-ui/core';
-import useAuth from '../../../../../hooks/useAuth';
+import useAuth from 'hooks/useAuth';
 import ProfileDetails from './ProfileDetails';
 import GeneralSettings from './GeneralSettings';
 
-interface GeneralProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const General: FC<GeneralProps> = ({ className, ...rest }) => {
+const General = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const { user } = useAuth();
 
@@ -41,3 +36,7 @@ General.propTypes = {
 };
 
 export default General;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

@@ -13,7 +13,7 @@ import {
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShareIcon from '@material-ui/icons/Share';
-import type { Post } from '../../types/social';
+import type { Post } from 'types/social';
 
 interface ReactionsProps {
   className?: string;

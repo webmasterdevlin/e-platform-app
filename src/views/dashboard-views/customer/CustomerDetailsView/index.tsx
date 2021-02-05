@@ -8,11 +8,11 @@ import {
   Tabs,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import Page from '../../../../components/Page';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import type { Customer } from '../../../../types/customer';
+import type { Theme } from 'themes/dashboard-theme';
+import Page from 'components/Page';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import type { Customer } from 'types/customer';
 import Header from './Header';
 import Details from './Details';
 import Invoices from './Invoices';

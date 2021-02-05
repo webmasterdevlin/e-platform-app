@@ -6,8 +6,8 @@ import { Formik } from 'formik';
 import {
   formsInitialValue,
   validationSchema,
-} from '../../anti-heroes/shared/forms-initial-values';
-import SharedForm from '../../anti-heroes/shared/shared-form';
+} from 'features/anti-heroes/shared/forms-initial-values';
+import SharedForm from 'features/anti-heroes/shared/shared-form';
 
 const HeroForm: React.FC = () => {
   const dispatch: Dispatch = useDispatch();

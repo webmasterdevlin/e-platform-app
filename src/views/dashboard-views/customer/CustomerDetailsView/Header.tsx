@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { Edit as EditIcon } from 'react-feather';
-import type { Customer } from '../../../../types/customer';
+import type { Customer } from 'types/customer';
 
 interface HeaderProps {
   className?: string;

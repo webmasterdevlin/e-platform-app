@@ -1,24 +1,20 @@
 import React from 'react';
-import type { FC } from 'react';
+
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Box, Grid, makeStyles } from '@material-ui/core';
-import type { Project } from '../../../../../types/project';
+import type { Project } from 'types/project';
 import Metadata from './Metadata';
 import Brief from './Brief';
 import Members from './Members';
 import Files from './Files';
 
-interface OverviewProps {
+type Props = {
   className?: string;
   project: Project;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const Overview: FC<OverviewProps> = ({ className, project, ...rest }) => {
+const Overview = ({ className, project, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -51,3 +47,7 @@ Overview.propTypes = {
 };
 
 export default Overview;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

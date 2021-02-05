@@ -14,14 +14,10 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Trash as TrashIcon } from 'react-feather';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import { useDispatch } from '../../../../../store';
-import { updateCheckItem, deleteCheckItem } from '../../../../../slices/kanban';
-import type {
-  Card,
-  Checklist,
-  CheckItem as CheckItemType,
-} from '../../../../../types/kanban';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch } from 'store';
+import { updateCheckItem, deleteCheckItem } from 'slices/kanban';
+import type { Card, Checklist, CheckItem as CheckItemType } from 'types/kanban';
 
 interface CheckItemProps {
   className?: string;
@@ -34,34 +30,7 @@ interface CheckItemProps {
   onEditInit?: () => void;
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    padding: theme.spacing(1),
-    display: 'flex',
-    alignItems: 'flex-start',
-    borderRadius: theme.shape.borderRadius,
-    '&:hover': {
-      backgroundColor: theme.palette.background.dark,
-      '& $deleteButton': {
-        visibility: 'visible',
-      },
-    },
-  },
-  checkbox: {
-    marginLeft: theme.spacing(-1),
-    marginRight: theme.spacing(1),
-  },
-  name: {
-    flexGrow: 1,
-    cursor: 'pointer',
-    minHeight: 32,
-  },
-  deleteButton: {
-    visibility: 'hidden',
-  },
-}));
-
-const CheckItem: FC<CheckItemProps> = ({
+const CheckItem = ({
   card,
   checklist,
   checkItem,
@@ -71,7 +40,7 @@ const CheckItem: FC<CheckItemProps> = ({
   onEditInit,
   onEditComplete,
   ...rest
-}) => {
+}: CheckItemProps) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -204,11 +173,31 @@ CheckItem.propTypes = {
   onEditInit: PropTypes.func,
 };
 
-CheckItem.defaultProps = {
-  editing: false,
-  onEditCancel: () => {},
-  onEditComplete: () => {},
-  onEditInit: () => {},
-};
-
 export default CheckItem;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    padding: theme.spacing(1),
+    display: 'flex',
+    alignItems: 'flex-start',
+    borderRadius: theme.shape.borderRadius,
+    '&:hover': {
+      backgroundColor: theme.palette.background.dark,
+      '& $deleteButton': {
+        visibility: 'visible',
+      },
+    },
+  },
+  checkbox: {
+    marginLeft: theme.spacing(-1),
+    marginRight: theme.spacing(1),
+  },
+  name: {
+    flexGrow: 1,
+    cursor: 'pointer',
+    minHeight: 32,
+  },
+  deleteButton: {
+    visibility: 'hidden',
+  },
+}));

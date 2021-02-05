@@ -17,12 +17,12 @@ import {
 } from '../schema/my-profile-empty.value';
 import { myProfileYupObject } from '../schema/my-profile.validation';
 import { getMyProfileAxios, putMyProfileAxios } from '../my-profile.service';
-import InputFormik from '../../../../../../components/eplatform/components/input-formik';
-import { Theme } from '../../../../../../themes/dashboard-theme';
-import TextAreaFormik from '../../../../../../components/eplatform/components/text-area-formik';
-import CountrySelect from '../../../../../../components/eplatform/components/country-select';
-import { RootState } from '../../../../../../store';
-import { ProfileModel } from '../../../../../../auth/auth.model';
+import InputFormik from 'components/eplatform/components/input-formik';
+import { Theme } from 'themes/dashboard-theme';
+import TextAreaFormik from 'components/eplatform/components/text-area-formik';
+import CountrySelect from 'components/eplatform/components/country-select';
+import { RootState } from 'store';
+import { ProfileModel } from 'auth/auth.model';
 
 const MyProfileForm = () => {
   const classes = useStyles();

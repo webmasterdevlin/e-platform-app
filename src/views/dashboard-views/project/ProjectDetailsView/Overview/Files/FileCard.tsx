@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import type { FC } from 'react';
+
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -25,46 +25,16 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import DeleteIcon from '@material-ui/icons/DeleteOutlined';
 import ArchiveIcon from '@material-ui/icons/ArchiveOutlined';
 import EditIcon from '@material-ui/icons/Edit';
-import type { Theme } from '../../../../../../themes/dashboard-theme';
-import bytesToSize from '../../../../../../utils/bytesToSize';
-import type { ProjectFile } from '../../../../../../types/project';
+import type { Theme } from 'themes/dashboard-theme';
+import bytesToSize from 'utils/bytesToSize';
+import type { ProjectFile } from 'types/project';
 
-interface FileCardProps {
+type Props = {
   className?: string;
   file: ProjectFile;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  media: {
-    height: 140,
-  },
-  placeholder: {
-    height: 140,
-    backgroundColor: colors.blueGrey[50],
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  insertDriveFileIcon: {
-    height: theme.spacing(6),
-    width: theme.spacing(6),
-    fontSize: theme.spacing(6),
-  },
-  content: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  getAppIcon: {
-    marignRight: theme.spacing(1),
-  },
-  menu: {
-    width: 250,
-    maxWidth: '100%',
-  },
-}));
-
-const FileCard: FC<FileCardProps> = ({ className, file, ...rest }) => {
+const FileCard = ({ className, file, ...rest }: Props) => {
   const classes = useStyles();
   const moreRef = useRef<HTMLButtonElement | null>(null);
   const [openMenu, setOpenMenu] = useState<boolean>(false);
@@ -160,3 +130,33 @@ FileCard.propTypes = {
 };
 
 export default FileCard;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  media: {
+    height: 140,
+  },
+  placeholder: {
+    height: 140,
+    backgroundColor: colors.blueGrey[50],
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  insertDriveFileIcon: {
+    height: theme.spacing(6),
+    width: theme.spacing(6),
+    fontSize: theme.spacing(6),
+  },
+  content: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  getAppIcon: {
+    marignRight: theme.spacing(1),
+  },
+  menu: {
+    width: 250,
+    maxWidth: '100%',
+  },
+}));

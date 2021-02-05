@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import * as Yup from 'yup';
@@ -17,17 +16,13 @@ import {
   TextField,
   makeStyles,
 } from '@material-ui/core';
-import wait from '../../../../utils/wait';
+import wait from 'utils/wait';
 
-interface SecurityProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const Security: FC<SecurityProps> = ({ className, ...rest }) => {
+const Security = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -145,3 +140,7 @@ Security.propTypes = {
 };
 
 export default Security;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

@@ -1,23 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import type { FC } from 'react';
 import { Box, Container, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import Page from '../../../../components/Page';
-import PostAdd from '../../../../components/PostAdd';
-import PostCard from '../../../../components/PostCard';
-import type { Post } from '../../../../types/social';
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import Page from 'components/Page';
+import PostAdd from 'components/PostAdd';
+import PostCard from 'components/PostCard';
+import type { Post } from 'types/social';
 import Header from './Header';
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-  },
-}));
 
 const SocialFeedView: FC = () => {
   const classes = useStyles();
@@ -58,3 +49,12 @@ const SocialFeedView: FC = () => {
 };
 
 export default SocialFeedView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+  },
+}));

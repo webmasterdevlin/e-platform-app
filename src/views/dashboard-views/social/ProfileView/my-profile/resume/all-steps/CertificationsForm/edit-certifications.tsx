@@ -11,8 +11,8 @@ import {
   deleteCertificateAxios,
   putCertificateAxios,
 } from './certifications.service';
-import { RootState } from '../../../../../../../../store';
-import { ProfileModel } from '../../../../../../../../auth/auth.model';
+import { RootState } from 'store';
+import { ProfileModel } from 'auth/auth.model';
 
 type Props = {
   setIsEditing: () => void;

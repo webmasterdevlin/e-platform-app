@@ -4,26 +4,15 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 import { fade, makeStyles, useTheme } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface ChartProps {
+type Props = {
   className?: string;
   data: any[];
   labels: string[];
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {
-    position: 'relative',
-  },
-}));
-
-const Chart: FC<ChartProps> = ({
-  className,
-  data: dataProp,
-  labels,
-  ...rest
-}) => {
+const Chart = ({ className, data: dataProp, labels, ...rest }: Props) => {
   const classes = useStyles();
   const theme: Theme = useTheme();
 
@@ -138,3 +127,9 @@ Chart.propTypes = {
 };
 
 export default Chart;
+
+const useStyles = makeStyles(() => ({
+  root: {
+    position: 'relative',
+  },
+}));

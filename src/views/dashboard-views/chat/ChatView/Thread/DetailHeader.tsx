@@ -25,8 +25,8 @@ import {
   Slash as SlashIcon,
   Trash as TrashIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { ThreadParticipant } from '../../../../../types/chat';
+import type { Theme } from 'themes/dashboard-theme';
+import type { ThreadParticipant } from 'types/chat';
 
 interface DetailHeaderProps {
   className?: string;

@@ -11,10 +11,10 @@ import {
   List,
   makeStyles,
 } from '@material-ui/core';
-import axios from '../../../../../utils/axios';
-import useIsMountedRef from '../../../../../hooks/useIsMountedRef';
-import GenericMoreButton from '../../../../../components/GenericMoreButton';
-import type { Task } from '../../../../../types/reports';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import GenericMoreButton from 'components/GenericMoreButton';
+import type { Task } from 'types/reports';
 import TaskItem from './TaskItem';
 
 interface TeamTasksProps {

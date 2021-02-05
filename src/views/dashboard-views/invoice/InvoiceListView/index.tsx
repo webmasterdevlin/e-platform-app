@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import type { FC } from 'react';
 import { Box, Container, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import Page from '../../../../components/Page';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import type { Invoice } from '../../../../types/invoice';
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import Page from 'components/Page';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import type { Invoice } from 'types/invoice';
 import Header from './Header';
 import Results from './Results';
 

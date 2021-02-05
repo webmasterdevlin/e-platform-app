@@ -16,32 +16,18 @@ import {
   X as XIcon,
   Trash as TrashIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface BulkOperationsProps {
+type Props = {
   className?: string;
   onDelete?: () => void;
   onMarkPaid?: () => void;
   onMarkUnpaid?: () => void;
   open?: boolean;
   selected: string[];
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-  actions: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    '& > * + *': {
-      marginLeft: theme.spacing(2),
-    },
-  },
-}));
-
-const BulkOperations: FC<BulkOperationsProps> = ({
+const BulkOperations = ({
   className,
   onDelete,
   onMarkPaid,
@@ -49,7 +35,7 @@ const BulkOperations: FC<BulkOperationsProps> = ({
   open,
   selected,
   ...rest
-}) => {
+}: Props) => {
   const classes = useStyles();
 
   return (
@@ -125,3 +111,17 @@ BulkOperations.defaultProps = {
 };
 
 export default BulkOperations;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+  actions: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));

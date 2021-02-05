@@ -12,18 +12,14 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import useAuth from '../../../../hooks/useAuth';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import useAuth from 'hooks/useAuth';
+import useIsMountedRef from 'hooks/useIsMountedRef';
 
-interface JWTLoginProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const JWTLogin: FC<JWTLoginProps> = ({ className, ...rest }) => {
+const JWTLogin = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const { login } = useAuth() as any;
   const isMountedRef = useIsMountedRef();
@@ -137,3 +133,7 @@ JWTLogin.propTypes = {
 };
 
 export default JWTLogin;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

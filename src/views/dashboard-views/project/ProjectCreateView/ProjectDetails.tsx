@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import * as Yup from 'yup';
@@ -17,37 +16,15 @@ import {
 } from '@material-ui/core';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { Plus as PlusIcon } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface ProjectDetailsProps {
+type Props = {
   className?: string;
   onBack?: () => void;
   onNext?: () => void;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  addTab: {
-    marginLeft: theme.spacing(2),
-  },
-  tag: {
-    '& + &': {
-      marginLeft: theme.spacing(1),
-    },
-  },
-  datePicker: {
-    '& + &': {
-      marginLeft: theme.spacing(2),
-    },
-  },
-}));
-
-const ProjectDetails: FC<ProjectDetailsProps> = ({
-  className,
-  onBack,
-  onNext,
-  ...rest
-}) => {
+const ProjectDetails = ({ className, onBack, onNext, ...rest }: Props) => {
   const classes = useStyles();
   const [tag, setTag] = useState<string>('');
 
@@ -242,3 +219,20 @@ ProjectDetails.defaultProps = {
 };
 
 export default ProjectDetails;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  addTab: {
+    marginLeft: theme.spacing(2),
+  },
+  tag: {
+    '& + &': {
+      marginLeft: theme.spacing(1),
+    },
+  },
+  datePicker: {
+    '& + &': {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));

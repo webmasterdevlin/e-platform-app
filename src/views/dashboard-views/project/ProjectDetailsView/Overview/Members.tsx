@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -16,25 +15,15 @@ import {
   ListItemText,
   makeStyles,
 } from '@material-ui/core';
-import getInitials from '../../../../../utils/getInitials';
-import type { ProjectMember } from '../../../../../types/project';
+import getInitials from 'utils/getInitials';
+import type { ProjectMember } from 'types/project';
 
-interface MembersProps {
+type Props = {
   className?: string;
   members: ProjectMember[];
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-  header: {
-    paddingBottom: 0,
-  },
-  content: {
-    paddingTop: 0,
-  },
-}));
-
-const Members: FC<MembersProps> = ({ className, members, ...rest }) => {
+const Members = ({ className, members, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -78,3 +67,13 @@ Members.propTypes = {
 };
 
 export default Members;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+  header: {
+    paddingBottom: 0,
+  },
+  content: {
+    paddingTop: 0,
+  },
+}));

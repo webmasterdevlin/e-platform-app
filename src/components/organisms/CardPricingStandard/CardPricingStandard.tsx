@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, ListItem, Divider, List, Grid } from '@material-ui/core';
-import { CardBase } from '../../../components/organisms';
+import { CardBase } from 'components/organisms';
 
 type Props = {
   className?: string;

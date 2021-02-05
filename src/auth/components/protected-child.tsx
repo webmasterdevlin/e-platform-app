@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { OidcSecure } from '@axa-fr/react-oidc-redux';
 import configuration from '../configuration';
 import CustomAuthenticatingComponent from './custom-authenticating-component';

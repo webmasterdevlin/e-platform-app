@@ -13,35 +13,20 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { List as ListIcon } from 'react-feather';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import { useDispatch } from '../../../../../store';
-import { updateChecklist, deleteChecklist } from '../../../../../slices/kanban';
-import type {
-  Card,
-  Checklist as ChecklistType,
-} from '../../../../../types/kanban';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch } from 'store';
+import { updateChecklist, deleteChecklist } from 'slices/kanban';
+import type { Card, Checklist as ChecklistType } from 'types/kanban';
 import CheckItem from './CheckItem';
 import CheckItemAdd from './CheckItemAdd';
 
-interface ChecklistProps {
+type Props = {
   className?: string;
   card: Card;
   checklist: ChecklistType;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  listIcon: {
-    marginRight: theme.spacing(3),
-  },
-}));
-
-const Checklist: FC<ChecklistProps> = ({
-  card,
-  checklist,
-  className,
-  ...rest
-}) => {
+const Checklist = ({ card, checklist, className, ...rest }: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -203,3 +188,10 @@ Checklist.propTypes = {
 };
 
 export default Checklist;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  listIcon: {
+    marginRight: theme.spacing(3),
+  },
+}));

@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import type { AppThunk } from '../store';
+import type { AppThunk } from 'store';
 import axios from '../utils/axios';
-import type { Event } from '../types/calendar';
+import type { Event } from 'types/calendar';
 
 interface CalendarState {
   events: Event[];

@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { AppThunk } from '../store';
-import axios from '../utils/axios';
-import objFromArray from '../utils/objFromArray';
-import type { Contact, Thread, ThreadParticipant } from '../types/chat';
+import axios from 'utils/axios';
+import objFromArray from 'utils/objFromArray';
+import type { Contact, Thread, ThreadParticipant } from 'types/chat';
 
 interface ChatState {
   activeThreadId?: string;

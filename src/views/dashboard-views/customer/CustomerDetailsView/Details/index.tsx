@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Grid, makeStyles } from '@material-ui/core';
-import type { Customer } from '../../../../../types/customer';
+import type { Customer } from 'types/customer';
 import CustomerInfo from './CustomerInfo';
 import Emails from './Emails';
 import Invoices from './Invoices';

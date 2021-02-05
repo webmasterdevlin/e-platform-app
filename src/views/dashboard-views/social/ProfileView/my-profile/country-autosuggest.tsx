@@ -2,9 +2,7 @@ import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 
-import { Box } from '@material-ui/core';
-import InputWithSearchIconFormik from '../../../../../components/eplatform/components/input-with-search-icon-formik';
-import PlainErrorMessage from '../../../../../components/eplatform/components/plain-error-message';
+import PlainErrorMessage from 'components/eplatform/components/plain-error-message';
 
 type Props = {
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;

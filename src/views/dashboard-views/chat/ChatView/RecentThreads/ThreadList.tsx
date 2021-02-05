@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { List, makeStyles } from '@material-ui/core';
-import { useSelector } from '../../../../../store';
+import { useSelector } from 'store';
 import ThreadItem from './ThreadItem';
 
 interface ThreadListProps {

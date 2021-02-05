@@ -12,25 +12,15 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { Project } from '../../../../../types/project';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Project } from 'types/project';
 
-interface BriefProps {
+type Props = {
   className?: string;
   project: Project;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  markdown: {
-    fontFamily: theme.typography.fontFamily,
-    '& p': {
-      marginBottom: theme.spacing(2),
-    },
-  },
-}));
-
-const Brief: FC<BriefProps> = ({ className, project, ...rest }) => {
+const Brief = ({ className, project, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -74,3 +64,13 @@ Brief.propTypes = {
 };
 
 export default Brief;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  markdown: {
+    fontFamily: theme.typography.fontFamily,
+    '& p': {
+      marginBottom: theme.spacing(2),
+    },
+  },
+}));

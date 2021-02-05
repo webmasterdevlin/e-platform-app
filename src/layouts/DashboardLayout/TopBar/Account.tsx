@@ -13,7 +13,7 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import useAuth from '../../../hooks/useAuth';
+import useAuth from 'hooks/useAuth';
 
 const useStyles = makeStyles(theme => ({
   avatar: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { CardBase, DescriptionListIcon } from '../../../components/organisms';
+import { CardBase, DescriptionListIcon } from 'components/organisms';
 
 type Props = {
   align?: 'center' | 'left' | 'right';

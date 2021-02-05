@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Avatar, colors } from '@material-ui/core';
-import { Icon } from '../../../components/atoms';
+import { Icon } from 'components/atoms';
 
 type IconAlternateProps = {
   iconProps?: any;

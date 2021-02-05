@@ -15,21 +15,9 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import useIsMountedRef from '../../../../../hooks/useIsMountedRef';
+import type { Theme } from 'themes/dashboard-theme';
+import useIsMountedRef from 'hooks/useIsMountedRef';
 import Chart from './Chart';
-
-interface RealTimeProps {
-  className?: string;
-}
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  current: {
-    marginTop: theme.spacing(0.5),
-    marginRight: theme.spacing(0.5),
-  },
-}));
 
 const getRandomInt = (min: number, max: number): number => {
   // eslint-disable-next-line no-param-reassign
@@ -40,7 +28,11 @@ const getRandomInt = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const RealTime: FC<RealTimeProps> = ({ className, ...rest }) => {
+type Props = {
+  className?: string;
+};
+
+const RealTime = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [data, setData] = useState<any[]>([
@@ -160,3 +152,11 @@ RealTime.propTypes = {
 };
 
 export default RealTime;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  current: {
+    marginTop: theme.spacing(0.5),
+    marginRight: theme.spacing(0.5),
+  },
+}));

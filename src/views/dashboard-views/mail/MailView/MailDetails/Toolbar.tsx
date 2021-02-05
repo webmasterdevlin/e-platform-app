@@ -16,37 +16,13 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import SearchIcon from '@material-ui/icons/Search';
-import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface ToolbarProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    alignItems: 'center',
-    backgroundColor: theme.palette.background.default,
-    display: 'flex',
-    flexShrink: 0,
-    height: 68,
-    padding: theme.spacing(2),
-  },
-  searchContainer: {
-    alignItems: 'center',
-    display: 'flex',
-    marginLeft: theme.spacing(2),
-    paddingBottom: theme.spacing(0.5),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    paddingTop: theme.spacing(0.5),
-  },
-  searchInput: {
-    flexGrow: 1,
-    marginLeft: theme.spacing(2),
-  },
-}));
-
-const Toolbar: FC<ToolbarProps> = ({ className, ...rest }) => {
+const Toolbar = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const history = useHistory();
   const { systemLabel, customLabel } = useParams<any>();
@@ -100,3 +76,27 @@ Toolbar.propTypes = {
 };
 
 export default Toolbar;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    alignItems: 'center',
+    backgroundColor: theme.palette.background.default,
+    display: 'flex',
+    flexShrink: 0,
+    height: 68,
+    padding: theme.spacing(2),
+  },
+  searchContainer: {
+    alignItems: 'center',
+    display: 'flex',
+    marginLeft: theme.spacing(2),
+    paddingBottom: theme.spacing(0.5),
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+    paddingTop: theme.spacing(0.5),
+  },
+  searchInput: {
+    flexGrow: 1,
+    marginLeft: theme.spacing(2),
+  },
+}));

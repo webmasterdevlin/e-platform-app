@@ -30,14 +30,9 @@ import {
   ArrowRight as ArrowRightIcon,
   Search as SearchIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import Label from '../../../../components/Label';
-import type { Product, InventoryType } from '../../../../types/product';
-
-interface ResultsProps {
-  className?: string;
-  products: Product[];
-}
+import type { Theme } from 'themes/dashboard-theme';
+import Label from 'components/Label';
+import type { Product, InventoryType } from 'types/product';
 
 interface Filters {
   availability?: 'available' | 'unavailable';
@@ -172,54 +167,12 @@ const applyPagination = (
 ): Product[] => {
   return products.slice(page * limit, page * limit + limit);
 };
+type Props = {
+  className?: string;
+  products: Product[];
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  bulkOperations: {
-    position: 'relative',
-  },
-  bulkActions: {
-    paddingLeft: 4,
-    paddingRight: 4,
-    marginTop: 6,
-    position: 'absolute',
-    width: '100%',
-    zIndex: 2,
-    backgroundColor: theme.palette.background.default,
-  },
-  bulkAction: {
-    marginLeft: theme.spacing(2),
-  },
-  queryField: {
-    width: 500,
-  },
-  categoryField: {
-    flexBasis: 200,
-  },
-  availabilityField: {
-    marginLeft: theme.spacing(2),
-    flexBasis: 200,
-  },
-  stockField: {
-    marginLeft: theme.spacing(2),
-  },
-  shippableField: {
-    marginLeft: theme.spacing(2),
-  },
-  imageCell: {
-    fontSize: 0,
-    width: 68,
-    flexBasis: 68,
-    flexGrow: 0,
-    flexShrink: 0,
-  },
-  image: {
-    height: 68,
-    width: 68,
-  },
-}));
-
-const Results: FC<ResultsProps> = ({ className, products, ...rest }) => {
+const Results = ({ className, products, ...rest }: Props) => {
   const classes = useStyles();
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [page, setPage] = useState<number>(0);
@@ -575,3 +528,49 @@ Results.defaultProps = {
 };
 
 export default Results;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  bulkOperations: {
+    position: 'relative',
+  },
+  bulkActions: {
+    paddingLeft: 4,
+    paddingRight: 4,
+    marginTop: 6,
+    position: 'absolute',
+    width: '100%',
+    zIndex: 2,
+    backgroundColor: theme.palette.background.default,
+  },
+  bulkAction: {
+    marginLeft: theme.spacing(2),
+  },
+  queryField: {
+    width: 500,
+  },
+  categoryField: {
+    flexBasis: 200,
+  },
+  availabilityField: {
+    marginLeft: theme.spacing(2),
+    flexBasis: 200,
+  },
+  stockField: {
+    marginLeft: theme.spacing(2),
+  },
+  shippableField: {
+    marginLeft: theme.spacing(2),
+  },
+  imageCell: {
+    fontSize: 0,
+    width: 68,
+    flexBasis: 68,
+    flexGrow: 0,
+    flexShrink: 0,
+  },
+  image: {
+    height: 68,
+    width: 68,
+  },
+}));

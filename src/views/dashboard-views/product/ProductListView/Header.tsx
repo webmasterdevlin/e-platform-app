@@ -19,23 +19,13 @@ import {
   Upload as UploadIcon,
 } from 'react-feather';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from '../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface HeaderProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  action: {
-    marginBottom: theme.spacing(1),
-    '& + &': {
-      marginLeft: theme.spacing(1),
-    },
-  },
-}));
-
-const Header: FC<HeaderProps> = ({ className, ...rest }) => {
+const Header = ({ className, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -122,3 +112,13 @@ Header.propTypes = {
 };
 
 export default Header;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  action: {
+    marginBottom: theme.spacing(1),
+    '& + &': {
+      marginLeft: theme.spacing(1),
+    },
+  },
+}));

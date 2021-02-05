@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { fade, makeStyles } from '@material-ui/core';
-import type { Theme } from '../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
 interface LabelProps {
   className?: string;

@@ -1,42 +1,15 @@
 import React from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Card, Grid, Typography, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import Label from '../../../../components/Label';
+import type { Theme } from 'themes/dashboard-theme';
+import Label from 'components/Label';
 
-interface OverviewProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  item: {
-    padding: theme.spacing(3),
-    textAlign: 'center',
-    [theme.breakpoints.up('md')]: {
-      '&:not(:last-of-type)': {
-        borderRight: `1px solid ${theme.palette.divider}`,
-      },
-    },
-    [theme.breakpoints.down('sm')]: {
-      '&:not(:last-of-type)': {
-        borderBottom: `1px solid ${theme.palette.divider}`,
-      },
-    },
-  },
-  valueContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  label: {
-    marginLeft: theme.spacing(1),
-  },
-}));
-
-const Overview: FC<OverviewProps> = ({ className, ...rest }) => {
+const Overview = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const overview = {
     income: '854,355.00',
@@ -127,3 +100,29 @@ Overview.propTypes = {
 };
 
 export default Overview;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  item: {
+    padding: theme.spacing(3),
+    textAlign: 'center',
+    [theme.breakpoints.up('md')]: {
+      '&:not(:last-of-type)': {
+        borderRight: `1px solid ${theme.palette.divider}`,
+      },
+    },
+    [theme.breakpoints.down('sm')]: {
+      '&:not(:last-of-type)': {
+        borderBottom: `1px solid ${theme.palette.divider}`,
+      },
+    },
+  },
+  valueContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  label: {
+    marginLeft: theme.spacing(1),
+  },
+}));

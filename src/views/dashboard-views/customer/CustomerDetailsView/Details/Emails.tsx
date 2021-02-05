@@ -18,10 +18,10 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import MaiIcon from '@material-ui/icons/MailOutline';
-import axios from '../../../../../utils/axios';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import useIsMountedRef from '../../../../../hooks/useIsMountedRef';
-import type { CustomerEmail } from '../../../../../types/customer';
+import axios from 'utils/axios';
+import type { Theme } from 'themes/dashboard-theme';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import type { CustomerEmail } from 'types/customer';
 
 interface EmailsProps {
   className?: string;

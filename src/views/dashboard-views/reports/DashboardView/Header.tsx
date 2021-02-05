@@ -1,7 +1,4 @@
-import React, {
-  useRef,
-  useState
-} from 'react';
+import React, { useRef, useState } from 'react';
 import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -15,39 +12,35 @@ import {
   MenuItem,
   SvgIcon,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { Calendar as CalendarIcon } from 'react-feather';
 
-interface HeaderProps {
-  className?: string;
-}
-
 const timeRanges = [
   {
     value: 'today',
-    text: 'Today'
+    text: 'Today',
   },
   {
     value: 'yesterday',
-    text: 'Yesterday'
+    text: 'Yesterday',
   },
   {
     value: 'last_30_days',
-    text: 'Last 30 days'
+    text: 'Last 30 days',
   },
   {
     value: 'last_year',
-    text: 'Last year'
-  }
+    text: 'Last year',
+  },
 ];
 
-const useStyles = makeStyles(() => ({
-  root: {}
-}));
+type Props = {
+  className?: string;
+};
 
-const Header: FC<HeaderProps> = ({ className, ...rest }) => {
+const Header = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const actionRef = useRef<any>(null);
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
@@ -74,17 +67,11 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
           >
             Dashboard
           </Link>
-          <Typography
-            variant="body1"
-            color="textPrimary"
-          >
+          <Typography variant="body1" color="textPrimary">
             Reports
           </Typography>
         </Breadcrumbs>
-        <Typography
-          variant="h3"
-          color="textPrimary"
-        >
+        <Typography variant="h3" color="textPrimary">
           Here&apos;s what&apos;s happening
         </Typography>
       </Grid>
@@ -107,14 +94,14 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
           getContentAnchorEl={null}
           anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'center'
+            horizontal: 'center',
           }}
           transformOrigin={{
             vertical: 'top',
-            horizontal: 'center'
+            horizontal: 'center',
           }}
         >
-          {timeRanges.map((_timeRange) => (
+          {timeRanges.map(_timeRange => (
             <MenuItem
               key={_timeRange.value}
               onClick={() => setTimeRange(_timeRange.text)}
@@ -129,7 +116,11 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
 };
 
 Header.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Header;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

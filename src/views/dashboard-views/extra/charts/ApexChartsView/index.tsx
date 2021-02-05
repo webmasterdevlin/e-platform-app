@@ -11,8 +11,8 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import Page from '../../../../../components/Page';
+import type { Theme } from 'themes/dashboard-theme';
+import Page from 'components/Page';
 import AreaChart from './AreaChart';
 import LineChart from './LineChart';
 import RadialChart from './RadialChart';

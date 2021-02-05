@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import SlashScreen from '../../components/SplashScreen';
-import axios2 from '../../utils/axios2';
+import SlashScreen from 'components/SplashScreen';
+import axios2 from 'utils/axios2';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { RootState } from 'store';
 
 const CustomAuthenticatingComponent: React.FC = () => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);

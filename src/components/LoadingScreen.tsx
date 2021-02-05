@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import type { FC } from 'react';
 import NProgress from 'nprogress';
 import { Box, LinearProgress, makeStyles } from '@material-ui/core';
-import type { Theme } from '../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

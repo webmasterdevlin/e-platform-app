@@ -17,9 +17,9 @@ import {
 } from '@material-ui/core';
 import LockOpenIcon from '@material-ui/icons/LockOpenOutlined';
 import PersonIcon from '@material-ui/icons/PersonOutline';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import Label from '../../../../../components/Label';
-import type { Customer } from '../../../../../types/customer';
+import type { Theme } from 'themes/dashboard-theme';
+import Label from 'components/Label';
+import type { Customer } from 'types/customer';
 
 interface CustomerInfoProps {
   customer: Customer;

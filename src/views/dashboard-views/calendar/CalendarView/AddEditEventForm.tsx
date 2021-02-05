@@ -21,23 +21,10 @@ import {
 } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
 import { Trash as TrashIcon } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import type { Event } from '../../../../types/calendar';
-import { useDispatch } from '../../../../store';
-import {
-  createEvent,
-  updateEvent,
-  deleteEvent,
-} from '../../../../slices/calendar';
-
-interface AddEditEventModalProps {
-  event?: Event;
-  onAddComplete?: () => void;
-  onCancel?: () => void;
-  onDeleteComplete?: () => void;
-  onEditComplete?: () => void;
-  range?: { start: number; end: number };
-}
+import type { Theme } from 'themes/dashboard-theme';
+import type { Event } from 'types/calendar';
+import { useDispatch } from 'store';
+import { createEvent, updateEvent, deleteEvent } from 'slices/calendar';
 
 const getInitialValues = (
   event?: Event,
@@ -93,14 +80,23 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const AddEditEventForm: FC<AddEditEventModalProps> = ({
+type Props = {
+  event?: Event;
+  onAddComplete?: () => void;
+  onCancel?: () => void;
+  onDeleteComplete?: () => void;
+  onEditComplete?: () => void;
+  range?: { start: number; end: number };
+};
+
+const AddEditEventForm = ({
   event,
   onAddComplete,
   onCancel,
   onDeleteComplete,
   onEditComplete,
   range,
-}) => {
+}: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();

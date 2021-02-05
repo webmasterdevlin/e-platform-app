@@ -2,7 +2,7 @@ import { ENABLE_REDUX_DEV_TOOLS } from '../constants';
 import rootReducer, { createReducer } from './rootReducer';
 
 import createSagaMiddleware from 'redux-saga';
-import { heroSaga } from '../features/heroes/hero-saga';
+import { heroSaga } from 'features/heroes/hero-saga';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { createInjectorsEnhancer } from 'redux-injectors';
 import logger from 'redux-logger';

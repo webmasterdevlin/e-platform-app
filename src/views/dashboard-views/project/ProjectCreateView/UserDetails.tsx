@@ -11,13 +11,7 @@ import {
   Button,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-
-interface UserDetailsProps {
-  className?: string;
-  onNext?: () => void;
-  onBack?: () => void;
-}
+import type { Theme } from 'themes/dashboard-theme';
 
 const typeOptions = [
   {
@@ -39,27 +33,13 @@ const typeOptions = [
   },
 ];
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  typeOption: {
-    alignItems: 'flex-start',
-    display: 'flex',
-    marginBottom: theme.spacing(2),
-    padding: theme.spacing(2),
-  },
-  stepButton: {
-    '& + &': {
-      marginLeft: theme.spacing(2),
-    },
-  },
-}));
+type Props = {
+  className?: string;
+  onNext?: () => void;
+  onBack?: () => void;
+};
 
-const UserDetails: FC<UserDetailsProps> = ({
-  className,
-  onBack,
-  onNext,
-  ...rest
-}) => {
+const UserDetails = ({ className, onBack, onNext, ...rest }: Props) => {
   const classes = useStyles();
   const [type, setType] = useState<string>(typeOptions[1].value);
   const [isSubmitting, setSubmitting] = useState<boolean>(false);
@@ -165,3 +145,18 @@ UserDetails.defaultProps = {
 };
 
 export default UserDetails;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  typeOption: {
+    alignItems: 'flex-start',
+    display: 'flex',
+    marginBottom: theme.spacing(2),
+    padding: theme.spacing(2),
+  },
+  stepButton: {
+    '& + &': {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));

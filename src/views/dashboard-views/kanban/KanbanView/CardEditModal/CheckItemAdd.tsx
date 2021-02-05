@@ -14,16 +14,12 @@ interface CheckItemAddProps {
   checklist: Checklist;
 }
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const CheckItemAdd: FC<CheckItemAddProps> = ({
+const CheckItemAdd = ({
   card,
   checklist,
   className,
   ...rest
-}) => {
+}: CheckItemAddProps) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -107,3 +103,7 @@ CheckItemAdd.propTypes = {
 };
 
 export default CheckItemAdd;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

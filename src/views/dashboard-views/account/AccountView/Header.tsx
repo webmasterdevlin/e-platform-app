@@ -1,32 +1,19 @@
 import React from 'react';
-import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  Typography,
-  Breadcrumbs,
-  Link,
-  makeStyles
-} from '@material-ui/core';
+import { Typography, Breadcrumbs, Link, makeStyles } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-interface HeaderProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {}
-}));
-
-const Header: FC<HeaderProps> = ({ className, ...rest }) => {
+const Header = ({ className, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
+    <div className={clsx(classes.root, className)} {...rest}>
       <Breadcrumbs
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
@@ -34,22 +21,21 @@ const Header: FC<HeaderProps> = ({ className, ...rest }) => {
         <Link color="inherit" to="/app" component={RouterLink}>
           Dashboard
         </Link>
-        <Typography color="textPrimary">
-          Account
-        </Typography>
+        <Typography color="textPrimary">Account</Typography>
       </Breadcrumbs>
-      <Typography
-        variant="h3"
-        color="textPrimary"
-      >
+      <Typography variant="h3" color="textPrimary">
         Settings
       </Typography>
     </div>
   );
-}
+};
 
 Header.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Header;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

@@ -10,7 +10,7 @@ import {
   ListItemAvatar,
   ListItemText,
 } from '@material-ui/core';
-import { CardBase } from '../../../components/organisms';
+import { CardBase } from 'components/organisms';
 
 type Props = {
   className?: string;

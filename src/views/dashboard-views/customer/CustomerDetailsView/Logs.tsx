@@ -16,10 +16,10 @@ import {
   TableRow,
   makeStyles,
 } from '@material-ui/core';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import Label from '../../../../components/Label';
-import type { CustomerLog } from '../../../../types/customer';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import Label from 'components/Label';
+import type { CustomerLog } from 'types/customer';
 
 interface LogsProps {
   className?: string;

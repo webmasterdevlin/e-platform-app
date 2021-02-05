@@ -1,25 +1,20 @@
 import React from 'react';
-import type { FC } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { useSnackbar } from 'notistack';
 import { Box, TextField, Typography, makeStyles } from '@material-ui/core';
-import { useDispatch } from '../../../../../store';
-import { updateCard } from '../../../../../slices/kanban';
-import type { Card, List } from '../../../../../types/kanban';
+import { useDispatch } from 'store';
+import { updateCard } from 'slices/kanban';
+import type { Card, List } from 'types/kanban';
 
-interface DetailsProps {
+type Props = {
   className?: string;
   card: Card;
   list: List;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const Details: FC<DetailsProps> = ({ card, className, list, ...rest }) => {
+const Details = ({ card, className, list, ...rest }: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -80,3 +75,7 @@ Details.propTypes = {
 };
 
 export default Details;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

@@ -14,8 +14,8 @@ import {
 import SendIcon from '@material-ui/icons/Send';
 import AddPhotoIcon from '@material-ui/icons/AddPhotoAlternate';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
-import useAuth from '../../hooks/useAuth';
-import type { Theme } from '../../themes/dashboard-theme';
+import useAuth from 'hooks/useAuth';
+import type { Theme } from 'themes/dashboard-theme';
 
 interface CommentAddProps {
   className?: string;

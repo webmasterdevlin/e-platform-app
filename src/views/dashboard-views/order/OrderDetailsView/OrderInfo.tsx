@@ -20,20 +20,16 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import ReceiptIcon from '@material-ui/icons/ReceiptOutlined';
-import type { Order } from '../../../../types/order';
+import type { Order } from 'types/order';
 
-interface OrderInfoProps {
+type Props = {
   className?: string;
   order: Order;
-}
+};
 
 const statusOptions = ['Canceled', 'Completed', 'Rejected'];
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const OrderInfo: FC<OrderInfoProps> = ({ className, order, ...rest }) => {
+const OrderInfo = ({ className, order, ...rest }: Props) => {
   const classes = useStyles();
   const [status, setStatus] = useState<string>(statusOptions[0]);
 
@@ -119,3 +115,7 @@ OrderInfo.propTypes = {
 };
 
 export default OrderInfo;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

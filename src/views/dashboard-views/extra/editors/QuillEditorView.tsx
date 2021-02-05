@@ -11,9 +11,9 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import Page from '../../../../components/Page';
-import QuillEditor from '../../../../components/QuillEditor';
+import type { Theme } from 'themes/dashboard-theme';
+import Page from 'components/Page';
+import QuillEditor from 'components/QuillEditor';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

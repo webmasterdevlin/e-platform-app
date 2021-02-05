@@ -1,24 +1,16 @@
 import React from 'react';
-import type { FC } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Box, Card, CardHeader, Divider, makeStyles } from '@material-ui/core';
-import GenericMoreButton from '../../../../../components/GenericMoreButton';
+import GenericMoreButton from 'components/GenericMoreButton';
 import Chart from './Chart';
 
-interface FinancialStatsProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-  chart: {
-    height: 400,
-  },
-}));
-
-const FinancialStats: FC<FinancialStatsProps> = ({ className, ...rest }) => {
+const FinancialStats = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const stats = {
     thisYear: [18, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 20],
@@ -57,3 +49,10 @@ FinancialStats.propTypes = {
 };
 
 export default FinancialStats;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+  chart: {
+    height: 400,
+  },
+}));

@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import { useHistory } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { makeStyles } from '@material-ui/core';
-import type { Contact } from '../../../../../types/chat';
-import axios from '../../../../../utils/axios';
+import type { Contact } from 'types/chat';
+import axios from 'utils/axios';
 import Search from './Search';
 import ThreadList from './ThreadList';
 

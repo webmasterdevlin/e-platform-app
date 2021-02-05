@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -17,12 +16,8 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import MailIcon from '@material-ui/icons/Mail';
 import ReportIcon from '@material-ui/icons/Report';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { Label } from '../../../../../types/mail';
-
-interface LabelItemProps {
-  label: Label;
-}
+import type { Theme } from 'themes/dashboard-theme';
+import type { Label } from 'types/mail';
 
 const systemLabelIcons = {
   all: MailIcon,
@@ -65,6 +60,49 @@ const getColor = (label: any): string => {
   return null;
 };
 
+type Props = {
+  label: Label;
+};
+
+const LabelItem = ({ label, ...rest }: Props) => {
+  const classes = useStyles();
+
+  const Icon = getIcon(label);
+  const to = getTo(label);
+  const color = getColor(label);
+  const displayUnreadCount = Boolean(
+    label.unreadCount && label.unreadCount > 0,
+  );
+
+  return (
+    <ListItem className={classes.root} {...rest}>
+      <ButtonBase
+        activeClassName={classes.active}
+        component={RouterLink}
+        to={to}
+        className={classes.content}
+      >
+        <Icon className={classes.icon} color="inherit" style={{ color }} />
+        <Typography className={classes.text} variant="body2">
+          {label.name}
+        </Typography>
+        {displayUnreadCount && (
+          <Typography color="inherit" variant="caption">
+            {label.unreadCount}
+          </Typography>
+        )}
+      </ButtonBase>
+    </ListItem>
+  );
+};
+
+LabelItem.propTypes = {
+  // @ts-ignore
+  label: PropTypes.object.isRequired,
+};
+
+export default LabelItem;
+
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     padding: 0,
@@ -103,42 +141,3 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexGrow: 1,
   },
 }));
-
-const LabelItem: FC<LabelItemProps> = ({ label, ...rest }) => {
-  const classes = useStyles();
-
-  const Icon = getIcon(label);
-  const to = getTo(label);
-  const color = getColor(label);
-  const displayUnreadCount = Boolean(
-    label.unreadCount && label.unreadCount > 0,
-  );
-
-  return (
-    <ListItem className={classes.root} {...rest}>
-      <ButtonBase
-        activeClassName={classes.active}
-        component={RouterLink}
-        to={to}
-        className={classes.content}
-      >
-        <Icon className={classes.icon} color="inherit" style={{ color }} />
-        <Typography className={classes.text} variant="body2">
-          {label.name}
-        </Typography>
-        {displayUnreadCount && (
-          <Typography color="inherit" variant="caption">
-            {label.unreadCount}
-          </Typography>
-        )}
-      </ButtonBase>
-    </ListItem>
-  );
-};
-
-LabelItem.propTypes = {
-  // @ts-ignore
-  label: PropTypes.object.isRequired,
-};
-
-export default LabelItem;

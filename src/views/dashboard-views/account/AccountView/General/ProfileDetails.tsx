@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -14,30 +13,15 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { User } from '../../../../../types/user';
+import type { Theme } from 'themes/dashboard-theme';
+import type { User } from 'types/user';
 
-interface ProfileDetailsProps {
+type Props = {
   className?: string;
   user: User;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  name: {
-    marginTop: theme.spacing(1),
-  },
-  avatar: {
-    height: 100,
-    width: 100,
-  },
-}));
-
-const ProfileDetails: FC<ProfileDetailsProps> = ({
-  className,
-  user,
-  ...rest
-}) => {
+const ProfileDetails = ({ className, user, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -82,3 +66,14 @@ ProfileDetails.propTypes = {
 };
 
 export default ProfileDetails;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  name: {
+    marginTop: theme.spacing(1),
+  },
+  avatar: {
+    height: 100,
+    width: 100,
+  },
+}));

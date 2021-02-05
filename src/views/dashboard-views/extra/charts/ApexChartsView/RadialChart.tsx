@@ -2,7 +2,7 @@ import React from 'react';
 import type { FC } from 'react';
 import Chart from 'react-apexcharts';
 import { Card, CardContent, Typography, useTheme } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
 const RadialChart: FC = () => {
   const theme = useTheme<Theme>();

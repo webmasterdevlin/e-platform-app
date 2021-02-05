@@ -4,10 +4,10 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useAuth from '../hooks/useAuth';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState } from 'store';
 import { OidcSecure as OdicSecure } from '@axa-fr/react-oidc-redux';
-import configuration from '../auth/configuration';
-import CustomAuthenticatingComponent from '../auth/components/custom-authenticating-component';
+import configuration from 'auth/configuration';
+import CustomAuthenticatingComponent from 'auth/components/custom-authenticating-component';
 
 interface AuthGuardProps {
   children?: ReactNode;

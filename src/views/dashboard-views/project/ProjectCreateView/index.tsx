@@ -30,17 +30,11 @@ import {
   Briefcase as BriefcaseIcon,
   File as FileIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import Page from '../../../../components/Page';
+import type { Theme } from 'themes/dashboard-theme';
+import Page from 'components/Page';
 import UserDetails from './UserDetails';
 import ProjectDetails from './ProjectDetails';
 import ProjectDescription from './ProjectDescription';
-
-interface CustomStepIconProps {
-  active?: boolean;
-  completed?: boolean;
-  icon: number;
-}
 
 const steps = [
   {
@@ -67,24 +61,13 @@ const CustomStepConnector = withStyles((theme: Theme) => ({
   },
 }))(StepConnector);
 
-const useCustomStepIconStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  active: {
-    backgroundColor: theme.palette.secondary.main,
-    boxShadow: theme.shadows[10],
-    color: theme.palette.secondary.contrastText,
-  },
-  completed: {
-    backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.secondary.contrastText,
-  },
-}));
+type Props = {
+  active?: boolean;
+  completed?: boolean;
+  icon: number;
+};
 
-const CustomStepIcon: FC<CustomStepIconProps> = ({
-  active,
-  completed,
-  icon,
-}) => {
+const CustomStepIcon = ({ active, completed, icon }: Props) => {
   const classes = useCustomStepIconStyles();
 
   const Icon = steps[icon - 1].icon;
@@ -106,21 +89,6 @@ CustomStepIcon.propTypes = {
   completed: PropTypes.bool,
   icon: PropTypes.number.isRequired,
 };
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-  },
-  avatar: {
-    backgroundColor: colors.red[600],
-  },
-  stepper: {
-    backgroundColor: 'transparent',
-  },
-}));
 
 const ProjectCreateView: FC = () => {
   const classes = useStyles();
@@ -242,3 +210,31 @@ const ProjectCreateView: FC = () => {
 };
 
 export default ProjectCreateView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+  },
+  avatar: {
+    backgroundColor: colors.red[600],
+  },
+  stepper: {
+    backgroundColor: 'transparent',
+  },
+}));
+
+const useCustomStepIconStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  active: {
+    backgroundColor: theme.palette.secondary.main,
+    boxShadow: theme.shadows[10],
+    color: theme.palette.secondary.contrastText,
+  },
+  completed: {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText,
+  },
+}));

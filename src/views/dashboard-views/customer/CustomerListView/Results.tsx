@@ -33,9 +33,9 @@ import {
   ArrowRight as ArrowRightIcon,
   Search as SearchIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import getInitials from '../../../../utils/getInitials';
-import type { Customer } from '../../../../types/customer';
+import type { Theme } from 'themes/dashboard-theme';
+import getInitials from 'utils/getInitials';
+import type { Customer } from 'types/customer';
 
 interface ResultsProps {
   className?: string;

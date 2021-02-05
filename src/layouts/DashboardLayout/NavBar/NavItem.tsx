@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Button, Collapse, ListItem, makeStyles } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import type { Theme } from '../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
 interface NavItemProps {
   children?: ReactNode;

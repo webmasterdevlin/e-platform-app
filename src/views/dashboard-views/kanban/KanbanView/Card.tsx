@@ -19,10 +19,10 @@ import {
   File as FileIcon,
   MessageCircle as MessageIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import { useSelector } from '../../../../store';
-import type { RootState } from '../../../../store';
-import type { Card as CardType, List, Member } from '../../../../types/kanban';
+import type { Theme } from 'themes/dashboard-theme';
+import { useSelector } from 'store';
+import type { RootState } from 'store';
+import type { Card as CardType, List, Member } from 'types/kanban';
 import CardEditModal from './CardEditModal';
 
 interface CardProps {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, makeStyles, Paper, TextareaAutosize } from '@material-ui/core';
-import { Theme } from '../../../themes/dashboard-theme';
+import { Theme } from 'themes/dashboard-theme';
 import { useFormikContext } from 'formik';
 import Typography from '@material-ui/core/Typography';
 

@@ -16,13 +16,8 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import DashboardIcon from '@material-ui/icons/DashboardOutlined';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { ProjectActivity } from '../../../../../types/project';
-
-interface ActivityProps {
-  activity: ProjectActivity;
-  className?: string;
-}
+import type { Theme } from 'themes/dashboard-theme';
+import type { ProjectActivity } from 'types/project';
 
 const avatarsMap = {
   upload_file: {
@@ -42,6 +37,43 @@ const avatarsMap = {
     className: 'avatarIndigo',
   },
 };
+
+type Props = {
+  activity: ProjectActivity;
+  className?: string;
+};
+
+const Activity = ({ activity, className, ...rest }: Props) => {
+  const classes = useStyles();
+  const avatar = avatarsMap[activity.type];
+
+  return (
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Avatar className={clsx(classes.avatar, classes[avatar.className])}>
+        <avatar.icon />
+      </Avatar>
+      <Card className={classes.card}>
+        <Typography variant="body1" color="textPrimary">
+          <Link color="textPrimary" component={RouterLink} to="#" variant="h6">
+            {activity.subject}
+          </Link>{' '}
+          {activity.description}
+        </Typography>
+        <Typography className={classes.date} variant="caption">
+          {moment(activity.createdAt).fromNow()}
+        </Typography>
+      </Card>
+    </div>
+  );
+};
+
+Activity.propTypes = {
+  // @ts-ignore
+  activity: PropTypes.object.isRequired,
+  className: PropTypes.string,
+};
+
+export default Activity;
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -75,35 +107,3 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: colors.indigo[500],
   },
 }));
-
-const Activity: FC<ActivityProps> = ({ activity, className, ...rest }) => {
-  const classes = useStyles();
-  const avatar = avatarsMap[activity.type];
-
-  return (
-    <div className={clsx(classes.root, className)} {...rest}>
-      <Avatar className={clsx(classes.avatar, classes[avatar.className])}>
-        <avatar.icon />
-      </Avatar>
-      <Card className={classes.card}>
-        <Typography variant="body1" color="textPrimary">
-          <Link color="textPrimary" component={RouterLink} to="#" variant="h6">
-            {activity.subject}
-          </Link>{' '}
-          {activity.description}
-        </Typography>
-        <Typography className={classes.date} variant="caption">
-          {moment(activity.createdAt).fromNow()}
-        </Typography>
-      </Card>
-    </div>
-  );
-};
-
-Activity.propTypes = {
-  // @ts-ignore
-  activity: PropTypes.object.isRequired,
-  className: PropTypes.string,
-};
-
-export default Activity;

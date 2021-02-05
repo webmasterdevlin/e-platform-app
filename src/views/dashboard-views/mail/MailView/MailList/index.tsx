@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import type { FC } from 'react';
+
 import { useParams } from 'react-router-dom';
 import { Divider, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import { useDispatch, useSelector } from '../../../../../store';
-import { getMails } from '../../../../../slices/mail';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch, useSelector } from 'store';
+import { getMails } from 'slices/mail';
 import Toolbar from './Toolbar';
 import MailItem from './MailItem';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    flexGrow: 1,
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.dark,
-  },
-}));
-
-const MailList: FC = () => {
+const MailList = () => {
   const classes = useStyles();
   const params = useParams<any>();
   const dispatch = useDispatch();
@@ -74,3 +66,11 @@ const MailList: FC = () => {
 };
 
 export default MailList;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    flexGrow: 1,
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.dark,
+  },
+}));

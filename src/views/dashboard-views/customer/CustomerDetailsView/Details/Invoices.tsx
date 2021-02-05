@@ -16,8 +16,8 @@ import {
 } from '@material-ui/core';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import ReceiptIcon from '@material-ui/icons/ReceiptOutlined';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { Customer } from '../../../../../types/customer';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Customer } from 'types/customer';
 
 interface InvoicesProps {
   customer: Customer;

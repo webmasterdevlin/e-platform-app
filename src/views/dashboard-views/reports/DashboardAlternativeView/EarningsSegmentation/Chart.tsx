@@ -1,16 +1,15 @@
 import React from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
 import { useTheme } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
-interface ChartProps {
+type Props = {
   className?: string;
   data: any;
-}
+};
 
-const Chart: FC<ChartProps> = ({ data: dataProp, ...rest }) => {
+const Chart = ({ data: dataProp, ...rest }: Props) => {
   const theme: Theme = useTheme();
 
   const data = {

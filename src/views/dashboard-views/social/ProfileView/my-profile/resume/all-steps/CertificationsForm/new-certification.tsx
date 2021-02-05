@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import { certificationValue } from './schema/certification.value';
 import { certificationsYupObject } from './schema/ceritifications.validation';
 import CertificationForm from './components/certification-form';
-import { RootState } from '../../../../../../../../store';
-import { ProfileModel } from '../../../../../../../../auth/auth.model';
+import { RootState } from 'store';
+import { ProfileModel } from 'auth/auth.model';
 import { postCertificateAxios } from './certifications.service';
 
 type Props = {

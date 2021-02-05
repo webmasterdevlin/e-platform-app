@@ -1,25 +1,21 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import type { FC } from 'react';
+
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Box, Grid, makeStyles } from '@material-ui/core';
-import axios from '../../../../../utils/axios';
-import useIsMountedRef from '../../../../../hooks/useIsMountedRef';
-import PostAdd from '../../../../../components/PostAdd';
-import PostCard from '../../../../../components/PostCard';
-import type { Profile, Post } from '../../../../../types/social';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import PostAdd from 'components/PostAdd';
+import PostCard from 'components/PostCard';
+import type { Profile, Post } from 'types/social';
 import About from './About';
 
-interface TimelineProps {
+type Props = {
   className?: string;
   profile: Profile;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const Timeline: FC<TimelineProps> = ({ className, profile, ...rest }) => {
+const Timeline = ({ className, profile, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [posts, setPosts] = useState<Post[]>([]);
@@ -66,3 +62,7 @@ Timeline.propTypes = {
 };
 
 export default Timeline;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

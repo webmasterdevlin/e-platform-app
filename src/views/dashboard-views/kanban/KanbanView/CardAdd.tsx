@@ -4,19 +4,15 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
 import { Box, Button, TextField, makeStyles } from '@material-ui/core';
-import { useDispatch } from '../../../../store';
-import { createCard } from '../../../../slices/kanban';
+import { useDispatch } from 'store';
+import { createCard } from 'slices/kanban';
 
-interface CardAddProps {
+type Props = {
   className?: string;
   listId: string;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const CardAdd: FC<CardAddProps> = ({ className, listId, ...rest }) => {
+const CardAdd = ({ className, listId, ...rest }: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -93,3 +89,7 @@ CardAdd.propTypes = {
 };
 
 export default CardAdd;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

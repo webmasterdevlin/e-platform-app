@@ -14,8 +14,8 @@ import {
 } from '@material-ui/core';
 import { AvatarGroup } from '@material-ui/lab';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { Task } from '../../../../../types/reports';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Task } from 'types/reports';
 
 interface TaskItemProps extends ListItemProps {
   className?: string;

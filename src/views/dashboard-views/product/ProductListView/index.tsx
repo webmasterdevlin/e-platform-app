@@ -1,24 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import type { FC } from 'react';
 import { Box, Container, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import Page from '../../../../components/Page';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import type { Product } from '../../../../types/product';
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import Page from 'components/Page';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import type { Product } from 'types/product';
 import Header from './Header';
 import Results from './Results';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: 100,
-  },
-}));
-
-const ProductListView: FC = () => {
+const ProductListView = () => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [products, setProducts] = useState<Product[]>([]);
@@ -56,3 +46,12 @@ const ProductListView: FC = () => {
 };
 
 export default ProductListView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    paddingTop: theme.spacing(3),
+    paddingBottom: 100,
+  },
+}));

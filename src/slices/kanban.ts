@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import type { AppThunk } from '../store';
-import axios from '../utils/axios';
-import objFromArray from '../utils/objFromArray';
+import axios from 'utils/axios';
+import objFromArray from 'utils/objFromArray';
 import type {
   Board,
   Card,
@@ -12,7 +12,7 @@ import type {
   Comment,
   List,
   Member,
-} from '../types/kanban';
+} from 'types/kanban';
 
 interface KanbanState {
   isLoaded: boolean;

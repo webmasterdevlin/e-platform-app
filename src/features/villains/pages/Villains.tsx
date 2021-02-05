@@ -7,9 +7,9 @@ import {
   removeVillainByIdTemporaryAction,
 } from '../villain-actions';
 import VillainForm from '../components/VillainForm';
-import { RootState } from '../../../store';
-import TitleBar from '../../anti-heroes/shared/title-bar';
-import UpdateUiLabel from '../../anti-heroes/shared/update-ui-label';
+import { RootState } from 'store';
+import TitleBar from 'features/anti-heroes/shared/title-bar';
+import UpdateUiLabel from 'features/anti-heroes/shared/update-ui-label';
 import { Box, Button } from '@material-ui/core';
 
 type Props = {};

@@ -1,30 +1,18 @@
 import React, { useState } from 'react';
-import type { FC, ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
 import { Box, Button, Card, TextField, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import { useDispatch } from '../../../../store';
-import { createList } from '../../../../slices/kanban';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch } from 'store';
+import { createList } from 'slices/kanban';
 
-interface ListAddProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  inner: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 380,
-    [theme.breakpoints.down('xs')]: {
-      width: 300,
-    },
-  },
-}));
-
-const ListAdd: FC<ListAddProps> = ({ className, ...rest }) => {
+const ListAdd = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -104,3 +92,15 @@ ListAdd.propTypes = {
 };
 
 export default ListAdd;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  inner: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 380,
+    [theme.breakpoints.down('xs')]: {
+      width: 300,
+    },
+  },
+}));

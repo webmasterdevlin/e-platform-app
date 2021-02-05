@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import axios2 from '../../utils/axios2';
+import { RootState } from 'store';
+import axios2 from 'utils/axios2';
 
 const OnRedirectCallback = appState => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);

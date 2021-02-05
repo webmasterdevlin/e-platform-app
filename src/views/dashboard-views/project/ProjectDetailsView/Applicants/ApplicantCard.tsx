@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -15,36 +14,15 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { ProjectApplicant } from '../../../../../types/project';
+import type { Theme } from 'themes/dashboard-theme';
+import type { ProjectApplicant } from 'types/project';
 
-interface ApplicantCardProps {
+type Props = {
   className?: string;
   applicant: ProjectApplicant;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  media: {
-    height: 125,
-  },
-  content: {
-    paddingTop: 0,
-  },
-  avatar: {
-    height: 64,
-    width: 64,
-  },
-  chip: {
-    margin: theme.spacing(0.5),
-  },
-}));
-
-const ApplicantCard: FC<ApplicantCardProps> = ({
-  className,
-  applicant,
-  ...rest
-}) => {
+const ApplicantCard = ({ className, applicant, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -97,3 +75,20 @@ ApplicantCard.propTypes = {
 };
 
 export default ApplicantCard;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  media: {
+    height: 125,
+  },
+  content: {
+    paddingTop: 0,
+  },
+  avatar: {
+    height: 64,
+    width: 64,
+  },
+  chip: {
+    margin: theme.spacing(0.5),
+  },
+}));

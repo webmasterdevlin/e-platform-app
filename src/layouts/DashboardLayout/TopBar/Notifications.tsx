@@ -22,9 +22,9 @@ import {
   MessageCircle as MessageIcon,
   Truck as TruckIcon,
 } from 'react-feather';
-import type { Theme } from '../../../themes/dashboard-theme';
-import { useDispatch, useSelector } from '../../../store';
-import { getNotifications } from '../../../slices/notification';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch, useSelector } from 'store';
+import { getNotifications } from 'slices/notification';
 
 const iconsMap = {
   order_placed: PackageIcon,

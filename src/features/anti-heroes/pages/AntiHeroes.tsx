@@ -9,7 +9,7 @@ import {
 import TitleBar from '../shared/title-bar';
 import UpdateUiLabel from '../shared/update-ui-label';
 import { Box, Button } from '@material-ui/core';
-import { RootState } from '../../../store';
+import { RootState } from 'store';
 
 type Props = {};
 

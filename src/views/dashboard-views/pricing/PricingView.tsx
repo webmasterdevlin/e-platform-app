@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import clsx from 'clsx';
 import {
   Box,
@@ -11,48 +10,10 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../themes/dashboard-theme';
-import Page from '../../../components/Page';
+import type { Theme } from 'themes/dashboard-theme';
+import Page from 'components/Page';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    height: '100%',
-    paddingTop: 120,
-    paddingBottom: 120,
-  },
-  product: {
-    position: 'relative',
-    padding: theme.spacing(5, 3),
-    cursor: 'pointer',
-    transition: theme.transitions.create('transform', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    '&:hover': {
-      transform: 'scale(1.1)',
-    },
-  },
-  productImage: {
-    borderRadius: theme.shape.borderRadius,
-    position: 'absolute',
-    top: -24,
-    left: theme.spacing(3),
-    height: 48,
-    width: 48,
-    fontSize: 24,
-  },
-  recommendedProduct: {
-    backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.common.white,
-  },
-  chooseButton: {
-    backgroundColor: theme.palette.common.white,
-  },
-}));
-
-const PricingView: FC = () => {
+const PricingView = () => {
   const classes = useStyles();
 
   return (
@@ -263,3 +224,41 @@ const PricingView: FC = () => {
 };
 
 export default PricingView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    height: '100%',
+    paddingTop: 120,
+    paddingBottom: 120,
+  },
+  product: {
+    position: 'relative',
+    padding: theme.spacing(5, 3),
+    cursor: 'pointer',
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    '&:hover': {
+      transform: 'scale(1.1)',
+    },
+  },
+  productImage: {
+    borderRadius: theme.shape.borderRadius,
+    position: 'absolute',
+    top: -24,
+    left: theme.spacing(3),
+    height: 48,
+    width: 48,
+    fontSize: 24,
+  },
+  recommendedProduct: {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.common.white,
+  },
+  chooseButton: {
+    backgroundColor: theme.palette.common.white,
+  },
+}));

@@ -1,12 +1,11 @@
 import React, { createContext, useEffect, useReducer } from 'react';
 import type { FC, ReactNode } from 'react';
 import jwtDecode from 'jwt-decode';
-import type { User } from '../types/user';
-import SplashScreen from '../../src/components/SplashScreen';
-import axios from '../../src/utils/axios';
-import axios2 from '../../src/utils/axios2';
+import type { User } from 'types/user';
+import SplashScreen from 'components/SplashScreen';
+import axios from 'utils/axios';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState } from 'store';
 
 interface AuthState {
   isInitialised: boolean;

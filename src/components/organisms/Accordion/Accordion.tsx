@@ -11,7 +11,7 @@ import {
   AccordionDetails as MuiAccordionDetails,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { LearnMoreLink } from '../../../components/atoms';
+import { LearnMoreLink } from 'components/atoms';
 
 type AccordionProps = {
   className?: string;

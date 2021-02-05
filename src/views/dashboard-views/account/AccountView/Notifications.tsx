@@ -15,17 +15,13 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import wait from '../../../../utils/wait';
+import wait from 'utils/wait';
 
-interface NotificationProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const Notifications: FC<NotificationProps> = ({ className, ...rest }) => {
+const Notifications = ({ className, ...rest }: Props) => {
   const classes = useStyles();
 
   const handleSubmit = async (
@@ -122,3 +118,7 @@ Notifications.propTypes = {
 };
 
 export default Notifications;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

@@ -9,22 +9,15 @@ import {
   makeStyles,
 } from '@material-ui/core';
 
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import Page from '../../../../components/Page';
-import type { Profile } from '../../../../types/social';
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import Page from 'components/Page';
+import type { Profile } from 'types/social';
 import Header from './Header';
 import Timeline from './Timeline';
 import Connections from './Connections';
 import MyProfileContainer from './my-profile/my-profile-container';
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-  },
-}));
 
 const ProfileView: FC = () => {
   const classes = useStyles();
@@ -93,3 +86,10 @@ const ProfileView: FC = () => {
 };
 
 export default ProfileView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+  },
+}));

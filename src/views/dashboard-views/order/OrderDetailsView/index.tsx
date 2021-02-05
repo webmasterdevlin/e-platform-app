@@ -1,25 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import type { FC } from 'react';
 import { Box, Container, Grid, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import Page from '../../../../components/Page';
-import type { Order } from '../../../../types/order';
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import Page from 'components/Page';
+import type { Order } from 'types/order';
 import Header from './Header';
 import OrderInfo from './OrderInfo';
 import OrderItems from './OrderItems';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-  },
-}));
-
-const OrderDetailsView: FC = () => {
+const OrderDetailsView = () => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [order, setOrder] = useState<Order | null>(null);
@@ -64,3 +54,12 @@ const OrderDetailsView: FC = () => {
 };
 
 export default OrderDetailsView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+  },
+}));

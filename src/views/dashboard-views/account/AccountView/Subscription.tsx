@@ -15,46 +15,15 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
 
-interface SubscriptionProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  overview: {
-    padding: theme.spacing(3),
-    display: 'flex',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    [theme.breakpoints.down('md')]: {
-      flexDirection: 'column-reverse',
-      alignItems: 'flex-start',
-    },
-  },
-  productImage: {
-    marginRight: theme.spacing(1),
-    height: 48,
-    width: 48,
-  },
-  details: {
-    padding: theme.spacing(3),
-    display: 'flex',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    [theme.breakpoints.down('md')]: {
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-    },
-  },
-}));
-
-const Subscription: FC<SubscriptionProps> = ({ className, ...rest }) => {
+const Subscription = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [subscription, setSubscription] = useState<any | null>(null);
@@ -163,3 +132,34 @@ Subscription.propTypes = {
 };
 
 export default Subscription;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  overview: {
+    padding: theme.spacing(3),
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column-reverse',
+      alignItems: 'flex-start',
+    },
+  },
+  productImage: {
+    marginRight: theme.spacing(1),
+    height: 48,
+    width: 48,
+  },
+  details: {
+    padding: theme.spacing(3),
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+    },
+  },
+}));

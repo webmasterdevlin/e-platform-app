@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { OidcSecure } from '@axa-fr/react-oidc-redux';
 import configuration from '../configuration';
 import CustomAuthenticatingComponent from './custom-authenticating-component';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { Redirect, useHistory } from 'react-router-dom';
+import { RootState } from 'store';
+import { Redirect } from 'react-router-dom';
 
 const LoginV2 = ({ children }) => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);

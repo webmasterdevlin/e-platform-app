@@ -17,8 +17,8 @@ import {
 } from '@material-ui/core';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import type { Invoice } from '../../../../types/invoice';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Invoice } from 'types/invoice';
 import InvoicePDF from './InvoicePDF';
 
 interface HeaderProps {

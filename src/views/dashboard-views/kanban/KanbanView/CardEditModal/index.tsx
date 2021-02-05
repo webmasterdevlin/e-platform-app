@@ -24,14 +24,10 @@ import {
   File as FileIcon,
   Layout as LayoutIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import { useDispatch } from '../../../../../store';
-import {
-  deleteCard,
-  updateCard,
-  addChecklist,
-} from '../../../../../slices/kanban';
-import type { Card, List } from '../../../../../types/kanban';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch } from 'store';
+import { deleteCard, updateCard, addChecklist } from 'slices/kanban';
+import type { Card, List } from 'types/kanban';
 import Details from './Details';
 import Checklist from './Checklist';
 import Comment from './Comment';

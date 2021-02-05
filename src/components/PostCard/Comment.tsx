@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import moment from 'moment';
 import { Avatar, Box, Link, Typography, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../themes/dashboard-theme';
-import type { PostComment } from '../../types/social';
+import type { Theme } from 'themes/dashboard-theme';
+import type { PostComment } from 'types/social';
 
 interface CommentProps {
   className?: string;

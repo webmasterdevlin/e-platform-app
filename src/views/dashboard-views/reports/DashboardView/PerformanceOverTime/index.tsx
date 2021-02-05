@@ -11,24 +11,14 @@ import {
   Divider,
   makeStyles,
 } from '@material-ui/core';
-import GenericMoreButton from '../../../../../components/GenericMoreButton';
+import GenericMoreButton from 'components/GenericMoreButton';
 import Chart from './Chart';
 
-interface PerformanceOverTimeProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-  chart: {
-    height: '100%',
-  },
-}));
-
-const PerformanceOverTime: FC<PerformanceOverTimeProps> = ({
-  className,
-  ...rest
-}) => {
+const PerformanceOverTime = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const performance = {
     thisWeek: {
@@ -82,3 +72,10 @@ PerformanceOverTime.propTypes = {
 };
 
 export default PerformanceOverTime;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+  chart: {
+    height: '100%',
+  },
+}));

@@ -3,7 +3,7 @@ import type { HTMLProps, ReactNode } from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import track from '../utils/analytics';
+import track from 'utils/analytics';
 
 interface PageProps extends HTMLProps<HTMLDivElement> {
   children?: ReactNode;

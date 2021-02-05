@@ -1,50 +1,18 @@
 import React from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import clsx from 'clsx';
 import { Typography, makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { ProjectActivity } from '../../../../../types/project';
+import type { Theme } from 'themes/dashboard-theme';
+import type { ProjectActivity } from 'types/project';
 import Activity from './Activity';
 
-interface ActivitiesProps {
+type Props = {
   className?: string;
   activities: ProjectActivity[];
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  title: {
-    marginBottom: theme.spacing(3),
-  },
-  group: {
-    '& + &': {
-      marginTop: theme.spacing(4),
-    },
-  },
-  activity: {
-    position: 'relative',
-    '& + &': {
-      marginTop: theme.spacing(3),
-      '&:before': {
-        position: 'absolute',
-        content: '" "',
-        height: 20,
-        width: 1,
-        top: -20,
-        left: 20,
-        backgroundColor: theme.palette.divider,
-      },
-    },
-  },
-}));
-
-const Activities: FC<ActivitiesProps> = ({
-  activities,
-  className,
-  ...rest
-}) => {
+const Activities = ({ activities, className, ...rest }: Props) => {
   const classes = useStyles();
   const todayItems = [];
   const lastWeekItems = [];
@@ -94,3 +62,30 @@ Activities.propTypes = {
 };
 
 export default Activities;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  title: {
+    marginBottom: theme.spacing(3),
+  },
+  group: {
+    '& + &': {
+      marginTop: theme.spacing(4),
+    },
+  },
+  activity: {
+    position: 'relative',
+    '& + &': {
+      marginTop: theme.spacing(3),
+      '&:before': {
+        position: 'absolute',
+        content: '" "',
+        height: 20,
+        width: 1,
+        top: -20,
+        left: 20,
+        backgroundColor: theme.palette.divider,
+      },
+    },
+  },
+}));

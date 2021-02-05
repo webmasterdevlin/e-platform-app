@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import { educationValue } from './schema/education.value';
 import { educationYupObject } from './schema/education.validation';
 import EducationForm from './components/education-form';
-import { RootState } from '../../../../../../../../store';
-import { ProfileModel } from '../../../../../../../../auth/auth.model';
+import { RootState } from 'store';
+import { ProfileModel } from 'auth/auth.model';
 import { postEducationAxios } from './education.service';
 
 type Props = {

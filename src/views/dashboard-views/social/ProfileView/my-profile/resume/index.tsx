@@ -5,7 +5,6 @@ import {
   Box,
   Button,
   CircularProgress,
-  makeStyles,
   Paper,
   Step,
   StepButton,
@@ -14,7 +13,6 @@ import {
   useMediaQuery,
 } from '@material-ui/core';
 import { useStyles } from './mui.style';
-import { Theme } from '../../../../../../themes/dashboard-theme';
 
 /*
   TODO:

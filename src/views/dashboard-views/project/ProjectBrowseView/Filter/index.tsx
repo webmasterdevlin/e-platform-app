@@ -13,12 +13,8 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 import MultiSelect from './MultiSelect';
-
-interface FilterProps {
-  className?: string;
-}
 
 const selectOptions = [
   {
@@ -46,17 +42,11 @@ const selectOptions = [
   },
 ];
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  searchInput: {
-    marginLeft: theme.spacing(2),
-  },
-  chip: {
-    margin: theme.spacing(1),
-  },
-}));
+type Props = {
+  className?: string;
+};
 
-const Filter: FC<FilterProps> = ({ className, ...rest }) => {
+const Filter = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const [inputValue, setInputValue] = useState<string>('');
   const [chips, setChips] = useState<string[]>([
@@ -143,3 +133,13 @@ Filter.propTypes = {
 };
 
 export default Filter;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  searchInput: {
+    marginLeft: theme.spacing(2),
+  },
+  chip: {
+    margin: theme.spacing(1),
+  },
+}));

@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -15,37 +14,16 @@ import {
 import { ToggleButtonGroup, ToggleButton, Pagination } from '@material-ui/lab';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import type { Project } from '../../../../types/project';
-import ProjectCard from '../../../../components/ProjectCard';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Project } from 'types/project';
+import ProjectCard from 'components/ProjectCard';
 
-interface ResultsProps {
+type Props = {
   className?: string;
   projects: Project[];
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  title: {
-    position: 'relative',
-    '&:after': {
-      position: 'absolute',
-      bottom: -8,
-      left: 0,
-      content: '" "',
-      height: 3,
-      width: 48,
-      backgroundColor: theme.palette.primary.main,
-    },
-  },
-  sortButton: {
-    textTransform: 'none',
-    letterSpacing: 0,
-    marginRight: theme.spacing(2),
-  },
-}));
-
-const Results: FC<ResultsProps> = ({ className, projects, ...rest }) => {
+const Results = ({ className, projects, ...rest }: Props) => {
   const classes = useStyles();
   const sortRef = useRef<HTMLButtonElement | null>(null);
   const [openSort, setOpenSort] = useState<boolean>(false);
@@ -142,3 +120,24 @@ Results.propTypes = {
 };
 
 export default Results;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  title: {
+    position: 'relative',
+    '&:after': {
+      position: 'absolute',
+      bottom: -8,
+      left: 0,
+      content: '" "',
+      height: 3,
+      width: 48,
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
+  sortButton: {
+    textTransform: 'none',
+    letterSpacing: 0,
+    marginRight: theme.spacing(2),
+  },
+}));

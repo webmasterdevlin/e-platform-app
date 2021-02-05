@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import type { FC } from 'react';
 import { makeStyles } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import { useDispatch } from '../../../../store';
-import Page from '../../../../components/Page';
-import { getThreads } from '../../../../slices/chat';
+import type { Theme } from 'themes/dashboard-theme';
+import { useDispatch } from 'store';
+import Page from 'components/Page';
+import { getThreads } from 'slices/chat';
 import Settings from './Settings';
 import RecentThreads from './RecentThreads';
 import Thread from './Thread';

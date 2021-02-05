@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import moment from 'moment';
@@ -18,34 +17,16 @@ import {
   AlertTriangle as AlertIcon,
   Send as SendIcon,
 } from 'react-feather';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { Project } from '../../../../../types/project';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Project } from 'types/project';
 import ApplyModal from './ApplyModal';
 
-interface HeaderProps {
+type Props = {
   className?: string;
   project: Project;
-}
+};
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  badge: {
-    display: 'flex',
-    alignItems: 'center',
-    margin: theme.spacing(2),
-  },
-  badgeIcon: {
-    marginRight: theme.spacing(1),
-  },
-  action: {
-    marginBottom: theme.spacing(1),
-    '& + &': {
-      marginLeft: theme.spacing(1),
-    },
-  },
-}));
-
-const Header: FC<HeaderProps> = ({ className, project, ...rest }) => {
+const Header = ({ className, project, ...rest }: Props) => {
   const classes = useStyles();
   const [isApplyModalOpen, setApplyModalOpen] = useState<boolean>(false);
 
@@ -136,3 +117,21 @@ Header.propTypes = {
 };
 
 export default Header;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  badge: {
+    display: 'flex',
+    alignItems: 'center',
+    margin: theme.spacing(2),
+  },
+  badgeIcon: {
+    marginRight: theme.spacing(1),
+  },
+  action: {
+    marginBottom: theme.spacing(1),
+    '& + &': {
+      marginLeft: theme.spacing(1),
+    },
+  },
+}));

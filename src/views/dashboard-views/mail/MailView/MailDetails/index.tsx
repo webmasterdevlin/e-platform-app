@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import type { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import Markdown from 'react-markdown/with-html';
@@ -18,39 +17,14 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import ReplyIcon from '@material-ui/icons/ReplyOutlined';
 import ReplyAllIcon from '@material-ui/icons/ReplyAllOutlined';
 import DeleteIcon from '@material-ui/icons/DeleteOutlined';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import getInitials from '../../../../../utils/getInitials';
-import { useDispatch, useSelector } from '../../../../../store';
-import { getMail } from '../../../../../slices/mail';
+import type { Theme } from 'themes/dashboard-theme';
+import getInitials from 'utils/getInitials';
+import { useDispatch, useSelector } from 'store';
+import { getMail } from 'slices/mail';
 import Toolbar from './Toolbar';
 import MailReply from './MailReply';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    display: 'flex',
-    height: '100%',
-    flexDirection: 'column',
-    overflowY: 'auto',
-  },
-  avatar: {
-    height: 56,
-    width: 56,
-  },
-  date: {
-    whiteSpace: 'nowrap',
-  },
-  message: {
-    color: theme.palette.text.secondary,
-    '& > p': {
-      ...theme.typography.body1,
-      marginBottom: theme.spacing(2),
-    },
-  },
-}));
-
-const MailDetails: FC = () => {
+const MailDetails = () => {
   const classes = useStyles();
   const { mailId } = useParams<any>();
   const dispatch = useDispatch();
@@ -138,3 +112,28 @@ const MailDetails: FC = () => {
 };
 
 export default MailDetails;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    display: 'flex',
+    height: '100%',
+    flexDirection: 'column',
+    overflowY: 'auto',
+  },
+  avatar: {
+    height: 56,
+    width: 56,
+  },
+  date: {
+    whiteSpace: 'nowrap',
+  },
+  message: {
+    color: theme.palette.text.secondary,
+    '& > p': {
+      ...theme.typography.body1,
+      marginBottom: theme.spacing(2),
+    },
+  },
+}));

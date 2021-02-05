@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
-import type { FC } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Box, Button, FormHelperText, makeStyles } from '@material-ui/core';
-import useAuth from '../../../../hooks/useAuth';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import useAuth from 'hooks/useAuth';
+import useIsMountedRef from 'hooks/useIsMountedRef';
 
-interface Auth0Register {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const Auth0Register: FC<Auth0Register> = ({ className, ...rest }) => {
+const Auth0Register = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const { loginWithPopup } = useAuth() as any;
   const [error, setError] = useState<string | null>(null);
@@ -52,3 +47,7 @@ Auth0Register.propTypes = {
 };
 
 export default Auth0Register;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

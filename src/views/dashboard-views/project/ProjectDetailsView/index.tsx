@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import type { FC, ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 import {
   Box,
   Container,
@@ -8,27 +8,18 @@ import {
   Tab,
   makeStyles,
 } from '@material-ui/core';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import Page from '../../../../components/Page';
-import type { Project } from '../../../../types/project';
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import Page from 'components/Page';
+import type { Project } from 'types/project';
 import Activities from './Activities';
 import Applicants from './Applicants';
 import Header from './Header';
 import Overview from './Overview';
 import Reviews from './Reviews';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-  },
-}));
-
-const ProjectDetailsView: FC = () => {
+const ProjectDetailsView = () => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [currentTab, setCurrentTab] = useState<string>('overview');
@@ -101,3 +92,12 @@ const ProjectDetailsView: FC = () => {
 };
 
 export default ProjectDetailsView;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+  },
+}));

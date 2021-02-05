@@ -4,7 +4,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
 import Swiper from 'swiper';
 
-import { Image } from '../../../components/atoms';
+import { Image } from 'components/atoms';
 
 type Props = {
   className?: string;

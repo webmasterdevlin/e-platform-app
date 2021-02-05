@@ -22,14 +22,10 @@ import {
   SvgIcon,
 } from '@material-ui/core';
 import { Search as SearchIcon, MoreVertical as MoreIcon } from 'react-feather';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import type { Connection } from '../../../../types/social';
-
-interface ConnectionsProps {
-  className?: string;
-}
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import type { Connection } from 'types/social';
 
 const connectStatusMap = {
   connected: 'Connected',
@@ -37,18 +33,11 @@ const connectStatusMap = {
   pending: 'Pending',
 };
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  searchInput: {
-    marginLeft: theme.spacing(2),
-  },
-  avatar: {
-    height: 60,
-    width: 60,
-  },
-}));
+type Props = {
+  className?: string;
+};
 
-const Connections: FC<ConnectionsProps> = ({ className, ...rest }) => {
+const Connections = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const { enqueueSnackbar } = useSnackbar();
@@ -176,3 +165,14 @@ Connections.propTypes = {
 };
 
 export default Connections;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  searchInput: {
+    marginLeft: theme.spacing(2),
+  },
+  avatar: {
+    height: 60,
+    width: 60,
+  },
+}));

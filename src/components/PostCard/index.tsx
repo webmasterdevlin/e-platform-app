@@ -19,7 +19,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import type { Post } from '../../types/social';
+import type { Post } from 'types/social';
 import Reactions from './Reactions';
 import Comment from './Comment';
 import CommentAdd from './CommentAdd';

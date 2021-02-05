@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -22,12 +21,8 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import QuillEditor from '../../../../components/QuillEditor';
-import FilesDropzone from '../../../../components/FilesDropzone';
-
-interface ProductCreateFormProps {
-  className?: string;
-}
+import QuillEditor from 'components/QuillEditor';
+import FilesDropzone from 'components/FilesDropzone';
 
 const categories = [
   {
@@ -44,19 +39,11 @@ const categories = [
   },
 ];
 
-const useStyles = makeStyles(() => ({
-  root: {},
-  editor: {
-    '& .ql-editor': {
-      height: 400,
-    },
-  },
-}));
+type Props = {
+  className?: string;
+};
 
-const ProductCreateForm: FC<ProductCreateFormProps> = ({
-  className,
-  ...rest
-}) => {
+const ProductCreateForm = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
@@ -313,3 +300,12 @@ ProductCreateForm.propTypes = {
 };
 
 export default ProductCreateForm;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+  editor: {
+    '& .ql-editor': {
+      height: 400,
+    },
+  },
+}));

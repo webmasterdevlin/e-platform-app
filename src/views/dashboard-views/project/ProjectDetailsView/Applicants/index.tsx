@@ -1,20 +1,15 @@
 import React from 'react';
-import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Grid, makeStyles } from '@material-ui/core';
 import ApplicantCard from './ApplicantCard';
 
-interface ApplicantsProps {
+type Props = {
   className?: string;
   applicants: any[];
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {}
-}));
-
-const Applicants: FC<ApplicantsProps> = ({ className, applicants, ...rest }) => {
+const Applicants = ({ className, applicants, ...rest }: Props) => {
   const classes = useStyles();
 
   return (
@@ -24,13 +19,8 @@ const Applicants: FC<ApplicantsProps> = ({ className, applicants, ...rest }) => 
       spacing={3}
       {...rest}
     >
-      {applicants.map((applicant) => (
-        <Grid
-          item
-          key={applicant.id}
-          lg={4}
-          xs={12}
-        >
+      {applicants.map(applicant => (
+        <Grid item key={applicant.id} lg={4} xs={12}>
           <ApplicantCard applicant={applicant} />
         </Grid>
       ))}
@@ -40,7 +30,11 @@ const Applicants: FC<ApplicantsProps> = ({ className, applicants, ...rest }) => 
 
 Applicants.propTypes = {
   className: PropTypes.string,
-  applicants: PropTypes.array.isRequired
+  applicants: PropTypes.array.isRequired,
 };
 
 export default Applicants;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

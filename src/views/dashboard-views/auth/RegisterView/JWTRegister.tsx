@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import clsx from 'clsx';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
@@ -14,18 +13,14 @@ import {
   Link,
   makeStyles,
 } from '@material-ui/core';
-import useAuth from '../../../../hooks/useAuth';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
+import useAuth from 'hooks/useAuth';
+import useIsMountedRef from 'hooks/useIsMountedRef';
 
-interface JWTRegisterProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles(() => ({
-  root: {},
-}));
-
-const JWTRegister: FC<JWTRegisterProps> = ({ className, ...rest }) => {
+const JWTRegister = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const { register } = useAuth() as any;
   const isMountedRef = useIsMountedRef();
@@ -161,3 +156,7 @@ JWTRegister.propTypes = {
 };
 
 export default JWTRegister;
+
+const useStyles = makeStyles(() => ({
+  root: {},
+}));

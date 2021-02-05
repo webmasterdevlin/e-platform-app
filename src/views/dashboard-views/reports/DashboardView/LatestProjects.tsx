@@ -23,16 +23,12 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import type { Theme } from '../../../../themes/dashboard-theme';
-import axios from '../../../../utils/axios';
-import getInitials from '../../../../utils/getInitials';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import GenericMoreButton from '../../../../components/GenericMoreButton';
-import type { Project } from '../../../../types/reports';
-
-interface LatestProjectsProps {
-  className?: string;
-}
+import type { Theme } from 'themes/dashboard-theme';
+import axios from 'utils/axios';
+import getInitials from 'utils/getInitials';
+import useIsMountedRef from 'hooks/useIsMountedRef';
+import GenericMoreButton from 'components/GenericMoreButton';
+import type { Project } from 'types/reports';
 
 const technologyMap: Record<string, string> = {
   'html-css': '/static/images/technologies/html.svg',
@@ -43,17 +39,11 @@ const technologyMap: Record<string, string> = {
   sketch: '/static/images/technologies/sketch.svg',
 };
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
-  technology: {
-    height: 30,
-    '& + &': {
-      marginLeft: theme.spacing(1),
-    },
-  },
-}));
+type Props = {
+  className?: string;
+};
 
-const LatestProjects: FC<LatestProjectsProps> = ({ className, ...rest }) => {
+const LatestProjects = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [projects, setProjects] = useState<Project[]>([]);
@@ -153,3 +143,13 @@ LatestProjects.propTypes = {
 };
 
 export default LatestProjects;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {},
+  technology: {
+    height: 30,
+    '& + &': {
+      marginLeft: theme.spacing(1),
+    },
+  },
+}));

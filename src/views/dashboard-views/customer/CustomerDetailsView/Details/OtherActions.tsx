@@ -15,7 +15,7 @@ import {
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import DeleteIcon from '@material-ui/icons/DeleteOutline';
-import type { Theme } from '../../../../../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
 interface OtherActionsProps {
   className?: string;

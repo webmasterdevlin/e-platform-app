@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { AppThunk } from '../store';
-import axios from '../utils/axios';
-import type { Notification } from '../types/notification';
+import type { AppThunk } from 'store';
+import axios from 'utils/axios';
+import type { Notification } from 'types/notification';
 
 interface NotificationsState {
   notifications: Notification[];

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Editor, EditorProps } from 'react-draft-wysiwyg';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
-import type { Theme } from '../themes/dashboard-theme';
+import type { Theme } from 'themes/dashboard-theme';
 
 interface DraftEditorProps extends EditorProps {
   className?: string;

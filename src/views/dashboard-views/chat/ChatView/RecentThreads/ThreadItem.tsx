@@ -12,8 +12,8 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { AvatarGroup } from '@material-ui/lab';
-import type { Theme } from '../../../../../themes/dashboard-theme';
-import type { Thread } from '../../../../../types/chat';
+import type { Theme } from 'themes/dashboard-theme';
+import type { Thread } from 'types/chat';
 
 interface ThreadItemProps {
   active?: boolean;

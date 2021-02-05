@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 import { ExperienceModel } from './schema/experience.value';
 import { experienceYupObject } from './schema/experience.validation';
 import ExperienceForm from './components/experience-form';
-import { RootState } from '../../../../../../../../store';
-import { ProfileModel } from '../../../../../../../../auth/auth.model';
+import { RootState } from 'store';
+import { ProfileModel } from 'auth/auth.model';
 import {
   deleteExperienceAxios,
   putExperienceAxios,
