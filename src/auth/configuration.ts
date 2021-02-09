@@ -9,7 +9,7 @@ const configuration = {
         response_type: 'token id_token',
         post_logout_redirect_uri: 'http://localhost:3000/',
         scope:
-          'openid profile https://elearntest.onmicrosoft.com/elearn-api/user_impersonation',
+          'openid profile https://elearntest.onmicrosoft.com/elearn-api/api.all',
         authority:
           'https://elearntest.b2clogin.com/elearntest.onmicrosoft.com/b2c_1_test_signup_signin/v2.0',
         silent_redirect_uri:
@@ -27,7 +27,7 @@ const configuration = {
         response_type: 'token id_token',
         post_logout_redirect_uri: 'http://localhost:3000/',
         scope:
-          'openid profile https://elearntest.onmicrosoft.com/elearn-api/user_impersonation',
+          'openid profile https://elearntest.onmicrosoft.com/elearn-api/api.all',
         authority:
           'https://elearntest.b2clogin.com/elearntest.onmicrosoft.com/b2c_1_test_signup_signin/v2.0',
         silent_redirect_uri:

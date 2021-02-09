@@ -1,12 +1,13 @@
 import { ExperienceModel } from './schema/experience.value';
-import api from '../../../../../../../../utils/axios2';
+import api from 'utils/axios2';
 
 export async function getExperienceAxios() {
   return await api.get<ExperienceModel[]>('Profile/experiences');
 }
 
 export async function deleteExperienceAxios(id: string) {
-  return await api.put<void>('Profile/experiences/' + id);
+  console.log(`Profile/experiences/${id}`);
+  return await api.delete<void>(`Profile/experiences/?id=${id}`);
 }
 
 export async function postExperienceAxios(value: ExperienceModel) {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';

@@ -8,9 +8,17 @@ import { Box, Typography } from '@material-ui/core';
 
 type Props = {
   experiences: ExperienceModel[];
+  fetchExperience: () => Promise<void>;
+  removeExperience: (id: string) => void;
+  updateExperience: (experience: ExperienceModel) => void;
 };
 
-const ExperienceFormsContainer = ({ experiences }: Props) => {
+const ExperienceFormsContainer = ({
+  experiences,
+  fetchExperience,
+  removeExperience,
+  updateExperience,
+}: Props) => {
   const resetIdTracking = '0';
   const [isEditing, setIsEditing] = useState(false);
   const [showNewExperience, setShowNewExperience] = useState(false);
@@ -30,6 +38,7 @@ const ExperienceFormsContainer = ({ experiences }: Props) => {
           setShowNewExperience={() => {
             setShowNewExperience(!showNewExperience);
           }}
+          fetchExperience={fetchExperience}
         />
       ) : (
         <>
@@ -44,6 +53,8 @@ const ExperienceFormsContainer = ({ experiences }: Props) => {
                 <EditExperience
                   experience={experience}
                   setIsEditing={() => setIsEditing(!isEditing)}
+                  removeExperience={removeExperience}
+                  updateExperience={updateExperience}
                   setShowEditingExperience={() =>
                     setShowEditingExperience(resetIdTracking)
                   }

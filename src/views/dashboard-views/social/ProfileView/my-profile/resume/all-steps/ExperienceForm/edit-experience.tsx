@@ -18,12 +18,16 @@ type Props = {
   setIsEditing: () => void;
   setShowEditingExperience: () => void;
   experience: ExperienceModel;
+  removeExperience: (id: string) => void;
+  updateExperience: (experience: ExperienceModel) => void;
 };
 
 const EditExperience = ({
   experience,
   setIsEditing,
   setShowEditingExperience,
+  removeExperience,
+  updateExperience,
 }: Props) => {
   const [loading, setLoading] = useState(false);
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
@@ -33,6 +37,24 @@ const EditExperience = ({
     const profile: ProfileModel = user?.profile;
     setUserId(profile?.oid);
   }, []);
+
+  const handleDelete = async () => {
+    setLoading(true);
+    try {
+      await deleteExperienceAxios(experience.id);
+      setIsEditing();
+      setShowEditingExperience();
+      removeExperience(experience.id);
+    } catch (e) {
+      alert(`Something happened: ${e.message}`);
+    }
+    setLoading(false);
+  };
+
+  const handleCancel = () => {
+    setIsEditing();
+    setShowEditingExperience();
+  };
 
   return (
     <Formik
@@ -44,6 +66,7 @@ const EditExperience = ({
           await putExperienceAxios(values);
           setShowEditingExperience();
           actions.resetForm();
+          updateExperience(values);
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
@@ -69,17 +92,7 @@ const EditExperience = ({
             </Box>
             <Box>
               <Button
-                onClick={async () => {
-                  setLoading(true);
-                  try {
-                    await deleteExperienceAxios(experience.id);
-                    setIsEditing();
-                    setShowEditingExperience();
-                  } catch (e) {
-                    alert(`Something happened: ${e.message}`);
-                  }
-                  setLoading(false);
-                }}
+                onClick={handleDelete}
                 color={'inherit'}
                 variant="text"
                 startIcon={<DeleteIcon />}
@@ -93,14 +106,7 @@ const EditExperience = ({
             <Button type={'submit'} variant={'contained'} color={'primary'}>
               Save
             </Button>
-            <Button
-              onClick={() => {
-                setIsEditing();
-                setShowEditingExperience();
-              }}
-              variant={'text'}
-              color={'primary'}
-            >
+            <Button onClick={handleCancel} variant={'text'} color={'primary'}>
               Cancel
             </Button>
           </div>

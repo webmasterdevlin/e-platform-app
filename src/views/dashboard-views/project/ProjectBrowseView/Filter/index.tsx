@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { FC, ChangeEvent, KeyboardEvent } from 'react';
+import type { ChangeEvent, KeyboardEvent } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {

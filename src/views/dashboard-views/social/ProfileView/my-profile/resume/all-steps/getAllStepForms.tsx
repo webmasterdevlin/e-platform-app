@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PersonalDetailsFormsContainer from './PersonalDetailsForm/personal-details-forms-container';
 import ExperienceFormsContainer from './ExperienceForm/experience-forms-container';
 import EducationFormsContainer from './EducationForm/education-forms-container';
 import CertificationFormsContainer from './CertificationsForm/certification-forms-container';
@@ -19,19 +18,15 @@ import {
   CertificationModel,
   certificationValue,
 } from './CertificationsForm/schema/certification.value';
-import {
-  PersonalDetailsModel,
-  personalDetailsValue,
-} from './PersonalDetailsForm/schema/personal-details.value';
-import {
-  PersonalSummaryModel,
-  personalSummaryValue,
-} from './PesonalSummaryForm/schema/personal-summary.value';
 import { SkillsModel, skillsValues } from './SkillsForm/schema/skills.value';
 import { getCertificatesAxios } from './CertificationsForm/certifications.service';
-import { getPersonalDetailsAxios } from './PersonalDetailsForm/personal-details.service';
-import { getPersonalSummaryAxios } from './PesonalSummaryForm/personal-summary.service';
 import { getSkillsAxios } from './SkillsForm/skills.service';
+import MyProfileForm from '../../components/my-profile-form';
+import {
+  myProfileEmptyValue,
+  MyProfileModel,
+} from '../../schema/my-profile-empty.value';
+import { getMyProfileAxios } from '../../my-profile.service';
 
 const GetAllStepForms = ({ step }) => {
   const [qualifications, setQualifications] = useState<EducationModel[]>([
@@ -43,22 +38,25 @@ const GetAllStepForms = ({ step }) => {
   const [certifications, setCertifications] = useState<CertificationModel[]>([
     certificationValue,
   ]);
-  const [personalDetails, setPersonalDetails] = useState<PersonalDetailsModel>(
-    personalDetailsValue,
-  );
-  const [personalSummary, setPersonalSummary] = useState<PersonalSummaryModel>(
-    personalSummaryValue,
-  );
+
   const [skills, setSkills] = useState<SkillsModel>(skillsValues);
 
+  const [myProfile, setMyProfile] = useState<MyProfileModel>(
+    myProfileEmptyValue,
+  );
+
   useEffect(() => {
+    fetchMyProfile().then();
     fetchEducation().then();
     fetchExperience().then();
     fetchCertifications().then();
-    fetchPersonalDetails().then();
-    fetchPersonalSummary().then();
     fetchSkills().then();
   }, []);
+
+  const fetchMyProfile = async () => {
+    const { data } = await getMyProfileAxios();
+    setMyProfile(data);
+  };
 
   const fetchEducation = async () => {
     const { data } = await getEducationsAxios();
@@ -72,30 +70,38 @@ const GetAllStepForms = ({ step }) => {
     const { data } = await getCertificatesAxios();
     setCertifications(data);
   };
-  const fetchPersonalDetails = async () => {
-    const { data } = await getPersonalDetailsAxios();
-    setPersonalDetails(data);
-  };
-  const fetchPersonalSummary = async () => {
-    const { data } = await getPersonalSummaryAxios();
-    setPersonalSummary(data);
-  };
+
   const fetchSkills = async () => {
     const { data } = await getSkillsAxios();
     setSkills(data);
+  };
+
+  const removeExperience = (id: string) => {
+    setExperiences([...experiences.filter(e => e.id != id)]);
+  };
+
+  const updateExperience = (experience: ExperienceModel) => {
+    const index = experiences.findIndex(e => e.id == experience.id);
+    experiences[index] = experience;
+    setExperiences([...experiences]);
   };
 
   switch (step) {
     case 0:
       return (
         <>
-          <PersonalDetailsFormsContainer personalDetails={personalDetails} />
+          <MyProfileForm myProfile={myProfile} />
         </>
       );
     case 1:
       return (
         <>
-          <ExperienceFormsContainer experiences={experiences} />
+          <ExperienceFormsContainer
+            experiences={experiences}
+            fetchExperience={fetchExperience}
+            removeExperience={removeExperience}
+            updateExperience={updateExperience}
+          />
         </>
       );
     case 2:
@@ -119,7 +125,7 @@ const GetAllStepForms = ({ step }) => {
     case 5:
       return (
         <>
-          <PersonalSummaryFormsContainer personalSummary={personalSummary} />
+          <PersonalSummaryFormsContainer myProfile={myProfile} />
         </>
       );
     default:

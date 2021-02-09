@@ -1,42 +1,16 @@
 import React from 'react';
-import type { FC, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
 import TopBar from './TopBar';
 import Page from 'components/Page';
 import Footer from './Footer';
 
-interface MainLayoutProps {
+type Props = {
   children?: ReactNode;
-}
+};
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.background.default,
-    display: 'flex',
-    height: '100%',
-    overflow: 'hidden',
-    width: '100%',
-  },
-  wrapper: {
-    display: 'flex',
-    flex: '1 1 auto',
-    overflow: 'hidden',
-    paddingTop: 64,
-  },
-  contentContainer: {
-    display: 'flex',
-    flex: '1 1 auto',
-    overflow: 'hidden',
-  },
-  content: {
-    flex: '1 1 auto',
-    height: '100%',
-    overflow: 'auto',
-  },
-}));
-
-const MainLayout: FC<MainLayoutProps> = ({ children }) => {
+const MainLayout = ({ children }: Props) => {
   const classes = useStyles();
 
   return (
@@ -63,3 +37,29 @@ MainLayout.propTypes = {
 };
 
 export default MainLayout;
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: theme.palette.background.default,
+    display: 'flex',
+    height: '100%',
+    overflow: 'hidden',
+    width: '100%',
+  },
+  wrapper: {
+    display: 'flex',
+    flex: '1 1 auto',
+    overflow: 'hidden',
+    paddingTop: 64,
+  },
+  contentContainer: {
+    display: 'flex',
+    flex: '1 1 auto',
+    overflow: 'hidden',
+  },
+  content: {
+    flex: '1 1 auto',
+    height: '100%',
+    overflow: 'auto',
+  },
+}));

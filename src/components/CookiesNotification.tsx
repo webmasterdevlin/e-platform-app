@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import type { FC } from 'react';
 import Cookies from 'js-cookie';
 import {
   Box,
@@ -11,26 +10,7 @@ import {
 } from '@material-ui/core';
 import type { Theme } from 'themes/dashboard-theme';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-    maxWidth: 600,
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    margin: theme.spacing(3),
-    padding: theme.spacing(3),
-    outline: 'none',
-    zIndex: 2000,
-  },
-  action: {
-    backgroundColor: theme.palette.common.white,
-    color: theme.palette.common.black,
-  },
-}));
-
-const CookiesNotification: FC = () => {
+const CookiesNotification = () => {
   const classes = useStyles();
   const [open, setOpen] = useState<boolean>(false);
 
@@ -83,3 +63,22 @@ const CookiesNotification: FC = () => {
 };
 
 export default CookiesNotification;
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+    maxWidth: 600,
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    margin: theme.spacing(3),
+    padding: theme.spacing(3),
+    outline: 'none',
+    zIndex: 2000,
+  },
+  action: {
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.common.black,
+  },
+}));

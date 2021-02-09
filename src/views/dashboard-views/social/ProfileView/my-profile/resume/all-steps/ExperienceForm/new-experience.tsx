@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 import { Box, Button, LinearProgress, Typography } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 import { experienceValue } from './schema/experience.value';
 import { experienceYupObject } from './schema/experience.validation';
 import ExperienceForm from './components/experience-form';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../../../../store';
 import { ProfileModel } from '../../../../../../../../auth/auth.model';
 import { postExperienceAxios } from './experience.service';
@@ -13,8 +13,13 @@ import { postExperienceAxios } from './experience.service';
 type Props = {
   setShowNewExperience: (boolean) => void;
   showCancelButton: boolean;
+  fetchExperience: () => Promise<void>;
 };
-const NewExperience = ({ setShowNewExperience, showCancelButton }: Props) => {
+const NewExperience = ({
+  setShowNewExperience,
+  showCancelButton,
+  fetchExperience,
+}: Props) => {
   const [loading, setLoading] = useState(false);
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
@@ -35,6 +40,7 @@ const NewExperience = ({ setShowNewExperience, showCancelButton }: Props) => {
           await postExperienceAxios(request);
           actions.resetForm();
           setShowNewExperience(false);
+          await fetchExperience();
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }

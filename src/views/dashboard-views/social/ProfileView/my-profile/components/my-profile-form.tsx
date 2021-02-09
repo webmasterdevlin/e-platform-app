@@ -24,43 +24,24 @@ import CountrySelect from 'components/eplatform/components/country-select';
 import { RootState } from 'store';
 import { ProfileModel } from 'auth/auth.model';
 
-const MyProfileForm = () => {
+const MyProfileForm = ({ myProfile }) => {
   const classes = useStyles();
 
   const [loading, setLoading] = useState(false);
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
 
-  const [myProfile, setMyProfile] = useState<MyProfileModel>(
-    myProfileEmptyValue,
-  );
-
   const [isNew, setIsNew] = useState(true);
 
   useEffect(() => {
-    fetchMyProfile().then();
     const profile: ProfileModel = user?.profile;
     setUserId(profile?.oid);
   }, []);
 
-  const fetchMyProfile = async (): Promise<void> => {
-    setLoading(true);
-    try {
-      const { data } = await getMyProfileAxios();
-      if (!data) return;
-
-      setMyProfile(data);
-      setIsNew(false);
-    } catch (e) {
-      alert(`Something happened: ${e.message}`);
-    }
-    setLoading(false);
-  };
-
   return (
     <Formik
       enableReinitialize={true}
-      initialValues={isNew ? myProfileEmptyValue : myProfile}
+      initialValues={myProfile}
       validationSchema={myProfileYupObject}
       onSubmit={async (values, actions) => {
         setLoading(true);
@@ -82,7 +63,7 @@ const MyProfileForm = () => {
               justifyContent={'space-between'}
             >
               <Box mb={2}>
-                <Typography variant={'h4'}>Profile Details</Typography>
+                <Typography variant={'h3'}>Profile Details</Typography>
               </Box>
               <div
                 style={{
@@ -147,10 +128,10 @@ const MyProfileForm = () => {
                     placeholder={'90263785'}
                   />
                   <InputFormik name={'email'} label={'Email'} />
-                  <TextAreaFormik
-                    name={'profileSummary'}
-                    label={'Profile Summary'}
-                  />
+                  {/*<TextAreaFormik*/}
+                  {/*  name={'profileSummary'}*/}
+                  {/*  label={'Profile Summary'}*/}
+                  {/*/>*/}
                 </Box>
                 <Box mb={2}>
                   <Box mb={4}>

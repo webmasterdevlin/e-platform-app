@@ -2,29 +2,30 @@ import React, { useState } from 'react';
 import { PersonalSummaryModel } from './schema/personal-summary.value';
 import PersonalSummaryForm from './components/personal-summary-form';
 import PersonalSummary from './components/personal-summary';
+import { MyProfileModel } from '../../../schema/my-profile-empty.value';
 
 type Props = {
-  personalSummary: PersonalSummaryModel;
+  myProfile: MyProfileModel;
 };
 
-const PersonalSummaryFormsContainer = ({ personalSummary }: Props) => {
+const PersonalSummaryFormsContainer = ({ myProfile }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  personalSummary = null;
+  // myProfile = null;
 
   return (
     <>
-      {isEditing || !personalSummary ? (
+      {isEditing || !myProfile ? (
         <PersonalSummaryForm
-          personalSummary={personalSummary}
+          myProfile={myProfile}
           setIsEditing={() => setIsEditing(!isEditing)}
         />
       ) : (
         <>
-          {personalSummary && (
+          {myProfile && (
             <PersonalSummary
               setIsEditing={() => setIsEditing(!isEditing)}
-              personalSummary={personalSummary}
+              myProfile={myProfile}
             />
           )}
         </>

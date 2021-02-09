@@ -1,41 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
-import {
-  PersonalSummaryModel,
-  personalSummaryValue,
-} from '../schema/personal-summary.value';
 import { Box, Button, LinearProgress, Typography } from '@material-ui/core';
-import { personalSummaryYupObject } from '../schema/personal-summary.validation';
 import TextAreaFormik from 'components/eplatform/components/text-area-formik';
+import { putMyProfileAxios } from '../../../../my-profile.service';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
+import {
+  myProfileEmptyValue,
+  MyProfileModel,
+} from '../../../../schema/my-profile-empty.value';
+import { ProfileModel } from 'auth/auth.model';
 
 type Props = {
-  personalSummary: PersonalSummaryModel;
+  myProfile: MyProfileModel;
   setIsEditing: () => void;
 };
 
-const PersonalSummaryForm = ({ setIsEditing, personalSummary }: Props) => {
+const PersonalSummaryForm = ({ setIsEditing, myProfile }: Props) => {
+  const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
+  const [userId, setUserId] = useState('');
+
   const [loading, setLoading] = useState(false);
-  const [isNew, setIsNew] = useState(true);
 
   useEffect(() => {
-    if (personalSummary?.summary) setIsNew(false);
+    const profile: ProfileModel = user?.profile;
+    setUserId(profile?.oid);
   }, []);
 
   return (
     <Formik
       enableReinitialize={true}
-      initialValues={isNew ? personalSummaryValue : personalSummary}
-      validationSchema={personalSummaryYupObject}
+      initialValues={myProfile}
+      validationSchema={null}
       onSubmit={async (values, actions) => {
         setLoading(true);
-        alert(isNew ? 'New' : 'Editing');
-        alert(JSON.stringify(values, null, 2));
+        const request = { ...values, id: userId };
         try {
-          if (isNew) {
-            alert('await postPersonalSummaryAxios(values)');
-          } else {
-            alert('await putPersonalSummaryAxios(values)');
-          }
+          await putMyProfileAxios(request);
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
@@ -50,9 +51,7 @@ const PersonalSummaryForm = ({ setIsEditing, personalSummary }: Props) => {
             </Box>
           )}
           <Box mb={6}>
-            <Typography variant={'h3'}>{`${
-              isNew ? 'New' : 'Edit'
-            } Personal Summary (No Endpoint)`}</Typography>
+            <Typography variant={'h3'}>Edit Personal Summary</Typography>
           </Box>
           <div>
             <section>
@@ -63,7 +62,7 @@ const PersonalSummaryForm = ({ setIsEditing, personalSummary }: Props) => {
               </Box>
             </section>
 
-            <TextAreaFormik name={'summary'} label={'Summary'} />
+            <TextAreaFormik name={'profileSummary'} label={'profileSummary'} />
 
             <Button
               style={{ marginRight: '1rem' }}
@@ -74,13 +73,13 @@ const PersonalSummaryForm = ({ setIsEditing, personalSummary }: Props) => {
               Save
             </Button>
 
-            {!isNew && (
+            {
               <Button onClick={setIsEditing} variant={'text'} color={'primary'}>
                 Cancel
               </Button>
-            )}
+            }
             <Button
-              onClick={() => formikProps.setFieldValue('summary', '')}
+              onClick={() => formikProps.setFieldValue('profileSummary', '')}
               variant={'outlined'}
               color={'primary'}
             >

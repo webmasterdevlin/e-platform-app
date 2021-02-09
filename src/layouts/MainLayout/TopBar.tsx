@@ -20,35 +20,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { ProfileModel } from 'auth/auth.model';
 
-interface TopBarProps {
+type Props = {
   className?: string;
-}
+};
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.background.default,
-  },
-  toolbar: {
-    height: 64,
-  },
-  logo: {
-    marginRight: theme.spacing(2),
-  },
-  link: {
-    fontWeight: theme.typography.fontWeightMedium,
-    '& + &': {
-      marginLeft: theme.spacing(2),
-    },
-  },
-  divider: {
-    width: 1,
-    height: 32,
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-  },
-}));
-
-const TopBar: FC<TopBarProps> = ({ className, ...rest }) => {
+const TopBar = ({ className, ...rest }: Props) => {
   const classes = useStyles();
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [name, setName] = useState('');
@@ -123,3 +99,27 @@ TopBar.propTypes = {
 };
 
 export default TopBar;
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: theme.palette.background.default,
+  },
+  toolbar: {
+    height: 64,
+  },
+  logo: {
+    marginRight: theme.spacing(2),
+  },
+  link: {
+    fontWeight: theme.typography.fontWeightMedium,
+    '& + &': {
+      marginLeft: theme.spacing(2),
+    },
+  },
+  divider: {
+    width: 1,
+    height: 32,
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+  },
+}));
