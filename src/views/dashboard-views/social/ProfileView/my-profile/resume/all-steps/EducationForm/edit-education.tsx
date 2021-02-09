@@ -12,14 +12,31 @@ type Props = {
   setIsEditing: () => void;
   setShowEditingEducation: () => void;
   education: EducationModel;
+  removeQualification: (id: string) => void;
+  updateQualification: (education: EducationModel) => void;
 };
 
 const EditEducation = ({
   education,
   setIsEditing,
   setShowEditingEducation,
+  removeQualification,
+  updateQualification,
 }: Props) => {
   const [loading, setLoading] = useState(false);
+
+  const handleDelete = async () => {
+    setLoading(true);
+    try {
+      await deleteEducationAxios(education.id);
+      setIsEditing();
+      setShowEditingEducation();
+      removeQualification(education.id);
+    } catch (e) {
+      alert(`Something happened: ${e.message}`);
+    }
+    setLoading(false);
+  };
 
   return (
     <Formik
@@ -33,6 +50,7 @@ const EditEducation = ({
           actions.resetForm();
           setShowEditingEducation();
           setIsEditing();
+          updateQualification(values);
         } catch (e) {
           alert('Something wrong happened. Please try again.');
         }
@@ -58,17 +76,7 @@ const EditEducation = ({
             </Box>
             <Box>
               <Button
-                onClick={async () => {
-                  setLoading(true);
-                  try {
-                    await deleteEducationAxios(education.id);
-                    setIsEditing();
-                    setShowEditingEducation();
-                  } catch (e) {
-                    alert(`Something happened: ${e.message}`);
-                  }
-                  setLoading(false);
-                }}
+                onClick={handleDelete}
                 color={'inherit'}
                 variant="text"
                 startIcon={<DeleteIcon />}

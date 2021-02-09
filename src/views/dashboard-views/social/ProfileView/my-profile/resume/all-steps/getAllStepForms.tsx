@@ -86,6 +86,16 @@ const GetAllStepForms = ({ step }) => {
     setExperiences([...experiences]);
   };
 
+  const removeQualification = (id: string) => {
+    setQualifications([...qualifications.filter(q => q.id != id)]);
+  };
+
+  const updateQualification = (education: EducationModel) => {
+    const index = qualifications.findIndex(q => q.id == education.id);
+    qualifications[index] = education;
+    setQualifications([...qualifications]);
+  };
+
   switch (step) {
     case 0:
       return (
@@ -107,7 +117,12 @@ const GetAllStepForms = ({ step }) => {
     case 2:
       return (
         <>
-          <EducationFormsContainer educations={qualifications} />
+          <EducationFormsContainer
+            educations={qualifications}
+            fetchEducation={fetchEducation}
+            removeQualification={removeQualification}
+            updateQualification={updateQualification}
+          />
         </>
       );
     case 3:

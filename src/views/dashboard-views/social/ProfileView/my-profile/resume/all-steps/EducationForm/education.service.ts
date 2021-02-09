@@ -6,7 +6,7 @@ export async function getEducationsAxios() {
 }
 
 export async function deleteEducationAxios(id: string) {
-  return await api.put<void>('Profile/educations/' + id);
+  return await api.delete<void>(`Profile/educations/?id=${id}`);
 }
 
 export async function postEducationAxios(value: EducationModel) {

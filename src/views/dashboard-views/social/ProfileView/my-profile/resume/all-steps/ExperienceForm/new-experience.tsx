@@ -38,7 +38,7 @@ const NewExperience = ({
         const request = { ...values, id: userId };
         try {
           await postExperienceAxios(request);
-          actions.resetForm();
+          actions.resetForm({});
           setShowNewExperience(false);
           await fetchExperience();
         } catch (e) {

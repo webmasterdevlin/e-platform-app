@@ -8,9 +8,17 @@ import EditEducation from './edit-education';
 
 type Props = {
   educations: EducationModel[];
+  fetchEducation: () => Promise<void>;
+  removeQualification: (id: string) => void;
+  updateQualification: (education: EducationModel) => void;
 };
 
-const EducationFormsContainer = ({ educations }: Props) => {
+const EducationFormsContainer = ({
+  educations,
+  fetchEducation,
+  removeQualification,
+  updateQualification,
+}: Props) => {
   const resetIdTracking = '0';
   const [isEditing, setIsEditing] = useState(false);
   const [showNewEducation, setShowNewEducation] = useState(false);
@@ -28,6 +36,7 @@ const EducationFormsContainer = ({ educations }: Props) => {
         <NewEducation
           showCancelButton={showNewEducation}
           setShowNewEducation={() => setShowNewEducation(!showNewEducation)}
+          fetchEducation={fetchEducation}
         />
       ) : (
         <>
@@ -45,6 +54,8 @@ const EducationFormsContainer = ({ educations }: Props) => {
                   setShowEditingEducation={() =>
                     setShowEditingEducation(resetIdTracking)
                   }
+                  removeQualification={removeQualification}
+                  updateQualification={updateQualification}
                 />
               )}
               {showEditingEducation === resetIdTracking && (

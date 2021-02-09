@@ -13,9 +13,14 @@ import { postEducationAxios } from './education.service';
 type Props = {
   setShowNewEducation: (boolean) => void;
   showCancelButton: boolean;
+  fetchEducation: () => Promise<void>;
 };
 
-const NewEducation = ({ setShowNewEducation, showCancelButton }: Props) => {
+const NewEducation = ({
+  setShowNewEducation,
+  showCancelButton,
+  fetchEducation,
+}: Props) => {
   const [loading, setLoading] = useState(false);
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
@@ -33,6 +38,9 @@ const NewEducation = ({ setShowNewEducation, showCancelButton }: Props) => {
         const request = { ...values, id: userId };
         try {
           await postEducationAxios(request);
+          actions.resetForm({});
+          setShowNewEducation(false);
+          await fetchEducation();
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
