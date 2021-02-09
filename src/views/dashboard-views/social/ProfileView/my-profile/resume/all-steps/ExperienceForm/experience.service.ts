@@ -6,7 +6,6 @@ export async function getExperienceAxios() {
 }
 
 export async function deleteExperienceAxios(id: string) {
-  console.log(`Profile/experiences/${id}`);
   return await api.delete<void>(`Profile/experiences/?id=${id}`);
 }
 

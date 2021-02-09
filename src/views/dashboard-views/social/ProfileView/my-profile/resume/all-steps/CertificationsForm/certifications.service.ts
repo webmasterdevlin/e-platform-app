@@ -6,7 +6,7 @@ export async function getCertificatesAxios() {
 }
 
 export async function deleteCertificateAxios(id: string) {
-  return await api.put<void>('Profile/certificates/' + id);
+  return await api.delete<void>(`Profile/certificates/?id=${id}`);
 }
 
 export async function postCertificateAxios(value: CertificationModel) {
