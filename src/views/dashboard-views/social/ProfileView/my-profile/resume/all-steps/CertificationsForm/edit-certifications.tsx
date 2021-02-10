@@ -13,6 +13,8 @@ import {
 } from './certifications.service';
 import { RootState } from 'store';
 import { ProfileModel } from 'auth/auth.model';
+import YupFormikValidationViewer from '../../../../../../../../components/eplatform/components/yup-formik-validation-viewer';
+import { certificationsYupObject } from './schema/ceritifications.validation';
 
 type Props = {
   setIsEditing: () => void;
@@ -53,7 +55,7 @@ const EditCertifications = ({
   return (
     <Formik
       initialValues={certification}
-      validationSchema={null}
+      validationSchema={certificationsYupObject}
       onSubmit={async (values, actions) => {
         setLoading(true);
         try {
