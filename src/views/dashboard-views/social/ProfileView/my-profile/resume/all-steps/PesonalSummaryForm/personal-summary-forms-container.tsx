@@ -6,9 +6,13 @@ import { MyProfileModel } from '../../../schema/my-profile-empty.value';
 
 type Props = {
   myProfile: MyProfileModel;
+  fetchMyProfile: () => Promise<void>;
 };
 
-const PersonalSummaryFormsContainer = ({ myProfile }: Props) => {
+const PersonalSummaryFormsContainer = ({
+  myProfile,
+  fetchMyProfile,
+}: Props) => {
   const [isEditing, setIsEditing] = useState(false);
 
   // myProfile = null;
@@ -19,6 +23,7 @@ const PersonalSummaryFormsContainer = ({ myProfile }: Props) => {
         <PersonalSummaryForm
           myProfile={myProfile}
           setIsEditing={() => setIsEditing(!isEditing)}
+          fetchMyProfile={fetchMyProfile}
         />
       ) : (
         <>

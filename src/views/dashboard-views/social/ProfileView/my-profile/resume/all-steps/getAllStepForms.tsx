@@ -159,7 +159,10 @@ const GetAllStepForms = ({ step }) => {
     case 5:
       return (
         <>
-          <PersonalSummaryFormsContainer myProfile={myProfile} />
+          <PersonalSummaryFormsContainer
+            myProfile={myProfile}
+            fetchMyProfile={fetchMyProfile}
+          />
         </>
       );
     default:

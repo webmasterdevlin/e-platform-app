@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import { experienceValue } from './schema/experience.value';
 import { experienceYupObject } from './schema/experience.validation';
 import ExperienceForm from './components/experience-form';
-import { RootState } from '../../../../../../../../store';
-import { ProfileModel } from '../../../../../../../../auth/auth.model';
+import { RootState } from 'store';
+import { ProfileModel } from 'auth/auth.model';
 import { postExperienceAxios } from './experience.service';
 
 type Props = {

@@ -5,18 +5,20 @@ import TextAreaFormik from 'components/eplatform/components/text-area-formik';
 import { putMyProfileAxios } from '../../../../my-profile.service';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
-import {
-  myProfileEmptyValue,
-  MyProfileModel,
-} from '../../../../schema/my-profile-empty.value';
+import { MyProfileModel } from '../../../../schema/my-profile-empty.value';
 import { ProfileModel } from 'auth/auth.model';
 
 type Props = {
   myProfile: MyProfileModel;
   setIsEditing: () => void;
+  fetchMyProfile: () => Promise<void>;
 };
 
-const PersonalSummaryForm = ({ setIsEditing, myProfile }: Props) => {
+const PersonalSummaryForm = ({
+  setIsEditing,
+  myProfile,
+  fetchMyProfile,
+}: Props) => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
 
@@ -37,6 +39,8 @@ const PersonalSummaryForm = ({ setIsEditing, myProfile }: Props) => {
         const request = { ...values, id: userId };
         try {
           await putMyProfileAxios(request);
+          setIsEditing();
+          await fetchMyProfile();
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }

@@ -5,7 +5,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { useSelector } from 'react-redux';
 
 import { CertificationModel } from './schema/certification.value';
-import { experienceYupObject } from '../ExperienceForm/schema/experience.validation';
 import CertificationForm from './components/certification-form';
 import {
   deleteCertificateAxios,
@@ -13,7 +12,6 @@ import {
 } from './certifications.service';
 import { RootState } from 'store';
 import { ProfileModel } from 'auth/auth.model';
-import YupFormikValidationViewer from '../../../../../../../../components/eplatform/components/yup-formik-validation-viewer';
 import { certificationsYupObject } from './schema/ceritifications.validation';
 
 type Props = {

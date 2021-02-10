@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { useFormikContext } from 'formik';
 
 import DatePickerFormik from 'components/eplatform/components/date-picker-formik';

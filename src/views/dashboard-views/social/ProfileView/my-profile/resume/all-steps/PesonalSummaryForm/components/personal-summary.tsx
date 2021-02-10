@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Button, Typography } from '@material-ui/core';
-import { PersonalSummaryModel } from '../schema/personal-summary.value';
 import { MyProfileModel } from '../../../../schema/my-profile-empty.value';
 
 type Props = {
