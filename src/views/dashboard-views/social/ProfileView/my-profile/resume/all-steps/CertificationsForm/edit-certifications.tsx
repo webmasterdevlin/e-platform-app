@@ -18,12 +18,16 @@ type Props = {
   setIsEditing: () => void;
   setShowEditingCertification: () => void;
   certification: CertificationModel;
+  removeCertificate: (id: string) => void;
+  updateCertificate: (certification: CertificationModel) => void;
 };
 
 const EditCertifications = ({
   certification,
   setIsEditing,
   setShowEditingCertification,
+  updateCertificate,
+  removeCertificate,
 }: Props) => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
@@ -34,23 +38,36 @@ const EditCertifications = ({
     setUserId(profile?.oid);
   }, []);
 
+  const handleDelete = async () => {
+    setLoading(true);
+    try {
+      await deleteCertificateAxios(certification.id);
+      setShowEditingCertification();
+      removeCertificate(certification.id);
+    } catch (e) {
+      alert(`Something happened: ${e.message}`);
+    }
+    setLoading(false);
+  };
+
   return (
     <Formik
       initialValues={certification}
-      validationSchema={experienceYupObject}
+      validationSchema={null}
       onSubmit={async (values, actions) => {
         setLoading(true);
         try {
           await putCertificateAxios(values);
+          setShowEditingCertification();
           actions.resetForm();
-          setIsEditing();
+          updateCertificate(values);
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
         setLoading(false);
       }}
     >
-      {() => (
+      {formikProps => (
         <Form>
           {loading && (
             <Box my={2}>
@@ -69,17 +86,7 @@ const EditCertifications = ({
             </Box>
             <Box>
               <Button
-                onClick={async () => {
-                  setLoading(true);
-                  try {
-                    await deleteCertificateAxios(certification.id);
-                    setIsEditing();
-                    setShowEditingCertification();
-                  } catch (e) {
-                    alert(`Something happened: ${e.message}`);
-                  }
-                  setLoading(false);
-                }}
+                onClick={handleDelete}
                 color={'inherit'}
                 variant="text"
                 startIcon={<DeleteIcon />}

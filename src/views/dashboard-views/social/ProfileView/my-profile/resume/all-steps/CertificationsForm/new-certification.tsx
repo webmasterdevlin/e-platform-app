@@ -13,11 +13,13 @@ import { postCertificateAxios } from './certifications.service';
 type Props = {
   setShowNewCertificate: (boolean) => void;
   showCancelButton: boolean;
+  fetchCertifications: () => Promise<void>;
 };
 
 const NewCertification = ({
   setShowNewCertificate,
   showCancelButton,
+  fetchCertifications,
 }: Props) => {
   const { user, isLoadingUser } = useSelector((state: RootState) => state.oidc);
   const [userId, setUserId] = useState('');
@@ -39,6 +41,7 @@ const NewCertification = ({
           await postCertificateAxios(request);
           actions.resetForm();
           setShowNewCertificate(false);
+          await fetchCertifications();
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }

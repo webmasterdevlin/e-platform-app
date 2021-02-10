@@ -1,5 +1,5 @@
 import { EducationModel } from './schema/education.value';
-import api from '../../../../../../../../utils/axios2';
+import api from 'utils/axios2';
 
 export async function getEducationsAxios() {
   return await api.get<EducationModel[]>('Profile/educations');

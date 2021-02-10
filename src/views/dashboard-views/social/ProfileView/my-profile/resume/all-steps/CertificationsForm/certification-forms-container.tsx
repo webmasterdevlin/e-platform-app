@@ -8,9 +8,17 @@ import NewCertification from './new-certification';
 
 type Props = {
   certifications: CertificationModel[];
+  fetchCertifications: () => Promise<void>;
+  removeCertificate: (id: string) => void;
+  updateCertificate: (certification: CertificationModel) => void;
 };
 
-const CertificationFormsContainer = ({ certifications }: Props) => {
+const CertificationFormsContainer = ({
+  certifications,
+  fetchCertifications,
+  removeCertificate,
+  updateCertificate,
+}: Props) => {
   const resetIdTracking = '0';
   const [isEditing, setIsEditing] = useState(false);
   const [showNewCertification, setShowNewCertification] = useState(false);
@@ -29,6 +37,7 @@ const CertificationFormsContainer = ({ certifications }: Props) => {
       {showNewCertification || !certifications ? (
         <NewCertification
           showCancelButton={showNewCertification}
+          fetchCertifications={fetchCertifications}
           setShowNewCertificate={() => {
             setShowNewCertification(!showNewCertification);
           }}
@@ -49,6 +58,8 @@ const CertificationFormsContainer = ({ certifications }: Props) => {
                   setShowEditingCertification={() =>
                     setShowEditingLicenseCertification(resetIdTracking)
                   }
+                  removeCertificate={removeCertificate}
+                  updateCertificate={updateCertificate}
                 />
               )}
               {showEditingLicenseCertification === resetIdTracking && (

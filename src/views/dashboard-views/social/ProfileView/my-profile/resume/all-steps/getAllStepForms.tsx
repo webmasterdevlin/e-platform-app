@@ -32,9 +32,11 @@ const GetAllStepForms = ({ step }) => {
   const [qualifications, setQualifications] = useState<EducationModel[]>([
     educationValue,
   ]);
+
   const [experiences, setExperiences] = useState<ExperienceModel[]>([
     experienceValue,
   ]);
+
   const [certifications, setCertifications] = useState<CertificationModel[]>([
     certificationValue,
   ]);
@@ -62,10 +64,12 @@ const GetAllStepForms = ({ step }) => {
     const { data } = await getEducationsAxios();
     setQualifications(data);
   };
+
   const fetchExperience = async () => {
     const { data } = await getExperienceAxios();
     setExperiences(data);
   };
+
   const fetchCertifications = async () => {
     const { data } = await getCertificatesAxios();
     setCertifications(data);
@@ -94,6 +98,16 @@ const GetAllStepForms = ({ step }) => {
     const index = qualifications.findIndex(q => q.id == education.id);
     qualifications[index] = education;
     setQualifications([...qualifications]);
+  };
+
+  const removeCertificate = (id: string) => {
+    setCertifications([...certifications.filter(c => c.id != id)]);
+  };
+
+  const updateCertificate = (certification: CertificationModel) => {
+    const index = certifications.findIndex(c => c.id == certification.id);
+    certifications[index] = certification;
+    setCertifications([...certifications]);
   };
 
   switch (step) {
@@ -128,7 +142,12 @@ const GetAllStepForms = ({ step }) => {
     case 3:
       return (
         <>
-          <CertificationFormsContainer certifications={certifications} />
+          <CertificationFormsContainer
+            certifications={certifications}
+            fetchCertifications={fetchCertifications}
+            removeCertificate={removeCertificate}
+            updateCertificate={updateCertificate}
+          />
         </>
       );
     case 4:

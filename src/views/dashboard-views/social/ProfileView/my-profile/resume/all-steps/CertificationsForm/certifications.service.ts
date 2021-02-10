@@ -1,5 +1,5 @@
 import { CertificationModel } from './schema/certification.value';
-import api from '../../../../../../../../utils/axios2';
+import api from 'utils/axios2';
 
 export async function getCertificatesAxios() {
   return await api.get<CertificationModel[]>('Profile/certificates');
@@ -14,5 +14,5 @@ export async function postCertificateAxios(value: CertificationModel) {
 }
 
 export async function putCertificateAxios(value: CertificationModel) {
-  return await api.put<void>('Profile/certificates', value);
+  return await api.put<void>('Profile/certificates/' + value.id, value);
 }

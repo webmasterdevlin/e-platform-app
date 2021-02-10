@@ -1,5 +1,5 @@
 import { MyProfileModel } from './schema/my-profile-empty.value';
-import api from '../../../../../utils/axios2';
+import api from 'utils/axios2';
 
 export async function getMyProfileAxios() {
   return await api.get<MyProfileModel>('Profile');
