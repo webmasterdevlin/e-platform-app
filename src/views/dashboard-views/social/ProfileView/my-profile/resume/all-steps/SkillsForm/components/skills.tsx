@@ -1,42 +1,42 @@
 import React, { useEffect } from 'react';
 import Chip from '@material-ui/core/Chip';
-import { Button } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import { useStyles } from '../mui.style';
 import { SkillsModel } from '../schema/skills.value';
+import { AcademicSkill } from '../schema/academicSkill';
+import { ProfileSkill } from '../schema/profileSkill';
 
 type Props = {
   setIsEditing: (boolean) => void;
-  skills: SkillsModel;
+  profileSkills: ProfileSkill[];
 };
 
-const Skills = ({ skills, setIsEditing }: Props) => {
+const Skills = ({ setIsEditing, profileSkills }: Props) => {
   const classes = useStyles();
-
-  useEffect(() => {
-    console.log('SKILLS::', skills);
-  }, []);
 
   return (
     <>
-      <h4 className="gray">Skills</h4>
+      <Box mb={6}>
+        <Typography variant={'h3'}>Skills</Typography>
+      </Box>
       <div className="dashboard-list-box-static">
-        <section className={'mb-4'}>
+        <Box mb={4}>
           <div className={classes.root}>
-            {skills?.list?.map(data => {
+            {profileSkills?.map(pk => {
               return (
-                <div key={data}>
+                <div key={pk.skill.id}>
                   <Chip
                     style={{ fontSize: '1.8rem' }}
-                    label={data}
+                    label={`${pk.skill.name} - ${pk.skillLevel}`}
                     className={classes.chip}
                   />
                 </div>
               );
             })}
           </div>
-        </section>
+        </Box>
 
-        {skills?.list && (
+        {profileSkills && (
           <Button onClick={setIsEditing} variant={'outlined'} color={'primary'}>
             Update Skills
           </Button>

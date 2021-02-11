@@ -18,15 +18,19 @@ import {
   CertificationModel,
   certificationValue,
 } from './CertificationsForm/schema/certification.value';
-import { SkillsModel, skillsValues } from './SkillsForm/schema/skills.value';
 import { getCertificatesAxios } from './CertificationsForm/certifications.service';
-import { getSkillsAxios } from './SkillsForm/skills.service';
+import {
+  getAcademicSkillsAxios,
+  getProfileSkillsAxios,
+} from './SkillsForm/skills.service';
 import MyProfileForm from '../../components/my-profile-form';
 import {
   myProfileEmptyValue,
   MyProfileModel,
 } from '../../schema/my-profile-empty.value';
 import { getMyProfileAxios } from '../../my-profile.service';
+import { AcademicSkill } from './SkillsForm/schema/academicSkill';
+import { ProfileSkill } from './SkillsForm/schema/profileSkill';
 
 const GetAllStepForms = ({ step }) => {
   const [qualifications, setQualifications] = useState<EducationModel[]>([
@@ -41,18 +45,19 @@ const GetAllStepForms = ({ step }) => {
     certificationValue,
   ]);
 
-  const [skills, setSkills] = useState<SkillsModel>(skillsValues);
+  const [academicSkills, setAcademicSkills] = useState<AcademicSkill[]>();
+  const [profileSkills, setProfileSkills] = useState<ProfileSkill[]>();
 
   const [myProfile, setMyProfile] = useState<MyProfileModel>(
     myProfileEmptyValue,
   );
 
   useEffect(() => {
-    fetchMyProfile().then();
-    fetchEducation().then();
-    fetchExperience().then();
-    fetchCertifications().then();
-    fetchSkills().then();
+    fetchMyProfile();
+    fetchEducation();
+    fetchExperience();
+    fetchCertifications();
+    fetchProfileSkills();
   }, []);
 
   const fetchMyProfile = async () => {
@@ -75,9 +80,9 @@ const GetAllStepForms = ({ step }) => {
     setCertifications(data);
   };
 
-  const fetchSkills = async () => {
-    const { data } = await getSkillsAxios();
-    setSkills(data);
+  const fetchProfileSkills = async () => {
+    const { data } = await getProfileSkillsAxios();
+    setProfileSkills(data);
   };
 
   const removeExperience = (id: string) => {
@@ -112,58 +117,42 @@ const GetAllStepForms = ({ step }) => {
 
   switch (step) {
     case 0:
-      return (
-        <>
-          <MyProfileForm myProfile={myProfile} />
-        </>
-      );
+      return <MyProfileForm myProfile={myProfile} />;
     case 1:
       return (
-        <>
-          <ExperienceFormsContainer
-            experiences={experiences}
-            fetchExperience={fetchExperience}
-            removeExperience={removeExperience}
-            updateExperience={updateExperience}
-          />
-        </>
+        <ExperienceFormsContainer
+          experiences={experiences}
+          fetchExperience={fetchExperience}
+          removeExperience={removeExperience}
+          updateExperience={updateExperience}
+        />
       );
     case 2:
       return (
-        <>
-          <EducationFormsContainer
-            educations={qualifications}
-            fetchEducation={fetchEducation}
-            removeQualification={removeQualification}
-            updateQualification={updateQualification}
-          />
-        </>
+        <EducationFormsContainer
+          educations={qualifications}
+          fetchEducation={fetchEducation}
+          removeQualification={removeQualification}
+          updateQualification={updateQualification}
+        />
       );
     case 3:
       return (
-        <>
-          <CertificationFormsContainer
-            certifications={certifications}
-            fetchCertifications={fetchCertifications}
-            removeCertificate={removeCertificate}
-            updateCertificate={updateCertificate}
-          />
-        </>
+        <CertificationFormsContainer
+          certifications={certifications}
+          fetchCertifications={fetchCertifications}
+          removeCertificate={removeCertificate}
+          updateCertificate={updateCertificate}
+        />
       );
     case 4:
-      return (
-        <>
-          <SkillsFormsContainer skills={skills} />
-        </>
-      );
+      return <SkillsFormsContainer profileSkills={profileSkills} />;
     case 5:
       return (
-        <>
-          <PersonalSummaryFormsContainer
-            myProfile={myProfile}
-            fetchMyProfile={fetchMyProfile}
-          />
-        </>
+        <PersonalSummaryFormsContainer
+          myProfile={myProfile}
+          fetchMyProfile={fetchMyProfile}
+        />
       );
     default:
       return <>Unknown step</>;

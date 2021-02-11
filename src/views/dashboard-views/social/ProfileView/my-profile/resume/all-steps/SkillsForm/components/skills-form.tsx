@@ -13,21 +13,20 @@ import AddIcon from '@material-ui/icons/Add';
 import Chip from '@material-ui/core/Chip';
 import { useStyles } from '../mui.style';
 import { skillsYupObject } from '../schema/skills.validation';
+import AutocompleteSkills from './AutocompleteSkills';
+import { AcademicSkill } from '../schema/academicSkill';
+import { ProfileSkill } from '../schema/profileSkill';
 
 type Props = {
-  skills: SkillsModel;
   setIsEditing: () => void;
+  profileSkills: ProfileSkill[];
 };
 
-const SkillsForm = ({ setIsEditing, skills }: Props) => {
+const SkillsForm = ({ setIsEditing, profileSkills }: Props) => {
   const classes = useStyles();
   const [newChip, setNewChip] = useState('');
   const [isNew, setIsNew] = useState(true);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (skills?.list) setIsNew(false);
-  }, []);
 
   const handleOnChange = ({ currentTarget }) => {
     setNewChip(currentTarget?.value);
@@ -72,11 +71,9 @@ const SkillsForm = ({ setIsEditing, skills }: Props) => {
   return (
     <Formik
       enableReinitialize={true}
-      initialValues={isNew ? skillsValues : skills}
+      initialValues={isNew ? skillsValues : profileSkills}
       validationSchema={skillsYupObject}
       onSubmit={(values, actions) => {
-        alert(isNew ? 'New' : 'Editing');
-        alert(JSON.stringify(values, null, 2));
         try {
           if (isNew) {
             alert('await postSkillsAxios(values)');
@@ -115,7 +112,7 @@ const SkillsForm = ({ setIsEditing, skills }: Props) => {
                 alignItems={'center'}
               >
                 <Box mr={2} mb={4}>
-                  <TextField
+                  {/*<TextField
                     name={'label'}
                     type={'text'}
                     value={newChip}
@@ -124,10 +121,11 @@ const SkillsForm = ({ setIsEditing, skills }: Props) => {
                       handleInputKeyPress(event, formikProps)
                     }
                     placeholder={'Add new (e.g. Team building)'}
-                  />
+                  />*/}
+                  <AutocompleteSkills />
                 </Box>
                 <Fab
-                  onClick={() => handleAdd(formikProps, newChip)}
+                  // onClick={() => handleAdd(formikProps, newChip)}
                   color="primary"
                   aria-label="add"
                 >
@@ -139,40 +137,33 @@ const SkillsForm = ({ setIsEditing, skills }: Props) => {
                   <Typography>Added skills</Typography>
                 </Box>
                 <Box mb={4}>
-                  {formikProps?.values?.list.map(data => {
-                    return (
-                      <div key={data}>
-                        <Chip
-                          style={{ fontSize: '1rem' }}
-                          label={data}
-                          className={classes.chip}
-                          onDelete={() => handleDelete(formikProps, data)}
-                        />
-                      </div>
-                    );
-                  })}
+                  {/*{formikProps?.values?.list.map(data => {*/}
+                  {/*  return (*/}
+                  {/*    <div key={data}>*/}
+                  {/*      <Chip*/}
+                  {/*        style={{ fontSize: '1rem' }}*/}
+                  {/*        label={data}*/}
+                  {/*        className={classes.chip}*/}
+                  {/*        onDelete={() => handleDelete(formikProps, data)}*/}
+                  {/*      />*/}
+                  {/*    </div>*/}
+                  {/*  );*/}
+                  {/*})}*/}
                 </Box>
               </section>
               <Button
+                style={{ marginRight: 20 }}
                 type={'submit'}
-                onClick={() => {
-                  if (!formikProps.values.list.length)
-                    alert('Must input skill(s)');
-                }}
+                onClick={() => {}}
                 variant={'contained'}
                 color={'primary'}
               >
                 Save
               </Button>
-              {!isNew && (
-                <Button
-                  onClick={setIsEditing}
-                  variant={'text'}
-                  color={'primary'}
-                >
-                  Cancel
-                </Button>
-              )}
+
+              <Button onClick={setIsEditing} variant={'text'} color={'primary'}>
+                Cancel
+              </Button>
             </section>
           </div>
         </Form>

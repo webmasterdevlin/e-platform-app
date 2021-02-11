@@ -2,29 +2,31 @@ import React, { useState } from 'react';
 import { SkillsModel } from './schema/skills.value';
 import SkillsForm from './components/skills-form';
 import Skills from './components/skills';
+import { AcademicSkill } from './schema/academicSkill';
+import { ProfileSkill } from './schema/profileSkill';
 
 type Props = {
-  skills: SkillsModel;
+  profileSkills: ProfileSkill[];
 };
 
-const SkillsFormsContainer = ({ skills }: Props) => {
+const SkillsFormsContainer = ({ profileSkills }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  skills = null;
+  // academicSkills = null;
 
   return (
     <>
-      {isEditing || !skills ? (
+      {isEditing || !profileSkills ? (
         <SkillsForm
-          skills={skills}
+          profileSkills={profileSkills}
           setIsEditing={() => setIsEditing(!isEditing)}
         />
       ) : (
         <>
-          {skills && (
+          {profileSkills && (
             <Skills
               setIsEditing={() => setIsEditing(!isEditing)}
-              skills={skills}
+              profileSkills={profileSkills}
             />
           )}
         </>
