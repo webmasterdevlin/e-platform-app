@@ -13,9 +13,7 @@ const store = configureStore({
   reducer: rootReducer,
   middleware: [
     ...getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: ['persist/PERSIST'],
-      },
+      serializableCheck: false,
     }),
   ],
   devTools: ENABLE_REDUX_DEV_TOOLS,

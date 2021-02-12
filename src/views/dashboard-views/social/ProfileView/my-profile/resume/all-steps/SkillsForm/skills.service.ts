@@ -1,4 +1,4 @@
-import { SkillsModel } from './schema/skills.value';
+import { SkillParam, SkillsModel } from './schema/skills.value';
 import api from 'utils/axios2';
 import { AcademicSkill } from './schema/academicSkill';
 import { ProfileSkill } from './schema/profileSkill';
@@ -11,10 +11,10 @@ export async function getProfileSkillsAxios() {
   return await api.get<ProfileSkill[]>('Profile/skills');
 }
 
-export async function postSkillsAxios(value: SkillsModel) {
-  return await api.post<SkillsModel>('skills', value);
+export async function postSkillsAxios(value: SkillParam) {
+  return await api.post<any>('Profile/skills', value);
 }
 
-export async function putSkillsAxios(value: SkillsModel) {
-  return await api.put<void>('skills', value);
+export async function deleteSkillsAxios(value: string) {
+  return await api.delete<void>('Profile/skills/' + value);
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Formik, FormikProps } from 'formik';
 import { SkillsModel, skillsValues } from '../schema/skills.value';
 import {
@@ -6,16 +6,16 @@ import {
   Button,
   Fab,
   LinearProgress,
-  TextField,
   Typography,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import Chip from '@material-ui/core/Chip';
 import { useStyles } from '../mui.style';
 import { skillsYupObject } from '../schema/skills.validation';
 import AutocompleteSkills from './AutocompleteSkills';
-import { AcademicSkill } from '../schema/academicSkill';
 import { ProfileSkill } from '../schema/profileSkill';
+import YupFormikValidationViewer from 'components/eplatform/components/yup-formik-validation-viewer';
+import Chip from '@material-ui/core/Chip';
+import { postSkillsAxios } from '../skills.service';
 
 type Props = {
   setIsEditing: () => void;
@@ -24,40 +24,8 @@ type Props = {
 
 const SkillsForm = ({ setIsEditing, profileSkills }: Props) => {
   const classes = useStyles();
-  const [newChip, setNewChip] = useState('');
   const [isNew, setIsNew] = useState(true);
   const [loading, setLoading] = useState(false);
-
-  const handleOnChange = ({ currentTarget }) => {
-    setNewChip(currentTarget?.value);
-  };
-
-  const handleAdd = (
-    formikProps: FormikProps<SkillsModel>,
-    chipToAdd: string,
-  ) => {
-    if (formikProps?.values?.list.includes(chipToAdd)) {
-      alert("Can't add same skills");
-      setNewChip('');
-      return;
-    }
-
-    formikProps?.setFieldValue('list', [
-      ...formikProps?.values.list,
-      chipToAdd,
-    ]);
-    setNewChip('');
-  };
-
-  const handleInputKeyPress = (
-    event,
-    formikProps?: FormikProps<SkillsModel>,
-  ) => {
-    if (event.key === 'Enter') {
-      handleAdd(formikProps, newChip);
-      setNewChip('');
-    }
-  };
 
   const handleDelete = (
     formikProps: FormikProps<SkillsModel>,
@@ -71,7 +39,7 @@ const SkillsForm = ({ setIsEditing, profileSkills }: Props) => {
   return (
     <Formik
       enableReinitialize={true}
-      initialValues={isNew ? skillsValues : profileSkills}
+      initialValues={skillsValues}
       validationSchema={skillsYupObject}
       onSubmit={(values, actions) => {
         try {
@@ -95,7 +63,7 @@ const SkillsForm = ({ setIsEditing, profileSkills }: Props) => {
           <Box mb={6}>
             <Typography variant={'h3'}>{`${
               isNew ? 'New' : 'Edit'
-            } Skills (only GET request)`}</Typography>
+            } Skills`}</Typography>
           </Box>
           <div>
             <section>
@@ -104,57 +72,38 @@ const SkillsForm = ({ setIsEditing, profileSkills }: Props) => {
                   Help employers find you by showcasing all of your skills.
                 </Typography>
               </Box>
-              <label>Add new</label>
-              <Box
-                display={'flex'}
-                flexDirection={'row'}
-                justifyContent={'flex-start'}
-                alignItems={'center'}
-              >
-                <Box mr={2} mb={4}>
-                  {/*<TextField
-                    name={'label'}
-                    type={'text'}
-                    value={newChip}
-                    onChange={handleOnChange}
-                    onKeyPress={event =>
-                      handleInputKeyPress(event, formikProps)
-                    }
-                    placeholder={'Add new (e.g. Team building)'}
-                  />*/}
-                  <AutocompleteSkills />
-                </Box>
-                <Fab
-                  // onClick={() => handleAdd(formikProps, newChip)}
-                  color="primary"
-                  aria-label="add"
-                >
-                  <AddIcon />
-                </Fab>
+              <Box>
+                <Typography variant={'h4'}>Add New</Typography>
               </Box>
+              <YupFormikValidationViewer />
+
+              <AutocompleteSkills />
+
               <section>
                 <Box fontWeight={'bold'} mb={4}>
                   <Typography>Added skills</Typography>
                 </Box>
-                <Box mb={4}>
-                  {/*{formikProps?.values?.list.map(data => {*/}
-                  {/*  return (*/}
-                  {/*    <div key={data}>*/}
-                  {/*      <Chip*/}
-                  {/*        style={{ fontSize: '1rem' }}*/}
-                  {/*        label={data}*/}
-                  {/*        className={classes.chip}*/}
-                  {/*        onDelete={() => handleDelete(formikProps, data)}*/}
-                  {/*      />*/}
-                  {/*    </div>*/}
-                  {/*  );*/}
-                  {/*})}*/}
+                <Box mb={4} display={'flex'}>
+                  {formikProps?.values?.list.map(data => {
+                    return (
+                      <div key={data}>
+                        <Chip
+                          style={{ fontSize: '1rem' }}
+                          label={data}
+                          className={classes.chip}
+                          onDelete={() => handleDelete(formikProps, data)}
+                        />
+                      </div>
+                    );
+                  })}
                 </Box>
               </section>
               <Button
                 style={{ marginRight: 20 }}
                 type={'submit'}
-                onClick={() => {}}
+                onClick={async () => {
+                  // await postSkillsAxios();
+                }}
                 variant={'contained'}
                 color={'primary'}
               >
