@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PersonalSummaryModel } from './schema/personal-summary.value';
 import PersonalSummaryForm from './components/personal-summary-form';
 import PersonalSummary from './components/personal-summary';

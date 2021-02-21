@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
-import { SkillsModel } from './schema/skills.value';
+import React, { useEffect, useState } from 'react';
 import SkillsForm from './components/skills-form';
 import Skills from './components/skills';
-import { AcademicSkill } from './schema/academicSkill';
 import { ProfileSkill } from './schema/profileSkill';
 
 type Props = {
   profileSkills: ProfileSkill[];
+  fetchProfileSkill: () => Promise<void>;
 };
 
-const SkillsFormsContainer = ({ profileSkills }: Props) => {
+const SkillsFormsContainer = ({ profileSkills, fetchProfileSkill }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
 
   // academicSkills = null;
+
+  useEffect(() => {
+    fetchProfileSkill();
+  }, [isEditing]);
 
   return (
     <>
       {isEditing || !profileSkills ? (
         <SkillsForm
           profileSkills={profileSkills}
+          fetchProfileSkill={fetchProfileSkill}
           setIsEditing={() => setIsEditing(!isEditing)}
         />
       ) : (

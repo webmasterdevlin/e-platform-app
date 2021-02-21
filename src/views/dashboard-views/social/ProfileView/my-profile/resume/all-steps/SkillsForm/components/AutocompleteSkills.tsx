@@ -13,8 +13,13 @@ import {
   SkillChipValue,
   SkillNameValue,
 } from '../schema/academicSkill';
+import { ProfileSkill } from '../schema/profileSkill';
 
-const AutocompleteSkills = () => {
+type Props = {
+  skills: ProfileSkill[];
+};
+
+const AutocompleteSkills = ({ skills }: Props) => {
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState<NormalizedSkillData[]>([]);
   const [skillLevel, setSkillLevel] = useState(1);
@@ -41,6 +46,17 @@ const AutocompleteSkills = () => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const isValidEntry = (value: SkillNameValue) => {
+    if (formik.values.skills?.find(s => s.skillName == value?.name))
+      return false;
+
+    if (skills?.find(s => s.skill.name == value?.name)) return false;
+
+    if (!value?.name) return false;
+
+    return true;
   };
 
   return (
@@ -88,17 +104,14 @@ const AutocompleteSkills = () => {
             setOpen(false);
           }}
           onChange={(e: ChangeEvent<any>, value: SkillNameValue) => {
-            if (formik.values.list.find(s => s.name == e.target.innerText))
-              return;
+            if (!isValidEntry(value)) return;
 
-            if (!e.target.innerText) return;
-
-            formik.setFieldValue('list', [
-              ...formik.values.list,
+            formik.setFieldValue('skills', [
+              ...formik.values.skills,
               {
-                id: value.id,
-                name: value.name,
-                level: skillLevel,
+                skillId: value.id,
+                skillName: value.name,
+                skillLevel,
               } as SkillChipValue,
             ]);
           }}
@@ -107,7 +120,7 @@ const AutocompleteSkills = () => {
               {...params}
               label="Skill Names"
               variant="outlined"
-              value={formik.values?.list[0]?.name}
+              value={formik.values?.skills[0]?.skillName}
               onChange={(e: ChangeEvent<any>) => {
                 formik.setFieldValue('customSkill', e.target.value);
               }}

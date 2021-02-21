@@ -15,6 +15,6 @@ export async function postSkillsAxios(value: SkillParam) {
   return await api.post<any>('Profile/skills', value);
 }
 
-export async function deleteSkillsAxios(value: string) {
-  return await api.delete<void>('Profile/skills/' + value);
+export async function deleteSkillsAxios(id: string) {
+  return await api.delete<void>('Profile/skills/' + id);
 }

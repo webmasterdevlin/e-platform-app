@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Formik, FormikProps } from 'formik';
+import { ErrorMessage, Form, Formik, FormikProps } from 'formik';
 import Chip from '@material-ui/core/Chip';
 import { Box, Button, LinearProgress, Typography } from '@material-ui/core';
 
@@ -9,38 +9,65 @@ import { skillsYupObject } from '../schema/skills.validation';
 import AutocompleteSkills from './AutocompleteSkills';
 import { ProfileSkill } from '../schema/profileSkill';
 import YupFormikValidationViewer from 'components/eplatform/components/yup-formik-validation-viewer';
+import { deleteSkillsAxios, postSkillsAxios } from '../skills.service';
 
 type Props = {
   setIsEditing: () => void;
   profileSkills: ProfileSkill[];
+  fetchProfileSkill: () => Promise<void>;
 };
 
-const SkillsForm = ({ setIsEditing, profileSkills }: Props) => {
+const SkillsForm = ({
+  setIsEditing,
+  profileSkills,
+  fetchProfileSkill,
+}: Props) => {
   const classes = useStyles();
   const [isNew, setIsNew] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const handleDelete = (
+  const [skills, setSkills] = useState<ProfileSkill[]>(profileSkills);
+
+  const handleRemoveSkill = (
     formikProps: FormikProps<SkillsModel>,
     chipId: string,
   ) => {
     formikProps?.setFieldValue(
-      'list',
-      formikProps?.values?.list.filter(s => s.id !== chipId),
+      'skills',
+      formikProps?.values?.skills.filter(s => s.skillId !== chipId),
     );
   };
+
+  const handleDeleteSkill = async (id: string) => {
+    const prevSkills = [...skills];
+    setSkills(skills.filter(s => s.id != id));
+
+    try {
+      await deleteSkillsAxios(id);
+    } catch (e) {
+      setSkills(prevSkills);
+    }
+  };
+
   return (
     <Formik
       enableReinitialize={true}
       initialValues={skillsValues}
       validationSchema={skillsYupObject}
-      onSubmit={(values, actions) => {
+      onSubmit={async values => {
         try {
-          if (isNew) {
-            alert('await postSkillsAxios(values)');
-          } else {
-            alert('await putSkillsAxios(values)');
-          }
+          values.skills.map(async skill => {
+            await postSkillsAxios(skill);
+          });
+
+          values.skills = [];
+        } catch (e) {
+          alert(`Something happened: ${e.message}`);
+        }
+
+        try {
+          await fetchProfileSkill();
+          setIsEditing();
         } catch (e) {
           alert(`Something happened: ${e.message}`);
         }
@@ -59,7 +86,7 @@ const SkillsForm = ({ setIsEditing, profileSkills }: Props) => {
             } Skills`}</Typography>
           </Box>
           <div>
-            <section>
+            <Box mb={2}>
               <Box mb={2}>
                 <Typography>
                   Help employers find you by showcasing all of your skills.
@@ -70,21 +97,43 @@ const SkillsForm = ({ setIsEditing, profileSkills }: Props) => {
               </Box>
               <YupFormikValidationViewer />
 
-              <AutocompleteSkills />
+              <AutocompleteSkills skills={skills} />
 
               <section>
                 <Box fontWeight={'bold'} mb={4}>
                   <Typography>Added skills</Typography>
                 </Box>
                 <Box mb={4} display={'flex'}>
-                  {formikProps?.values?.list.map(data => {
+                  {formikProps?.values?.skills.map(data => {
                     return (
-                      <div key={data.id}>
+                      <div key={data.skillId}>
                         <Chip
                           style={{ fontSize: '1rem' }}
-                          label={`${data.name} : Lvl ${data.level}`}
+                          label={`${data.skillName} : Lvl ${data.skillLevel}`}
                           className={classes.chip}
-                          onDelete={() => handleDelete(formikProps, data.id)}
+                          onDelete={() =>
+                            handleRemoveSkill(formikProps, data.skillId)
+                          }
+                        />
+                      </div>
+                    );
+                  })}
+                </Box>
+              </section>
+
+              <section>
+                <Box fontWeight={'bold'} mb={4}>
+                  <Typography>Current skills</Typography>
+                </Box>
+                <Box mb={4} display={'flex'}>
+                  {skills?.map(pk => {
+                    return (
+                      <div key={pk.skill.id}>
+                        <Chip
+                          style={{ fontSize: '1rem' }}
+                          label={`${pk.skill.name} : Lvl ${pk.skillLevel}`}
+                          className={classes.chip}
+                          onDelete={() => handleDeleteSkill(pk.id)}
                         />
                       </div>
                     );
@@ -94,19 +143,18 @@ const SkillsForm = ({ setIsEditing, profileSkills }: Props) => {
               <Button
                 style={{ marginRight: 20 }}
                 type={'submit'}
-                onClick={async () => {
-                  // await postSkillsAxios();
-                }}
                 variant={'contained'}
                 color={'primary'}
+                disabled={formikProps.isSubmitting || !formikProps.isValid}
               >
-                Save
+                Save Added Skills
               </Button>
 
               <Button onClick={setIsEditing} variant={'text'} color={'primary'}>
-                Cancel
+                Close
               </Button>
-            </section>
+            </Box>
+            <ErrorMessage name={'skills'} />
           </div>
         </Form>
       )}

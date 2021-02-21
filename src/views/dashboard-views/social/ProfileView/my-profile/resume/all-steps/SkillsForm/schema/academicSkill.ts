@@ -41,9 +41,9 @@ export interface SkillNameValue {
 }
 
 export interface SkillChipValue {
-  id: string;
-  name: string;
-  level: number;
+  skillId: string;
+  skillName: string;
+  skillLevel: number;
 }
 
 export interface NormalizedSkillData {

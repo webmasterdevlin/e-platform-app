@@ -19,17 +19,13 @@ import {
   certificationValue,
 } from './CertificationsForm/schema/certification.value';
 import { getCertificatesAxios } from './CertificationsForm/certifications.service';
-import {
-  getAcademicSkillsAxios,
-  getProfileSkillsAxios,
-} from './SkillsForm/skills.service';
+import { getProfileSkillsAxios } from './SkillsForm/skills.service';
 import MyProfileForm from '../../components/my-profile-form';
 import {
   myProfileEmptyValue,
   MyProfileModel,
 } from '../../schema/my-profile-empty.value';
 import { getMyProfileAxios } from '../../my-profile.service';
-import { AcademicSkill } from './SkillsForm/schema/academicSkill';
 import { ProfileSkill } from './SkillsForm/schema/profileSkill';
 
 const GetAllStepForms = ({ step }) => {
@@ -45,7 +41,6 @@ const GetAllStepForms = ({ step }) => {
     certificationValue,
   ]);
 
-  const [academicSkills, setAcademicSkills] = useState<AcademicSkill[]>();
   const [profileSkills, setProfileSkills] = useState<ProfileSkill[]>();
 
   const [myProfile, setMyProfile] = useState<MyProfileModel>(
@@ -146,7 +141,12 @@ const GetAllStepForms = ({ step }) => {
         />
       );
     case 4:
-      return <SkillsFormsContainer profileSkills={profileSkills} />;
+      return (
+        <SkillsFormsContainer
+          profileSkills={profileSkills}
+          fetchProfileSkill={fetchProfileSkills}
+        />
+      );
     case 5:
       return (
         <PersonalSummaryFormsContainer
