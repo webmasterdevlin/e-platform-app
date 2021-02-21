@@ -1,3 +1,5 @@
+import { SkillChipValue } from './academicSkill';
+
 export const skillsValues: SkillsModel = {
   id: '',
   list: [],
@@ -5,7 +7,7 @@ export const skillsValues: SkillsModel = {
 
 export type SkillsModel = {
   id: string;
-  list: Array<string>;
+  list: SkillChipValue[];
 };
 
 export type SkillParam = {

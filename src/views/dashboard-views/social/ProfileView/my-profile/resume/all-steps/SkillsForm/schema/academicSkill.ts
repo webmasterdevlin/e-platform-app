@@ -26,3 +26,30 @@ export interface AcademicSkill {
   specialization: string;
   semesters: Semester[];
 }
+
+export interface SemesterIDs {
+  id: string;
+  programmeId: string;
+}
+
+export interface SkillNameValue {
+  id: string;
+  code: string;
+  name: string;
+  subjectModule: SubjectModule;
+  semesterIDs: SemesterIDs;
+}
+
+export interface SkillChipValue {
+  id: string;
+  name: string;
+  level: number;
+}
+
+export interface NormalizedSkillData {
+  id: string;
+  code: string;
+  name: string;
+  subjectModule: SubjectModule;
+  semesterIDs: SemesterIDs;
+}

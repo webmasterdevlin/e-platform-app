@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 import { Form, Formik, FormikProps } from 'formik';
-import { SkillsModel, skillsValues } from '../schema/skills.value';
-import {
-  Box,
-  Button,
-  Fab,
-  LinearProgress,
-  Typography,
-} from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
+import Chip from '@material-ui/core/Chip';
+import { Box, Button, LinearProgress, Typography } from '@material-ui/core';
+
 import { useStyles } from '../mui.style';
+import { SkillsModel, skillsValues } from '../schema/skills.value';
 import { skillsYupObject } from '../schema/skills.validation';
 import AutocompleteSkills from './AutocompleteSkills';
 import { ProfileSkill } from '../schema/profileSkill';
 import YupFormikValidationViewer from 'components/eplatform/components/yup-formik-validation-viewer';
-import Chip from '@material-ui/core/Chip';
-import { postSkillsAxios } from '../skills.service';
 
 type Props = {
   setIsEditing: () => void;
@@ -29,11 +22,11 @@ const SkillsForm = ({ setIsEditing, profileSkills }: Props) => {
 
   const handleDelete = (
     formikProps: FormikProps<SkillsModel>,
-    chip: string,
+    chipId: string,
   ) => {
     formikProps?.setFieldValue(
       'list',
-      formikProps?.values?.list.filter(s => s !== chip),
+      formikProps?.values?.list.filter(s => s.id !== chipId),
     );
   };
   return (
@@ -86,12 +79,12 @@ const SkillsForm = ({ setIsEditing, profileSkills }: Props) => {
                 <Box mb={4} display={'flex'}>
                   {formikProps?.values?.list.map(data => {
                     return (
-                      <div key={data}>
+                      <div key={data.id}>
                         <Chip
                           style={{ fontSize: '1rem' }}
-                          label={data}
+                          label={`${data.name} : Lvl ${data.level}`}
                           className={classes.chip}
-                          onDelete={() => handleDelete(formikProps, data)}
+                          onDelete={() => handleDelete(formikProps, data.id)}
                         />
                       </div>
                     );

@@ -1,7 +1,5 @@
 import * as Yup from 'yup';
 
-const skillsYupObject = Yup.object({
-  list: Yup.array().of(Yup.string().label('Skill')).required(),
-});
+const skillsYupObject = Yup.object({});
 
 export { skillsYupObject };

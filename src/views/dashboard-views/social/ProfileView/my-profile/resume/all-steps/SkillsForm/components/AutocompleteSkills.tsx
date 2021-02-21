@@ -1,45 +1,46 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useFormikContext } from 'formik';
+import { Box, MenuItem } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { AcademicSkill } from '../schema/academicSkill';
 import { getAcademicSkillsAxios } from '../skills.service';
-import { useFormikContext } from 'formik';
-import { Box, Fab } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
+import { SkillsModel } from '../schema/skills.value';
+import {
+  AcademicSkill,
+  NormalizedSkillData,
+  SkillChipValue,
+  SkillNameValue,
+} from '../schema/academicSkill';
 
 const AutocompleteSkills = () => {
-  const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = React.useState<AcademicSkill[]>([]);
+  const [open, setOpen] = useState(false);
+  const [options, setOptions] = useState<NormalizedSkillData[]>([]);
+  const [skillLevel, setSkillLevel] = useState(1);
   const loading = open && options.length === 0;
 
-  const formik = useFormikContext<any>();
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSkillLevel(parseInt(event.target.value));
+  };
+
+  const formik = useFormikContext<SkillsModel>();
 
   useEffect(() => {
-    if (!loading) {
-      return undefined;
-    }
+    if (!loading) return undefined;
 
-    if (!open) {
-      setOptions([]);
-    }
+    if (!open) setOptions([]);
 
     fetchAcademicSkills();
   }, [open, loading]);
 
   const fetchAcademicSkills = async () => {
-    let active = true;
-
-    const { data } = await getAcademicSkillsAxios();
-    if (active) {
-      setOptions(Object.keys(data).map(key => data[key]) as AcademicSkill[]);
+    try {
+      const { data } = await getAcademicSkillsAxios();
+      setOptions(normalizedAcademicSkills(data));
+    } catch (e) {
+      console.log(e);
     }
-    setOptions(data);
-
-    return () => {
-      active = false;
-    };
   };
 
   return (
@@ -51,9 +52,34 @@ const AutocompleteSkills = () => {
       alignItems={'center'}
     >
       <Box mr={4}>
+        <TextField
+          select
+          style={{ marginBottom: '1rem' }}
+          id="outlined-select-currency"
+          label="Skill Level"
+          helperText="Select a skill level before choosing a skill name"
+          variant="outlined"
+          defaultValue={1}
+          value={skillLevel}
+          onChange={handleChange}
+        >
+          {levels.map(option => (
+            <MenuItem
+              key={option.value}
+              defaultValue={'1'}
+              value={option.value}
+            >
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
         <Autocomplete
           id="skill"
           style={{ width: 300 }}
+          groupBy={option => option.subjectModule?.name || ''}
+          getOptionLabel={option => option.name || ''}
+          options={options}
+          loading={loading}
           open={open}
           onOpen={() => {
             setOpen(true);
@@ -61,29 +87,30 @@ const AutocompleteSkills = () => {
           onClose={() => {
             setOpen(false);
           }}
-          getOptionSelected={(option, value) => option.name === value.name}
-          getOptionLabel={option => option.name}
-          options={options}
-          loading={loading}
-          onChange={(e: ChangeEvent<any>) => {
-            if (formik.values.list.find(s => s == e.target.innerText)) return;
+          onChange={(e: ChangeEvent<any>, value: SkillNameValue) => {
+            if (formik.values.list.find(s => s.name == e.target.innerText))
+              return;
 
             if (!e.target.innerText) return;
 
             formik.setFieldValue('list', [
               ...formik.values.list,
-              e.target.innerText,
+              {
+                id: value.id,
+                name: value.name,
+                level: skillLevel,
+              } as SkillChipValue,
             ]);
           }}
           renderInput={params => (
             <TextField
               {...params}
-              label="Skills"
+              label="Skill Names"
               variant="outlined"
+              value={formik.values?.list[0]?.name}
               onChange={(e: ChangeEvent<any>) => {
                 formik.setFieldValue('customSkill', e.target.value);
               }}
-              value={formik.values.customSkill}
               InputProps={{
                 ...params.InputProps,
                 endAdornment: (
@@ -103,25 +130,71 @@ const AutocompleteSkills = () => {
           )}
         />
       </Box>
-      <Fab
-        onClick={() => {
-          if (formik.values.list.find(s => s == formik.values.customSkill))
-            return;
-
-          formik.setFieldValue('list', [
-            ...formik.values.list,
-            formik.values.customSkill,
-          ]);
-
-          formik.setFieldValue('customSkill', '');
-        }}
-        color="primary"
-        aria-label="add"
-      >
-        <AddIcon />
-      </Fab>
     </Box>
   );
 };
 
 export default AutocompleteSkills;
+
+const normalizedAcademicSkills = (academicSkills: AcademicSkill[]) => {
+  const normalizedData: NormalizedSkillData[] = [];
+
+  academicSkills.forEach(({ semesters }) => {
+    semesters?.forEach(({ subjects }, index) => {
+      subjects?.forEach(subject => {
+        normalizedData.push({
+          ...subject,
+          semesterIDs: {
+            id: semesters[index].id,
+            programmeId: semesters[index].programmeId,
+          },
+        });
+      });
+    });
+  });
+
+  return normalizedData;
+};
+
+const levels = [
+  {
+    value: 1,
+    label: '1',
+  },
+  {
+    value: 2,
+    label: '2',
+  },
+  {
+    value: 3,
+    label: '3',
+  },
+  {
+    value: 4,
+    label: '4',
+  },
+  {
+    value: 5,
+    label: '5',
+  },
+  {
+    value: 6,
+    label: '6',
+  },
+  {
+    value: 7,
+    label: '7',
+  },
+  {
+    value: 8,
+    label: '8',
+  },
+  {
+    value: 9,
+    label: '9',
+  },
+  {
+    value: 10,
+    label: '10',
+  },
+];
