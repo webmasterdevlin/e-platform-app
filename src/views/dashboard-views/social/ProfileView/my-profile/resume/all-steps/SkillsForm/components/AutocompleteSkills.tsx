@@ -5,14 +5,16 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { getAcademicSkillsAxios } from '../skills.service';
+import {
+  getAcademicSkillsAxios,
+  nonAcademicSkillsAxios,
+} from '../skills.service';
 import { SkillsModel } from '../schema/skills.value';
 import {
-  AcademicSkill,
-  NormalizedSkillData,
+  SkillModels,
   SkillChipValue,
   SkillNameValue,
-} from '../schema/academicSkill';
+} from '../schema/skillModels';
 import { ProfileSkill } from '../schema/profileSkill';
 
 type Props = {
@@ -21,7 +23,8 @@ type Props = {
 
 const AutocompleteSkills = ({ skills }: Props) => {
   const [open, setOpen] = useState(false);
-  const [options, setOptions] = useState<NormalizedSkillData[]>([]);
+  const [options, setOptions] = useState<any[]>([]);
+
   const [skillLevel, setSkillLevel] = useState(1);
   const loading = open && options.length === 0;
 
@@ -41,8 +44,10 @@ const AutocompleteSkills = ({ skills }: Props) => {
 
   const fetchAcademicSkills = async () => {
     try {
-      const { data } = await getAcademicSkillsAxios();
-      setOptions(normalizedAcademicSkills(data));
+      const { data: academics } = await getAcademicSkillsAxios();
+      const { data: nonAcademics } = await nonAcademicSkillsAxios();
+
+      setOptions(normalizeOptions(academics, nonAcademics));
     } catch (e) {
       console.log(e);
     }
@@ -92,7 +97,7 @@ const AutocompleteSkills = ({ skills }: Props) => {
         <Autocomplete
           id="skill"
           style={{ width: 300 }}
-          groupBy={option => option.subjectModule?.name || ''}
+          // groupBy={option => option.subjectModule?.name || ''}
           getOptionLabel={option => option.name || ''}
           options={options}
           loading={loading}
@@ -149,24 +154,50 @@ const AutocompleteSkills = ({ skills }: Props) => {
 
 export default AutocompleteSkills;
 
-const normalizedAcademicSkills = (academicSkills: AcademicSkill[]) => {
-  const normalizedData: NormalizedSkillData[] = [];
+const normalizeOptions = (academics: SkillModels[], nonAcademics: any) => {
+  const combinedResults: any[] = [];
 
-  academicSkills.forEach(({ semesters }) => {
-    semesters?.forEach(({ subjects }, index) => {
-      subjects?.forEach(subject => {
-        normalizedData.push({
-          ...subject,
-          semesterIDs: {
-            id: semesters[index].id,
-            programmeId: semesters[index].programmeId,
-          },
+  const subjectGroup = {};
+
+  academics?.map(academic => {
+    academic?.semesters?.map(semester => {
+      semester?.subjects?.map(subject => {
+        if (!subjectGroup.hasOwnProperty(subject.subjectModule.id)) {
+          subjectGroup[subject.subjectModule.id] = {
+            id: subject.subjectModule.id,
+            name: subject.subjectModule.name,
+            description: subject.subjectModule.description,
+          };
+        }
+
+        combinedResults.push({
+          keyId: subject.id,
+          keyType: 'subject',
+          keyName: subject.name,
         });
       });
     });
   });
 
-  return normalizedData;
+  Object.keys(subjectGroup).map(key => {
+    combinedResults.push({
+      keyId: key,
+      keyType: 'subjectGroup',
+      keyName: subjectGroup[key].name,
+    });
+  });
+
+  nonAcademics.map(na => {
+    combinedResults.push({
+      keyId: na.id,
+      keyType: 'non-academic',
+      keyName: na.name,
+    });
+  });
+
+  console.log(JSON.stringify(combinedResults, null, 2));
+
+  return combinedResults;
 };
 
 const levels = [

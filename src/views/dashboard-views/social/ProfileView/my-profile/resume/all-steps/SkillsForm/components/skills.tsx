@@ -3,7 +3,7 @@ import Chip from '@material-ui/core/Chip';
 import { Box, Button, Typography } from '@material-ui/core';
 import { useStyles } from '../mui.style';
 import { SkillsModel } from '../schema/skills.value';
-import { AcademicSkill } from '../schema/academicSkill';
+import { SkillModels } from '../schema/skillModels';
 import { ProfileSkill } from '../schema/profileSkill';
 
 type Props = {

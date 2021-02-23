@@ -1,4 +1,4 @@
-import { SkillChipValue } from './academicSkill';
+import { SkillChipValue } from './skillModels';
 
 export const skillsValues: SkillsModel = {
   id: '',
