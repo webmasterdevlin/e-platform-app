@@ -1,4 +1,4 @@
-import { SkillParam, SkillsModel } from './schema/skills.value';
+import { SkillParam } from './schema/skills.value';
 import api from 'utils/axios2';
 import { SkillModels, NonAcademic } from './schema/skillModels';
 import { ProfileSkill } from './schema/profileSkill';

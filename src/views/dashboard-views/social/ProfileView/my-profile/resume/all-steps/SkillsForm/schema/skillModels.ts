@@ -44,10 +44,17 @@ export interface SkillChipValue {
   skillId: string;
   skillName: string;
   skillLevel: number;
+  skillType: string;
 }
 
 export interface NonAcademic {
   id: string;
   name: string;
   description: string;
+}
+
+export interface SkillOption {
+  keyId: string;
+  keyType: string;
+  keyName: string;
 }

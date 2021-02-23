@@ -13,7 +13,7 @@ import { SkillsModel } from '../schema/skills.value';
 import {
   SkillModels,
   SkillChipValue,
-  SkillNameValue,
+  SkillOption,
 } from '../schema/skillModels';
 import { ProfileSkill } from '../schema/profileSkill';
 
@@ -23,7 +23,7 @@ type Props = {
 
 const AutocompleteSkills = ({ skills }: Props) => {
   const [open, setOpen] = useState(false);
-  const [options, setOptions] = useState<any[]>([]);
+  const [options, setOptions] = useState<SkillOption[]>([]);
 
   const [skillLevel, setSkillLevel] = useState(1);
   const loading = open && options.length === 0;
@@ -53,13 +53,13 @@ const AutocompleteSkills = ({ skills }: Props) => {
     }
   };
 
-  const isValidEntry = (value: SkillNameValue) => {
-    if (formik.values.skills?.find(s => s.skillName == value?.name))
+  const isValidEntry = (value: SkillOption) => {
+    if (formik.values.skills?.find(s => s.skillName == value?.keyName))
       return false;
 
-    if (skills?.find(s => s.skill.name == value?.name)) return false;
+    if (skills?.find(s => s.skill.name == value?.keyName)) return false;
 
-    if (!value?.name) return false;
+    if (!value?.keyName) return false;
 
     return true;
   };
@@ -98,7 +98,7 @@ const AutocompleteSkills = ({ skills }: Props) => {
           id="skill"
           style={{ width: 300 }}
           // groupBy={option => option.subjectModule?.name || ''}
-          getOptionLabel={option => option.name || ''}
+          getOptionLabel={option => option.keyName || ''}
           options={options}
           loading={loading}
           open={open}
@@ -108,14 +108,14 @@ const AutocompleteSkills = ({ skills }: Props) => {
           onClose={() => {
             setOpen(false);
           }}
-          onChange={(e: ChangeEvent<any>, value: SkillNameValue) => {
+          onChange={(e: ChangeEvent<any>, value: SkillOption) => {
             if (!isValidEntry(value)) return;
 
             formik.setFieldValue('skills', [
               ...formik.values.skills,
               {
-                skillId: value.id,
-                skillName: value.name,
+                skillId: value.keyId,
+                skillName: value.keyName,
                 skillLevel,
               } as SkillChipValue,
             ]);
@@ -155,7 +155,7 @@ const AutocompleteSkills = ({ skills }: Props) => {
 export default AutocompleteSkills;
 
 const normalizeOptions = (academics: SkillModels[], nonAcademics: any) => {
-  const combinedResults: any[] = [];
+  const combinedResults: SkillOption[] = [];
 
   const subjectGroup = {};
 
@@ -194,8 +194,6 @@ const normalizeOptions = (academics: SkillModels[], nonAcademics: any) => {
       keyName: na.name,
     });
   });
-
-  console.log(JSON.stringify(combinedResults, null, 2));
 
   return combinedResults;
 };
