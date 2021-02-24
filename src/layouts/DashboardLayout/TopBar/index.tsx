@@ -21,6 +21,7 @@ import Contacts from './Contacts';
 import Notifications from './Notifications';
 import Search from './Search';
 import Settings from './Settings';
+import Lesson from './Lesson';
 
 interface TopBarProps {
   className?: string;
@@ -66,6 +67,7 @@ const TopBar: FC<TopBarProps> = ({ className, onMobileNavOpen, ...rest }) => {
           </RouterLink>
         </Hidden>
         <Box ml={2} flexGrow={1} />
+        <Lesson />
         <Search />
         <Contacts />
         <Notifications />

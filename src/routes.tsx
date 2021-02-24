@@ -142,6 +142,13 @@ const routes: Routes = [
       },
       {
         exact: true,
+        path: '/app/lesson-ad',
+        component: lazy(
+          () => import('../src/views/dashboard-views/lesson/LessonAdView'),
+        ),
+      },
+      {
+        exact: true,
         path: '/app/calendar',
         component: lazy(
           () => import('../src/views/dashboard-views/calendar/CalendarView'),
