@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Container, makeStyles } from '@material-ui/core';
+import { Formik } from 'formik';
 
 import Page from '../../../../components/Page';
 import Header from '../../account/AccountView/Header';
 import { Theme } from '../../../../themes/dashboard-theme';
-import { Formik } from 'formik';
 
 type Prop = {};
 

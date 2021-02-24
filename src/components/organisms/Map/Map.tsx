@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map as ReactMap, TileLayer, Marker } from 'react-leaflet';
+import { MapContainer as ReactMap, TileLayer, Marker } from 'react-leaflet';
 import clsx from 'clsx';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import 'leaflet/dist/leaflet.css';
@@ -43,11 +43,7 @@ const Map = (props: Props) => {
       {pins &&
         pins.length &&
         pins.map((item, i) => (
-          <Marker
-            className="map__marker"
-            position={[item.location.y, item.location.x]}
-            key={i}
-          />
+          <Marker position={[item.location.y, item.location.x]} key={i} />
         ))}
     </ReactMap>
   );
