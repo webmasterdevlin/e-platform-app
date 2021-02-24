@@ -1,7 +1,3 @@
-import '@fullcalendar/core/main.css';
-import '@fullcalendar/daygrid/main.css';
-import '@fullcalendar/timegrid/main.css';
-import '@fullcalendar/list/main.css';
 import React, { useState, useRef, useEffect } from 'react';
 import moment from 'moment';
 import FullCalendar from '@fullcalendar/react';
@@ -187,17 +183,17 @@ const CalendarView = () => {
         <Paper className={classes.calendar}>
           <FullCalendar
             allDayMaintainDuration
-            defaultDate={date}
-            defaultView={view}
+            initialDate={date}
+            initialView={view}
             droppable
             editable
             eventClick={handleEventSelect}
             eventDrop={handleEventDrop}
-            eventLimit
+            dayMaxEventRows
             eventResizableFromStart
             eventResize={handleEventResize}
             events={events}
-            header={false}
+            headerToolbar={false}
             height={800}
             ref={calendarRef}
             rerenderDelay={10}

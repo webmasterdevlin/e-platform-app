@@ -1,6 +1,7 @@
 import React from 'react';
-import Page from '../../../../components/Page';
 import { Box, Container, makeStyles } from '@material-ui/core';
+
+import Page from '../../../../components/Page';
 import Header from '../../account/AccountView/Header';
 import { Theme } from '../../../../themes/dashboard-theme';
 
